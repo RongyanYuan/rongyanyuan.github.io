@@ -110,4 +110,76 @@ function loadImg(el) {
 
 window.onload = window.onscroll = function () { //onscroll()在滚动条滚动的时候触发
     check();
-}
+} 
+
+// 简单的中英文切换
+(function () {
+  const LANG_KEY = 'site_lang';
+  const translations = {
+    en: {
+      nav_home: 'HOME',
+      nav_blog: 'BLOG',
+      nav_categories: 'CATEGORIES',
+      intro_title: 'Hi, I am Rongyan Yuan!',
+      intro_sub: 'Welcome to my blog, and plz reach me below:'
+    },
+    zh: {
+      nav_home: '首页',
+      nav_blog: '博客',
+      nav_categories: '分类',
+      intro_title: '你好，我是袁榕言！',
+      intro_sub: '欢迎来到我的博客，如有交流请通过以下方式联系我：',
+      footer_tagline: '金融工程 | 数学 | 计算机科学  Rongyan © 2022'
+    }
+  };
+
+  function getInitialLang() {
+    try {
+      const stored = localStorage.getItem(LANG_KEY);
+      if (stored && translations[stored]) return stored;
+    } catch (e) {}
+    const browser = (navigator.language || '').toLowerCase();
+    return browser.startsWith('zh') ? 'zh' : 'en';
+  }
+
+  function applyLang(lang) {
+    const dict = translations[lang] || translations.en;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) {
+        el.textContent = dict[key];
+      }
+    });
+
+    if (lang === 'zh') {
+      document.documentElement.lang = 'zh-CN';
+    } else {
+      document.documentElement.lang = 'en';
+    }
+
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch (e) {}
+
+    document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+      if (btn.getAttribute('data-set-lang') === lang) {
+        btn.classList.add('active-lang');
+      } else {
+        btn.classList.remove('active-lang');
+      }
+    });
+  }
+
+  const buttons = document.querySelectorAll('[data-set-lang]');
+  if (buttons.length) {
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const lang = btn.getAttribute('data-set-lang');
+        applyLang(lang);
+      });
+    });
+
+    applyLang(getInitialLang());
+  }
+})();

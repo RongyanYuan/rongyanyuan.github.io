@@ -81,6 +81,14 @@ span {
 .menu-li:hover {
   color: #333333;
 }
+.lang-switcher-desktop span,
+.lang-switcher-mobile span {
+  cursor: pointer;
+}
+.active-lang {
+  font-weight: 1000;
+  color: #333333;
+}
 .active-link li {
   position: relative;
   color: #333333;
