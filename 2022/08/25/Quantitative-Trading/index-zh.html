@@ -1,0 +1,373 @@
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  1. 金融市场基础 |    榕言的博客</title>
+  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
+  <!-- 标签页图标 -->
+  
+
+  <!-- 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 动画库 -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  
+  <!-- css文件 -->
+  
+<link rel="stylesheet" href="/css/white.css">
+
+  <!-- 代码高亮 -->
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          榕言的博客
+        </a>
+        
+      </div>
+      <div class="menu-group">
+        <ul class="menu-ul">
+        
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              首页
+            </li>
+          </a>
+        
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              博客
+            </li>
+          </a>
+        
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+             分类
+             <div class="categories-outer " id="sort-div">
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+             </div>
+          </li>
+        
+        
+        <a href="/search">
+          <li class="menu-li  animate__animated  animate__fadeInUp">
+            <i class="ri-search-line"></i>
+          </li>
+        </a>
+
+        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+          <a href="/2022/08/25/Quantitative-Trading/index.html">EN</a> |
+          <a href="/2022/08/25/Quantitative-Trading/index-zh.html">中文</a>
+        </li>
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        
+        </ul>
+
+      </div>
+
+    </div>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">
+        榕言的博客
+      </a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+
+  </div>
+
+  <div class="mobile-menu-div">
+  
+    <a href="/" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>首页</span>
+      </div>
+    </a>
+  
+    <a href="/archives" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>博客</span>
+      </div>
+    </a>
+  
+  
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2022/08/25/Quantitative-Trading/index.html">EN</a> |
+      <a href="/2022/08/25/Quantitative-Trading/index-zh.html">中文</a>
+    </div>
+
+    <a href="/search">  
+      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
+        <i class="ri-search-line"></i>
+      </div>
+    </a>
+    
+  </div>
+
+
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">1. 金融市场基础</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Aug 25 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
+
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
+        
+        <h1 id="Basics-of-Financial-Markets"><a href="#Basics-of-Financial-Markets" class="headerlink" title="金融市场基础"></a>金融市场基础</h1><h2 id="Stock"><a href="#Stock" class="headerlink" title="股票"></a>股票</h2><h3 id="Basics-of-Stock"><a href="#Basics-of-Stock" class="headerlink" title="股票基础"></a>股票基础</h3><ul>
+<li><p>股票代表对公司的一小部分所有权</p>
+</li>
+<li><p>这使股东按持股比例分享公司的资产与利润</p>
+</li>
+<li><p><u> 股票的单位是“股” </u></p>
+</li>
+<li><p>投资可以通过购买公司的股份来实现</p>
+</li>
+</ul>
+<h3 id="Price-of-Stock"><a href="#Price-of-Stock" class="headerlink" title="股票价格"></a>股票价格</h3><ul>
+<li><p>股票运作的基本概念：公司通过借款、发行债券或上市来融资</p>
+</li>
+<li><p>公司通过证券交易所发行股票，交易所列出希望融资的公司</p>
+</li>
+<li><p>券商为投资者提供买卖股票的平台</p>
+</li>
+<li><p><u> 股票价格主要受供求影响而波动 </u></p>
+</li>
+<li><p>Stock price is usually expressed as S(t) and very similar to a <u>随机游走</u></p>
+</li>
+<li><p><u> 投资风险与股价波动率相关， <strong>波动率衡量离散程度</strong></u></p>
+</li>
+</ul>
+<h2 id="Commodities"><a href="#Commodities" class="headerlink" title="大宗商品"></a>大宗商品</h2><ul>
+<li><p>大宗商品是原材料，例如 <strong>黄金、原油、天然气</strong></p>
+</li>
+<li><p>商品（如原油）具有 <strong>极高的波动性</strong>，因此我们需要 <strong>期货合约</strong></p>
+</li>
+<li><p>商品价格通常像随机游走一样波动</p>
+</li>
+<li><p><u>通胀加速时商品通常会上涨</u>，因此会被纳入投资组合</p>
+</li>
+</ul>
+<h3 id="Future-Contract"><a href="#Future-Contract" class="headerlink" title="期货合约"></a>期货合约</h3><ul>
+<li><p>例如：航空公司的主要成本是燃油，因此他们使用 <strong>原油期货</strong> 来对冲油价上涨</p>
+</li>
+<li><p>期货合约和商品在期货市场交易，例如纽约商品交易所（NYMEX）， <strong>主市场</strong></p>
+</li>
+</ul>
+<h3 id="What-if-we-cannot-invest-into-a-commodity-directly"><a href="#What-if-we-cannot-invest-into-a-commodity-directly" class="headerlink" title="如果无法直接投资商品"></a>如果无法直接投资商品</h3><ul>
+<li><p>投资于高度依赖该商品的公司</p>
+</li>
+<li><p>例如：黄金价格与金矿公司股票可能相关</p>
+</li>
+<li><p>它与公司业绩也可能正相关，因此可以使用配对交易策略</p>
+</li>
+</ul>
+<h2 id="Currencies-and-Forex"><a href="#Currencies-and-Forex" class="headerlink" title="货币与外汇"></a>货币与外汇</h2><h3 id="Currencies-Definiton"><a href="#Currencies-Definiton" class="headerlink" title="货币定义"></a>货币定义</h3><ul>
+<li><p>汇率是一个国家货币兑换另一种货币的比率</p>
+</li>
+<li><p>一种货币对另一种货币具有价值</p>
+</li>
+<li><p><u>政府和央行可以影响货币与汇率</u></p>
+</li>
+</ul>
+<h3 id="Currency-Traits"><a href="#Currency-Traits" class="headerlink" title="货币特征"></a>货币特征</h3><p>汇率为什么会波动？</p>
+<ul>
+<li><p>汇率的升跌取决于 <u>供求变化</u></p>
+</li>
+<li><p>汇率通常类似于 <strong>随机游走</strong></p>
+</li>
+</ul>
+<h3 id="FOREX-Market"><a href="#FOREX-Market" class="headerlink" title="外汇市场"></a>外汇市场</h3><ul>
+<li><p>国际货币在外汇市场交易</p>
+</li>
+<li><p>投资者通过 <strong>外汇经纪商</strong> 进行货币买卖。</p>
+</li>
+</ul>
+<h2 id="Factors-affecting-exchange-rates"><a href="#Factors-affecting-exchange-rates" class="headerlink" title="影响汇率的因素"></a>影响汇率的因素</h2><ul>
+<li><p>利率：利率是可被 <strong>该国央行调控的关键因素。投资者会把资金借给该国银行以获取更高回报</strong></p>
+</li>
+<li><p>因此，更高的利率通常意味着更高的汇率</p>
+</li>
+<li><p>货币供应量：央行过度印钞会引发通胀。投资者不喜欢通胀，会抛售该货币，从而压低其价值</p>
+</li>
+<li><p>因此，货币供应量增加可能导致汇率下降</p>
+</li>
+<li><p>金融稳定：一国的金融稳定与 <u>经济增长</u> 对该国汇率有 <u>巨大影响</u></p>
+</li>
+<li><p>因此，经济表现越好，汇率越高</p>
+</li>
+<li><p>当货币定价偏离时会出现套利机会</p>
+</li>
+</ul>
+<h2 id="Long-and-Short-position"><a href="#Long-and-Short-position" class="headerlink" title="多头与空头头寸"></a>多头与空头头寸</h2><ul>
+<li>多头头寸：投资者持有证券，预期其未来上涨，因此：</li>
+</ul>
+<center>S(t<sub>T</sub>) > S(t<sub>0</sub>)</center>
+
+<ul>
+<li>空头头寸：投资者卖出证券，预期其价格下跌，因此：</li>
+</ul>
+<center>S(t<sub>T</sub>) < S(t<sub>0</sub>)</center>
+
+<ul>
+<li><p>空头头寸会引出另一种操作： <strong>卖空</strong></p>
+</li>
+<li><p><strong>卖空</strong>：卖出并不实际持有的资产</p>
+</li>
+<li><p><strong>卖空</strong> 是指 <u>投资者借入股票并立即卖出</u>，期望以后以更低价格买回归还并赚取差价，利润为：</p>
+</li>
+</ul>
+<center> S(t<sub>0</sub>) - S(t<sub>T</sub>), given that S(t<sub>0</sub>) > S(t<sub>T</sub>) </center>
+
+<h3 id="Risks-with-Short-and-Long-Positions"><a href="#Risks-with-Short-and-Long-Positions" class="headerlink" title="多空头寸的风险"></a>多空头寸的风险</h3><ul>
+<li><p>做空 <strong>风险高于</strong> 做多</p>
+</li>
+<li><p>For example, for lone position, you can only lose 100% of your money; however, <u>做空的亏损没有上限</u>，因为 <strong>没有上限</strong> 对单只股票的上涨而言，空头亏损为：</p>
+</li>
+</ul>
+<center> S(t<sub>T</sub>) - S(t<sub>0</sub>), given that S(t<sub>0</sub>) < S(t<sub>T</sub>) </center>
+
+<ul>
+<li>S(t<sub>T</sub>) could go really high meaning you have to pay more to buy it back and return</li>
+</ul>
+<h3 id="Market-Basics"><a href="#Market-Basics" class="headerlink" title="市场基础"></a>市场基础</h3><ul>
+<li><p><strong>熊市</strong>：当市场经历 <u>持续的价格下跌</u></p>
+</li>
+<li><p>因此证券在一段时间内下跌，我们可以 <u>通过做空获利</u></p>
+</li>
+<li><p><strong>牛市</strong>：当市场经历 持续上涨时，我们可以 <u>通过做多获利</u></p>
+</li>
+</ul>
+
+        <!-- 分类文章 -->
+        
+          <div class="post-categoris-bottom">
+            <div class="post-categoris-name">量化</div>
+            <ul>
+            
+            
+              
+                <li class="base">
+                  <a  href="/2022/08/08/README/" class="post-categoris-bottom-link">
+                  说明
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+                <li class="me base">
+                  <a  href="/2022/08/25/Quantitative-Trading/" class="post-categoris-bottom-link">
+                  1. 金融市场基础
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            </ul>
+
+          </div>
+
+        
+      </div>
+      <div class="post-content-inner-space">
+        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stock"><span class="space-toc-text">股票</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Commodities"><span class="space-toc-text">大宗商品</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Currencies-and-Forex"><span class="space-toc-text">货币与外汇</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Factors-affecting-exchange-rates"><span class="space-toc-text">影响汇率的因素</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Long-and-Short-position"><span class="space-toc-text">多头与空头头寸</span></a></li></ol>
+           </div>
+        
+      </div>
+   </div>
+    <!-- 评论 -->
+    
+  </div>
+</article>
+  </div>
+</div>
+
+
+
+<!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
+
+  <div class="footer-outer animate__animated  animate__fadeInUp">
+    <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+
+    </div>
+    <div class="footer-contact">
+    <ul class="footer-ul">
+        
+        <li class="footer-li">
+            <a href="https://github.com/RongyanYuan" target="_blank">
+                <i class="ri-github-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+                <i class="ri-mail-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+                <i class="ri-linkedin-box-line"></i>
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/js/white.js"></script>
+
+
+
+</body>
+</html>

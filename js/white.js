@@ -112,6 +112,53 @@ window.onload = window.onscroll = function () { //onscroll()在滚动条滚动�
     check();
 } 
 
+localizeLinksForZh();
+
+
+// If current page is Chinese, route internal links to Chinese pages when possible.
+function localizeLinksForZh() {
+  var lang = (document.documentElement.lang || '').toLowerCase();
+  if (!lang.startsWith('zh')) return;
+
+  var anchors = document.querySelectorAll('a[href]');
+  anchors.forEach(function (a) {
+    if (a.closest('.lang-switcher-desktop') || a.closest('.lang-switcher-mobile')) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) return;
+
+    // Already Chinese
+    if (href.includes('index-zh.html')) return;
+
+    // Root
+    if (href === '/' || href === '/index.html') {
+      a.setAttribute('href', '/index-zh.html');
+      return;
+    }
+
+    // Archives
+    if (href === '/archives' || href === '/archives/') {
+      a.setAttribute('href', '/archives/index-zh.html');
+      return;
+    }
+
+    // Skip search (no zh page for search)
+    if (href.startsWith('/search')) return;
+
+    // If link already points to index.html, swap to index-zh.html
+    if (href.endsWith('/index.html')) {
+      a.setAttribute('href', href.replace('/index.html', '/index-zh.html'));
+      return;
+    }
+
+    // If link ends with '/', append index-zh.html
+    if (href.endsWith('/')) {
+      a.setAttribute('href', href + 'index-zh.html');
+      return;
+    }
+  });
+}
+
 // 简单的中英文切换
 (function () {
   const LANG_KEY = 'site_lang';
@@ -134,6 +181,9 @@ window.onload = window.onscroll = function () { //onscroll()在滚动条滚动�
   };
 
   function getInitialLang() {
+    const path = (window.location && window.location.pathname) ? window.location.pathname : '';
+    if (path.includes('index-zh.html')) return 'zh';
+    if (path.endsWith('/index.html') || path === '/' || path.endsWith('/archives/index.html')) return 'en';
     try {
       const stored = localStorage.getItem(LANG_KEY);
       if (stored && translations[stored]) return stored;

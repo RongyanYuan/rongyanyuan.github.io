@@ -3,27 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>   榕言的博客</title>
+  <title>  计算机科学 | 榕言的博客</title>
   <meta name="description" content="金融工程 | 数学 | 计算机科学">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  <link rel="stylesheet" href="css/white.css">
+  <link rel="stylesheet" href="/css/white.css">
 </head>
 <body>
 
 <div class="menu-outer">
   <div class="menu-inner">
     <div class="menu-site-name  animate__animated  animate__fadeInUp">
-      <a href="index-zh.html">榕言的博客</a>
+      <a href="/index-zh.html">
+        榕言的博客
+      </a>
     </div>
     <div class="menu-group">
       <ul class="menu-ul">
-        <a href="index-zh.html" class="nav-link">
+        <a href="/index-zh.html" class="nav-link">
           <li class="menu-li  animate__animated  animate__fadeInUp">
             首页
           </li>
         </a>
-        <a href="archives/index-zh.html" class="nav-link">
+        <a href="/archives/index.html" class="nav-link">
           <li class="menu-li  animate__animated  animate__fadeInUp">
             博客
           </li>
@@ -31,7 +33,7 @@
         <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
           分类
           <div class="categories-outer " id="sort-div">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/index-zh.html">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/quant-trading/">量化交易</a></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
           </div>
         </li>
         <a href="/search">
@@ -39,9 +41,14 @@
             <i class="ri-search-line"></i>
           </li>
         </a>
+
+          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+            <a href="index.html">EN</a> |
+            <a href="index-zh.html">中文</a>
+          </li>
         <li class="menu-li animate__animated  animate__fadeInUp">
-          <a href="index.html">EN</a> |
-          <a href="index-zh.html">中文</a>
+          <a href="/categories/cs/">EN</a> |
+          <a href="/categories/cs/index-zh.html">中文</a>
         </li>
         <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
           <i class="ri-menu-line"></i>
@@ -54,7 +61,7 @@
 <div id="mobile-main" class="animate__animated  animate__fadeIn">
   <div class="mobile-menu-inner">
     <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="index-zh.html">榕言的博客</a>
+      <a href="/index-zh.html">榕言</a>
     </div>
     <div class="mobile-menu-group" id="mobile-close">
       <i class="ri-close-line"></i>
@@ -62,19 +69,19 @@
   </div>
 
   <div class="mobile-menu-div">
-    <a href="index-zh.html" class="mobile-nav-link">
+    <a href="/index-zh.html" class="mobile-nav-link">
       <div class="mobile-menu-child animate__animated  animate__fadeInUp">
         <span>首页</span>
       </div>
     </a>
-    <a href="archives/index-zh.html" class="mobile-nav-link">
+    <a href="/archives/index.html" class="mobile-nav-link">
       <div class="mobile-menu-child animate__animated  animate__fadeInUp">
         <span>博客</span>
       </div>
     </a>
     <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-      <a href="index.html">EN</a> |
-      <a href="index-zh.html">中文</a>
+      <a href="/categories/cs/">EN</a> |
+      <a href="/categories/cs/index-zh.html">中文</a>
     </div>
     <a href="/search">
       <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
@@ -86,29 +93,49 @@
 
 <div class="body-outer">
   <div class="body-inner">
-    <section class="intro-section">
-      <div class="intro-content">
-        <div class="intro-title animate__animated  animate__fadeInUp">你好，我是袁榕言！</div>
-        <div class="intro-sub animate__animated  animate__fadeInUp">
-          <p>欢迎来到我的博客，如有交流请通过以下方式联系我：</p>
-        </div>
-        <p class="intro-contact animate__animated  animate__fadeInUp">
-          <a href="https://github.com/RongyanYuan" target="_blank">
-            <i class="ri-github-line"></i>
+    <section class="archive-outer">
+    <section class="archive-inner">
+        <div class="archive-name animate__animated  animate__fadeInUp">量化主题</div>
+
+          <a href="/categories/quant/quant-trading/">
+          <div class="archive-post animate__animated  animate__fadeInUp">
+            <div class="archive-post-title">量化交易入门 101</div>
+            <div class="archive-post-date">策略、市场机制与执行基础。</div>
+          </div>
           </a>
-          <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-            <i class="ri-mail-line"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-            <i class="ri-linkedin-box-line"></i>
-          </a>
-        </p>
-      </div>
     </section>
+</section>
   </div>
 </div>
 
-<script src="js/white.js"></script>
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li">
+          <a href="https://github.com/RongyanYuan" target="_blank">
+            <i class="ri-github-line"></i>
+          </a>
+        </li>
+        <li class="footer-li">
+          <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+            <i class="ri-mail-line"></i>
+          </a>
+        </li>
+        <li class="footer-li">
+          <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+            <i class="ri-linkedin-box-line"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
 </body>
 </html>
 

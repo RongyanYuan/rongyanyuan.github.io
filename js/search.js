@@ -15,48 +15,38 @@ var searchFunc = function(path, search_id, content_id) {
 
             var $input = document.getElementById(search_id);
             var $resultContent = document.getElementById(content_id);
+            var $form = document.getElementById('search-form');
 
-            $input.addEventListener('input', function(){
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length <= 0) {
-                    return;
-                }
-                // perform local searching
+            function buildResults(query) {
+                var str='<ul class="search-result-list">';
+                var keywords = query.trim().toLowerCase().split(/[\s\-]+/);
+                var hasMatch = false;
                 datas.forEach(function(data) {
                     var isMatch = true;
-                    var content_index = [];
                     var data_title = data.title.trim().toLowerCase();
                     var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
                     var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
                     var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
+                    keywords.forEach(function(keyword, i) {
+                        var index_title = data_title.indexOf(keyword);
+                        var index_content = data_content.indexOf(keyword);
 
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
+                        if( index_title < 0 && index_content < 0 ){
+                            isMatch = false;
+                        } else {
+                            if (index_content < 0) {
+                                index_content = 0;
                             }
-                        });
-                    }
-                    // show search results
+                            if (i == 0) {
+                                first_occur = index_content;
+                            }
+                        }
+                    });
                     if (isMatch) {
+                        hasMatch = true;
                         str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
                         var content = data.content.trim().replace(/<[^>]+>/g,"");
                         if (first_occur >= 0) {
-                            // cut out 100 characters
                             var start = first_occur - 20;
                             var end = first_occur + 80;
 
@@ -71,22 +61,63 @@ var searchFunc = function(path, search_id, content_id) {
                                 end = content.length;
                             }
 
-                            var match_content = content.substr(start, end); 
+                            var match_content = content.substr(start, end);
 
-                            // highlight all keywords
                             keywords.forEach(function(keyword){
                                 var regS = new RegExp(keyword, "gi");
                                 match_content = match_content.replace(regS, "<span class=\"search-keyword\">"+keyword+"</span>");
                             });
-                            
+
                             str += "<p class=\"search-result\">" + match_content +"...</p>"
                         }
                         str += "</li>";
                     }
                 });
                 str += "</ul>";
+                if (!hasMatch) {
+                    var isZh = (document.documentElement.lang || '').toLowerCase().startsWith('zh') ||
+                               window.location.pathname.indexOf('index-zh.html') !== -1;
+                    var emptyMsg = isZh ? '未找到匹配结果。' : 'No matches found.';
+                    var fallback = '<div class="search-empty">' + emptyMsg + '</div>';
+                    // Show README entry as a fallback
+                    var readme = datas.find(function (d) {
+                        return d.title.trim().toLowerCase() === 'read me' ||
+                               d.title.trim() === '阅读说明';
+                    });
+                    if (readme) {
+                        fallback += '<ul class="search-result-list">' +
+                                    "<li><a href='" + readme.url + "' class='search-result-title'>" +
+                                    readme.title + "</a></li></ul>";
+                    }
+                    str = fallback;
+                }
                 $resultContent.innerHTML = str;
-            });
+            }
+
+            function getQueryParam() {
+                var params = new URLSearchParams(window.location.search);
+                return params.get('q') || '';
+            }
+
+            if ($form) {
+                $form.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    var query = $input.value.trim();
+                    if (!query) {
+                        $resultContent.innerHTML = '';
+                        return;
+                    }
+                    var url = new URL(window.location.href);
+                    url.searchParams.set('q', query);
+                    window.location.href = url.toString();
+                });
+            }
+
+            var initial = getQueryParam();
+            if (initial) {
+                $input.value = initial;
+                buildResults(initial);
+            }
         }
     });
 }
