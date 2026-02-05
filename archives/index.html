@@ -127,82 +127,7 @@
     
     
 <section class="img-show-outer">
-    <section class="img-show-inner">
-
-        <div class="img-show-post">
-            <div class="img-show-post-cover">
-              <span class="lazyload-img-span">
-              <a  href="/2022/09/05/About%20me/">
-              
-                <img data-src="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/02.jpg" class="img-show-post-cover-class">
-              
-              </a>
-              </span>
-            </div>
-            <div class="img-show-post-intro">
-             <a  href="/2022/09/05/About%20me/">
-            <div class="img-show-post-title animate__animated  animate__fadeInUp">About Me</div>
-            </a>
-            <div class="img-show-post-date animate__animated  animate__fadeInUp">Feb 04 2026 </div>
-            </div>
-          </div>
-          
-        <div class="img-show-post">
-            <div class="img-show-post-cover">
-              <span class="lazyload-img-span">
-              <a  href="/2022/09/11/Python%20Crash%20Course/">
-              
-                <img data-src="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/01.jpg" class="img-show-post-cover-class">
-              
-              </a>
-              </span>
-            </div>
-            <div class="img-show-post-intro">
-             <a  href="/2022/09/11/Python%20Crash%20Course/">
-            <div class="img-show-post-title animate__animated  animate__fadeInUp">Data science and Machine learning in Python - 1. Review of Python</div>
-            </a>
-            <div class="img-show-post-date animate__animated  animate__fadeInUp">Sep 11 2022 </div>
-            </div>
-          </div>
-          
-        <div class="img-show-post">
-            <div class="img-show-post-cover">
-              <span class="lazyload-img-span">
-              <a  href="/2022/08/25/Quantitative-Trading/">
-              
-                <img data-src="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/03.jpg" class="img-show-post-cover-class">
-              
-              </a>
-              </span>
-            </div>
-            <div class="img-show-post-intro">
-             <a  href="/2022/08/25/Quantitative-Trading/">
-            <div class="img-show-post-title animate__animated  animate__fadeInUp">1.Basics of Financial Markets</div>
-            </a>
-            <div class="img-show-post-date animate__animated  animate__fadeInUp">Aug 25 2022 </div>
-            </div>
-          </div>
-          
-        <div class="img-show-post">
-            <div class="img-show-post-cover">
-              <span class="lazyload-img-span">
-              <a  href="/2022/08/08/README/">
-              
-                <img data-src="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/04.jpg" class="img-show-post-cover-class">
-              
-              </a>
-              </span>
-            </div>
-            <div class="img-show-post-intro">
-             <a  href="/2022/08/08/README/">
-            <div class="img-show-post-title animate__animated  animate__fadeInUp">READ ME</div>
-            </a>
-            <div class="img-show-post-date animate__animated  animate__fadeInUp">Aug 08 2022 </div>
-            </div>
-          </div>
-          
-    </section>
-    
+    <section class="img-show-inner" id="archive-list"></section>
 </section>
 
 
@@ -252,6 +177,40 @@
 
 
 <script src="../js/white.js"></script>
+<script>
+  (function () {
+    var listEl = document.getElementById('archive-list');
+    if (!listEl) return;
+    var items = [
+      { title: 'About Me', url: '/2022/09/05/About%20me/', cover: '../images/about-me.jpg?v=2' },
+      { title: 'READ ME', url: '/2022/08/08/README/', cover: '../images/readme-card.jpg?v=1' },
+      { title: 'AI', url: '/categories/ai/', cover: '../images/ai-card.png?v=1' },
+      { title: 'Math', url: '/categories/math/', cover: '../images/math-card.jpg?v=1' },
+      { title: 'CS', url: '/categories/cs/', cover: '../images/cs-card.jpg?v=1' },
+      { title: '', url: '#', cover: '../images/extra-card.jpg?v=1', noTitle: true },
+      { title: 'Quant', url: '/categories/quant/', cover: '../images/quant-card.png?v=1' }
+    ];
+    listEl.innerHTML = items.map(function (item) {
+      var titleHtml = item.noTitle ? '' :
+        '<div class=\"img-show-post-intro\">' +
+          '<a href=\"' + item.url + '\">' +
+            '<div class=\"img-show-post-title animate__animated  animate__fadeInUp\">' + item.title + '</div>' +
+          '</a>' +
+        '</div>';
+      return '' +
+        '<div class=\"img-show-post\">' +
+          '<div class=\"img-show-post-cover\">' +
+            '<span class=\"lazyload-img-span img-masks\">' +
+              '<a href=\"' + item.url + '\">' +
+                '<img src=\"' + item.cover + '\" class=\"img-show-post-cover-class\">' +
+              '</a>' +
+            '</span>' +
+          '</div>' +
+          titleHtml +
+        '</div>';
+    }).join('');
+  })();
+</script>
 
 
 
