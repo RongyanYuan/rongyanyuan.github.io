@@ -1,0 +1,257 @@
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  01. 什么是 LLM |    榕言的博客</title>
+  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
+  <!-- 标签页图标 -->
+  
+
+  <!-- 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 动画库 -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  
+  <!-- css文件 -->
+  
+<link rel="stylesheet" href="/css/white.css">
+
+  <!-- 代码高亮 -->
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          榕言的博客
+        </a>
+        
+      </div>
+      <div class="menu-group">
+        <ul class="menu-ul">
+        
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              首页
+            </li>
+          </a>
+        
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              博客
+            </li>
+          </a>
+        
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+             分类
+             <div class="categories-outer " id="sort-div">
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+             </div>
+          </li>
+        
+        
+        <a href="/search">
+          <li class="menu-li  animate__animated  animate__fadeInUp">
+            <i class="ri-search-line"></i>
+          </li>
+        </a>
+
+          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+            <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+            <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
+          </li>
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        
+        </ul>
+
+      </div>
+
+    </div>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">
+        榕言的博客
+      </a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+
+  </div>
+
+  <div class="mobile-menu-div">
+  
+    <a href="/" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>首页</span>
+      </div>
+    </a>
+  
+    <a href="/archives" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>博客</span>
+      </div>
+    </a>
+  
+  
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+      <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
+    </div>
+
+    <a href="/search">  
+      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
+        <i class="ri-search-line"></i>
+      </div>
+    </a>
+    
+  </div>
+
+
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">01. 什么是 LLM</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Feb 05 2026</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
+
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
+
+        <h1 id="What-is-LLM"><a href="#What-is-LLM" class="headerlink" title="01. 什么是 LLM"></a>01. 什么是 LLM</h1>
+
+        <p><strong>概率视角：</strong>LLM 建模下一词元分布 \(P(x_{t+1} \mid x_1, x_2, \ldots, x_t)\)。给定上下文，模型为每个可能的下一个词元分配概率，并逐步选择/采样生成文本。</p>
+<h2 id="Definition"><a href="#Definition" class="headerlink" title="定义"></a>1. 定义</h2>
+        <p>大语言模型（LLM）是通过建模词元序列概率来生成与理解文本的神经网络。它通过预测下一个词元学习生成、总结、翻译与推理能力。</p>
+
+        <h2 id="Training"><a href="#Training" class="headerlink" title="训练方式"></a>2. 如何训练</h2>
+        <ul>
+          <li><strong>预训练：</strong>使用大规模语料进行自监督学习（下一词预测）。</li>
+          <li><strong>微调：</strong>使用标注数据适配具体任务或领域。</li>
+          <li><strong>对齐：</strong>通过指令微调或 RLHF 让输出更符合人类需求。</li>
+        </ul>
+
+        <h2 id="Foundation"><a href="#Foundation" class="headerlink" title="模型基础"></a>3. 基于什么</h2>
+        <ul>
+          <li><strong>Transformer 架构：</strong>注意力机制建模长程依赖。</li>
+          <li><strong>分词：</strong>文本被拆成子词/词元序列。</li>
+          <li><strong>优化：</strong>使用大规模分布式训练与梯度下降。</li>
+        </ul>
+
+        <h2 id="Applications"><a href="#Applications" class="headerlink" title="应用"></a>4. 应用</h2>
+        <ul>
+          <li>对话机器人与助手</li>
+          <li>搜索与问答</li>
+          <li>摘要与内容生成</li>
+          <li>代码生成与调试辅助</li>
+          <li>翻译与本地化</li>
+        </ul>
+
+        <!-- 分类文章 -->
+        
+          <div class="post-categoris-bottom">
+            <div class="post-categoris-name">人工智能</div>
+            <ul>
+              <li class="me base">
+                <a  href="/2026/02/05/What-is-LLM/index-zh.html" class="post-categoris-bottom-link">
+                  什么是 LLM
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        
+      </div><div class="post-content-inner-space">
+        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Definition"><span class="space-toc-text">1. 定义</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Training"><span class="space-toc-text">2. 如何训练</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Foundation"><span class="space-toc-text">3. 基于什么</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Applications"><span class="space-toc-text">4. 应用</span></a></li></ol>
+           </div>
+        </div>
+   </div>
+    <!-- 评论 -->
+    
+  </div>
+</article>
+  </div>
+</div>
+
+
+
+<!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
+
+  <div class="footer-outer animate__animated  animate__fadeInUp">
+    <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+
+    </div>
+    <div class="footer-contact">
+    <ul class="footer-ul">
+        
+        <li class="footer-li">
+            <a href="https://github.com/RongyanYuan" target="_blank">
+                <i class="ri-github-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+                <i class="ri-mail-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+                <i class="ri-linkedin-box-line"></i>
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/js/white.js"></script>
+
+
+
+
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+</body>
+</html>

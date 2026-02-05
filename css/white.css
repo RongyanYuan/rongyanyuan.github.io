@@ -964,3 +964,46 @@ li p {
     max-width: 350px;
   }
 }
+
+.post-content-main figure {
+  margin: 28px 0;
+}
+.post-content-main figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.post-content-main figcaption {
+  margin-top: 8px;
+  font-size: 0.95em;
+  color: #666;
+  text-align: center;
+}
+.post-content-main h2 {
+  margin-top: 32px;
+}
+.post-content-main h3 {
+  margin-top: 24px;
+}
+.post-content-main p {
+  margin: 12px 0;
+}
+.post-content-main ul {
+  margin: 12px 0 12px 18px;
+}
+.post-content-main table {
+  margin: 16px 0;
+}
+
+.solution-block {
+  margin: 12px 0;
+  padding: 8px 12px;
+  border: 1px solid #e2e6ee;
+  border-radius: 6px;
+  background: #fafbff;
+}
+.solution-block summary {
+  cursor: pointer;
+  font-weight: 600;
+}

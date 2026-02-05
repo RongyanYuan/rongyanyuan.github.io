@@ -56,4 +56,88 @@
       <url>/2022/08/25/Quantitative-Trading/index-zh.html</url>
       <content type="html"><![CDATA[金融市场基础股票股票基础 股票代表对公司的一小部分所有权 这使股东按持股比例分享公司的资产与利润 股票的单位是“股” 投资可以通过购买公司的股份来实现 股票价格 股票运作的基本概念：公司通过借款、发行债券或上市来融资 公司通过证券交易所发行股票，交易所列出希望融资的公司 券商为投资者提供买卖股票的平台 股票价格主要受供求影响而波动 Stock price is usually expressed as S(t) and very similar to a 随机游走 投资风险与股价波动率相关， 波动率衡量离散程度 大宗商品 大宗商品是原材料，例如 黄金、原油、天然气 商品（如原油）具有 极高的波动性，因此我们需要 期货合约 商品价格通常像随机游走一样波动 通胀加速时商品通常会上涨，因此会被纳入投资组合 期货合约 例如：航空公司的主要成本是燃油，因此他们使用 原油期货 来对冲油价上涨 期货合约和商品在期货市场交易，例如纽约商品交易所（NYMEX）， 主市场 如果无法直接投资商品 投资于高度依赖该商品的公司 例如：黄金价格与金矿公司股票可能相关 它与公司业绩也可能正相关，因此可以使用配对交易策略 货币与外汇货币定义 汇率是一个国家货币兑换另一种货币的比率 一种货币对另一种货币具有价值 政府和央行可以影响货币与汇率 货币特征汇率为什么会波动？ 汇率的升跌取决于 供求变化 汇率通常类似于 随机游走 外汇市场 国际货币在外汇市场交易 投资者通过 外汇经纪商 进行货币买卖。 影响汇率的因素 利率：利率是可被 该国央行调控的关键因素。投资者会把资金借给该国银行以获取更高回报 因此，更高的利率通常意味着更高的汇率 货币供应量：央行过度印钞会引发通胀。投资者不喜欢通胀，会抛售该货币，从而压低其价值 因此，货币供应量增加可能导致汇率下降 金融稳定：一国的金融稳定与 经济增长 对该国汇率有 巨大影响 因此，经济表现越好，汇率越高 当货币定价偏离时会出现套利机会 多头与空头头寸 多头头寸：投资者持有证券，预期其未来上涨，因此： S(tT) > S(t0) 空头头寸：投资者卖出证券，预期其价格下跌，因此： S(tT) 0) 空头头寸会引出另一种操作： 卖空 卖空：卖出并不实际持有的资产 卖空 是指 投资者借入股票并立即卖出，期望以后以更低价格买回归还并赚取差价，利润为： S(t0) - S(tT), given that S(t0) > S(tT) 多空头寸的风险 做空 风险高于 做多 For example, for lone position, you can only lose 100% of your money; however, 做空的亏损没有上限，因为 没有上限 对单只股票的上涨而言，空头亏损为： S(tT) - S(t0), given that S(t0) T) S(tT) could go really high meaning you have to pay more to buy it back and return 市场基础 熊市：当市场经历 持续的价格下跌 因此证券在一段时间内下跌，我们可以 通过做空获利 牛市：当市场经历 持续上涨时，我们可以 通过做多获利 量化 说明 1. 金融市场基础]]></content>
     </entry>
+
+    <entry>
+      <title>1.Basics of Financial Markets</title>
+      <link href="/2026/02/05/Numeric-Methods/"/>
+      <url>/2026/02/05/Numeric-Methods/</url>
+      <content type="html"><![CDATA[Summary of Chapter 1: Convolution Operators and Kernel Operators CNNs learn hierarchical features from local receptive fields. 1. Convolutional Neural Networks (CNNs) Origins and Definition: Introduced by LeCun in 1989, CNNs are specialized networks for grid-like data such as time-series (1‑D grids) and images (2‑D grids). Core Operation: CNNs replace general matrix multiplication with convolution (or cross‑correlation) in at least one layer to extract features. Cross‑Correlation vs. Convolution: Most frameworks implement cross‑correlation (no kernel flip) for simplicity, with no loss in performance. Key Advantages of Convolution in ML Sparse interaction: Each output depends on a small subset of inputs. Parameter sharing: The same kernel is reused across spatial locations. Equivariance: Feature maps shift in response to input shifts. CNN Architecture Inspired by the visual cortex and receptive fields. Supports multi‑channel inputs (e.g., RGB) with depth‑matched kernels. Stacks layers to capture hierarchical features from edges to objects. Padding and Stride Same Padding: Output size matches input size. Valid Padding: No padding; output shrinks. Stride: Step size of the kernel movement. Pooling Layers Reduces spatial dimensions and computation. Improves translation invariance. Max Pooling suppresses noise better than Average Pooling. Fully‑Connected Layers Added near the end to combine extracted features for classification (e.g., Softmax). Popular CNN Architectures LeNet, AlexNet, VGGNet, GoogLeNet, ResNet, ZFNet. 2. Kernel Methods Motivation: Handle diverse data types with pairwise comparisons. Kernel Trick: Implicitly compute inner products in high‑dimensional spaces. Representer Theorem: Optimal solutions lie in the span of kernel evaluations. Kernels define similarity without explicit feature mapping. Positive Definite Kernels Symmetric functions \(K(x, x')\) that are positive semi‑definite. Examples: Linear, Polynomial, Gaussian RBF kernels. Kernels can be added, multiplied, and scaled while preserving p.d. property. Kernel Methods in Supervised Learning Learn \(f: X o Y\) by minimizing empirical risk + regularization. Support regression, classification, and structured output tasks. Kernel Ridge Regression (KRR) \(\hat{f}(x) = \sum_{i=1}^n lpha_i K(x_i, x)\) \(\min_{lpha \in \mathbb{R}^n} rac{1}{n} \|K lpha - y\|^2 + \lambda lpha^T K lpha\) Timeline Table of Key Concepts YearEvent/ConceptDescription 1989Introduction of CNNs by LeCunCNNs introduced for grid‑like data processing 1950Aronszajn Theorem (p.d. Kernels)Characterization of p.d. kernels via Hilbert spaces —Development of Kernel MethodsKernel trick and representer theorem in learning Key Definitions and Concepts in Table Form TermDefinition/Description ConvolutionKernel sliding over input to extract features. Cross‑CorrelationConvolution without kernel flipping. PoolingDownsampling for spatial invariance. Positive Definite KernelSymmetric \(K\) with \(\sum_{i,j} a_i a_j K(x_i, x_j) \ge 0\). Kernel TrickImplicit inner products in high‑dimensional space. Representer TheoremSolution lies in span of kernel evaluations. KRRRegularized least squares with kernels. Key Insights CNNs leverage local connectivity and parameter sharing for efficiency. Kernels enable nonlinear learning in rich feature spaces. Representer theorem reduces infinite‑dimensional optimization to finite form. Regularization is critical to prevent overfitting. Kernel/parameter selection remains an active research area. Conclusion This chapter introduces convolution operators (CNNs) and kernel operators as two foundational ML frameworks. CNNs excel in structured data via spatial hierarchies and parameter efficiency. Kernel methods provide a rigorous, flexible approach to nonlinear learning through p.d. kernels, Hilbert spaces, and the kernel trick. Math 1. Convolution and Kernel Operators]]></content>
+    </entry>
+
+    <entry>
+      <title>1.Basics of Financial Markets</title>
+      <link href="/2026/02/05/Numeric-Methods/index-zh.html"/>
+      <url>/2026/02/05/Numeric-Methods/index-zh.html</url>
+      <content type="html"><![CDATA[第一章总结：卷积算子与核算子 CNN 通过局部感受野学习层级特征。 1. 卷积神经网络（CNN） 起源与定义：LeCun 于 1989 年提出 CNN，用于处理网格结构数据，如时间序列（1D）与图像（2D）。 核心操作：至少在一层用卷积（或互相关）替代矩阵乘法以提取特征。 互相关 vs 卷积：多数框架实现互相关（不翻转核），简化实现而不影响效果。 卷积在机器学习中的关键优势 稀疏连接：每个输出仅依赖少量输入。 参数共享：同一卷积核在不同位置共享参数。 等变性：输入平移会导致特征图相应平移。 CNN 架构 模仿视觉皮层神经元与感受野机制。 支持多通道输入（如 RGB），卷积核深度与输入一致。 多层卷积捕捉从边缘到对象的层级特征。 填充与步幅 Same Padding：输出尺寸与输入相同。 Valid Padding：不填充，输出变小。 Stride：卷积核移动的步长。 池化层 降低空间维度与计算量。 增强平移不变性。 最大池化比平均池化更能抑制噪声。 全连接层 通常位于末端，用于组合特征并完成分类（如 Softmax）。 经典 CNN 架构 LeNet、AlexNet、VGGNet、GoogLeNet、ResNet、ZFNet。 2. 核方法 动机：以成对相似度处理多类型数据（向量、字符串、图像等）。 核技巧：在高维空间中隐式计算内积。 表示定理：最优解位于核函数在样本点的线性张成空间。 核函数定义相似度，无需显式特征映射。 正定核 对称且半正定的函数 \(K(x, x')\)。 例：线性核、多项式核、高斯 RBF 核。 核函数可加、可乘、可缩放，保持正定性。 监督学习中的核方法 通过经验风险 + 正则化学习 \(f: X o Y\)。 适用于回归、分类与结构化输出问题。 核岭回归（KRR） \(\hat{f}(x) = \sum_{i=1}^n lpha_i K(x_i, x)\) \(\min_{lpha \in \mathbb{R}^n} rac{1}{n} \|K lpha - y\|^2 + \lambda lpha^T K lpha\) 关键概念时间线 年份事件/概念说明 1989LeCun 引入 CNN用于网格数据处理 1950Aronszajn 定理（正定核）通过希尔伯特空间刻画正定核 —核方法发展核技巧与表示定理在学习中的应用 关键定义与概念 术语定义/说明 卷积卷积核滑动以提取特征。 互相关不翻转卷积核的卷积操作。 池化下采样以增强平移不变性。 正定核满足 \(\sum_{i,j} a_i a_j K(x_i, x_j) \ge 0\) 的对称函数。 核技巧隐式计算高维内积。 表示定理最优解在核函数张成空间内。 KRR带正则化的核回归。 关键洞见 CNN 通过局部连接与参数共享提升效率。 核方法在高维特征空间实现非线性学习。 表示定理将无限维优化降为有限维。 正则化对防止过拟合至关重要。 核与参数选择仍是活跃研究问题。 结论 本章介绍了两类核心方法：卷积算子（CNN）与核算子（核方法）。CNN 利用空间层级结构与参数效率处理结构化数据；核方法通过正定核与核技巧实现灵活的非线性学习。 数学 1. 卷积与核算子]]></content>
+    </entry>
+
+    <entry>
+      <title>04. Multimodal and Cross-Modal Fusion</title>
+      <link href="/2026/02/08/Multimodal/"/>
+      <url>/2026/02/08/Multimodal/</url>
+      <content type="html"><![CDATA[Multimodal systems integrate text, audio, images, and video to enable cross-media understanding and generation. Core steps include modality-specific feature extraction, mapping to a shared embedding space, and multi-stage fusion (early, mid, late). Applications include image-to-text, text-to-image/audio, and cross-modal generation, with challenges in cost, latency, and long-sequence consistency. AI 04. Multimodal and Cross-Modal Fusion]]></content>
+    </entry>
+
+    <entry>
+      <title>04. 多模态技术与跨模态融合概述</title>
+      <link href="/2026/02/08/Multimodal/index-zh.html"/>
+      <url>/2026/02/08/Multimodal/index-zh.html</url>
+      <content type="html"><![CDATA[多模态技术整合文本、音频、图像与视频，支持跨媒介理解与生成。关键步骤包括特征提取、统一映射到共享向量空间，以及早期/中期/晚期融合。典型应用为图生文、文生图/音频与跨模态生成，同时面临生成成本高、耗时长与一致性问题等挑战。 人工智能 04. 多模态技术与跨模态融合概述]]></content>
+    </entry>
+
+    <entry>
+      <title>05. Agent</title>
+      <link href="/2026/02/09/Agent/"/>
+      <url>/2026/02/09/Agent/</url>
+      <content type="html"><![CDATA[Agent is a goal-driven system that combines decision-making, perception, and execution to act in the world. It decomposes tasks, perceives multimodal inputs, and adapts strategies through feedback. Applications include intelligent customer service and office automation, while challenges include compute cost, safety, and continuous iteration. AI 05. Agent]]></content>
+    </entry>
+
+    <entry>
+      <title>05. Agent 知识文档</title>
+      <link href="/2026/02/09/Agent/index-zh.html"/>
+      <url>/2026/02/09/Agent/index-zh.html</url>
+      <content type="html"><![CDATA[Agent 是目标驱动的智能系统，融合决策、感知与执行来完成任务。它能拆解问题、理解多模态输入，并根据反馈动态优化策略。应用包括智能客服与办公自动化，挑战在于计算成本、安全可控和持续迭代。 人工智能 05. Agent 知识文档]]></content>
+    </entry>
+
+    <entry>
+      <title>06. Fine-Tuning</title>
+      <link href="/2026/02/10/Fine-Tuning/"/>
+      <url>/2026/02/10/Fine-Tuning/</url>
+      <content type="html"><![CDATA[Fine-tuning specializes a pretrained model for tasks, styles, and controllability. Common strategies include SFT, RLHF, DPO, rejection sampling, model averaging, and LoRA/PEFT. Pretraining provides general knowledge; fine-tuning refines for domain performance. AI 06. Fine-Tuning]]></content>
+    </entry>
+
+    <entry>
+      <title>06. 微调（Fine-Tuning）知识文档</title>
+      <link href="/2026/02/10/Fine-Tuning/index-zh.html"/>
+      <url>/2026/02/10/Fine-Tuning/index-zh.html</url>
+      <content type="html"><![CDATA[微调让通用模型成为领域专家，常见策略包括 SFT、RLHF、DPO、拒绝采样、模型平均与 LoRA/PEFT。预训练提供基础能力，微调针对任务与风格做专业化优化。 人工智能 06. 微调（Fine-Tuning）知识文档]]></content>
+    </entry>
+
+    <entry>
+      <title>07. RAG / MCP / A2A</title>
+      <link href="/2026/02/11/RAG-MCP-A2A/"/>
+      <url>/2026/02/11/RAG-MCP-A2A/</url>
+      <content type="html"><![CDATA[Session 5 covers product workflow, memory management, MCP tool calls, A2A collaboration, and RAG system design. It highlights data cleaning, chunking, vectorization, and cost control, plus multi-agent coordination for efficiency. AI 07. RAG / MCP / A2A]]></content>
+    </entry>
+
+    <entry>
+      <title>07. RAG / MCP / A2A 知识文档</title>
+      <link href="/2026/02/11/RAG-MCP-A2A/index-zh.html"/>
+      <url>/2026/02/11/RAG-MCP-A2A/index-zh.html</url>
+      <content type="html"><![CDATA[Session 5 介绍产品流程、记忆管理、MCP 工具调用、A2A 协作与 RAG 系统设计，强调清理、切块、向量化与成本控制，并通过多智能体协作提升效率。 人工智能 07. RAG / MCP / A2A 知识文档]]></content>
+    </entry>
+
+    <entry>
+      <title>08. AI Training and Fine-Tuning Strategy Summary</title>
+      <link href="/2026/02/12/Training-Strategies-Summary/"/>
+      <url>/2026/02/12/Training-Strategies-Summary/</url>
+      <content type="html"><![CDATA[Summary of training strategies: pretraining, fine-tuning (SFT, LoRA/QLoRA), alignment (DPO/RLHF), RAG, distillation, base model selection, and implementation steps. AI 08. AI Training and Fine-Tuning Strategy Summary]]></content>
+    </entry>
+
+    <entry>
+      <title>08. AI 模型训练与微调策略知识文档</title>
+      <link href="/2026/02/12/Training-Strategies-Summary/index-zh.html"/>
+      <url>/2026/02/12/Training-Strategies-Summary/index-zh.html</url>
+      <content type="html"><![CDATA[总结预训练、微调（SFT、LoRA/QLoRA）、对齐（DPO/RLHF）、RAG、蒸馏/剪枝、底座选择与实施步骤，强调依据问题选择策略并提升体验。 人工智能 08. AI 模型训练与微调策略知识文档]]></content>
+    </entry>
 </search>

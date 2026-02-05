@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  04. 多模态技术与跨模态融合概述 | 榕言的博客</title>
+  <meta name="description" content="金融工程 | 数学 | 计算机科学">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  <link rel="stylesheet" href="/css/white.css">
+</head>
+<body>
+
+<div class="menu-outer">
+  <div class="menu-inner">
+    <div class="menu-site-name  animate__animated  animate__fadeInUp">
+      <a href="/index-zh.html">榕言的博客</a>
+    </div>
+    <div class="menu-group">
+      <ul class="menu-ul">
+        <a href="/index-zh.html" class="nav-link">
+          <li class="menu-li  animate__animated  animate__fadeInUp">首页</li>
+        </a>
+        <a href="/archives/index.html" class="nav-link">
+          <li class="menu-li  animate__animated  animate__fadeInUp">博客</li>
+        </a>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+          分类
+          <div class="categories-outer " id="sort-div">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+          </div>
+        </li>
+        <a href="/search">
+          <li class="menu-li  animate__animated  animate__fadeInUp">
+            <i class="ri-search-line"></i>
+          </li>
+        </a>
+        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+          <a href="/2026/02/08/Multimodal/index.html">EN</a> |
+          <a href="/2026/02/08/Multimodal/index-zh.html">中文</a>
+        </li>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+          <i class="ri-menu-line"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/index-zh.html">榕言</a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+  </div>
+  <div class="mobile-menu-div">
+    <a href="/index-zh.html" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>首页</span>
+      </div>
+    </a>
+    <a href="/archives/index.html" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>博客</span>
+      </div>
+    </a>
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/08/Multimodal/index.html">EN</a> |
+      <a href="/2026/02/08/Multimodal/index-zh.html">中文</a>
+    </div>
+    <a href="/search">
+      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
+        <i class="ri-search-line"></i>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    <article class="post-inner">
+      <div class="post-content-outer">
+        <div class="post-intro">
+          <div class="post-title animate__animated  animate__fadeInUp">04. 多模态技术与跨模态融合概述</div>
+          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 08 2026</div>
+        </div>
+        <div class="post-content-inner">
+          <div class="post-content-inner-space"></div>
+          <div class="post-content-main animate__animated  animate__fadeInUp">
+            <h1 id="Multimodal"><a href="#Multimodal" class="headerlink" title="04. 多模态技术与跨模态融合概述"></a>04. 多模态技术与跨模态融合概述</h1>
+            <p>多模态就是让模型同时处理不同类型的数据（文字、图像、音频、视频等），通过学习各模态的语义关系，把它们映射到统一表示空间，从而可以生成或理解跨模态内容。输出可能多样，但不是随便的“乱七八糟”，而是基于输入信息的合理生成。</p>
+
+            <h2 id="What-Is-Multimodal"><a href="#What-Is-Multimodal" class="headerlink" title="什么是多模态"></a>1. 什么是多模态</h2>
+            <p>多模态（Multimodal）技术指的是<strong>处理多种类型的数据</strong>，例如文本、音频、图片或视频。单一模态模型只处理一种数据类型，而多模态技术的目标是把这些不同的数据整合在一起，让模型具备更强的理解和生成能力，这也是 AIGC 时代追求的通用智能能力的核心理念。</p>
+            <blockquote>
+              <p>换句话说，多模态的价值在于：让 AI 不仅会“看”或“听”，还能真正“理解”和“跨媒介操作”，从而实现更通用、更贴近人类认知的能力。</p>
+            </blockquote>
+
+            <h2 id="Cross-Modal"><a href="#Cross-Modal" class="headerlink" title="跨模态实现原理"></a>2. 跨模态实现原理</h2>
+            <p>跨模态（Cross-modal）技术的核心问题是如何把不同类型的数据融合在一起，通常包含特征提取、向量化与多阶段融合。</p>
+
+            <h3 id="Feature-Extraction">2.1 特征提取（Feature Extraction）</h3>
+            <p>每种模态的数据通常需要不同的方法来提取特征：</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>模态类型</th>
+                  <th>常用方法</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>文本（Text）</td>
+                  <td>Transformer 编码器（捕捉语义关系）</td>
+                </tr>
+                <tr>
+                  <td>图片 / 视频（Visual）</td>
+                  <td>CNN / Vision Transformer（提取视觉特征）</td>
+                </tr>
+                <tr>
+                  <td>音频（Audio）</td>
+                  <td>STFT / Mel-spectrogram（提取频域信息）</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>然后，将这些模态的特征映射到统一的表示空间，方便后续融合。</p>
+
+            <h3 id="Vectorization">2.2 高维向量化与相似性捕捉</h3>
+            <p>不同模态的数据经过特征提取后，通常会映射为高维向量空间。在这个空间里，模型可以捕捉跨模态的相似性，例如图像与文本的匹配、音频与图像或文字的对应。</p>
+
+            <h3 id="Fusion">2.3 多阶段融合</h3>
+            <p>多模态融合通常不是一次性完成的，而是在不同阶段逐步融合：</p>
+            <ol>
+              <li><strong>早期融合（Early Fusion）</strong>：在输入阶段就把不同模态特征拼接或混合</li>
+              <li><strong>中期融合（Mid Fusion）</strong>：先独立处理，再在中间层进行交互</li>
+              <li><strong>晚期融合（Late Fusion）</strong>：单独生成各模态表示，再组合输出</li>
+            </ol>
+            <p>不同阶段融合各有优势和挑战，模型选择取决于任务类型与计算资源。</p>
+
+            <h2 id="Applications"><a href="#Applications" class="headerlink" title="多模态应用示例"></a>3. 多模态应用示例</h2>
+            <ul>
+              <li><strong>图生文</strong>（Image → Text）</li>
+              <li><strong>文生图 / 音频</strong>（Text → Image / Audio）</li>
+              <li><strong>跨模态生成</strong>（Text + Image → Video 等）</li>
+            </ul>
+            <p>但现实应用仍存在挑战：生成成本高、时间消耗长，以及长序列生成中的一致性问题。</p>
+
+            <h2 id="Summary"><a href="#Summary" class="headerlink" title="总结"></a>4. 总结</h2>
+            <p>多模态技术是 AIGC 时代的核心能力，它让 AI 可以理解和生成跨媒介信息，捕捉不同模态之间的语义关系，并支持跨模态搜索、内容创作与个性化推荐等复杂场景。</p>
+            <p><strong>关键技术点：</strong></p>
+            <ol>
+              <li>特征提取与统一映射</li>
+              <li>高维向量化与相似性捕捉</li>
+              <li>分阶段融合</li>
+              <li>成本与一致性优化</li>
+            </ol>
+
+            <div class="post-categoris-bottom">
+              <div class="post-categoris-name">人工智能</div>
+              <ul>
+                <li class="me base">
+                  <a href="/2026/02/08/Multimodal/index-zh.html" class="post-categoris-bottom-link">
+                    04. 多模态技术与跨模态融合概述
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="post-content-inner-space">
+            <div class="space-toc-main animate__animated  animate__fadeInUp">
+              <ol class="space-toc">
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#What-Is-Multimodal"><span class="space-toc-text">1. 什么是多模态</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Cross-Modal"><span class="space-toc-text">2. 跨模态实现原理</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Applications"><span class="space-toc-text">3. 多模态应用示例</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">4. 总结</span></a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li">
+          <a href="https://github.com/RongyanYuan" target="_blank">
+            <i class="ri-github-line"></i>
+          </a>
+        </li>
+        <li class="footer-li">
+          <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+            <i class="ri-mail-line"></i>
+          </a>
+        </li>
+        <li class="footer-li">
+          <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+            <i class="ri-linkedin-box-line"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
+</body>
+</html>
