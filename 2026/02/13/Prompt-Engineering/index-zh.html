@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  09. 提示词工程与幻觉 | 榕言的博客</title>
+  <meta name="description" content="金融工程 | 数学 | 计算机科学">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  <link rel="stylesheet" href="/css/white.css">
+</head>
+<body>
+
+<div class="menu-outer">
+  <div class="menu-inner">
+    <div class="menu-site-name  animate__animated  animate__fadeInUp">
+      <a href="/index-zh.html">榕言的博客</a>
+    </div>
+    <div class="menu-group">
+      <ul class="menu-ul">
+        <a href="/index-zh.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">首页</li></a>
+        <a href="/archives/index.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">博客</li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+          分类
+          <div class="categories-outer " id="sort-div">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+          </div>
+        </li>
+        <a href="/search"><li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+          <a href="/2026/02/13/Prompt-Engineering/index.html">EN</a> |
+          <a href="/2026/02/13/Prompt-Engineering/index-zh.html">中文</a>
+        </li>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp"><a href="/index-zh.html">榕言</a></div>
+    <div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+  </div>
+  <div class="mobile-menu-div">
+    <a href="/index-zh.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>首页</span></div></a>
+    <a href="/archives/index.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>博客</span></div></a>
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/13/Prompt-Engineering/index.html">EN</a> |
+      <a href="/2026/02/13/Prompt-Engineering/index-zh.html">中文</a>
+    </div>
+    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+  </div>
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    <article class="post-inner">
+      <div class="post-content-outer">
+        <div class="post-intro">
+          <div class="post-title animate__animated  animate__fadeInUp">09. 提示词工程与幻觉</div>
+          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 13 2026</div>
+        </div>
+        <div class="post-content-inner">
+          <div class="post-content-inner-space"></div>
+          <div class="post-content-main animate__animated  animate__fadeInUp">
+            <h1 id="Prompting"><a href="#Prompting" class="headerlink" title="09. 提示词工程与幻觉"></a>09. 提示词工程与幻觉</h1>
+            <p>提示词工程的核心是通过精确输入来稳定、有效地引导模型输出目标结果。</p>
+
+            <h2 id="CROFTC-COSTAR"><a href="#CROFTC-COSTAR" class="headerlink" title="CROFTC & COSTAR"></a>第一部分：CROFTC 与 CO-STAR</h2>
+            <p><img src="/images/prompting/1764945580793.png" alt="CROFTC" class="post-img"></p>
+            <h3>什么是 Prompt（提示词）？</h3>
+            <ul>
+              <li><strong>定义</strong>：Prompt 是用户提供给模型的输入，用来描述任务目标。</li>
+              <li><strong>组成</strong>：通常包含 指令 / 问题 / 示例 等内容。</li>
+              <li><strong>作用</strong>：通过 Prompt 引导模型完成特定任务。</li>
+            </ul>
+            <h3>Prompting 的特点</h3>
+            <ul>
+              <li>偏经验主义：需要不断尝试。</li>
+              <li>模型差异大：同一 Prompt 在不同模型上表现不同。</li>
+              <li>需要试错与技巧：靠大量实验与启发式规则优化。</li>
+            </ul>
+            <p><img src="/images/prompting/1764945585134.png" alt="Prompting notes" class="post-img"></p>
+            <p><img src="/images/prompting/1764945589290.png" alt="Prompting notes 2" class="post-img"></p>
+
+            <h3>CO-STAR 框架</h3>
+            <ul>
+              <li><strong>C — Context</strong>：背景信息/约束环境</li>
+              <li><strong>O — Objective</strong>：任务目标</li>
+              <li><strong>S — Style</strong>：写作风格</li>
+              <li><strong>T — Tone</strong>：语气</li>
+              <li><strong>A — Audience</strong>：受众</li>
+              <li><strong>R — Response</strong>：输出格式</li>
+            </ul>
+
+            <h3>CROFTC vs CO-STAR</h3>
+            <p><strong>CROFTC</strong>（角色 + 约束）：Context / Role / Objective / Form / Tone / Conditions</p>
+            <p><strong>CO-STAR</strong>（受众 + 输出）：Context / Objective / Style / Tone / Audience / Response</p>
+            <p><strong>对应关系</strong>：Role ≈ Style，Form ≈ Response，Conditions 可作为补充约束，Audience 在 CO-STAR 中显式强调。</p>
+            <p><img src="/images/prompting/1764945772611.png" alt="CROFTC vs COSTAR" class="post-img"></p>
+            <p><img src="/images/prompting/1764945712656.png" alt="Prompting tips" class="post-img"></p>
+
+            <h3>写出更有效 Prompt 的技巧</h3>
+            <ul>
+              <li>像和人对话一样，补充说明需求。</li>
+              <li>先搭舞台再提问（角色/背景/任务）。</li>
+              <li>让 AI 扮演特定身份/职业。</li>
+              <li>让 AI 帮你写 Prompt。</li>
+              <li>追问理由与证据，减少幻觉。</li>
+              <li>反向约束（Negative Prompting）。</li>
+              <li>大胆试错与重述。</li>
+            </ul>
+
+            <h3>提示词语气有用吗？</h3>
+            <ul>
+              <li>正向礼貌不一定比中性更好。</li>
+              <li>负向威胁会显著让输出变差。</li>
+              <li>威胁 ChatGPT 不起作用。</li>
+            </ul>
+
+            <h2 id="ICL"><a href="#ICL" class="headerlink" title="In-Context Learning"></a>第二部分：In-Context Learning</h2>
+            <p><img src="/images/prompting/1764945894306.png" alt="ICL" class="post-img"></p>
+            <p><img src="/images/prompting/1764945905792.png" alt="ICL 2" class="post-img"></p>
+            <h3>ICL 是什么？</h3>
+            <ul>
+              <li>ICL = few-shot prompting：在 prompt 中放少量示例。</li>
+              <li>不更新参数，利用上下文引导模型行为。</li>
+            </ul>
+            <h3>ICL vs 微调</h3>
+            <ul>
+              <li>ICL：不改参数，即用即走。</li>
+              <li>微调：训练参数，换任务需再训练。</li>
+            </ul>
+            <h3>推理时如何做到 ICL？</h3>
+            <ul>
+              <li>可能是预训练涌现能力。</li>
+              <li>注意力机制隐式做类似优化。</li>
+              <li>通过 prompt 唤起相关模式。</li>
+            </ul>
+
+            <h2 id="CoT"><a href="#CoT" class="headerlink" title="Chain of Thought"></a>第三部分：Chain of Thought / Draft</h2>
+            <p><img src="/images/prompting/1764946093728.png" alt="CoT" class="post-img"></p>
+            <h3>Chain of Thought（CoT）</h3>
+            <ul>
+              <li>让模型先生成推理步骤再给答案。</li>
+              <li>提升复杂推理正确率。</li>
+            </ul>
+            <p><img src="/images/prompting/1764946098502.png" alt="Self-consistency" class="post-img"></p>
+            <h3>Self-consistency CoT</h3>
+            <ul>
+              <li>多路径解码，多数投票。</li>
+              <li>更稳更准，但成本更高。</li>
+            </ul>
+            <p><img src="/images/prompting/1764946200225.png" alt="Zero-shot CoT" class="post-img"></p>
+            <h3>Zero-shot CoT</h3>
+            <ul>
+              <li>加一句“Let’s think step by step.”即可显著提升推理。</li>
+              <li>常见触发句包括：Let’s think logically / split into steps。</li>
+            </ul>
+            <p><img src="/images/prompting/1764946251657.png" alt="CoD" class="post-img"></p>
+            <p><img src="/images/prompting/1764946255643.png" alt="CoD 2" class="post-img"></p>
+            <h3>Chain of Draft（CoD）</h3>
+            <ul>
+              <li>只保留极简草稿，减少 token。</li>
+              <li>准确率接近 CoT，成本更低。</li>
+            </ul>
+
+            <h2 id="P-tuning"><a href="#P-tuning" class="headerlink" title="P-tuning"></a>第四部分：P-tuning</h2>
+            <p><img src="/images/prompting/1764946363969.png" alt="P-tuning" class="post-img"></p>
+            <ul>
+              <li>Prompt engineering：手工写提示词。</li>
+              <li>Prompt-tuning：学习可训练的软提示（PEFT）。</li>
+              <li>冻结大模型参数，只训练小段 soft prompt。</li>
+            </ul>
+
+            <h2 id="Ultimate"><a href="#Ultimate" class="headerlink" title="Ultimate Prompt"></a>第五部分：终极提示词</h2>
+            <p><img src="/images/prompting/1764946400551.png" alt="Ultimate prompt" class="post-img"></p>
+            <ul>
+              <li>少于 25 个词、容易记住、更有效。</li>
+              <li>为推理型模型优化。</li>
+            </ul>
+            <h3>好处</h3>
+            <ul>
+              <li>更清楚需求与背景。</li>
+              <li>固定上下文，提升覆盖面。</li>
+            </ul>
+
+            <h2 id="RAG"><a href="#RAG" class="headerlink" title="RAG"></a>第六部分：检索增强生成（RAG）</h2>
+            <p><img src="/images/prompting/1764946567608.png" alt="RAG" class="post-img"></p>
+            <h3>为什么需要 RAG</h3>
+            <ul>
+              <li>幻觉、知识过期、来源不可靠。</li>
+            </ul>
+            <h3>核心思想</h3>
+            <ul>
+              <li>检索 → 增强 → 生成。</li>
+            </ul>
+            <p><img src="/images/prompting/1764946570870.png" alt="RAG pipeline" class="post-img"></p>
+            <h3>基础流程</h3>
+            <ul>
+              <li>入库：文档 → 切块 → 向量 → 索引。</li>
+              <li>检索：query 向量检索 Top-K。</li>
+              <li>综合：LLM 基于上下文生成答案。</li>
+            </ul>
+            <h3>评估关注点</h3>
+            <ul>
+              <li>Query → Context 是否相关。</li>
+              <li>Context → Answer 是否可支撑。</li>
+            </ul>
+
+            <h2 id="Hallucination"><a href="#Hallucination" class="headerlink" title="Hallucination"></a>第七部分：幻觉（Hallucination）</h2>
+            <p><img src="/images/prompting/1764946699782.png" alt="Hallucination" class="post-img"></p>
+            <h3>为什么会幻觉</h3>
+            <ul>
+              <li>目标是生成最可能续写，不等于真实。</li>
+              <li>训练数据有错或过时。</li>
+              <li>缺少真假判别器，信息稀疏时倾向猜测。</li>
+            </ul>
+            <h3>降低幻觉的方法</h3>
+            <ul>
+              <li>RAG 外部知识支撑。</li>
+              <li>微调更事实敏感。</li>
+              <li>提示词约束。</li>
+              <li>让模型自检。</li>
+            </ul>
+
+            <div class="post-categoris-bottom">
+              <div class="post-categoris-name">人工智能</div>
+              <ul>
+                <li class="me base">
+                  <a href="/2026/02/13/Prompt-Engineering/index-zh.html" class="post-categoris-bottom-link">
+                    09. 提示词工程（Prompting）
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="post-content-inner-space">
+            <div class="space-toc-main animate__animated  animate__fadeInUp">
+              <ol class="space-toc">
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CROFTC-COSTAR"><span class="space-toc-text">第一部分：CROFTC 与 CO-STAR</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#ICL"><span class="space-toc-text">第二部分：In-Context Learning</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CoT"><span class="space-toc-text">第三部分：Chain of Thought / Draft</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#P-tuning"><span class="space-toc-text">第四部分：P-tuning</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Ultimate"><span class="space-toc-text">第五部分：终极提示词</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">第六部分：检索增强生成（RAG）</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hallucination"><span class="space-toc-text">第七部分：幻觉（Hallucination）</span></a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
+</body>
+</html>

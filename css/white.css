@@ -320,6 +320,13 @@ a {
   height: 350px;
   object-fit: cover;
 }
+.post-img {
+  width: 80%;
+  max-width: 820px;
+  height: auto;
+  display: block;
+  margin: 18px auto 26px;
+}
 .img-show-post-title {
   text-align: center;
   font-size: 1.4em;

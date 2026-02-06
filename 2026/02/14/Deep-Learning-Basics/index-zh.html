@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  01. 深度学习基础 | 榕言的博客</title>
+  <meta name="description" content="金融工程 | 数学 | 计算机科学">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  <link rel="stylesheet" href="/css/white.css">
+</head>
+<body>
+
+<div class="menu-outer">
+  <div class="menu-inner">
+    <div class="menu-site-name  animate__animated  animate__fadeInUp">
+      <a href="/index-zh.html">榕言的博客</a>
+    </div>
+    <div class="menu-group">
+      <ul class="menu-ul">
+        <a href="/index-zh.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">首页</li></a>
+        <a href="/archives/index.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">博客</li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+          分类
+          <div class="categories-outer " id="sort-div">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+          </div>
+        </li>
+        <a href="/search"><li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+          <a href="/2026/02/14/Deep-Learning-Basics/index.html">EN</a> |
+          <a href="/2026/02/14/Deep-Learning-Basics/index-zh.html">中文</a>
+        </li>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp"><a href="/index-zh.html">榕言</a></div>
+    <div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+  </div>
+  <div class="mobile-menu-div">
+    <a href="/index-zh.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>首页</span></div></a>
+    <a href="/archives/index.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>博客</span></div></a>
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/14/Deep-Learning-Basics/index.html">EN</a> |
+      <a href="/2026/02/14/Deep-Learning-Basics/index-zh.html">中文</a>
+    </div>
+    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+  </div>
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    <article class="post-inner">
+      <div class="post-content-outer">
+        <div class="post-intro">
+          <div class="post-title animate__animated  animate__fadeInUp">01. 深度学习基础</div>
+          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 14 2026</div>
+        </div>
+        <div class="post-content-inner">
+          <div class="post-content-inner-space"></div>
+          <div class="post-content-main animate__animated  animate__fadeInUp">
+            <h1 id="DL-Basics"><a href="#DL-Basics" class="headerlink" title="01. 深度学习基础"></a>01. 深度学习基础</h1>
+
+            <h2 id="Loss-Functions"><a href="#Loss-Functions" class="headerlink" title="常见损失函数对比"></a>第一部分 常见损失函数对比</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>损失函数</th>
+                  <th>公式</th>
+                  <th>主要用途</th>
+                  <th>特点</th>
+                  <th>适用场景</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>均方误差 (MSE)</strong></td>
+                  <td>\(\frac{1}{n}\sum (y-\hat{y})^2\)</td>
+                  <td>回归问题</td>
+                  <td>对异常值敏感；处处可导；惩罚大误差更重</td>
+                  <td>线性回归、数值预测</td>
+                </tr>
+                <tr>
+                  <td><strong>平均绝对误差 (MAE)</strong></td>
+                  <td>\(\frac{1}{n}\sum |y-\hat{y}|\)</td>
+                  <td>回归问题</td>
+                  <td>对异常值稳健；零点不可导；梯度恒定</td>
+                  <td>稳健回归、金融预测</td>
+                </tr>
+                <tr>
+                  <td><strong>交叉熵损失</strong></td>
+                  <td>\(-\sum y\,\log(\hat{y})\)</td>
+                  <td>分类问题</td>
+                  <td>衡量分布差异；梯度与误差成正比；避免梯度饱和</td>
+                  <td>逻辑回归、神经网络分类</td>
+                </tr>
+                <tr>
+                  <td><strong>Huber 损失</strong></td>
+                  <td>\(\frac{1}{2}\delta^2\ \text{if}\ |\delta|\le\varepsilon;\ \varepsilon(|\delta|-\frac{1}{2}\varepsilon)\ \text{otherwise}\)</td>
+                  <td>回归问题</td>
+                  <td>MSE 与 MAE 的折衷；对异常值适度敏感；处处可导</td>
+                  <td>稳健回归、离群数据处理</td>
+                </tr>
+                <tr>
+                  <td><strong>铰链损失 (Hinge)</strong></td>
+                  <td>\(\max(0, 1 - y\hat{y})\)</td>
+                  <td>分类问题</td>
+                  <td>最大间隔；关注边界；产生稀疏解</td>
+                  <td>支持向量机</td>
+                </tr>
+                <tr>
+                  <td><strong>对数损失</strong></td>
+                  <td>\(-\log P(y\mid x)\)</td>
+                  <td>概率预测</td>
+                  <td>惩罚错误分类概率；鼓励高置信度正确预测</td>
+                  <td>概率模型、多分类</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>关键选择因素</h3>
+            <ol>
+              <li><strong>问题类型</strong>：回归 → MSE/MAE/Huber；分类 → 交叉熵/铰链。</li>
+              <li><strong>异常值</strong>：异常值多 → MAE/Huber；少 → MSE。</li>
+              <li><strong>梯度特性</strong>：需要平滑梯度 → MSE/交叉熵；可接受非连续 → MAE。</li>
+              <li><strong>计算效率</strong>：MSE 最快；Huber 较复杂。</li>
+            </ol>
+
+            <h2 id="GD"><a href="#GD" class="headerlink" title="梯度下降"></a>第二部分 梯度下降</h2>
+            <h3>基本思想</h3>
+            <p>通过迭代更新参数，沿损失函数梯度的反方向移动，逐步找到最小值。</p>
+            <h3>核心公式</h3>
+            <p><strong>θ = θ − η·∇J(θ)</strong></p>
+            <ul>
+              <li>θ：模型参数</li>
+              <li>η：学习率</li>
+              <li>∇J(θ)：损失函数梯度</li>
+            </ul>
+            <p><img src="/images/dl-basis/1764757368494.png" alt="Gradient descent" class="post-img"></p>
+
+            <h3>核心目标</h3>
+            <p>最小化：\( f(W) = \frac{1}{M} \sum_{i=1}^M e(h(x_i), y_i) \)</p>
+            <p>更新：\( \Delta W = -\alpha \nabla f(W) \)</p>
+
+            <h3>批量 GD 特点</h3>
+            <ul>
+              <li>每步基于全部样本。</li>
+              <li>收敛稳定但较慢。</li>
+              <li>学习率影响收敛速度与稳定性。</li>
+            </ul>
+            <p><img src="/images/dl-basis/1764757381151.png" alt="Batch GD" class="post-img"></p>
+            <p><img src="/images/dl-basis/1764757397543.png" alt="Mini-batch" class="post-img"></p>
+            <p><img src="/images/dl-basis/1764757633120.png" alt="GD comparison" class="post-img"></p>
+
+            <table>
+              <thead>
+                <tr><th>维度</th><th>GD</th><th>SGD</th><th>Mini‑batch GD</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>梯度计算</td><td>全数据集</td><td>单样本</td><td>小批量</td></tr>
+                <tr><td>收敛速度</td><td>慢</td><td>快</td><td>中等</td></tr>
+                <tr><td>收敛稳定性</td><td>最稳定</td><td>最不稳定</td><td>较稳定</td></tr>
+                <tr><td>内存需求</td><td>最高</td><td>最低</td><td>中等</td></tr>
+                <tr><td>计算效率</td><td>最低</td><td>最高</td><td>高</td></tr>
+                <tr><td>实际应用</td><td>较少</td><td>较少</td><td>最常用</td></tr>
+                <tr><td>噪声水平</td><td>无</td><td>最大</td><td>中等</td></tr>
+              </tbody>
+            </table>
+
+            <h3>关键概念</h3>
+            <ul>
+              <li><strong>学习率</strong>：过大震荡/发散，过小收敛慢；可用衰减或自适应方法。</li>
+              <li><strong>收敛性</strong>：局部最优、鞍点、全局最优。</li>
+            </ul>
+
+            <h3>优化技巧</h3>
+            <ol>
+              <li><strong>动量</strong>：\( v = \beta v + (1-\beta)\nabla J(\theta) \)，\( \theta = \theta - \eta v \)</li>
+              <li><strong>自适应学习率</strong>：AdaGrad、RMSProp、Adam（最常用）</li>
+            </ol>
+
+            <h3>挑战与问题</h3>
+            <ul>
+              <li>梯度消失/爆炸</li>
+              <li>非凸函数局部最优</li>
+              <li>过拟合（需正则化）</li>
+            </ul>
+
+            <h3>常见面试考点</h3>
+            <ul>
+              <li>批量大小影响</li>
+              <li>学习率选择策略</li>
+              <li>SGD 与 Batch GD 对比</li>
+              <li>动量法物理意义</li>
+              <li>收敛判断</li>
+              <li>GD 与正规方程（线性回归）</li>
+            </ul>
+
+            <h3>收敛条件</h3>
+            <ul>
+              <li>\( ||\nabla J(\theta)|| < \epsilon \)</li>
+              <li>\( |J(\theta^{t+1}) - J(\theta^t)| < \epsilon \)</li>
+              <li>最大迭代次数</li>
+            </ul>
+
+            <h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="过拟合"></a>第三部分 过拟合</h2>
+            <p><img src="/images/dl-basis/1764758193835.png" alt="Overfitting" class="post-img"></p>
+            <ul>
+              <li><strong>过拟合</strong>：训练集好，新数据差。</li>
+              <li><strong>欠拟合</strong>：训练集和新数据都差。</li>
+              <li><strong>泛化能力</strong>：模型在新数据上的表现。</li>
+            </ul>
+            <h3>策略</h3>
+            <ul>
+              <li>从更复杂模型开始，再正则化与简化。</li>
+              <li>常用技术：L1/L2、Dropout、早停、数据增强、交叉验证。</li>
+            </ul>
+
+            <h2 id="Regularization"><a href="#Regularization" class="headerlink" title="权重正则化"></a>第四部分 权重正则化</h2>
+            <p><img src="/images/dl-basis/1764758315510.png" alt="Regularization" class="post-img"></p>
+            <h3>核心观察</h3>
+            <p>权重大 → 模型复杂 → 过拟合。</p>
+
+            <h3>L1 正则化</h3>
+            <p>\( \min \frac{1}{M} \sum_i J(h_\theta(x_i), y_i) + \lambda \sum_j |\theta_j| \)</p>
+            <ul>
+              <li>稀疏解、特征选择。</li>
+            </ul>
+
+            <h3>L2 正则化</h3>
+            <p>\( \min \frac{1}{M} \sum_i J(h_\theta(x_i), y_i) + \lambda \sum_j \theta_j^2 \)</p>
+            <ul>
+              <li>权重均匀缩小，计算高效。</li>
+            </ul>
+
+            <h3>λ 超参数</h3>
+            <ul>
+              <li>正则化强度系数。</li>
+              <li>λ 越大模型越简单；λ=0 退化为原损失。</li>
+            </ul>
+
+            <table>
+              <thead>
+                <tr><th>方面</th><th>L1</th><th>L2</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>解的特性</td><td>稀疏</td><td>稠密</td></tr>
+                <tr><td>特征选择</td><td>支持</td><td>不支持</td></tr>
+                <tr><td>计算复杂度</td><td>较高</td><td>较低</td></tr>
+                <tr><td>适用场景</td><td>特征选择、模型简化</td><td>防止过拟合、数值稳定</td></tr>
+              </tbody>
+            </table>
+
+            <h2 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>第五部分 Dropout</h2>
+            <p><img src="/images/dl-basis/1764759252327.png" alt="Dropout" class="post-img"></p>
+            <p><img src="/images/dl-basis/1764759261177.png" alt="Dropout 2" class="post-img"></p>
+            <h3>随机 Dropout（传统方法）</h3>
+            <ul>
+              <li>前向传播随机丢弃神经元（通常 50%）。</li>
+              <li>训练按 p 丢弃；测试按 p 缩放权重。</li>
+              <li>防止共适应，相当于集成。</li>
+            </ul>
+
+            <h3>非随机 Dropout（meProp）</h3>
+            <ul>
+              <li>基于路径活跃度选择性丢弃。</li>
+              <li>反向传播仅更新 top‑k% 梯度。</li>
+              <li>减少计算量，实现模型压缩。</li>
+            </ul>
+
+            <table>
+              <thead>
+                <tr><th>特性</th><th>随机 Dropout</th><th>meProp</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>丢弃方式</td><td>随机</td><td>选择性</td></tr>
+                <tr><td>计算效率</td><td>较低</td><td>较高</td></tr>
+                <tr><td>模型简化</td><td>不明显</td><td>显著</td></tr>
+                <tr><td>实现难度</td><td>简单</td><td>较复杂</td></tr>
+                <tr><td>主要目的</td><td>防止过拟合</td><td>压缩 + 防止过拟合</td></tr>
+              </tbody>
+            </table>
+
+            <h2 id="Early-Stopping"><a href="#Early-Stopping" class="headerlink" title="早停"></a>第六部分 早停法</h2>
+            <p><img src="/images/dl-basis/1764759433375.png" alt="Early stopping" class="post-img"></p>
+            <p><img src="/images/dl-basis/1764759554123.png" alt="Early stopping 2" class="post-img"></p>
+            <h3>基本思想</h3>
+            <p>在模型开始过拟合前停止训练。</p>
+            <h3>金发女孩点</h3>
+            <ul>
+              <li>验证误差达到最小后开始上升。</li>
+              <li>最佳泛化点。</li>
+            </ul>
+            <h3>实现方法</h3>
+            <ol>
+              <li>每个 epoch 评估验证集。</li>
+              <li>设置耐心值允许波动。</li>
+              <li>保存最佳模型。</li>
+              <li>持续变差则停止。</li>
+            </ol>
+            <h3>优势与局限</h3>
+            <ul>
+              <li>优势：简单有效，节省计算。</li>
+              <li>局限：依赖验证集质量，可能过早停止。</li>
+            </ul>
+
+            <div class="post-categoris-bottom">
+              <div class="post-categoris-name">人工智能</div>
+              <ul>
+                <li class="me base">
+                  <a href="/2026/02/14/Deep-Learning-Basics/index-zh.html" class="post-categoris-bottom-link">01. 深度学习基础</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="post-content-inner-space">
+            <div class="space-toc-main animate__animated  animate__fadeInUp">
+              <ol class="space-toc">
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Loss-Functions"><span class="space-toc-text">第一部分 常见损失函数对比</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#GD"><span class="space-toc-text">第二部分 梯度下降</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Overfitting"><span class="space-toc-text">第三部分 过拟合</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Regularization"><span class="space-toc-text">第四部分 权重正则化</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Dropout"><span class="space-toc-text">第五部分 Dropout</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Early-Stopping"><span class="space-toc-text">第六部分 早停法</span></a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>

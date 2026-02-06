@@ -140,4 +140,46 @@
       <url>/2026/02/12/Training-Strategies-Summary/index-zh.html</url>
       <content type="html"><![CDATA[总结预训练、微调（SFT、LoRA/QLoRA）、对齐（DPO/RLHF）、RAG、蒸馏/剪枝、底座选择与实施步骤，强调依据问题选择策略并提升体验。 人工智能 08. AI 模型训练与微调策略知识文档]]></content>
     </entry>
+
+    <entry>
+      <title>09. Prompt Engineering &amp; Hallucination</title>
+      <link href="/2026/02/13/Prompt-Engineering/"/>
+      <url>/2026/02/13/Prompt-Engineering/</url>
+      <content type="html"><![CDATA[Prompt engineering notes: CROFTC vs CO-STAR, prompting tips, ICL, CoT/CoD, P-tuning, ultimate prompt, RAG, and hallucination mitigation. AI 09. Prompt Engineering & Hallucination]]></content>
+    </entry>
+
+    <entry>
+      <title>09. 提示词工程与幻觉</title>
+      <link href="/2026/02/13/Prompt-Engineering/index-zh.html"/>
+      <url>/2026/02/13/Prompt-Engineering/index-zh.html</url>
+      <content type="html"><![CDATA[提示词工程笔记：CROFTC 与 CO-STAR、提示词技巧、ICL、CoT/CoD、P-tuning、终极提示词、RAG 与幻觉缓解。 人工智能 09. 提示词工程与幻觉]]></content>
+    </entry>
+
+    <entry>
+      <title>01. Deep Learning Basics</title>
+      <link href="/2026/02/14/Deep-Learning-Basics/"/>
+      <url>/2026/02/14/Deep-Learning-Basics/</url>
+      <content type="html"><![CDATA[Deep learning basics covering loss functions, gradient descent, overfitting, weight regularization, dropout, and early stopping. AI 01. Deep Learning Basics]]></content>
+    </entry>
+
+    <entry>
+      <title>01. 深度学习基础</title>
+      <link href="/2026/02/14/Deep-Learning-Basics/index-zh.html"/>
+      <url>/2026/02/14/Deep-Learning-Basics/index-zh.html</url>
+      <content type="html"><![CDATA[深度学习基础内容：常见损失函数、梯度下降、过拟合、权重正则化、Dropout 与早停法。 人工智能 01. 深度学习基础]]></content>
+    </entry>
+
+    <entry>
+      <title>02. Convolutional Neural Networks</title>
+      <link href="/2026/02/15/Convolutional-Neural-Network/"/>
+      <url>/2026/02/15/Convolutional-Neural-Network/</url>
+      <content type="html"><![CDATA[CNN notes covering convolutional layers, padding, translation invariance, pooling, dense layers, computation, and visualization methods. AI 02. Convolutional Neural Networks]]></content>
+    </entry>
+
+    <entry>
+      <title>02. 卷积神经网络</title>
+      <link href="/2026/02/15/Convolutional-Neural-Network/index-zh.html"/>
+      <url>/2026/02/15/Convolutional-Neural-Network/index-zh.html</url>
+      <content type="html"><![CDATA[卷积神经网络笔记：卷积层、填充、平移不变性、池化、全连接层、计算与可视化方法。 人工智能 02. 卷积神经网络]]></content>
+    </entry>
 </search>

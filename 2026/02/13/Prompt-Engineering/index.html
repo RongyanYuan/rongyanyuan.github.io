@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  09. Prompt Engineering & Hallucination |    Rongyan&#39;s Blog</title>
+  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  <link rel="stylesheet" href="/css/white.css">
+</head>
+
+<body>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          Rongyan&#39;s Blog
+        </a>
+      </div>
+      <div class="menu-group">
+        <ul class="menu-ul">
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">HOME</li>
+          </a>
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">BLOG</li>
+          </a>
+          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+             CATEGORIES
+             <div class="categories-outer " id="sort-div">
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+             </div>
+          </li>
+          <a href="/search">
+            <li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li>
+          </a>
+          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+            <a href="/2026/02/13/Prompt-Engineering/index.html">EN</a> |
+            <a href="/2026/02/13/Prompt-Engineering/index-zh.html">中文</a>
+          </li>
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">Rongyan&#39;s Blog</a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+  </div>
+  <div class="mobile-menu-div">
+    <a href="/" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>HOME</span></div></a>
+    <a href="/archives" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>BLOG</span></div></a>
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/13/Prompt-Engineering/index.html">EN</a> |
+      <a href="/2026/02/13/Prompt-Engineering/index-zh.html">中文</a>
+    </div>
+    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+  </div>
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    <article class="post-inner">
+      <div class="post-content-outer">
+        <div class="post-intro">
+          <div class="post-title animate__animated  animate__fadeInUp">09. Prompt Engineering &amp; Hallucination</div>
+          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 13 2026</div>
+        </div>
+        <div class="post-content-inner">
+          <div class="post-content-inner-space"></div>
+          <div class="post-content-main animate__animated  animate__fadeInUp">
+            <h1 id="Prompting"><a href="#Prompting" class="headerlink" title="09. Prompt Engineering &amp; Hallucination"></a>09. Prompt Engineering &amp; Hallucination</h1>
+            <p>Prompt engineering focuses on crafting inputs that steer model behavior reliably and efficiently toward a target outcome.</p>
+
+            <h2 id="CROFTC-COSTAR"><a href="#CROFTC-COSTAR" class="headerlink" title="CROFTC & CO-STAR"></a>Section 1 CROFTC &amp; CO-STAR</h2>
+            <p><img src="/images/prompting/1764945580793.png" alt="CROFTC" class="post-img"></p>
+            <h3>What is a Prompt?</h3>
+            <ul>
+              <li><strong>Definition</strong>: the input you provide to describe the task goal.</li>
+              <li><strong>Composition</strong>: usually includes instructions, questions, and examples.</li>
+              <li><strong>Purpose</strong>: guides the model to complete a specific task.</li>
+            </ul>
+            <h3>Key characteristics</h3>
+            <ul>
+              <li>Experimental and empirical: requires iteration.</li>
+              <li>Model-dependent: same prompt varies across models.</li>
+              <li>Heuristics + trial-and-error are common.</li>
+            </ul>
+            <p><img src="/images/prompting/1764945585134.png" alt="Prompting notes" class="post-img"></p>
+            <p><img src="/images/prompting/1764945589290.png" alt="Prompting notes 2" class="post-img"></p>
+
+            <h3>CO-STAR framework</h3>
+            <ul>
+              <li><strong>C — Context</strong>: background and constraints</li>
+              <li><strong>O — Objective</strong>: task target</li>
+              <li><strong>S — Style</strong>: writing style</li>
+              <li><strong>T — Tone</strong>: attitude/emotion</li>
+              <li><strong>A — Audience</strong>: intended reader</li>
+              <li><strong>R — Response</strong>: output format</li>
+            </ul>
+
+            <h3>CROFTC vs CO-STAR</h3>
+            <p><strong>CROFTC</strong> (role + constraints): Context / Role / Objective / Form / Tone / Conditions</p>
+            <p><strong>CO-STAR</strong> (audience + output): Context / Objective / Style / Tone / Audience / Response</p>
+            <p><strong>Mapping</strong>: Role ≈ Style, Form ≈ Response, Conditions can be extra constraints, Audience is explicit in CO-STAR.</p>
+            <p><img src="/images/prompting/1764945772611.png" alt="CROFTC vs COSTAR" class="post-img"></p>
+            <p><img src="/images/prompting/1764945712656.png" alt="Prompting tips" class="post-img"></p>
+
+            <h3>Tips for more effective prompts</h3>
+            <ul>
+              <li>Clarify intent like a conversation.</li>
+              <li>Set role/background/task before asking.</li>
+              <li>Let the model assume a specific identity or profession.</li>
+              <li>Ask the model to improve or generate prompts.</li>
+              <li>Ask for reasons/evidence to reduce hallucinations.</li>
+              <li>Use negative constraints (what not to output).</li>
+              <li>Iterate and rephrase boldly.</li>
+            </ul>
+
+            <h3>Does prompt style matter?</h3>
+            <ul>
+              <li>Polite prompting is not necessarily better than neutral.</li>
+              <li>Threatening prompts make results worse.</li>
+              <li>Threatening ChatGPT doesn’t work.</li>
+            </ul>
+
+            <h2 id="ICL"><a href="#ICL" class="headerlink" title="In-Context Learning"></a>Section 2 In-Context Learning</h2>
+            <p><img src="/images/prompting/1764945894306.png" alt="ICL" class="post-img"></p>
+            <p><img src="/images/prompting/1764945905792.png" alt="ICL 2" class="post-img"></p>
+            <h3>What is ICL?</h3>
+            <ul>
+              <li>ICL = few-shot prompting: put a few demonstrations in the prompt.</li>
+              <li>No parameter updates; behavior is guided by context.</li>
+            </ul>
+            <h3>ICL vs Fine-tuning</h3>
+            <ul>
+              <li>ICL: no training, flexible and fast.</li>
+              <li>Fine-tuning: updates parameters, often requires retraining per task.</li>
+            </ul>
+            <h3>How does ICL work at inference?</h3>
+            <ul>
+              <li>Likely an emergent ability from pretraining.</li>
+              <li>Attention may act like implicit optimization.</li>
+              <li>Prompts help retrieve relevant patterns.</li>
+            </ul>
+
+            <h2 id="CoT"><a href="#CoT" class="headerlink" title="Chain of Thought"></a>Section 3 Chain of Thought / Draft</h2>
+            <p><img src="/images/prompting/1764946093728.png" alt="CoT" class="post-img"></p>
+            <h3>Chain of Thought (CoT)</h3>
+            <ul>
+              <li>Ask the model to write intermediate reasoning steps.</li>
+              <li>Improves accuracy on complex reasoning tasks.</li>
+            </ul>
+            <p><img src="/images/prompting/1764946098502.png" alt="Self-consistency" class="post-img"></p>
+            <h3>Self-consistency CoT</h3>
+            <ul>
+              <li>Sample multiple reasoning paths and vote.</li>
+              <li>More stable but costs more compute.</li>
+            </ul>
+            <p><img src="/images/prompting/1764946200225.png" alt="Zero-shot CoT" class="post-img"></p>
+            <h3>Zero-shot CoT</h3>
+            <ul>
+              <li>Add “Let’s think step by step.” to trigger reasoning.</li>
+              <li>Other triggers: “Let’s think logically.” / “Split into steps.”</li>
+            </ul>
+            <p><img src="/images/prompting/1764946251657.png" alt="CoD" class="post-img"></p>
+            <p><img src="/images/prompting/1764946255643.png" alt="CoD 2" class="post-img"></p>
+            <h3>Chain of Draft (CoD)</h3>
+            <ul>
+              <li>Use minimal drafts (few words per step).</li>
+              <li>Accuracy close to CoT with fewer tokens.</li>
+            </ul>
+
+            <h2 id="P-tuning"><a href="#P-tuning" class="headerlink" title="P-tuning"></a>Section 4 P-tuning</h2>
+            <p><img src="/images/prompting/1764946363969.png" alt="P-tuning" class="post-img"></p>
+            <ul>
+              <li>Prompt engineering: hand-crafted discrete prompts.</li>
+              <li>Prompt-tuning: learn soft prompts (PEFT).</li>
+              <li>Freeze the LLM and train only soft prompt vectors.</li>
+            </ul>
+
+            <h2 id="Ultimate"><a href="#Ultimate" class="headerlink" title="Ultimate Prompt"></a>Section 5 Ultimate ChatGPT Prompt</h2>
+            <p><img src="/images/prompting/1764946400551.png" alt="Ultimate prompt" class="post-img"></p>
+            <ul>
+              <li>Short (≤25 words), memorable, more effective.</li>
+              <li>Optimized for reasoning models.</li>
+            </ul>
+            <h3>Benefits</h3>
+            <ul>
+              <li>Improves requirement understanding.</li>
+              <li>Forces missing context to be provided.</li>
+              <li>Fixes the expected output context.</li>
+              <li>More comprehensive answers.</li>
+            </ul>
+
+            <h2 id="RAG"><a href="#RAG" class="headerlink" title="RAG"></a>Section 6 Retrieval Augmented Generation</h2>
+            <p><img src="/images/prompting/1764946567608.png" alt="RAG" class="post-img"></p>
+            <h3>Why RAG is needed</h3>
+            <ul>
+              <li>Hallucinations, outdated knowledge, unreliable sources.</li>
+            </ul>
+            <h3>Core idea (R + A + G)</h3>
+            <ul>
+              <li>Retrieve → Augment → Generate.</li>
+            </ul>
+            <p><img src="/images/prompting/1764946570870.png" alt="RAG pipeline" class="post-img"></p>
+            <h3>Basic RAG Pipeline</h3>
+            <ul>
+              <li>Ingestion: documents → chunks → embeddings → index.</li>
+              <li>Retrieval: query embedding → Top-K chunks.</li>
+              <li>Synthesis: generate answer from query + context.</li>
+            </ul>
+            <h3>Evaluation focus</h3>
+            <ul>
+              <li>Query → Context relevance.</li>
+              <li>Context → Answer support.</li>
+            </ul>
+
+            <h2 id="Hallucination"><a href="#Hallucination" class="headerlink" title="Hallucination"></a>Section 7 Hallucination</h2>
+            <p><img src="/images/prompting/1764946699782.png" alt="Hallucination" class="post-img"></p>
+            <h3>Why hallucinations happen</h3>
+            <ul>
+              <li>LMs optimize likely continuation, not truth.</li>
+              <li>Training data can be wrong or outdated.</li>
+              <li>No built-in truth detector, so it guesses.</li>
+            </ul>
+            <h3>How to reduce hallucinations</h3>
+            <ul>
+              <li>Use RAG to ground answers.</li>
+              <li>Fine-tune for factual sensitivity.</li>
+              <li>Constrain prompts.</li>
+              <li>Ask the model to self-check.</li>
+            </ul>
+
+            <div class="post-categoris-bottom">
+              <div class="post-categoris-name">AI</div>
+              <ul>
+                <li class="me base">
+                  <a href="/2026/02/13/Prompt-Engineering/" class="post-categoris-bottom-link">
+                    09. Prompt Engineering
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="post-content-inner-space">
+            <div class="space-toc-main animate__animated  animate__fadeInUp">
+              <ol class="space-toc">
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CROFTC-COSTAR"><span class="space-toc-text">Section 1 CROFTC & CO-STAR</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#ICL"><span class="space-toc-text">Section 2 In-Context Learning</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CoT"><span class="space-toc-text">Section 3 Chain of Thought / Draft</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#P-tuning"><span class="space-toc-text">Section 4 P-tuning</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Ultimate"><span class="space-toc-text">Section 5 Ultimate ChatGPT Prompt</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">Section 6 Retrieval Augmented Generation</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hallucination"><span class="space-toc-text">Section 7 Hallucination</span></a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
+</body>
+</html>
