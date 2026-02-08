@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  04. Transformer |    榕言的博客</title>
+<meta content="金融工程 | 数学 | 计算机科学" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
+<body>
+<div class="menu-outer">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/index-zh.html">榕言的博客</a>
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/deep-learning/index-zh.html">← 深度学习</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/index-zh.html"><li class="menu-li animate__animated animate__fadeInUp">首页</li></a>
+<a class="nav-link" href="/archives/index.html"><li class="menu-li animate__animated animate__fadeInUp">博客</li></a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
+           CATEGORIES
+           <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+</div>
+</li>
+<a href="/search"><li class="menu-li animate__animated animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/16/Transformer-Notes/index.html">EN</a> |
+          <a href="/2026/02/16/Transformer-Notes/index-zh.html">中文</a>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp"><a href="/index-zh.html">榕言</a></div>
+<div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/index-zh.html"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>首页</span></div></a>
+<a class="mobile-nav-link" href="/archives/index.html"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>博客</span></div></a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/16/Transformer-Notes/index.html">EN</a> |
+      <a href="/2026/02/16/Transformer-Notes/index-zh.html">中文</a>
+</div>
+<a href="/search"><div class="mobile-menu-child animate__animated animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+</div>
+</div>
+<div class="body-outer">
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">04. Transformer</div>
+<div class="meta-intro animate__animated animate__fadeInUp">2026-02-16</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="Transformer"><a class="headerlink" href="#Transformer" title="04. Transformer"></a>04. Transformer</h1>
+<h2 id="Example"><a class="headerlink" href="#Example" title="第 0 部分：Transformer 如何工作"></a>第 0 部分：Transformer 如何工作</h2>
+<p>在进入抽象结构之前，我们用一句简单的话，通过具体矩阵演示 Q、K、V、编码与解码的全过程。</p>
+<h3>示例句子</h3>
+<blockquote>
+<p><strong>“I love NLP”</strong></p>
+</blockquote>
+<ul>
+<li>词向量维度为 2（为了演示简化）。</li>
+<li>只看一个注意力头。</li>
+<li>先编码器，再解码器。</li>
+</ul>
+<h3>步骤 1：分词</h3>
+<p>[I] [love] [NLP]</p>
+<h3>步骤 2：Embedding + 位置编码</h3>
+<p><strong>词向量（给定）</strong></p>
+<table>
+<thead>
+<tr><th>Token</th><th>Embedding</th></tr>
+</thead>
+<tbody>
+<tr><td>I</td><td>[1, 0]</td></tr>
+<tr><td>love</td><td>[0, 1]</td></tr>
+<tr><td>NLP</td><td>[1, 1]</td></tr>
+</tbody>
+</table>
+<p>Embedding 矩阵：</p>
+<p>$$
+X =
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1 \\
+1 &amp; 1
+\end{bmatrix}
+$$</p>
+<p><strong>位置编码（简化）</strong></p>
+<table>
+<thead>
+<tr><th>位置</th><th>编码</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>[0.1, 0.0]</td></tr>
+<tr><td>2</td><td>[0.0, 0.1]</td></tr>
+<tr><td>3</td><td>[0.1, 0.1]</td></tr>
+</tbody>
+</table>
+<p>$$
+X_{pos} =
+\begin{bmatrix}
+1.1 &amp; 0.0 \\
+0.0 &amp; 1.1 \\
+1.1 &amp; 1.1
+\end{bmatrix}
+$$</p>
+<h3>步骤 3：生成 Q、K、V（自注意力）</h3>
+<p>Q、K、V 是通过线性映射学习得到。</p>
+<p>$$
+W_Q =
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\quad
+W_K =
+\begin{bmatrix}
+1 &amp; 1 \\
+0 &amp; 1
+\end{bmatrix}
+\quad
+W_V =
+\begin{bmatrix}
+1 &amp; 0 \\
+1 &amp; 1
+\end{bmatrix}
+$$</p>
+<p>$$
+Q = X_{pos} W_Q\quad
+K = X_{pos} W_K\quad
+V = X_{pos} W_V
+$$</p>
+<p>$$
+Q =
+\begin{bmatrix}
+1.1 &amp; 0.0 \\
+0.0 &amp; 1.1 \\
+1.1 &amp; 1.1
+\end{bmatrix}
+\quad
+K =
+\begin{bmatrix}
+1.1 &amp; 1.1 \\
+0.0 &amp; 1.1 \\
+1.1 &amp; 2.2
+\end{bmatrix}
+\quad
+V =
+\begin{bmatrix}
+1.1 &amp; 0.0 \\
+1.1 &amp; 1.1 \\
+2.2 &amp; 1.1
+\end{bmatrix}
+$$</p>
+<h3>步骤 4：注意力分数</h3>
+<p>点积注意力：</p>
+<p>$$
+\text{Scores} = QK^\top =
+\begin{bmatrix}
+1.21 &amp; 0.0 &amp; 1.21 \\
+1.21 &amp; 1.21 &amp; 2.42 \\
+2.42 &amp; 1.21 &amp; 3.63
+\end{bmatrix}
+$$</p>
+<p>缩放（除以 \(\sqrt{d_k}=\sqrt{2}\approx1.41\)）：</p>
+<p>$$
+\text{Scaled Scores} \approx
+\begin{bmatrix}
+0.86 &amp; 0.00 &amp; 0.86 \\
+0.86 &amp; 0.86 &amp; 1.72 \\
+1.72 &amp; 0.86 &amp; 2.57
+\end{bmatrix}
+$$</p>
+<h3>步骤 5：Softmax（按行）</h3>
+<p>$$
+\text{Attention Weights} \approx
+\begin{bmatrix}
+0.42 &amp; 0.16 &amp; 0.42 \\
+0.26 &amp; 0.26 &amp; 0.48 \\
+0.27 &amp; 0.11 &amp; 0.62
+\end{bmatrix}
+$$</p>
+<h3>步骤 6：加权求和</h3>
+<p>$$
+\text{Output} = \text{Attention} \times V
+$$</p>
+<p>近似结果：</p>
+<p>$$
+\begin{bmatrix}
+1.62 &amp; 0.63 \\
+1.74 &amp; 0.78 \\
+1.92 &amp; 0.84
+\end{bmatrix}
+$$</p>
+<h3>解码器部分（简要）</h3>
+<ul>
+<li>输入右移 + masked self‑attention。</li>
+<li>编码器‑解码器注意力：\(Q_{dec}K_{enc}^\top\)。</li>
+<li>FFN：\(\text{FFN}(x)=\max(0,xW_1+b_1)W_2+b_2\)。</li>
+<li>Linear + Softmax 输出下一个词概率。</li>
+</ul>
+<p><strong>直觉总结</strong>：Q 问“我在找什么？”，K 表示“我有什么？”，V 表示“匹配后我要输出什么信息？”。</p>
+<h2 id="Training"><a class="headerlink" href="#Training" title="第 1 部分：Transformer 训练"></a>第 1 部分：Transformer 训练</h2>
+<p><img alt="Transformer 训练示意" class="post-img" src="/images/transformer-revision/1764683422425.png"/></p>
+<p><img alt="训练与推理对比" class="post-img" src="/images/transformer-revision/1764683430516.png"/></p>
+<h3>翻译任务：训练 vs 推理（核心知识点）</h3>
+<h4>1) 训练阶段（Teacher Forcing）</h4>
+<ul>
+<li>同时有输入序列 x 和目标序列 y（ground truth）。</li>
+<li>Encoder 将输入 token → embedding + positional encoding → 多层 Encoder。</li>
+<li>Decoder 输入右移：<code>&lt;s&gt;</code> + <code>y[:-1]</code>。</li>
+<li>Masked self‑attention + Cross‑attention。</li>
+<li>Linear + Softmax，用交叉熵反向传播。</li>
+</ul>
+<h4>2) 推理阶段（自回归解码）</h4>
+<ul>
+<li>只有输入序列 x，没有目标序列 y。</li>
+<li>Decoder 从 <code>&lt;s&gt;</code> 开始逐词生成。</li>
+<li>使用 argmax / sampling / beam search。</li>
+</ul>
+<h4>核心对比</h4>
+<table>
+<thead>
+<tr><th>方面</th><th>训练</th><th>推理</th></tr>
+</thead>
+<tbody>
+<tr><td>解码器输入</td><td>真实目标序列</td><td>自生成序列</td></tr>
+<tr><td>计算方式</td><td>并行</td><td>顺序/自回归</td></tr>
+<tr><td>参数更新</td><td>有</td><td>无</td></tr>
+<tr><td>速度</td><td>快</td><td>慢</td></tr>
+<tr><td>确定性</td><td>使用完整标签</td><td>依赖生成策略</td></tr>
+<tr><td>内存使用</td><td>高</td><td>较低</td></tr>
+</tbody>
+</table>
+<p><img alt="Teacher Forcing" class="post-img" src="/images/transformer-revision/1764683443107.png"/></p>
+<h3>Teacher Forcing（教学强制）</h3>
+<p>Teacher Forcing 是序列模型训练时的关键技术：解码器每一步输入是真实上一词，而不是模型预测词。</p>
+<ul>
+<li>稳定训练、加速收敛</li>
+<li>允许并行计算</li>
+<li>缓解曝光偏差</li>
+<li>提升梯度稳定性</li>
+</ul>
+<h2 id="Architecture"><a class="headerlink" href="#Architecture" title="第 2 部分：Transformer 架构"></a>第 2 部分：Transformer 架构</h2>
+<p><img alt="Transformer 架构 1" class="post-img" src="/images/transformer-revision/1764774558165.png"/></p>
+<p><img alt="Transformer 架构 2" class="post-img" src="/images/transformer-revision/1764774661135.png"/></p>
+<p><img alt="Transformer 架构 3" class="post-img" src="/images/transformer-revision/1764774675351.png"/></p>
+<p><img alt="Transformer 架构 4" class="post-img" src="/images/transformer-revision/1764774755458.png"/></p>
+<p><img alt="Transformer 架构 5" class="post-img" src="/images/transformer-revision/1764774771222.png"/></p>
+<p><img alt="Transformer 架构 6" class="post-img" src="/images/transformer-revision/1764774885009.png"/></p>
+<p><img alt="Transformer 架构 7" class="post-img" src="/images/transformer-revision/1764774893873.png"/></p>
+<h2 id="Attention"><a class="headerlink" href="#Attention" title="第 3 部分：注意力"></a>第 3 部分：注意力</h2>
+<h3>三种注意力类型</h3>
+<h4>1) 编码器自注意力</h4>
+<ul>
+<li>Q = K = V 来自同一源序列。</li>
+<li>建模源句子内部的长距离依赖。</li>
+<li>不需要 mask。</li>
+</ul>
+<h4>2) 解码器带 Mask 的自注意力</h4>
+<ul>
+<li>Q = K = V 来自解码器当前输入。</li>
+<li>只能看历史目标词，防止“偷看未来”。</li>
+<li>使用因果 mask。</li>
+</ul>
+<h4>3) 编码器‑解码器交叉注意力</h4>
+<ul>
+<li>Q 来自解码器，K/V 来自编码器 memory。</li>
+<li>生成目标词时对齐源句子信息。</li>
+</ul>
+<h3>多头注意力</h3>
+<p><img alt="多头注意力" class="post-img" src="/images/transformer-revision/1764683651993.png"/></p>
+<p>Embedding 维度为 E，head 数为 h，每个 head 维度为 \(d=E/h\)。</p>
+<h3>三种注意力掩码</h3>
+<p><img alt="注意力掩码 1" class="post-img" src="/images/transformer-revision/1764684200620.png"/></p>
+<p><img alt="注意力掩码 2" class="post-img" src="/images/transformer-revision/1764684264934.png"/></p>
+<p><img alt="注意力掩码 3" class="post-img" src="/images/transformer-revision/1764684286450.png"/></p>
+<h2 id="Feedforward"><a class="headerlink" href="#Feedforward" title="第 4 部分：前馈网络"></a>第 4 部分：前馈网络</h2>
+<p><img alt="前馈网络" class="post-img" src="/images/transformer-revision/1764684482237.png"/></p>
+<h3>前馈神经网络</h3>
+<ol>
+<li>线性变换（全连接层）</li>
+<li>激活函数（引入非线性）</li>
+<li>Dropout（防止过拟合）</li>
+<li>层归一化（稳定训练）</li>
+</ol>
+<h2 id="Advantages"><a class="headerlink" href="#Advantages" title="第 5 部分：Transformer 优势"></a>第 5 部分：Transformer 优势</h2>
+<p><img alt="Transformer 优势" class="post-img" src="/images/transformer-revision/1764684605003.png"/></p>
+<ul>
+<li>长距离依赖建模更强。</li>
+<li>计算高度并行化。</li>
+<li>全局上下文访问能力强。</li>
+<li>易于扩展到更深层结构。</li>
+</ul>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">人工智能</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/16/Transformer-Notes/index-zh.html">04. Transformer</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Example"><span class="space-toc-text">第 0 部分：Transformer 如何工作</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Training"><span class="space-toc-text">第 1 部分：Transformer 训练</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Architecture"><span class="space-toc-text">第 2 部分：Transformer 架构</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Attention"><span class="space-toc-text">第 3 部分：注意力</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Feedforward"><span class="space-toc-text">第 4 部分：前馈网络</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Advantages"><span class="space-toc-text">第 5 部分：Transformer 优势</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+<li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+<li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<script src="/js/white.js"></script>
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>

@@ -1,396 +1,302 @@
 
-
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Neural Networks, CNNs, and Kernel Methods |    Rongyan&#39;s Blog</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <!-- 标签页图标 -->
-  
-
-  <!-- 图标库 -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- 动画库 -->
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  
-  <!-- css文件 -->
-  
-<link rel="stylesheet" href="/css/white.css">
-
-  <!-- 代码高亮 -->
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  Neural Networks, CNNs, and Kernel Methods |    Rongyan's Blog</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<!-- 标签页图标 -->
+<!-- 图标库 -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<!-- 动画库 -->
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet"/>
+<!-- css文件 -->
+<link href="/css/white.css" rel="stylesheet"/>
+<!-- 代码高亮 -->
+<meta content="Hexo 6.2.0" name="generator"/></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
-          Rongyan&#39;s Blog
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+          Rongyan's Blog
         </a>
-        
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-        
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/math/numeric-methods/">← Numerical Methods</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               HOME
             </li>
-          </a>
-        
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               BLOG
             </li>
-          </a>
-        
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              CATEGORIES
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
-             </div>
-          </li>
-        
-        
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-
-          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-            <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+</div>
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
             <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
-          </li>
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        
-        </ul>
-
-      </div>
-
-    </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
-        Rongyan&#39;s Blog
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+        Rongyan's Blog
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-
-  </div>
-
-  <div class="mobile-menu-div">
-  
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>HOME</span>
-      </div>
-    </a>
-  
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>BLOG</span>
-      </div>
-    </a>
-  
-  
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
-      <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
-    </div>
-
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-    
-  </div>
-
-
 </div>
-
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>HOME</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>BLOG</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+      <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
+</div>
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    
+<div class="body-inner">
 <article class="post-inner">
-  <div class="post-content-outer">
-    <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Neural Networks, CNNs, and Kernel Methods</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Feb 05 2026</div>
-      
-    </div>
-    <div class="post-content-inner">
-      <div class="post-content-inner-space">
-
-      </div>
-      <div class="post-content-main animate__animated  animate__fadeInUp">
-        <!-- top型目录 -->
-
-        <h1 id="NN-CNN-Kernel-Notes"><a href="#NN-CNN-Kernel-Notes" class="headerlink" title="Gist"></a>Gist</h1>
-
-         <p>These notes cover neural networks and backpropagation, CNN design details, and kernel methods with Hilbert space foundations. 
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">Neural Networks, CNNs, and Kernel Methods</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 05 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space">
+</div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<!-- top型目录 -->
+<h1 id="NN-CNN-Kernel-Notes"><a class="headerlink" href="#NN-CNN-Kernel-Notes" title="Gist"></a>Gist</h1>
+<p>These notes cover neural networks and backpropagation, CNN design details, and kernel methods with Hilbert space foundations. 
           All formulas are written in standard \(\LaTeX\) math notation.</p>
-      
-        <h2 id="Reading-List"><a href="#Reading-List" class="headerlink" title="Reading List"></a>Reading List</h2>
-        <ul>
-          <li><a href="/pdf/lecture20.pdf" target="_blank">Deep Learning and CNN by CMU</a></li>
-          <li><a href="/pdf/lecture1_whatIsRKHS.pdf" target="_blank">Lecture 1: What is RKHS?</a></li>
-        </ul>
-        
-       
-
-        <h2 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>1. Neural Networks</h2>
-        <h3 id="NN-Intro"><a href="#NN-Intro" class="headerlink" title="Introduction"></a>Introduction</h3>
-        <p>A feed‑forward neural network defines a function \(f_\theta: \mathbb{R}^d \to \mathbb{R}^k\) by composing affine transforms and nonlinearities:</p>
-        <p>\(a^{(0)} = x\), \(z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}\), \(a^{(l)} = \sigma(z^{(l)})\), and \(f_\theta(x)=a^{(L)}\).</p>
-
-        <h3 id="Backprop"><a href="#Backprop" class="headerlink" title="Backpropagation"></a>Backpropagation</h3>
-        <p>Given loss \(\mathcal{L}(f_\theta(x), y)\), backprop computes gradients efficiently using the chain rule.</p>
-        <ul>
-          <li>Output layer error: \(\delta^{(L)} = \nabla_{a^{(L)}} \mathcal{L} \odot \sigma'(z^{(L)})\).</li>
-          <li>Hidden layer error: \(\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'(z^{(l)})\).</li>
-          <li>Gradients: \(\nabla_{W^{(l)}} \mathcal{L} = \delta^{(l)} (a^{(l-1)})^T\), \(\nabla_{b^{(l)}} \mathcal{L} = \delta^{(l)}\).</li>
-        </ul>
-
-        <h2 id="CNN"><a href="#CNN" class="headerlink" title="Convolutional Neural Networks"></a>2. Convolutional Neural Networks (CNNs)</h2>
-        <h3 id="CNN-Intro"><a href="#CNN-Intro" class="headerlink" title="Introduction"></a>Introduction</h3>
-        <p>CNNs are specialized for grid‑structured data (images, time‑series). They exploit local connectivity and parameter sharing to reduce complexity.</p>
-
-        <h3 id="Receptive-Field"><a href="#Receptive-Field" class="headerlink" title="Receptive Field"></a>Receptive Field</h3>
-        <p>The receptive field is the input region that influences a particular feature map activation. With kernel size \(k\), stride \(s\), and depth \(L\), receptive fields grow layer by layer.</p>
-        <p>If layer \(l\) has receptive field size \(R_l\), then for a subsequent conv layer:</p>
-        <p>\(R_{l+1} = R_l + (k_{l+1} - 1) \cdot \prod_{i=1}^{l} s_i\).</p>
-
-        
-<h4 id="RF-Problem"><a href="#RF-Problem" class="headerlink" title="Receptive Field Problem"></a>Practice Problem (Receptive Field)</h4>
-        <p>A CNN has three conv layers. Layer 1: kernel 3, stride 1. Layer 2: kernel 3, stride 2. Layer 3: kernel 5, stride 1. What is the receptive field size at layer 3?</p>
-        <details class="solution-block">
-          <summary>Show Solution</summary>
-          <p><strong>Answer:</strong> Use \(R_{l+1} = R_l + (k_{l+1}-1)\prod_{i=1}^{l} s_i\) with \(R_1=3\).</p>
-          <p>Layer 2: \(R_2 = 3 + (3-1)\cdot 1 = 5\). Layer 3: \(R_3 = 5 + (5-1)\cdot (1\cdot 2)=5+8=13\).</p>
-          <p><strong>Receptive field = 13</strong>.</p>
-        </details>
-<h3 id="Kernel-Size"><a href="#Kernel-Size" class="headerlink" title="Kernel Size and Output Shape"></a>Kernel Size and Output Shape</h3>
-        <p>For input spatial size \(n\), kernel size \(k\), padding \(p\), stride \(s\):</p>
-        <p>\(n_{out} = \left\lfloor \frac{n + 2p - k}{s} \right\rfloor + 1\).</p>
-        <p>To keep size unchanged (“same” padding): choose \(p = \frac{k-1}{2}\) when \(k\) is odd.</p>
-
-        
-<h4 id="KS-Problem"><a href="#KS-Problem" class="headerlink" title="Kernel Size/Output Shape Problem"></a>Practice Problem (Kernel Size & Output Shape)</h4>
-        <p>Input is \(64	imes64\). Apply conv with kernel \(k=7\), padding \(p=3\), stride \(s=2\). What is the output size?</p>
-        <details class="solution-block">
-          <summary>Show Solution</summary>
-          <p>\(n_{out} = \left\lfloor rac{n+2p-k}{s} 
+<h2 id="Reading-List"><a class="headerlink" href="#Reading-List" title="Reading List"></a>Reading List</h2>
+<ul>
+<li><a href="/pdf/lecture20.pdf" target="_blank">Deep Learning and CNN by CMU</a></li>
+<li><a href="/pdf/lecture1_whatIsRKHS.pdf" target="_blank">Lecture 1: What is RKHS?</a></li>
+</ul>
+<h2 id="Neural-Networks"><a class="headerlink" href="#Neural-Networks" title="Neural Networks"></a>1. Neural Networks</h2>
+<h3 id="NN-Intro"><a class="headerlink" href="#NN-Intro" title="Introduction"></a>Introduction</h3>
+<p>A feed‑forward neural network defines a function \(f_\theta: \mathbb{R}^d \to \mathbb{R}^k\) by composing affine transforms and nonlinearities:</p>
+<p>\(a^{(0)} = x\), \(z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}\), \(a^{(l)} = \sigma(z^{(l)})\), and \(f_\theta(x)=a^{(L)}\).</p>
+<h3 id="Backprop"><a class="headerlink" href="#Backprop" title="Backpropagation"></a>Backpropagation</h3>
+<p>Given loss \(\mathcal{L}(f_\theta(x), y)\), backprop computes gradients efficiently using the chain rule.</p>
+<ul>
+<li>Output layer error: \(\delta^{(L)} = \nabla_{a^{(L)}} \mathcal{L} \odot \sigma'(z^{(L)})\).</li>
+<li>Hidden layer error: \(\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'(z^{(l)})\).</li>
+<li>Gradients: \(\nabla_{W^{(l)}} \mathcal{L} = \delta^{(l)} (a^{(l-1)})^T\), \(\nabla_{b^{(l)}} \mathcal{L} = \delta^{(l)}\).</li>
+</ul>
+<h2 id="CNN"><a class="headerlink" href="#CNN" title="Convolutional Neural Networks"></a>2. Convolutional Neural Networks (CNNs)</h2>
+<h3 id="CNN-Intro"><a class="headerlink" href="#CNN-Intro" title="Introduction"></a>Introduction</h3>
+<p>CNNs are specialized for grid‑structured data (images, time‑series). They exploit local connectivity and parameter sharing to reduce complexity.</p>
+<h3 id="Receptive-Field"><a class="headerlink" href="#Receptive-Field" title="Receptive Field"></a>Receptive Field</h3>
+<p>The receptive field is the input region that influences a particular feature map activation. With kernel size \(k\), stride \(s\), and depth \(L\), receptive fields grow layer by layer.</p>
+<p>If layer \(l\) has receptive field size \(R_l\), then for a subsequent conv layer:</p>
+<p>\(R_{l+1} = R_l + (k_{l+1} - 1) \cdot \prod_{i=1}^{l} s_i\).</p>
+<h4 id="RF-Problem"><a class="headerlink" href="#RF-Problem" title="Receptive Field Problem"></a>Practice Problem (Receptive Field)</h4>
+<p>A CNN has three conv layers. Layer 1: kernel 3, stride 1. Layer 2: kernel 3, stride 2. Layer 3: kernel 5, stride 1. What is the receptive field size at layer 3?</p>
+<details class="solution-block">
+<summary>Show Solution</summary>
+<p><strong>Answer:</strong> Use \(R_{l+1} = R_l + (k_{l+1}-1)\prod_{i=1}^{l} s_i\) with \(R_1=3\).</p>
+<p>Layer 2: \(R_2 = 3 + (3-1)\cdot 1 = 5\). Layer 3: \(R_3 = 5 + (5-1)\cdot (1\cdot 2)=5+8=13\).</p>
+<p><strong>Receptive field = 13</strong>.</p>
+</details>
+<h3 id="Kernel-Size"><a class="headerlink" href="#Kernel-Size" title="Kernel Size and Output Shape"></a>Kernel Size and Output Shape</h3>
+<p>For input spatial size \(n\), kernel size \(k\), padding \(p\), stride \(s\):</p>
+<p>\(n_{out} = \left\lfloor \frac{n + 2p - k}{s} \right\rfloor + 1\).</p>
+<p>To keep size unchanged (“same” padding): choose \(p = \frac{k-1}{2}\) when \(k\) is odd.</p>
+<h4 id="KS-Problem"><a class="headerlink" href="#KS-Problem" title="Kernel Size/Output Shape Problem"></a>Practice Problem (Kernel Size &amp; Output Shape)</h4>
+<p>Input is \(64	imes64\). Apply conv with kernel \(k=7\), padding \(p=3\), stride \(s=2\). What is the output size?</p>
+<details class="solution-block">
+<summary>Show Solution</summary>
+<p>\(n_{out} = \left\lfloor rac{n+2p-k}{s} 
 ight
 floor + 1 = \left\lfloor rac{64+6-7}{2} 
 ight
 floor + 1 = \left\lfloor rac{63}{2} 
 ight
 floor + 1 = 31 + 1 = 32\).</p>
-          <p><strong>Output size = 32 × 32</strong>.</p>
-        </details>
-<h3 id="Num-Kernels"><a href="#Num-Kernels" class="headerlink" title="Number of Kernels per Layer"></a>Number of Kernels per Layer</h3>
-        <p>If a conv layer has \(C_{in}\) input channels and \(C_{out}\) kernels, then:</p>
-        <ul>
-          <li>Each kernel has shape \(k \times k \times C_{in}\).</li>
-          <li>The number of output feature maps equals \(C_{out}\).</li>
-          <li>Total parameters: \(C_{out} \cdot (k^2 C_{in} + 1)\) (including bias).</li>
-        </ul>
-
-        
-<h4 id="NK-Problem"><a href="#NK-Problem" class="headerlink" title="Number of Kernels Problem"></a>Practice Problem (Number of Kernels)</h4>
-        <p>A conv layer takes \(C_{in}=64\) channels and uses \(C_{out}=128\) kernels of size \(3	imes3\). How many parameters does the layer have (including bias)?</p>
-        <details class="solution-block">
-          <summary>Show Solution</summary>
-          <p>Parameters per kernel: \(3\cdot3\cdot64 + 1 = 577\). Total: \(128\cdot577 = 73856\).</p>
-          <p><strong>Total parameters = 73,856</strong>.</p>
-        </details>
-<h3 id="CNN-Pros-Cons"><a href="#CNN-Pros-Cons" class="headerlink" title="Pros and Cons"></a>Pros and Cons of CNNs</h3>
-        <ul>
-          <li><strong>Pros:</strong> parameter sharing, spatial inductive bias, strong performance on vision.</li>
-          <li><strong>Cons:</strong> less effective for global dependencies, requires many labeled images, limited rotation invariance unless augmented.</li>
-        </ul>
-
-        <h3 id="Cross-Correlation"><a href="#Cross-Correlation" class="headerlink" title="Cross-Correlation"></a>Cross‑Correlation in CNNs</h3>
-        <p>Most CNN libraries implement <strong>cross‑correlation</strong> instead of mathematical convolution. For input \(x\) and kernel \(k\):</p>
-        <p>\[(x \star k)[i,j] = \sum_{u=0}^{m-1} \sum_{v=0}^{n-1} x[i+u, j+v] \, k[u,v]\]</p>
-        <p>Convolution would flip the kernel: \((x * k)[i,j] = \sum_{u,v} x[i+u, j+v] \, k[m-1-u, n-1-v]\). In practice, the network learns the kernel weights, so using cross‑correlation is equivalent up to learned parameters.</p>
-        <h4 id="Cross-Correlation-Problem"><a href="#Cross-Correlation-Problem" class="headerlink" title="Practice Problem"></a>Practice Problem</h4>
-        <p>Given input \(x\) and kernel \(k\):</p>
-        <p>\(x=\begin{bmatrix}1 & 2 & 0 \\ 0 & 1 & 3 \\ 2 & 1 & 1\end{bmatrix}\), \(k=\begin{bmatrix}1 & 0 \\ -1 & 2\end{bmatrix}\).</p>
-        <p>Compute the top‑left output of cross‑correlation (no padding, stride 1): \((x \star k)[0,0]\).</p>
-        <details class="solution-block">
-  <summary>Show Solution</summary>
-  <p><strong>Solution:</strong> \((x \star k)[0,0] = 1\cdot1 + 2\cdot0 + 0\cdot(-1) + 1\cdot2 = 3\).</p>
+<p><strong>Output size = 32 × 32</strong>.</p>
 </details>
-
-
-        
-        <figure>
-          <img src="/images/cnn-kernel-example.png" alt="CNN convolution example" />
-          <figcaption>Example of convolution kernels applied across channels to produce feature maps.</figcaption>
-        </figure>
-        <h2 id="Hilbert"><a href="#Hilbert" class="headerlink" title="Hilbert Spaces"></a>3. Hilbert Spaces</h2>
-        <h3 id="Hilbert-Def"><a href="#Hilbert-Def" class="headerlink" title="Definition"></a>Definition</h3>
-        <p>A Hilbert space is a complete inner‑product space \((\mathcal{H}, \langle \cdot, \cdot \rangle)\) where the norm \(|x| = \sqrt{\langle x, x \rangle}\) makes every Cauchy sequence converge.</p>
-
-        <h3 id="Hilbert-Examples"><a href="#Hilbert-Examples" class="headerlink" title="Examples"></a>Examples</h3>
-        <ul>
-          <li>\(\mathbb{R}^n\) with dot product.</li>
-          <li>\(L^2([a,b])\): square‑integrable functions with \(\langle f,g \rangle = \int_a^b f(x)g(x)\,dx\).</li>
-          <li>Sequence space \(\ell^2\): \(\sum_i x_i^2 < \infty\).</li>
-        </ul>
-
-        <h3 id="Hilbert-Proof"><a href="#Hilbert-Proof" class="headerlink" title="Proof Sketch: Completeness of L2"></a>Proof Sketch: Completeness of \(L^2\)</h3>
-        <p>Take a Cauchy sequence \(f_n\) in \(L^2\). One can show it is Cauchy in measure, extract a subsequence converging a.e. to \(f\), and use Fatou’s lemma to prove \(f \in L^2\) and \(f_n \to f\) in norm.</p>
-
-        <h2 id="PD"><a href="#PD" class="headerlink" title="Positive Definite Functions"></a>4. Positive Definite Functions and Kernels</h2>
-        <h3 id="PD-Def"><a href="#PD-Def" class="headerlink" title="Definition"></a>Definition</h3>
-        <p>A function \(K: X \times X \to \mathbb{R}\) is <strong>positive definite</strong> if for any \(x_1,\ldots,x_n\) and any \(a \in \mathbb{R}^n\):</p>
-        <p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\).</p>
-
-        <p><strong>Example:</strong> For the RBF kernel \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\), the Gram matrix \(K\) is symmetric and all eigenvalues are non‑negative for any finite sample, so it is positive definite.</p>
-<h3 id="PD-Test"><a href="#PD-Test" class="headerlink" title="How to Test Positive Definiteness"></a>How to Test Positive Definiteness</h3>
-        <ul>
-          <li>Form Gram matrix \(K_{ij} = K(x_i, x_j)\); check that \(K\) is symmetric and all eigenvalues are non‑negative.</li>
-          <li>Show that \(K(x, x') = \langle \phi(x), \phi(x') \rangle\) for some feature map \(\phi\).</li>
-          <li>Use closure properties: sums, products, and limits of p.d. kernels are p.d.</li>
-        </ul>
-        <h4 id="PD-Test-Example"><a href="#PD-Test-Example" class="headerlink" title="Example"></a>Example</h4>
-        <p>Let \(K(x,x') = \exp(-|x-x'|^2)\) (RBF kernel). For two distinct points with distance \(d>0\), the Gram matrix is</p>
-        <p>\(K = \begin{bmatrix}1 & e^{-d^2} \\ e^{-d^2} & 1\end{bmatrix}\).</p>
-        <details class="solution-block">
-          <summary>Show Check</summary>
-          <p>The eigenvalues are \(1\pm e^{-d^2}\). Since \(0&lt;e^{-d^2}&lt;1\), both eigenvalues are positive, so \(K\) is positive definite.</p>
-        </details>
-
-
-        <h2 id="Kernel-Methods"><a href="#Kernel-Methods" class="headerlink" title="Kernel Methods"></a>5. Kernel Methods</h2>
-        <h3 id="Kernel-Def"><a href="#Kernel-Def" class="headerlink" title="What is a Kernel"></a>What is a Kernel?</h3>
-        <p>A kernel is a similarity function \(K(x, x')\) that acts like an inner product in some (possibly infinite‑dimensional) feature space.</p>
-
-        <h3 id="Kernel-Trick"><a href="#Kernel-Trick" class="headerlink" title="Kernel Trick"></a>Kernel Trick</h3>
-        <p>Algorithms relying on dot products can be rewritten in terms of \(K(x, x')\), avoiding explicit feature mappings.</p>
-
-        <h3 id="Representer-Theorem"><a href="#Representer-Theorem" class="headerlink" title="Representer Theorem"></a>Representer Theorem</h3>
-        <p>For regularized risk minimization in RKHS, the solution has the form:</p>
-        <p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\).</p>
-
-        <h4 id="Representer-Proof"><a href="#Representer-Proof" class="headerlink" title="Proof Sketch"></a>Proof Sketch</h4>
-        <p>Any \(f \in \mathcal{H}\) can be decomposed as \(f=f_\parallel+f_\perp\), where \(f_\parallel\) lies in the span of \(\{K(x_i,\cdot)\}\) and \(f_\perp\) is orthogonal. The data‑fit term depends only on \(f_\parallel\), while the RKHS norm satisfies \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\). Thus the minimizer must have \(f_\perp=0\).</p>
-        <h4 id="Representer-Problem"><a href="#Representer-Problem" class="headerlink" title="Practice Problem"></a>Practice Problem</h4>
-        <p>For kernel ridge regression with RBF kernel, write the solution form and the system you must solve.</p>
-        <details class="solution-block">
-          <summary>Show Solution</summary>
-          <p>The representer theorem gives \(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\). Solve \((K+\lambda n I)\alpha = y\) for \(\alpha\), where \(K\) is the Gram matrix.</p>
-        </details>
-
-        <h3 id="Kernel-Apps"><a href="#Kernel-Apps" class="headerlink" title="Applications and Examples"></a>Applications and Examples</h3>
-        <ul>
-          <li>Support Vector Machines (classification).</li>
-          <li>Kernel Ridge Regression (regression).</li>
-          <li>Gaussian RBF kernel: \(K(x,x') = \exp(-|x-x'|^2 / (2\sigma^2))\).</li>
-          <li>Polynomial kernel: \(K(x,x') = (x^T x' + c)^d\).</li>
-        </ul>
-
-        <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2>
-        <ul>
-          <li>Backprop provides efficient gradients for deep networks.</li>
-          <li>CNNs exploit locality and parameter sharing for grid data.</li>
-          <li>Hilbert spaces underpin kernel methods via completeness and inner products.</li>
-          <li>Positive definite kernels enable the kernel trick and representer theorem.</li>
-        </ul>
-
-        <!-- 分类文章 -->
-        
-          <div class="post-categoris-bottom">
-            <div class="post-categoris-name">Math</div>
-            <ul>
-              <li class="me base">
-                <a  href="/2026/02/05/Numeric-Methods/" class="post-categoris-bottom-link">
-                  Gist
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        
-      </div><div class="post-content-inner-space">
-        
-          <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Reading-List"><span class="space-toc-text">Reading List</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Neural-Networks"><span class="space-toc-text">1. Neural Networks</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CNN"><span class="space-toc-text">2. Convolutional Neural Networks (CNNs)</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hilbert"><span class="space-toc-text">3. Hilbert Spaces</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#PD"><span class="space-toc-text">4. Positive Definite Functions and Kernels</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Kernel-Methods"><span class="space-toc-text">5. Kernel Methods</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">Summary</span></a></li></ol>
-           </div>
-        </div>
-   </div>
-    <!-- 评论 -->
-    
-  </div>
+<h3 id="Num-Kernels"><a class="headerlink" href="#Num-Kernels" title="Number of Kernels per Layer"></a>Number of Kernels per Layer</h3>
+<p>If a conv layer has \(C_{in}\) input channels and \(C_{out}\) kernels, then:</p>
+<ul>
+<li>Each kernel has shape \(k \times k \times C_{in}\).</li>
+<li>The number of output feature maps equals \(C_{out}\).</li>
+<li>Total parameters: \(C_{out} \cdot (k^2 C_{in} + 1)\) (including bias).</li>
+</ul>
+<h4 id="NK-Problem"><a class="headerlink" href="#NK-Problem" title="Number of Kernels Problem"></a>Practice Problem (Number of Kernels)</h4>
+<p>A conv layer takes \(C_{in}=64\) channels and uses \(C_{out}=128\) kernels of size \(3	imes3\). How many parameters does the layer have (including bias)?</p>
+<details class="solution-block">
+<summary>Show Solution</summary>
+<p>Parameters per kernel: \(3\cdot3\cdot64 + 1 = 577\). Total: \(128\cdot577 = 73856\).</p>
+<p><strong>Total parameters = 73,856</strong>.</p>
+</details>
+<h3 id="CNN-Pros-Cons"><a class="headerlink" href="#CNN-Pros-Cons" title="Pros and Cons"></a>Pros and Cons of CNNs</h3>
+<ul>
+<li><strong>Pros:</strong> parameter sharing, spatial inductive bias, strong performance on vision.</li>
+<li><strong>Cons:</strong> less effective for global dependencies, requires many labeled images, limited rotation invariance unless augmented.</li>
+</ul>
+<h3 id="Cross-Correlation"><a class="headerlink" href="#Cross-Correlation" title="Cross-Correlation"></a>Cross‑Correlation in CNNs</h3>
+<p>Most CNN libraries implement <strong>cross‑correlation</strong> instead of mathematical convolution. For input \(x\) and kernel \(k\):</p>
+<p>\[(x \star k)[i,j] = \sum_{u=0}^{m-1} \sum_{v=0}^{n-1} x[i+u, j+v] \, k[u,v]\]</p>
+<p>Convolution would flip the kernel: \((x * k)[i,j] = \sum_{u,v} x[i+u, j+v] \, k[m-1-u, n-1-v]\). In practice, the network learns the kernel weights, so using cross‑correlation is equivalent up to learned parameters.</p>
+<h4 id="Cross-Correlation-Problem"><a class="headerlink" href="#Cross-Correlation-Problem" title="Practice Problem"></a>Practice Problem</h4>
+<p>Given input \(x\) and kernel \(k\):</p>
+<p>\(x=\begin{bmatrix}1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 3 \\ 2 &amp; 1 &amp; 1\end{bmatrix}\), \(k=\begin{bmatrix}1 &amp; 0 \\ -1 &amp; 2\end{bmatrix}\).</p>
+<p>Compute the top‑left output of cross‑correlation (no padding, stride 1): \((x \star k)[0,0]\).</p>
+<details class="solution-block">
+<summary>Show Solution</summary>
+<p><strong>Solution:</strong> \((x \star k)[0,0] = 1\cdot1 + 2\cdot0 + 0\cdot(-1) + 1\cdot2 = 3\).</p>
+</details>
+<figure>
+<img alt="CNN convolution example" src="/images/cnn-kernel-example.png"/>
+<figcaption>Example of convolution kernels applied across channels to produce feature maps.</figcaption>
+</figure>
+<h2 id="Hilbert"><a class="headerlink" href="#Hilbert" title="Hilbert Spaces"></a>3. Hilbert Spaces</h2>
+<h3 id="Hilbert-Def"><a class="headerlink" href="#Hilbert-Def" title="Definition"></a>Definition</h3>
+<p>A Hilbert space is a complete inner‑product space \((\mathcal{H}, \langle \cdot, \cdot \rangle)\) where the norm \(|x| = \sqrt{\langle x, x \rangle}\) makes every Cauchy sequence converge.</p>
+<h3 id="Hilbert-Examples"><a class="headerlink" href="#Hilbert-Examples" title="Examples"></a>Examples</h3>
+<ul>
+<li>\(\mathbb{R}^n\) with dot product.</li>
+<li>\(L^2([a,b])\): square‑integrable functions with \(\langle f,g \rangle = \int_a^b f(x)g(x)\,dx\).</li>
+<li>Sequence space \(\ell^2\): \(\sum_i x_i^2 &lt; \infty\).</li>
+</ul>
+<h3 id="Hilbert-Proof"><a class="headerlink" href="#Hilbert-Proof" title="Proof Sketch: Completeness of L2"></a>Proof Sketch: Completeness of \(L^2\)</h3>
+<p>Take a Cauchy sequence \(f_n\) in \(L^2\). One can show it is Cauchy in measure, extract a subsequence converging a.e. to \(f\), and use Fatou’s lemma to prove \(f \in L^2\) and \(f_n \to f\) in norm.</p>
+<h2 id="PD"><a class="headerlink" href="#PD" title="Positive Definite Functions"></a>4. Positive Definite Functions and Kernels</h2>
+<h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="Definition"></a>Definition</h3>
+<p>A function \(K: X \times X \to \mathbb{R}\) is <strong>positive definite</strong> if for any \(x_1,\ldots,x_n\) and any \(a \in \mathbb{R}^n\):</p>
+<p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\).</p>
+<p><strong>Example:</strong> For the RBF kernel \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\), the Gram matrix \(K\) is symmetric and all eigenvalues are non‑negative for any finite sample, so it is positive definite.</p>
+<h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="How to Test Positive Definiteness"></a>How to Test Positive Definiteness</h3>
+<ul>
+<li>Form Gram matrix \(K_{ij} = K(x_i, x_j)\); check that \(K\) is symmetric and all eigenvalues are non‑negative.</li>
+<li>Show that \(K(x, x') = \langle \phi(x), \phi(x') \rangle\) for some feature map \(\phi\).</li>
+<li>Use closure properties: sums, products, and limits of p.d. kernels are p.d.</li>
+</ul>
+<h4 id="PD-Test-Example"><a class="headerlink" href="#PD-Test-Example" title="Example"></a>Example</h4>
+<p>Let \(K(x,x') = \exp(-|x-x'|^2)\) (RBF kernel). For two distinct points with distance \(d&gt;0\), the Gram matrix is</p>
+<p>\(K = \begin{bmatrix}1 &amp; e^{-d^2} \\ e^{-d^2} &amp; 1\end{bmatrix}\).</p>
+<details class="solution-block">
+<summary>Show Check</summary>
+<p>The eigenvalues are \(1\pm e^{-d^2}\). Since \(0&lt;e^{-d^2}&lt;1\), both eigenvalues are positive, so \(K\) is positive definite.</p>
+</details>
+<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="Kernel Methods"></a>5. Kernel Methods</h2>
+<h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="What is a Kernel"></a>What is a Kernel?</h3>
+<p>A kernel is a similarity function \(K(x, x')\) that acts like an inner product in some (possibly infinite‑dimensional) feature space.</p>
+<h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="Kernel Trick"></a>Kernel Trick</h3>
+<p>Algorithms relying on dot products can be rewritten in terms of \(K(x, x')\), avoiding explicit feature mappings.</p>
+<h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="Representer Theorem"></a>Representer Theorem</h3>
+<p>For regularized risk minimization in RKHS, the solution has the form:</p>
+<p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\).</p>
+<h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="Proof Sketch"></a>Proof Sketch</h4>
+<p>Any \(f \in \mathcal{H}\) can be decomposed as \(f=f_\parallel+f_\perp\), where \(f_\parallel\) lies in the span of \(\{K(x_i,\cdot)\}\) and \(f_\perp\) is orthogonal. The data‑fit term depends only on \(f_\parallel\), while the RKHS norm satisfies \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\). Thus the minimizer must have \(f_\perp=0\).</p>
+<h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="Practice Problem"></a>Practice Problem</h4>
+<p>For kernel ridge regression with RBF kernel, write the solution form and the system you must solve.</p>
+<details class="solution-block">
+<summary>Show Solution</summary>
+<p>The representer theorem gives \(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\). Solve \((K+\lambda n I)\alpha = y\) for \(\alpha\), where \(K\) is the Gram matrix.</p>
+</details>
+<h3 id="Kernel-Apps"><a class="headerlink" href="#Kernel-Apps" title="Applications and Examples"></a>Applications and Examples</h3>
+<ul>
+<li>Support Vector Machines (classification).</li>
+<li>Kernel Ridge Regression (regression).</li>
+<li>Gaussian RBF kernel: \(K(x,x') = \exp(-|x-x'|^2 / (2\sigma^2))\).</li>
+<li>Polynomial kernel: \(K(x,x') = (x^T x' + c)^d\).</li>
+</ul>
+<h2 id="Summary"><a class="headerlink" href="#Summary" title="Summary"></a>Summary</h2>
+<ul>
+<li>Backprop provides efficient gradients for deep networks.</li>
+<li>CNNs exploit locality and parameter sharing for grid data.</li>
+<li>Hilbert spaces underpin kernel methods via completeness and inner products.</li>
+<li>Positive definite kernels enable the kernel trick and representer theorem.</li>
+</ul>
+<!-- 分类文章 -->
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">Math</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/05/Numeric-Methods/">1. Convolution and Kernel Operators</a>
+</li>
+</ul>
+</div>
+</div><div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Reading-List"><span class="space-toc-text">Reading List</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Neural-Networks"><span class="space-toc-text">1. Neural Networks</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CNN"><span class="space-toc-text">2. Convolutional Neural Networks (CNNs)</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hilbert"><span class="space-toc-text">3. Hilbert Spaces</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#PD"><span class="space-toc-text">4. Positive Definite Functions and Kernels</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Kernel-Methods"><span class="space-toc-text">5. Kernel Methods</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">Summary</span></a></li></ol>
+</div>
+</div>
+</div>
+<!-- 评论 -->
+</div>
 </article>
-  </div>
 </div>
-
-
-
+</div>
 <!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
-
-  <div class="footer-outer animate__animated  animate__fadeInUp">
-    <div class="footer-inner">
-    <div class="footer-text">
-    <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
-
-    </div>
-    <div class="footer-contact">
-    <ul class="footer-ul">
-        
-        <li class="footer-li">
-            <a href="https://github.com/RongyanYuan" target="_blank">
-                <i class="ri-github-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-                <i class="ri-mail-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-                <i class="ri-linkedin-box-line"></i>
-            </a>
-        </li>
-        
-    </ul>
-    </div>
-    </div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
 </div>
-
-
-
-
-
-
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
-
-
-
-
 <script>
   window.MathJax = {
     tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
@@ -398,6 +304,5 @@ floor + 1 = 31 + 1 = 32\).</p>
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
 </body>
 </html>

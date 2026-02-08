@@ -1,390 +1,298 @@
 
-
-
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  神经网络、CNN 与核方法 |    榕言的博客</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <!-- 标签页图标 -->
-  
-
-  <!-- 图标库 -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- 动画库 -->
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  
-  <!-- css文件 -->
-  
-<link rel="stylesheet" href="/css/white.css">
-
-  <!-- 代码高亮 -->
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  神经网络、CNN 与核方法 |    榕言的博客</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<!-- 标签页图标 -->
+<!-- 图标库 -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<!-- 动画库 -->
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet"/>
+<!-- css文件 -->
+<link href="/css/white.css" rel="stylesheet"/>
+<!-- 代码高亮 -->
+<meta content="Hexo 6.2.0" name="generator"/></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
           榕言的博客
         </a>
-        
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-        
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/math/numeric-methods/index-zh.html">← 数值方法</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               首页
             </li>
-          </a>
-        
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               博客
             </li>
-          </a>
-        
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              分类
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
-             </div>
-          </li>
-        
-        
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-
-          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-            <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
-            <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
-          </li>
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        
-        </ul>
-
-      </div>
-
-    </div>
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+            <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
         榕言的博客
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-
-  </div>
-
-  <div class="mobile-menu-div">
-  
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>首页</span>
-      </div>
-    </a>
-  
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>博客</span>
-      </div>
-    </a>
-  
-  
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
-      <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
-    </div>
-
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-    
-  </div>
-
-
 </div>
-
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>首页</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>博客</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+      <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
+</div>
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    
+<div class="body-inner">
 <article class="post-inner">
-  <div class="post-content-outer">
-    <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">神经网络、CNN 与核方法</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Feb 05 2026</div>
-      
-    </div>
-    <div class="post-content-inner">
-      <div class="post-content-inner-space">
-
-      </div>
-      <div class="post-content-main animate__animated  animate__fadeInUp">
-        <!-- top型目录 -->
-
-        <h1 id="NN-CNN-Kernel-Notes"><a href="#NN-CNN-Kernel-Notes" class="headerlink" title="要点"></a>要点</h1>
-        <p>本笔记覆盖神经网络与反向传播、CNN 设计细节，以及核方法与 Hilbert 空间基础。公式采用标准 \(\LaTeX\) 形式。</p>
-
-        <h2 id="Reading-List"><a href="#Reading-List" class="headerlink" title="Reading List"></a>Reading List</h2>
-        <ul>
-          <li><a href="/pdf/lecture20.pdf" target="_blank">Deep Learning and CNN by CMU</a></li>
-          <li><a href="/pdf/lecture1_whatIsRKHS.pdf" target="_blank">Lecture 1: What is RKHS?</a></li>
-        </ul>
-
-
-        <h2 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="神经网络"></a>1. 神经网络</h2>
-        <h3 id="NN-Intro"><a href="#NN-Intro" class="headerlink" title="介绍"></a>介绍</h3>
-        <p>前馈神经网络通过仿射变换与非线性激活的复合定义函数 \(f_\theta: \mathbb{R}^d \to \mathbb{R}^k\)：</p>
-        <p>\(a^{(0)} = x\), \(z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}\), \(a^{(l)} = \sigma(z^{(l)})\), 且 \(f_\theta(x)=a^{(L)}\)。</p>
-
-        <h3 id="Backprop"><a href="#Backprop" class="headerlink" title="反向传播"></a>反向传播</h3>
-        <p>给定损失 \(\mathcal{L}(f_\theta(x), y)\)，反向传播用链式法则高效计算梯度。</p>
-        <ul>
-          <li>输出层误差：\(\delta^{(L)} = \nabla_{a^{(L)}} \mathcal{L} \odot \sigma'(z^{(L)})\)。</li>
-          <li>隐藏层误差：\(\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'(z^{(l)})\)。</li>
-          <li>梯度：\(\nabla_{W^{(l)}} \mathcal{L} = \delta^{(l)} (a^{(l-1)})^T\)，\(\nabla_{b^{(l)}} \mathcal{L} = \delta^{(l)}\)。</li>
-        </ul>
-
-        <h2 id="CNN"><a href="#CNN" class="headerlink" title="卷积神经网络"></a>2. 卷积神经网络（CNN）</h2>
-        <h3 id="CNN-Intro"><a href="#CNN-Intro" class="headerlink" title="介绍"></a>介绍</h3>
-        <p>CNN 针对网格结构数据（图像、时间序列）设计，通过局部连接与参数共享降低复杂度。</p>
-
-        <h3 id="Receptive-Field"><a href="#Receptive-Field" class="headerlink" title="感受野"></a>感受野</h3>
-        <p>感受野是影响某个特征图激活的输入区域。设卷积核大小为 \(k\)，步幅为 \(s\)，层数为 \(L\)。感受野随层数扩大：</p>
-        <p>\(R_{l+1} = R_l + (k_{l+1} - 1) \cdot \prod_{i=1}^{l} s_i\)。</p>
-
-        
-<h4 id="RF-Problem"><a href="#RF-Problem" class="headerlink" title="感受野练习"></a>练习题（感受野）</h4>
-        <p>三层卷积：第 1 层核 3、步幅 1；第 2 层核 3、步幅 2；第 3 层核 5、步幅 1。第 3 层的感受野是多少？</p>
-        <details class="solution-block">
-          <summary>查看答案</summary>
-          <p><strong>解答：</strong>用公式 \(R_{l+1} = R_l + (k_{l+1}-1)\prod_{i=1}^{l} s_i\)，且 \(R_1=3\)。</p>
-          <p>第 2 层：\(R_2 = 3 + (3-1)\cdot 1 = 5\)。第 3 层：\(R_3 = 5 + (5-1)\cdot (1\cdot 2)=13\)。</p>
-          <p><strong>感受野 = 13</strong>。</p>
-        </details>
-<h3 id="Kernel-Size"><a href="#Kernel-Size" class="headerlink" title="卷积核大小与输出形状"></a>卷积核大小与输出形状</h3>
-        <p>输入尺寸 \(n\)、卷积核 \(k\)、填充 \(p\)、步幅 \(s\)：</p>
-        <p>\(n_{out} = \left\lfloor \frac{n + 2p - k}{s} \right\rfloor + 1\)。</p>
-        <p>若想保持尺寸不变（same padding），当 \(k\) 为奇数时取 \(p = \frac{k-1}{2}\)。</p>
-
-        
-<h4 id="KS-Problem"><a href="#KS-Problem" class="headerlink" title="输出尺寸练习"></a>练习题（核大小与输出尺寸）</h4>
-        <p>输入为 \(64	imes64\)。卷积核 \(k=7\)，填充 \(p=3\)，步幅 \(s=2\)。输出尺寸是多少？</p>
-        <details class="solution-block">
-          <summary>查看答案</summary>
-          <p>\(n_{out} = \left\lfloor rac{n+2p-k}{s} 
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">神经网络、CNN 与核方法</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 05 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space">
+</div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<!-- top型目录 -->
+<h1 id="NN-CNN-Kernel-Notes"><a class="headerlink" href="#NN-CNN-Kernel-Notes" title="要点"></a>要点</h1>
+<p>本笔记覆盖神经网络与反向传播、CNN 设计细节，以及核方法与 Hilbert 空间基础。公式采用标准 \(\LaTeX\) 形式。</p>
+<h2 id="Reading-List"><a class="headerlink" href="#Reading-List" title="Reading List"></a>Reading List</h2>
+<ul>
+<li><a href="/pdf/lecture20.pdf" target="_blank">Deep Learning and CNN by CMU</a></li>
+<li><a href="/pdf/lecture1_whatIsRKHS.pdf" target="_blank">Lecture 1: What is RKHS?</a></li>
+</ul>
+<h2 id="Neural-Networks"><a class="headerlink" href="#Neural-Networks" title="神经网络"></a>1. 神经网络</h2>
+<h3 id="NN-Intro"><a class="headerlink" href="#NN-Intro" title="介绍"></a>介绍</h3>
+<p>前馈神经网络通过仿射变换与非线性激活的复合定义函数 \(f_\theta: \mathbb{R}^d \to \mathbb{R}^k\)：</p>
+<p>\(a^{(0)} = x\), \(z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}\), \(a^{(l)} = \sigma(z^{(l)})\), 且 \(f_\theta(x)=a^{(L)}\)。</p>
+<h3 id="Backprop"><a class="headerlink" href="#Backprop" title="反向传播"></a>反向传播</h3>
+<p>给定损失 \(\mathcal{L}(f_\theta(x), y)\)，反向传播用链式法则高效计算梯度。</p>
+<ul>
+<li>输出层误差：\(\delta^{(L)} = \nabla_{a^{(L)}} \mathcal{L} \odot \sigma'(z^{(L)})\)。</li>
+<li>隐藏层误差：\(\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'(z^{(l)})\)。</li>
+<li>梯度：\(\nabla_{W^{(l)}} \mathcal{L} = \delta^{(l)} (a^{(l-1)})^T\)，\(\nabla_{b^{(l)}} \mathcal{L} = \delta^{(l)}\)。</li>
+</ul>
+<h2 id="CNN"><a class="headerlink" href="#CNN" title="卷积神经网络"></a>2. 卷积神经网络（CNN）</h2>
+<h3 id="CNN-Intro"><a class="headerlink" href="#CNN-Intro" title="介绍"></a>介绍</h3>
+<p>CNN 针对网格结构数据（图像、时间序列）设计，通过局部连接与参数共享降低复杂度。</p>
+<h3 id="Receptive-Field"><a class="headerlink" href="#Receptive-Field" title="感受野"></a>感受野</h3>
+<p>感受野是影响某个特征图激活的输入区域。设卷积核大小为 \(k\)，步幅为 \(s\)，层数为 \(L\)。感受野随层数扩大：</p>
+<p>\(R_{l+1} = R_l + (k_{l+1} - 1) \cdot \prod_{i=1}^{l} s_i\)。</p>
+<h4 id="RF-Problem"><a class="headerlink" href="#RF-Problem" title="感受野练习"></a>练习题（感受野）</h4>
+<p>三层卷积：第 1 层核 3、步幅 1；第 2 层核 3、步幅 2；第 3 层核 5、步幅 1。第 3 层的感受野是多少？</p>
+<details class="solution-block">
+<summary>查看答案</summary>
+<p><strong>解答：</strong>用公式 \(R_{l+1} = R_l + (k_{l+1}-1)\prod_{i=1}^{l} s_i\)，且 \(R_1=3\)。</p>
+<p>第 2 层：\(R_2 = 3 + (3-1)\cdot 1 = 5\)。第 3 层：\(R_3 = 5 + (5-1)\cdot (1\cdot 2)=13\)。</p>
+<p><strong>感受野 = 13</strong>。</p>
+</details>
+<h3 id="Kernel-Size"><a class="headerlink" href="#Kernel-Size" title="卷积核大小与输出形状"></a>卷积核大小与输出形状</h3>
+<p>输入尺寸 \(n\)、卷积核 \(k\)、填充 \(p\)、步幅 \(s\)：</p>
+<p>\(n_{out} = \left\lfloor \frac{n + 2p - k}{s} \right\rfloor + 1\)。</p>
+<p>若想保持尺寸不变（same padding），当 \(k\) 为奇数时取 \(p = \frac{k-1}{2}\)。</p>
+<h4 id="KS-Problem"><a class="headerlink" href="#KS-Problem" title="输出尺寸练习"></a>练习题（核大小与输出尺寸）</h4>
+<p>输入为 \(64	imes64\)。卷积核 \(k=7\)，填充 \(p=3\)，步幅 \(s=2\)。输出尺寸是多少？</p>
+<details class="solution-block">
+<summary>查看答案</summary>
+<p>\(n_{out} = \left\lfloor rac{n+2p-k}{s} 
 ight
 floor + 1 = \left\lfloor rac{64+6-7}{2} 
 ight
 floor + 1 = 32\)。</p>
-          <p><strong>输出尺寸 = 32 × 32</strong>。</p>
-        </details>
-<h3 id="Num-Kernels"><a href="#Num-Kernels" class="headerlink" title="每层卷积核数量"></a>每层卷积核数量</h3>
-        <p>若输入通道数 \(C_{in}\)，输出卷积核数 \(C_{out}\)：</p>
-        <ul>
-          <li>每个核形状为 \(k \times k \times C_{in}\)。</li>
-          <li>输出特征图数量为 \(C_{out}\)。</li>
-          <li>参数量：\(C_{out} \cdot (k^2 C_{in} + 1)\)（含偏置）。</li>
-        </ul>
-
-        
-<h4 id="NK-Problem"><a href="#NK-Problem" class="headerlink" title="核数量练习"></a>练习题（核数量与参数）</h4>
-        <p>输入通道 \(C_{in}=64\)，输出卷积核 \(C_{out}=128\)，核大小 \(3	imes3\)。包含偏置的参数总数是多少？</p>
-        <details class="solution-block">
-          <summary>查看答案</summary>
-          <p>每个核参数：\(3\cdot3\cdot64 + 1 = 577\)。总参数：\(128\cdot577 = 73856\)。</p>
-          <p><strong>参数总数 = 73,856</strong>。</p>
-        </details>
-<h3 id="CNN-Pros-Cons"><a href="#CNN-Pros-Cons" class="headerlink" title="CNN 的优缺点"></a>CNN 的优缺点</h3>
-        <ul>
-          <li><strong>优点：</strong>参数共享、空间归纳偏置、视觉任务表现强。</li>
-          <li><strong>缺点：</strong>全局依赖建模弱、对大规模标注数据需求高、旋转等变性有限。</li>
-        </ul>
-
-        <h3 id="Cross-Correlation"><a href="#Cross-Correlation" class="headerlink" title="互相关"></a>CNN 中的互相关</h3>
-        <p>多数 CNN 框架实现的是<strong>互相关</strong>而非严格的卷积。对于输入 \(x\) 与卷积核 \(k\)：</p>
-        <p>\[(x \star k)[i,j] = \sum_{u=0}^{m-1} \sum_{v=0}^{n-1} x[i+u, j+v] \, k[u,v]\]</p>
-        <p>卷积会翻转核：\((x * k)[i,j] = \sum_{u,v} x[i+u, j+v] \, k[m-1-u, n-1-v]\)。由于核权重可学习，互相关与卷积在效果上等价。</p>
-        <h4 id="Cross-Correlation-Problem"><a href="#Cross-Correlation-Problem" class="headerlink" title="练习题"></a>练习题</h4>
-        <p>给定输入 \(x\) 与核 \(k\)：</p>
-        <p>\(x=\begin{bmatrix}1 & 2 & 0 \\ 0 & 1 & 3 \\ 2 & 1 & 1\end{bmatrix}\)，\(k=\begin{bmatrix}1 & 0 \\ -1 & 2\end{bmatrix}\)。</p>
-        <p>在无填充、步幅为 1 的情况下，计算互相关输出左上角 \((x \star k)[0,0]\)。</p>
-        <details class="solution-block">
-  <summary>查看答案</summary>
-  <p><strong>解答：</strong> \((x \star k)[0,0] = 1\cdot1 + 2\cdot0 + 0\cdot(-1) + 1\cdot2 = 3\)。</p>
+<p><strong>输出尺寸 = 32 × 32</strong>。</p>
 </details>
-
-
-        
-        <figure>
-          <img src="/images/cnn-kernel-example.png" alt="CNN 卷积示意" />
-          <figcaption>卷积核跨通道滑动计算并生成特征图的示例。</figcaption>
-        </figure>
-        <h2 id="Hilbert"><a href="#Hilbert" class="headerlink" title="Hilbert 空间"></a>3. Hilbert 空间</h2>
-        <h3 id="Hilbert-Def"><a href="#Hilbert-Def" class="headerlink" title="定义"></a>定义</h3>
-        <p>Hilbert 空间是完备的内积空间 \((\mathcal{H}, \langle \cdot, \cdot \rangle)\)，其范数 \(|x|=\sqrt{\langle x,x\rangle}\) 使所有 Cauchy 序列收敛。</p>
-
-        <h3 id="Hilbert-Examples"><a href="#Hilbert-Examples" class="headerlink" title="例子"></a>例子</h3>
-        <ul>
-          <li>带标准内积的 \(\mathbb{R}^n\)。</li>
-          <li>\(L^2([a,b])\)：平方可积函数空间。</li>
-          <li>序列空间 \(\ell^2\)：\(\sum_i x_i^2 < \infty\)。</li>
-        </ul>
-
-        <h3 id="Hilbert-Proof"><a href="#Hilbert-Proof" class="headerlink" title="证明思路"></a>证明思路：\(L^2\) 的完备性</h3>
-        <p>对 \(L^2\) 中的 Cauchy 序列 \(f_n\)，可在测度意义下证明其收敛，并结合 Fatou 引理证明极限函数属于 \(L^2\) 且范数收敛。</p>
-
-        <h2 id="PD"><a href="#PD" class="headerlink" title="正定函数与核"></a>4. 正定函数与核</h2>
-        <h3 id="PD-Def"><a href="#PD-Def" class="headerlink" title="定义"></a>定义</h3>
-        <p>函数 \(K: X \times X \to \mathbb{R}\) 若对任意 \(x_1,\ldots,x_n\) 与 \(a \in \mathbb{R}^n\) 满足：</p>
-        <p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\)，则称 \(K\) 为正定。</p>
-
-        <p><strong>例：</strong> 对于 RBF 核 \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)，任意样本点形成的 Gram 矩阵都是对称且特征值非负，因此是正定核。</p>
-<h3 id="PD-Test"><a href="#PD-Test" class="headerlink" title="如何判断正定"></a>如何判断正定</h3>
-        <ul>
-          <li>构造 Gram 矩阵 \(K_{ij}=K(x_i,x_j)\)，检查对称性与特征值非负。</li>
-          <li>证明存在特征映射 \(\phi\) 使 \(K(x,x')=\langle \phi(x), \phi(x')\rangle\)。</li>
-          <li>利用闭包性质：加、乘、缩放仍为正定核。</li>
-        </ul>
-        <h4 id="PD-Test-Example"><a href="#PD-Test-Example" class="headerlink" title="示例"></a>示例</h4>
-        <p>设 \(K(x,x') = \exp(-|x-x'|^2)\)（RBF 核）。对两个不同点，距离为 \(d>0\)，Gram 矩阵为</p>
-        <p>\(K = \begin{bmatrix}1 & e^{-d^2} \\ e^{-d^2} & 1\end{bmatrix}\)。</p>
-        <details class="solution-block">
-          <summary>查看检验</summary>
-          <p>特征值为 \(1\pm e^{-d^2}\)。因为 \(0&lt;e^{-d^2}&lt;1\)，两特征值均为正，因此 \(K\) 为正定。</p>
-        </details>
-
-
-        <h2 id="Kernel-Methods"><a href="#Kernel-Methods" class="headerlink" title="核方法"></a>5. 核方法</h2>
-        <h3 id="Kernel-Def"><a href="#Kernel-Def" class="headerlink" title="什么是核"></a>什么是核？</h3>
-        <p>核函数是相似度度量 \(K(x,x')\)，在某个特征空间中等价于内积。</p>
-
-        <h3 id="Kernel-Trick"><a href="#Kernel-Trick" class="headerlink" title="核技巧"></a>核技巧</h3>
-        <p>将算法中的内积替换为 \(K(x,x')\)，避免显式映射到高维。</p>
-
-        <h3 id="Representer-Theorem"><a href="#Representer-Theorem" class="headerlink" title="表示定理"></a>表示定理</h3>
-        <p>正则化风险最小化的解可写为：</p>
-        <p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\)。</p>
-
-        <h4 id="Representer-Proof"><a href="#Representer-Proof" class="headerlink" title="证明思路"></a>证明思路</h4>
-        <p>任意 \(f\in\mathcal{H}\) 可写为 \(f=f_\parallel+f_\perp\)，其中 \(f_\parallel\) 属于 \(\{K(x_i,\cdot)\}\) 的张成空间，\(f_\perp\) 与其正交。拟合项只依赖 \(f_\parallel\)，且 \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\)。因此最优解满足 \(f_\perp=0\)。</p>
-        <h4 id="Representer-Problem"><a href="#Representer-Problem" class="headerlink" title="练习题"></a>练习题</h4>
-        <p>在 RBF 核的核岭回归中，写出解的形式，并说明需求解的方程。</p>
-        <details class="solution-block">
-          <summary>查看答案</summary>
-          <p>由表示定理，\(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\)。系数 \(\alpha\) 由线性方程 \((K+\lambda n I)\alpha=y\) 求得，\(K\) 为 Gram 矩阵。</p>
-        </details>
-
-        <h3 id="Kernel-Apps"><a href="#Kernel-Apps" class="headerlink" title="应用与示例"></a>应用与示例</h3>
-        <ul>
-          <li>SVM（分类）。</li>
-          <li>核岭回归（回归）。</li>
-          <li>RBF 核：\(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)。</li>
-          <li>多项式核：\(K(x,x')=(x^T x' + c)^d\)。</li>
-        </ul>
-
-        <h2 id="Summary"><a href="#Summary" class="headerlink" title="总结"></a>总结</h2>
-        <ul>
-          <li>反向传播高效计算深度网络梯度。</li>
-          <li>CNN 利用局部性与参数共享处理图像等数据。</li>
-          <li>Hilbert 空间为核方法提供理论基础。</li>
-          <li>正定核使核技巧与表示定理成立。</li>
-        </ul>
-
-        <!-- 分类文章 -->
-        
-          <div class="post-categoris-bottom">
-            <div class="post-categoris-name">数学</div>
-            <ul>
-              <li class="me base">
-                <a  href="/2026/02/05/Numeric-Methods/index-zh.html" class="post-categoris-bottom-link">
-                  要点
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        
-      </div><div class="post-content-inner-space">
-        
-          <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Reading-List"><span class="space-toc-text">Reading List</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Neural-Networks"><span class="space-toc-text">1. 神经网络</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CNN"><span class="space-toc-text">2. 卷积神经网络（CNN）</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hilbert"><span class="space-toc-text">3. Hilbert 空间</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#PD"><span class="space-toc-text">4. 正定函数与核</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Kernel-Methods"><span class="space-toc-text">5. 核方法</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">总结</span></a></li></ol>
-           </div>
-        </div>
-   </div>
-    <!-- 评论 -->
-    
-  </div>
+<h3 id="Num-Kernels"><a class="headerlink" href="#Num-Kernels" title="每层卷积核数量"></a>每层卷积核数量</h3>
+<p>若输入通道数 \(C_{in}\)，输出卷积核数 \(C_{out}\)：</p>
+<ul>
+<li>每个核形状为 \(k \times k \times C_{in}\)。</li>
+<li>输出特征图数量为 \(C_{out}\)。</li>
+<li>参数量：\(C_{out} \cdot (k^2 C_{in} + 1)\)（含偏置）。</li>
+</ul>
+<h4 id="NK-Problem"><a class="headerlink" href="#NK-Problem" title="核数量练习"></a>练习题（核数量与参数）</h4>
+<p>输入通道 \(C_{in}=64\)，输出卷积核 \(C_{out}=128\)，核大小 \(3	imes3\)。包含偏置的参数总数是多少？</p>
+<details class="solution-block">
+<summary>查看答案</summary>
+<p>每个核参数：\(3\cdot3\cdot64 + 1 = 577\)。总参数：\(128\cdot577 = 73856\)。</p>
+<p><strong>参数总数 = 73,856</strong>。</p>
+</details>
+<h3 id="CNN-Pros-Cons"><a class="headerlink" href="#CNN-Pros-Cons" title="CNN 的优缺点"></a>CNN 的优缺点</h3>
+<ul>
+<li><strong>优点：</strong>参数共享、空间归纳偏置、视觉任务表现强。</li>
+<li><strong>缺点：</strong>全局依赖建模弱、对大规模标注数据需求高、旋转等变性有限。</li>
+</ul>
+<h3 id="Cross-Correlation"><a class="headerlink" href="#Cross-Correlation" title="互相关"></a>CNN 中的互相关</h3>
+<p>多数 CNN 框架实现的是<strong>互相关</strong>而非严格的卷积。对于输入 \(x\) 与卷积核 \(k\)：</p>
+<p>\[(x \star k)[i,j] = \sum_{u=0}^{m-1} \sum_{v=0}^{n-1} x[i+u, j+v] \, k[u,v]\]</p>
+<p>卷积会翻转核：\((x * k)[i,j] = \sum_{u,v} x[i+u, j+v] \, k[m-1-u, n-1-v]\)。由于核权重可学习，互相关与卷积在效果上等价。</p>
+<h4 id="Cross-Correlation-Problem"><a class="headerlink" href="#Cross-Correlation-Problem" title="练习题"></a>练习题</h4>
+<p>给定输入 \(x\) 与核 \(k\)：</p>
+<p>\(x=\begin{bmatrix}1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 3 \\ 2 &amp; 1 &amp; 1\end{bmatrix}\)，\(k=\begin{bmatrix}1 &amp; 0 \\ -1 &amp; 2\end{bmatrix}\)。</p>
+<p>在无填充、步幅为 1 的情况下，计算互相关输出左上角 \((x \star k)[0,0]\)。</p>
+<details class="solution-block">
+<summary>查看答案</summary>
+<p><strong>解答：</strong> \((x \star k)[0,0] = 1\cdot1 + 2\cdot0 + 0\cdot(-1) + 1\cdot2 = 3\)。</p>
+</details>
+<figure>
+<img alt="CNN 卷积示意" src="/images/cnn-kernel-example.png"/>
+<figcaption>卷积核跨通道滑动计算并生成特征图的示例。</figcaption>
+</figure>
+<h2 id="Hilbert"><a class="headerlink" href="#Hilbert" title="Hilbert 空间"></a>3. Hilbert 空间</h2>
+<h3 id="Hilbert-Def"><a class="headerlink" href="#Hilbert-Def" title="定义"></a>定义</h3>
+<p>Hilbert 空间是完备的内积空间 \((\mathcal{H}, \langle \cdot, \cdot \rangle)\)，其范数 \(|x|=\sqrt{\langle x,x\rangle}\) 使所有 Cauchy 序列收敛。</p>
+<h3 id="Hilbert-Examples"><a class="headerlink" href="#Hilbert-Examples" title="例子"></a>例子</h3>
+<ul>
+<li>带标准内积的 \(\mathbb{R}^n\)。</li>
+<li>\(L^2([a,b])\)：平方可积函数空间。</li>
+<li>序列空间 \(\ell^2\)：\(\sum_i x_i^2 &lt; \infty\)。</li>
+</ul>
+<h3 id="Hilbert-Proof"><a class="headerlink" href="#Hilbert-Proof" title="证明思路"></a>证明思路：\(L^2\) 的完备性</h3>
+<p>对 \(L^2\) 中的 Cauchy 序列 \(f_n\)，可在测度意义下证明其收敛，并结合 Fatou 引理证明极限函数属于 \(L^2\) 且范数收敛。</p>
+<h2 id="PD"><a class="headerlink" href="#PD" title="正定函数与核"></a>4. 正定函数与核</h2>
+<h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="定义"></a>定义</h3>
+<p>函数 \(K: X \times X \to \mathbb{R}\) 若对任意 \(x_1,\ldots,x_n\) 与 \(a \in \mathbb{R}^n\) 满足：</p>
+<p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\)，则称 \(K\) 为正定。</p>
+<p><strong>例：</strong> 对于 RBF 核 \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)，任意样本点形成的 Gram 矩阵都是对称且特征值非负，因此是正定核。</p>
+<h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="如何判断正定"></a>如何判断正定</h3>
+<ul>
+<li>构造 Gram 矩阵 \(K_{ij}=K(x_i,x_j)\)，检查对称性与特征值非负。</li>
+<li>证明存在特征映射 \(\phi\) 使 \(K(x,x')=\langle \phi(x), \phi(x')\rangle\)。</li>
+<li>利用闭包性质：加、乘、缩放仍为正定核。</li>
+</ul>
+<h4 id="PD-Test-Example"><a class="headerlink" href="#PD-Test-Example" title="示例"></a>示例</h4>
+<p>设 \(K(x,x') = \exp(-|x-x'|^2)\)（RBF 核）。对两个不同点，距离为 \(d&gt;0\)，Gram 矩阵为</p>
+<p>\(K = \begin{bmatrix}1 &amp; e^{-d^2} \\ e^{-d^2} &amp; 1\end{bmatrix}\)。</p>
+<details class="solution-block">
+<summary>查看检验</summary>
+<p>特征值为 \(1\pm e^{-d^2}\)。因为 \(0&lt;e^{-d^2}&lt;1\)，两特征值均为正，因此 \(K\) 为正定。</p>
+</details>
+<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="核方法"></a>5. 核方法</h2>
+<h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="什么是核"></a>什么是核？</h3>
+<p>核函数是相似度度量 \(K(x,x')\)，在某个特征空间中等价于内积。</p>
+<h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="核技巧"></a>核技巧</h3>
+<p>将算法中的内积替换为 \(K(x,x')\)，避免显式映射到高维。</p>
+<h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="表示定理"></a>表示定理</h3>
+<p>正则化风险最小化的解可写为：</p>
+<p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\)。</p>
+<h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="证明思路"></a>证明思路</h4>
+<p>任意 \(f\in\mathcal{H}\) 可写为 \(f=f_\parallel+f_\perp\)，其中 \(f_\parallel\) 属于 \(\{K(x_i,\cdot)\}\) 的张成空间，\(f_\perp\) 与其正交。拟合项只依赖 \(f_\parallel\)，且 \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\)。因此最优解满足 \(f_\perp=0\)。</p>
+<h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="练习题"></a>练习题</h4>
+<p>在 RBF 核的核岭回归中，写出解的形式，并说明需求解的方程。</p>
+<details class="solution-block">
+<summary>查看答案</summary>
+<p>由表示定理，\(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\)。系数 \(\alpha\) 由线性方程 \((K+\lambda n I)\alpha=y\) 求得，\(K\) 为 Gram 矩阵。</p>
+</details>
+<h3 id="Kernel-Apps"><a class="headerlink" href="#Kernel-Apps" title="应用与示例"></a>应用与示例</h3>
+<ul>
+<li>SVM（分类）。</li>
+<li>核岭回归（回归）。</li>
+<li>RBF 核：\(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)。</li>
+<li>多项式核：\(K(x,x')=(x^T x' + c)^d\)。</li>
+</ul>
+<h2 id="Summary"><a class="headerlink" href="#Summary" title="总结"></a>总结</h2>
+<ul>
+<li>反向传播高效计算深度网络梯度。</li>
+<li>CNN 利用局部性与参数共享处理图像等数据。</li>
+<li>Hilbert 空间为核方法提供理论基础。</li>
+<li>正定核使核技巧与表示定理成立。</li>
+</ul>
+<!-- 分类文章 -->
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">数学</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/05/Numeric-Methods/index-zh.html">1. 卷积与核算子</a>
+</li>
+</ul>
+</div>
+</div><div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Reading-List"><span class="space-toc-text">Reading List</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Neural-Networks"><span class="space-toc-text">1. 神经网络</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CNN"><span class="space-toc-text">2. 卷积神经网络（CNN）</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hilbert"><span class="space-toc-text">3. Hilbert 空间</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#PD"><span class="space-toc-text">4. 正定函数与核</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Kernel-Methods"><span class="space-toc-text">5. 核方法</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">总结</span></a></li></ol>
+</div>
+</div>
+</div>
+<!-- 评论 -->
+</div>
 </article>
-  </div>
 </div>
-
-
-
+</div>
 <!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
-
-  <div class="footer-outer animate__animated  animate__fadeInUp">
-    <div class="footer-inner">
-    <div class="footer-text">
-      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
-
-    </div>
-    <div class="footer-contact">
-    <ul class="footer-ul">
-        
-        <li class="footer-li">
-            <a href="https://github.com/RongyanYuan" target="_blank">
-                <i class="ri-github-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-                <i class="ri-mail-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-                <i class="ri-linkedin-box-line"></i>
-            </a>
-        </li>
-        
-    </ul>
-    </div>
-    </div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
 </div>
-
-
-
-
-
-
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
-
-
-
-
 <script>
   window.MathJax = {
     tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
@@ -392,6 +300,5 @@ floor + 1 = 32\)。</p>
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
 </body>
 </html>

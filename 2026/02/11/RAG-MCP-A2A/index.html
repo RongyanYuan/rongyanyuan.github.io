@@ -1,269 +1,253 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  07. RAG / MCP / A2A |    Rongyan&#39;s Blog</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  <link rel="stylesheet" href="/css/white.css">
-</head>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  07. RAG / MCP / A2A |    Rongyan's Blog</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
-          Rongyan&#39;s Blog
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+          Rongyan's Blog
         </a>
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/ai-fundamentals/">← AI Fundamentals</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               HOME
             </li>
-          </a>
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               BLOG
             </li>
-          </a>
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              CATEGORIES
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
-             </div>
-          </li>
-          <a href="/search">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
-              <i class="ri-search-line"></i>
-            </li>
-          </a>
-          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-            <a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+</div>
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
             <a href="/2026/02/11/RAG-MCP-A2A/index-zh.html">中文</a>
-          </li>
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        </ul>
-      </div>
-    </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
-        Rongyan&#39;s Blog
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+        Rongyan's Blog
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-  </div>
-  <div class="mobile-menu-div">
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>HOME</span>
-      </div>
-    </a>
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>BLOG</span>
-      </div>
-    </a>
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
+</div>
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>HOME</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>BLOG</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
       <a href="/2026/02/11/RAG-MCP-A2A/index-zh.html">中文</a>
-    </div>
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-  </div>
 </div>
-
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    <article class="post-inner">
-      <div class="post-content-outer">
-        <div class="post-intro">
-          <div class="post-title animate__animated  animate__fadeInUp">07. RAG / MCP / A2A</div>
-          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 11 2026</div>
-        </div>
-        <div class="post-content-inner">
-          <div class="post-content-inner-space"></div>
-          <div class="post-content-main animate__animated  animate__fadeInUp">
-            <h1 id="Session-5"><a href="#Session-5" class="headerlink" title="Session 5: Product Workflow and RAG System Design"></a>Session 5: Product Workflow and RAG System Design</h1>
-
-            <h2 id="Process"><a href="#Process" class="headerlink" title="Product Workflow Overview"></a>1. Product workflow overview</h2>
-
-            <h3 id="Pipeline">1.1 Workflow + data pipeline</h3>
-            <p>A smart product workflow typically includes:</p>
-            <ol>
-              <li><strong>User input</strong> → handled by an <strong>agent or multi-agent collaboration</strong></li>
-              <li><strong>Memory module</strong> analyzes inputs and decides what to keep
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">07. RAG / MCP / A2A</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 11 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="Session-5"><a class="headerlink" href="#Session-5" title="Session 5: Product Workflow and RAG System Design"></a>Session 5: Product Workflow and RAG System Design</h1>
+<h2 id="Process"><a class="headerlink" href="#Process" title="Product Workflow Overview"></a>1. Product workflow overview</h2>
+<h3 id="Pipeline">1.1 Workflow + data pipeline</h3>
+<p>A smart product workflow typically includes:</p>
+<ol>
+<li><strong>User input</strong> → handled by an <strong>agent or multi-agent collaboration</strong></li>
+<li><strong>Memory module</strong> analyzes inputs and decides what to keep
                 <ul>
-                  <li>keep memory minimal but high precision</li>
-                  <li>consider cost (tokens, GPU, engineering)</li>
-                </ul>
-              </li>
-              <li><strong>Call tool APIs (MCP)</strong> or <strong>other agents (A2A)</strong> to solve tasks
+<li>keep memory minimal but high precision</li>
+<li>consider cost (tokens, GPU, engineering)</li>
+</ul>
+</li>
+<li><strong>Call tool APIs (MCP)</strong> or <strong>other agents (A2A)</strong> to solve tasks
                 <ul>
-                  <li>MCP (Model + Tool/Prompt + RAG)</li>
-                  <li>A2A (Agent-to-Agent, like asking a colleague)</li>
-                </ul>
-              </li>
-              <li><strong>Polishing agent</strong> refines the output based on user habits and preferences, then <strong>renders back to the user</strong></li>
-            </ol>
-            <blockquote>
-              <p>Core idea: the workflow is not just Q&amp;A, but <strong>multi-module collaboration + memory management + output optimization</strong>.</p>
-            </blockquote>
-
-            <h2 id="Cost"><a href="#Cost" class="headerlink" title="Cost and Efficiency"></a>2. Cost and efficiency considerations</h2>
-            <ul>
-              <li><strong>Cost accumulation</strong>: unlike SaaS with decreasing marginal cost, each query consumes tokens, compute, and engineering time.</li>
-              <li><strong>Memory optimization</strong>: minimal-but-precise memory lowers cost and improves performance.</li>
-              <li><strong>Multi-agent collaboration</strong>: assign tasks based on each model’s strengths.</li>
-            </ul>
-
-            <h2 id="RAG"><a href="#RAG" class="headerlink" title="RAG System Design"></a>3. RAG system design (Retrieval-Augmented Generation)</h2>
-            <p>Core goal: <strong>high-quality answers, complete context, and controlled cost</strong>.</p>
-
-            <h3 id="Data-Preparation">3.1 Data preparation</h3>
-            <ol>
-              <li><strong>Data cleaning</strong>
-                <ul>
-                  <li>documents can be messy, overly detailed, or contradictory</li>
-                  <li>overly detailed content hurts chunking; split by text type</li>
-                  <li>vector storage: map text → embedding space for semantic accuracy</li>
-                </ul>
-              </li>
-              <li><strong>Data chunking</strong>
-                <ul>
-                  <li>split documents into suitable chunks for indexing</li>
-                  <li>consider context limits (e.g., 128kb); too long or too short hurts understanding</li>
-                  <li>PM + algorithm team co-design chunking rules</li>
-                </ul>
-              </li>
-              <li><strong>Vectorization</strong>
-                <ul>
-                  <li>strong embedding strategy + retrieval strategy</li>
-                  <li>like dictionary lookup: “how much is this pot?” → find price tags → rank/filter</li>
-                  <li><strong>multi-recall strategies</strong>:
+<li>MCP (Model + Tool/Prompt + RAG)</li>
+<li>A2A (Agent-to-Agent, like asking a colleague)</li>
+</ul>
+</li>
+<li><strong>Polishing agent</strong> refines the output based on user habits and preferences, then <strong>renders back to the user</strong></li>
+</ol>
+<blockquote>
+<p>Core idea: the workflow is not just Q&amp;A, but <strong>multi-module collaboration + memory management + output optimization</strong>.</p>
+</blockquote>
+<h2 id="Cost"><a class="headerlink" href="#Cost" title="Cost and Efficiency"></a>2. Cost and efficiency considerations</h2>
+<ul>
+<li><strong>Cost accumulation</strong>: unlike SaaS with decreasing marginal cost, each query consumes tokens, compute, and engineering time.</li>
+<li><strong>Memory optimization</strong>: minimal-but-precise memory lowers cost and improves performance.</li>
+<li><strong>Multi-agent collaboration</strong>: assign tasks based on each model’s strengths.</li>
+</ul>
+<h2 id="RAG"><a class="headerlink" href="#RAG" title="RAG System Design"></a>3. RAG system design (Retrieval-Augmented Generation)</h2>
+<p>Core goal: <strong>high-quality answers, complete context, and controlled cost</strong>.</p>
+<h3 id="Data-Preparation">3.1 Data preparation</h3>
+<ol>
+<li><strong>Data cleaning</strong>
+<ul>
+<li>documents can be messy, overly detailed, or contradictory</li>
+<li>overly detailed content hurts chunking; split by text type</li>
+<li>vector storage: map text → embedding space for semantic accuracy</li>
+</ul>
+</li>
+<li><strong>Data chunking</strong>
+<ul>
+<li>split documents into suitable chunks for indexing</li>
+<li>consider context limits (e.g., 128kb); too long or too short hurts understanding</li>
+<li>PM + algorithm team co-design chunking rules</li>
+</ul>
+</li>
+<li><strong>Vectorization</strong>
+<ul>
+<li>strong embedding strategy + retrieval strategy</li>
+<li>like dictionary lookup: “how much is this pot?” → find price tags → rank/filter</li>
+<li><strong>multi-recall strategies</strong>:
                     <ul>
-                      <li>split query dimensions (price, warranty, promotions)</li>
-                      <li>generate multiple queries for parallel retrieval</li>
-                      <li>reweight results by context (e.g., price-sensitive users get cheaper items)</li>
-                    </ul>
-                  </li>
-                  <li>can combine with fine-tuning data to optimize preference outputs</li>
-                </ul>
-              </li>
-            </ol>
-
-            <h3 id="Ops-Memory">3.2 Operations and memory management</h3>
-            <ol>
-              <li>Context management: define what to remember (name, age, preferences)</li>
-              <li>Answer strategy: decide tone and style based on business context</li>
-              <li>High-frequency optimization:
+<li>split query dimensions (price, warranty, promotions)</li>
+<li>generate multiple queries for parallel retrieval</li>
+<li>reweight results by context (e.g., price-sensitive users get cheaper items)</li>
+</ul>
+</li>
+<li>can combine with fine-tuning data to optimize preference outputs</li>
+</ul>
+</li>
+</ol>
+<h3 id="Ops-Memory">3.2 Operations and memory management</h3>
+<ol>
+<li>Context management: define what to remember (name, age, preferences)</li>
+<li>Answer strategy: decide tone and style based on business context</li>
+<li>High-frequency optimization:
                 <ul>
-                  <li>pre-generate cache for common questions</li>
-                  <li>prepare summary answers to cut retrieval cost and latency</li>
-                </ul>
-              </li>
-            </ol>
-
-            <h2 id="Multi-Agent"><a href="#Multi-Agent" class="headerlink" title="Multi-Agent Collaboration"></a>4. Multi-agent collaboration</h2>
-            <ul>
-              <li><strong>A2A (Agent-to-Agent)</strong>: specialized agents collaborate like colleagues</li>
-              <li><strong>Multi-model task assignment</strong>: allocate work by model capability</li>
-              <li><strong>Goal</strong>: higher efficiency, lower single-model load, better accuracy and response speed</li>
-            </ul>
-
-            <h2 id="Key-Points"><a href="#Key-Points" class="headerlink" title="Key Points"></a>5. Key points summary</h2>
-            <ol>
-              <li><strong>Memory optimization</strong>: minimal and precise memory improves quality and lowers cost</li>
-              <li><strong>Cost factors</strong>: token usage, GPU compute, and iteration costs accumulate</li>
-              <li><strong>Multi-agent coordination</strong>: assign tasks by strengths for complementary coverage</li>
-              <li><strong>Data quality is core</strong>: cleaning, chunking, and vectorization underpin good RAG</li>
-              <li><strong>Pre-handle frequent queries</strong>: cache answers and summaries to reduce repeats</li>
-            </ol>
-            <blockquote>
-              <p>One-line summary: RAG + multi-agent collaboration = efficient, accurate, and controllable intelligent Q&amp;A.</p>
-            </blockquote>
-
-            <h2 id="Fun"><a href="#Fun" class="headerlink" title="Fun Analogy"></a>6. Fun analogy</h2>
-            <blockquote>
-              <p>The system is like a smart office:<br>
-              - <strong>MCP agent</strong> is the tool assistant that fetches materials<br>
-              - <strong>A2A agent</strong> is asking colleagues to collaborate<br>
-              - <strong>Polishing agent</strong> is the secretary who tailors the output style<br>
-              - <strong>Memory module</strong> is the notebook that keeps only the essentials<br>
-              - RAG processing is the filing system that helps everyone find answers quickly<br>
+<li>pre-generate cache for common questions</li>
+<li>prepare summary answers to cut retrieval cost and latency</li>
+</ul>
+</li>
+</ol>
+<h2 id="Multi-Agent"><a class="headerlink" href="#Multi-Agent" title="Multi-Agent Collaboration"></a>4. Multi-agent collaboration</h2>
+<ul>
+<li><strong>A2A (Agent-to-Agent)</strong>: specialized agents collaborate like colleagues</li>
+<li><strong>Multi-model task assignment</strong>: allocate work by model capability</li>
+<li><strong>Goal</strong>: higher efficiency, lower single-model load, better accuracy and response speed</li>
+</ul>
+<h2 id="Key-Points"><a class="headerlink" href="#Key-Points" title="Key Points"></a>5. Key points summary</h2>
+<ol>
+<li><strong>Memory optimization</strong>: minimal and precise memory improves quality and lowers cost</li>
+<li><strong>Cost factors</strong>: token usage, GPU compute, and iteration costs accumulate</li>
+<li><strong>Multi-agent coordination</strong>: assign tasks by strengths for complementary coverage</li>
+<li><strong>Data quality is core</strong>: cleaning, chunking, and vectorization underpin good RAG</li>
+<li><strong>Pre-handle frequent queries</strong>: cache answers and summaries to reduce repeats</li>
+</ol>
+<blockquote>
+<p>One-line summary: RAG + multi-agent collaboration = efficient, accurate, and controllable intelligent Q&amp;A.</p>
+</blockquote>
+<h2 id="Fun"><a class="headerlink" href="#Fun" title="Fun Analogy"></a>6. Fun analogy</h2>
+<blockquote>
+<p>The system is like a smart office:<br/>
+              - <strong>MCP agent</strong> is the tool assistant that fetches materials<br/>
+              - <strong>A2A agent</strong> is asking colleagues to collaborate<br/>
+              - <strong>Polishing agent</strong> is the secretary who tailors the output style<br/>
+              - <strong>Memory module</strong> is the notebook that keeps only the essentials<br/>
+              - RAG processing is the filing system that helps everyone find answers quickly<br/>
               - Cost and efficiency are the office budget that must be managed carefully</p>
-            </blockquote>
-
-            <div class="post-categoris-bottom">
-              <div class="post-categoris-name">AI</div>
-              <ul>
-                <li class="me base">
-                  <a href="/2026/02/11/RAG-MCP-A2A/" class="post-categoris-bottom-link">
-                    07. RAG / MCP / A2A
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="post-content-inner-space">
-            <div class="space-toc-main animate__animated  animate__fadeInUp">
-              <ol class="space-toc">
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Process"><span class="space-toc-text">1. Product workflow overview</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Cost"><span class="space-toc-text">2. Cost and efficiency considerations</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">3. RAG system design (Retrieval-Augmented Generation)</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Multi-Agent"><span class="space-toc-text">4. Multi-agent collaboration</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Key-Points"><span class="space-toc-text">5. Key points summary</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fun"><span class="space-toc-text">6. Fun analogy</span></a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+</blockquote>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">AI</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/12/Training-Strategies-Summary/">08. AI Training and Fine-Tuning Strategy Summary</a>
+</li>
+</ul>
 </div>
-
-<div class="footer-outer animate__animated  animate__fadeInUp">
-  <div class="footer-inner">
-    <div class="footer-text">
-      <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
-    </div>
-    <div class="footer-contact">
-      <ul class="footer-ul">
-        <li class="footer-li">
-          <a href="https://github.com/RongyanYuan" target="_blank">
-            <i class="ri-github-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-            <i class="ri-mail-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-            <i class="ri-linkedin-box-line"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 </div>
-
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Process"><span class="space-toc-text">1. Product workflow overview</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Cost"><span class="space-toc-text">2. Cost and efficiency considerations</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">3. RAG system design (Retrieval-Augmented Generation)</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Multi-Agent"><span class="space-toc-text">4. Multi-agent collaboration</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Key-Points"><span class="space-toc-text">5. Key points summary</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fun"><span class="space-toc-text">6. Fun analogy</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
 </body>
 </html>

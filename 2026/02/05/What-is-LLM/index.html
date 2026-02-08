@@ -1,250 +1,184 @@
 
-
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  01. What is LLM |    Rongyan&#39;s Blog</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <!-- 标签页图标 -->
-  
-
-  <!-- 图标库 -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- 动画库 -->
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  
-  <!-- css文件 -->
-  
-<link rel="stylesheet" href="/css/white.css">
-
-  <!-- 代码高亮 -->
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  01. What is LLM |    Rongyan's Blog</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<!-- 标签页图标 -->
+<!-- 图标库 -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<!-- 动画库 -->
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<!-- css文件 -->
+<link href="/css/white.css" rel="stylesheet"/>
+<!-- 代码高亮 -->
+<meta content="Hexo 6.2.0" name="generator"/></link></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
-          Rongyan&#39;s Blog
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+          Rongyan's Blog
         </a>
-        
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-        
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect">
+<a class="nav-link back-topic-link" href="/categories/ai/ai-fundamentals/">← AI Fundamentals</a>
+</div>
+</div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               HOME
             </li>
-          </a>
-        
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               BLOG
             </li>
-          </a>
-        
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              CATEGORIES
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
-             </div>
-          </li>
-        
-        
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-
-          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-            <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+</div>
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
             <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
-          </li>
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        
-        </ul>
-
-      </div>
-
-    </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
-        Rongyan&#39;s Blog
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+        Rongyan's Blog
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-
-  </div>
-
-  <div class="mobile-menu-div">
-  
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>HOME</span>
-      </div>
-    </a>
-  
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>BLOG</span>
-      </div>
-    </a>
-  
-  
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
+</div>
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>HOME</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>BLOG</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/05/Numeric-Methods/index.html">EN</a> |
       <a href="/2026/02/05/Numeric-Methods/index-zh.html">中文</a>
-    </div>
-
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-    
-  </div>
-
-
 </div>
-
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    
+<div class="body-inner">
 <article class="post-inner">
-  <div class="post-content-outer">
-    <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">01. What is LLM</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Feb 05 2026</div>
-      
-    </div>
-    <div class="post-content-inner">
-      <div class="post-content-inner-space">
-
-      </div>
-      <div class="post-content-main animate__animated  animate__fadeInUp">
-        <!-- top型目录 -->
-
-        <h1 id="What-is-LLM"><a href="#What-is-LLM" class="headerlink" title="01. What is LLM"></a>01. What is LLM</h1>
-
-        <p><strong>Probability view:</strong> An LLM models the next‑token distribution \(P(x_{t+1} \mid x_1, x_2, \ldots, x_t)\). It assigns a probability to each possible next word given the previous context, and generation samples or selects the most likely token step by step.</p>
-<h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>1. Definition</h2>
-        <p>A large language model (LLM) is a neural network trained to model the probability of sequences of tokens. It learns to generate, summarize, translate, and reason over text by predicting the next token given a context.</p>
-
-        <h2 id="Training"><a href="#Training" class="headerlink" title="How It Is Trained"></a>2. How It Is Trained</h2>
-        <ul>
-          <li><strong>Pretraining:</strong> The model is trained on massive text corpora with self‑supervised learning (next‑token prediction).</li>
-          <li><strong>Fine‑tuning:</strong> It may be adapted to specific tasks or domains with supervised data.</li>
-          <li><strong>Alignment:</strong> Techniques like instruction tuning or RLHF can make outputs more helpful and safe.</li>
-        </ul>
-
-        <h2 id="Foundation"><a href="#Foundation" class="headerlink" title="What It Is Based On"></a>3. What It Is Based On</h2>
-        <ul>
-          <li><strong>Transformer architecture:</strong> Attention layers enable long‑range dependency modeling.</li>
-          <li><strong>Tokenization:</strong> Text is converted into subword tokens.</li>
-          <li><strong>Optimization:</strong> Training uses gradient descent with large‑scale distributed compute.</li>
-        </ul>
-
-        <h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>4. Applications</h2>
-        <ul>
-          <li>Chatbots and assistants</li>
-          <li>Search and question answering</li>
-          <li>Summarization and content generation</li>
-          <li>Code generation and debugging assistance</li>
-          <li>Translation and localization</li>
-        </ul>
-
-        <!-- 分类文章 -->
-        
-          <div class="post-categoris-bottom">
-            <div class="post-categoris-name">AI</div>
-            <ul>
-              <li class="me base">
-                <a  href="/2026/02/05/What-is-LLM/" class="post-categoris-bottom-link">
-                  What is LLM
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        
-      </div><div class="post-content-inner-space">
-        
-          <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Definition"><span class="space-toc-text">1. Definition</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Training"><span class="space-toc-text">2. How It Is Trained</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Foundation"><span class="space-toc-text">3. What It Is Based On</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Applications"><span class="space-toc-text">4. Applications</span></a></li></ol>
-           </div>
-        </div>
-   </div>
-    <!-- 评论 -->
-    
-  </div>
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">01. What is LLM</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 05 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space">
+</div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<!-- top型目录 -->
+<h1 id="What-is-LLM"><a class="headerlink" href="#What-is-LLM" title="01. What is LLM"></a>01. What is LLM</h1>
+<p><strong>Probability view:</strong> An LLM models the next‑token distribution \(P(x_{t+1} \mid x_1, x_2, \ldots, x_t)\). It assigns a probability to each possible next word given the previous context, and generation samples or selects the most likely token step by step.</p>
+<h2 id="Definition"><a class="headerlink" href="#Definition" title="Definition"></a>1. Definition</h2>
+<p>A large language model (LLM) is a neural network trained to model the probability of sequences of tokens. It learns to generate, summarize, translate, and reason over text by predicting the next token given a context.</p>
+<h2 id="Training"><a class="headerlink" href="#Training" title="How It Is Trained"></a>2. How It Is Trained</h2>
+<ul>
+<li><strong>Pretraining:</strong> The model is trained on massive text corpora with self‑supervised learning (next‑token prediction).</li>
+<li><strong>Fine‑tuning:</strong> It may be adapted to specific tasks or domains with supervised data.</li>
+<li><strong>Alignment:</strong> Techniques like instruction tuning or RLHF can make outputs more helpful and safe.</li>
+</ul>
+<h2 id="Foundation"><a class="headerlink" href="#Foundation" title="What It Is Based On"></a>3. What It Is Based On</h2>
+<ul>
+<li><strong>Transformer architecture:</strong> Attention layers enable long‑range dependency modeling.</li>
+<li><strong>Tokenization:</strong> Text is converted into subword tokens.</li>
+<li><strong>Optimization:</strong> Training uses gradient descent with large‑scale distributed compute.</li>
+</ul>
+<h2 id="Applications"><a class="headerlink" href="#Applications" title="Applications"></a>4. Applications</h2>
+<ul>
+<li>Chatbots and assistants</li>
+<li>Search and question answering</li>
+<li>Summarization and content generation</li>
+<li>Code generation and debugging assistance</li>
+<li>Translation and localization</li>
+</ul>
+<!-- 分类文章 -->
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">AI</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/06/Transformer/">02. Transformer</a>
+</li>
+</ul>
+</div>
+</div><div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Definition"><span class="space-toc-text">1. Definition</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Training"><span class="space-toc-text">2. How It Is Trained</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Foundation"><span class="space-toc-text">3. What It Is Based On</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Applications"><span class="space-toc-text">4. Applications</span></a></li></ol>
+</div>
+</div>
+</div>
+<!-- 评论 -->
+</div>
 </article>
-  </div>
 </div>
-
-
-
+</div>
 <!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
-
-  <div class="footer-outer animate__animated  animate__fadeInUp">
-    <div class="footer-inner">
-    <div class="footer-text">
-    <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
-
-    </div>
-    <div class="footer-contact">
-    <ul class="footer-ul">
-        
-        <li class="footer-li">
-            <a href="https://github.com/RongyanYuan" target="_blank">
-                <i class="ri-github-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-                <i class="ri-mail-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-                <i class="ri-linkedin-box-line"></i>
-            </a>
-        </li>
-        
-    </ul>
-    </div>
-    </div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
 </div>
-
-
-
-
-
-
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
-
-
-
-
 <script>
   window.MathJax = {
     tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
@@ -252,6 +186,5 @@
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
 </body>
 </html>

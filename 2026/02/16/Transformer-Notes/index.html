@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  04. Transformer |    Rongyan's Blog</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
+<body>
+<div class="menu-outer">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">Rongyan's Blog</a>
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/deep-learning/">← Deep Learning</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/"><li class="menu-li animate__animated animate__fadeInUp">HOME</li></a>
+<a class="nav-link" href="/archives"><li class="menu-li animate__animated animate__fadeInUp">BLOG</li></a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
+           CATEGORIES
+           <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+</div>
+</li>
+<a href="/search"><li class="menu-li animate__animated animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/16/Transformer-Notes/index.html">EN</a> |
+          <a href="/2026/02/16/Transformer-Notes/index-zh.html">中文</a>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp"><a href="/">Rongyan's Blog</a></div>
+<div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>HOME</span></div></a>
+<a class="mobile-nav-link" href="/archives"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>BLOG</span></div></a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/16/Transformer-Notes/index.html">EN</a> |
+      <a href="/2026/02/16/Transformer-Notes/index-zh.html">中文</a>
+</div>
+<a href="/search"><div class="mobile-menu-child animate__animated animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+</div>
+</div>
+<div class="body-outer">
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">04. Transformer</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 16 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="Transformer"><a class="headerlink" href="#Transformer" title="04. Transformer"></a>04. Transformer</h1>
+<h2 id="Example"><a class="headerlink" href="#Example" title="Section 0. Example of how transformer works"></a>Section 0. Example of how transformer works</h2>
+<p>Before we dive into the abstract structure, we explain Transformers using one simple sentence and walk through Q, K, V, encoding, and decoding step by step with actual matrices and numbers.</p>
+<h3>Example Sentence</h3>
+<blockquote>
+<p><strong>“I love NLP”</strong></p>
+</blockquote>
+<ul>
+<li>Vocabulary embeddings are 2‑dimensional (tiny on purpose).</li>
+<li>One attention head.</li>
+<li>Encoder first, then decoder.</li>
+</ul>
+<h3>Step 1: Tokenization</h3>
+<p>[I] [love] [NLP]</p>
+<h3>Step 2: Embedding + Positional Encoding</h3>
+<p><strong>Token embeddings (given)</strong></p>
+<table>
+<thead>
+<tr><th>Token</th><th>Embedding</th></tr>
+</thead>
+<tbody>
+<tr><td>I</td><td>[1, 0]</td></tr>
+<tr><td>love</td><td>[0, 1]</td></tr>
+<tr><td>NLP</td><td>[1, 1]</td></tr>
+</tbody>
+</table>
+<p>Embedding matrix:</p>
+<p>$$
+X =
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1 \\
+1 &amp; 1
+\end{bmatrix}
+$$</p>
+<p><strong>Positional encoding (simplified)</strong></p>
+<table>
+<thead>
+<tr><th>Position</th><th>Encoding</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>[0.1, 0.0]</td></tr>
+<tr><td>2</td><td>[0.0, 0.1]</td></tr>
+<tr><td>3</td><td>[0.1, 0.1]</td></tr>
+</tbody>
+</table>
+<p>$$
+X_{pos} =
+\begin{bmatrix}
+1.1 &amp; 0.0 \\
+0.0 &amp; 1.1 \\
+1.1 &amp; 1.1
+\end{bmatrix}
+$$</p>
+<h3>Step 3: Create Q, K, V (Self‑Attention)</h3>
+<p>Q, K, V are learned linear projections.</p>
+<p>$$
+W_Q =
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\quad
+W_K =
+\begin{bmatrix}
+1 &amp; 1 \\
+0 &amp; 1
+\end{bmatrix}
+\quad
+W_V =
+\begin{bmatrix}
+1 &amp; 0 \\
+1 &amp; 1
+\end{bmatrix}
+$$</p>
+<p>$$
+Q = X_{pos} W_Q\quad
+K = X_{pos} W_K\quad
+V = X_{pos} W_V
+$$</p>
+<p>$$
+Q =
+\begin{bmatrix}
+1.1 &amp; 0.0 \\
+0.0 &amp; 1.1 \\
+1.1 &amp; 1.1
+\end{bmatrix}
+\quad
+K =
+\begin{bmatrix}
+1.1 &amp; 1.1 \\
+0.0 &amp; 1.1 \\
+1.1 &amp; 2.2
+\end{bmatrix}
+\quad
+V =
+\begin{bmatrix}
+1.1 &amp; 0.0 \\
+1.1 &amp; 1.1 \\
+2.2 &amp; 1.1
+\end{bmatrix}
+$$</p>
+<h3>Step 4: Attention Scores</h3>
+<p>Dot‑product attention:</p>
+<p>$$
+\text{Scores} = QK^\top =
+\begin{bmatrix}
+1.21 &amp; 0.0 &amp; 1.21 \\
+1.21 &amp; 1.21 &amp; 2.42 \\
+2.42 &amp; 1.21 &amp; 3.63
+\end{bmatrix}
+$$</p>
+<p>Scale by \(\sqrt{d_k}=\sqrt{2}\approx1.41\):</p>
+<p>$$
+\text{Scaled Scores} \approx
+\begin{bmatrix}
+0.86 &amp; 0.00 &amp; 0.86 \\
+0.86 &amp; 0.86 &amp; 1.72 \\
+1.72 &amp; 0.86 &amp; 2.57
+\end{bmatrix}
+$$</p>
+<h3>Step 5: Softmax (Row‑wise)</h3>
+<p>$$
+\text{Attention Weights} \approx
+\begin{bmatrix}
+0.42 &amp; 0.16 &amp; 0.42 \\
+0.26 &amp; 0.26 &amp; 0.48 \\
+0.27 &amp; 0.11 &amp; 0.62
+\end{bmatrix}
+$$</p>
+<h3>Step 6: Weighted Sum of V</h3>
+<p>$$
+\text{Output} = \text{Attention} \times V
+$$</p>
+<p>Approx result:</p>
+<p>$$
+\begin{bmatrix}
+1.62 &amp; 0.63 \\
+1.74 &amp; 0.78 \\
+1.92 &amp; 0.84
+\end{bmatrix}
+$$</p>
+<h3>Decoder Side (Brief)</h3>
+<ul>
+<li>Shifted input, masked self‑attention.</li>
+<li>Encoder‑decoder attention: \(Q_{dec}K_{enc}^\top\).</li>
+<li>FFN: \(\text{FFN}(x)=\max(0,xW_1+b_1)W_2+b_2\).</li>
+<li>Linear + Softmax for next‑token probabilities.</li>
+</ul>
+<p><strong>Final intuition</strong>: Q asks “what am I looking for?”, K says “what do I contain?”, V says “what information do I give if matched”.</p>
+<h2 id="Training"><a class="headerlink" href="#Training" title="Section 1 Transformer Training"></a>Section 1 Transformer Training</h2>
+<p><img alt="Transformer training overview" class="post-img" src="/images/transformer-revision/1764683422425.png"/></p>
+<p><img alt="Training vs inference" class="post-img" src="/images/transformer-revision/1764683430516.png"/></p>
+<h3>Translation task: Training vs Inference (core points)</h3>
+<h4>1) Training (Teacher Forcing)</h4>
+<ul>
+<li>Both input sequence x and target sequence y are provided.</li>
+<li>Encoder: token → embedding + positional encoding → stacked encoders.</li>
+<li>Decoder input is shifted right: <code>&lt;s&gt;</code> + <code>y[:-1]</code>.</li>
+<li>Masked self‑attention + cross‑attention.</li>
+<li>Linear + Softmax, optimized by cross‑entropy loss.</li>
+</ul>
+<h4>2) Inference (Autoregressive Decoding)</h4>
+<ul>
+<li>Only input sequence x is available (no ground truth y).</li>
+<li>Decoder starts from <code>&lt;s&gt;</code> and generates token by token.</li>
+<li>Decoding uses argmax / sampling / beam search.</li>
+</ul>
+<h4>Contrast Summary</h4>
+<table>
+<thead>
+<tr><th>Aspect</th><th>Training</th><th>Inference</th></tr>
+</thead>
+<tbody>
+<tr><td>Decoder input</td><td>Ground‑truth targets</td><td>Self‑generated tokens</td></tr>
+<tr><td>Computation</td><td>Parallel</td><td>Sequential / autoregressive</td></tr>
+<tr><td>Parameter updates</td><td>Yes</td><td>No</td></tr>
+<tr><td>Speed</td><td>Fast</td><td>Slow</td></tr>
+<tr><td>Determinism</td><td>Full labels</td><td>Depends on decoding</td></tr>
+<tr><td>Memory usage</td><td>High</td><td>Lower</td></tr>
+</tbody>
+</table>
+<p><img alt="Teacher forcing" class="post-img" src="/images/transformer-revision/1764683443107.png"/></p>
+<h3>Teacher Forcing</h3>
+<p>Teacher forcing feeds the decoder the ground‑truth previous token during training instead of the model’s own prediction.</p>
+<ul>
+<li>Stabilizes training and speeds convergence</li>
+<li>Enables parallel computation</li>
+<li>Mitigates exposure bias</li>
+<li>Improves gradient flow</li>
+</ul>
+<h2 id="Architecture"><a class="headerlink" href="#Architecture" title="Section 2 Transformer Architecture"></a>Section 2 Transformer Architecture</h2>
+<p><img alt="Transformer architecture 1" class="post-img" src="/images/transformer-revision/1764774558165.png"/></p>
+<p><img alt="Transformer architecture 2" class="post-img" src="/images/transformer-revision/1764774661135.png"/></p>
+<p><img alt="Transformer architecture 3" class="post-img" src="/images/transformer-revision/1764774675351.png"/></p>
+<p><img alt="Transformer architecture 4" class="post-img" src="/images/transformer-revision/1764774755458.png"/></p>
+<p><img alt="Transformer architecture 5" class="post-img" src="/images/transformer-revision/1764774771222.png"/></p>
+<p><img alt="Transformer architecture 6" class="post-img" src="/images/transformer-revision/1764774885009.png"/></p>
+<p><img alt="Transformer architecture 7" class="post-img" src="/images/transformer-revision/1764774893873.png"/></p>
+<h2 id="Attention"><a class="headerlink" href="#Attention" title="Section 3 Attention"></a>Section 3 Attention</h2>
+<h3>Three attention types in Transformers</h3>
+<h4>1) Encoder Self‑Attention</h4>
+<ul>
+<li>Q = K = V from the same source sequence.</li>
+<li>Models long‑range dependencies within the source.</li>
+<li>No mask is needed.</li>
+</ul>
+<h4>2) Decoder Masked Self‑Attention</h4>
+<ul>
+<li>Q = K = V from decoder inputs.</li>
+<li>Only attends to past target tokens.</li>
+<li>Uses causal mask.</li>
+</ul>
+<h4>3) Encoder‑Decoder Cross‑Attention</h4>
+<ul>
+<li>Q from decoder, K/V from encoder memory.</li>
+<li>Aligns target generation with source information.</li>
+</ul>
+<h3>Multi‑head Attention</h3>
+<p><img alt="Multi-head attention" class="post-img" src="/images/transformer-revision/1764683651993.png"/></p>
+<p>If embedding dimension is E and number of heads is h, each head has dimension \(d = E/h\).</p>
+<h3>Three attention masks</h3>
+<p><img alt="Attention mask 1" class="post-img" src="/images/transformer-revision/1764684200620.png"/></p>
+<p><img alt="Attention mask 2" class="post-img" src="/images/transformer-revision/1764684264934.png"/></p>
+<p><img alt="Attention mask 3" class="post-img" src="/images/transformer-revision/1764684286450.png"/></p>
+<h2 id="Feedforward"><a class="headerlink" href="#Feedforward" title="Section 4 Feedforward"></a>Section 4 Feedforward</h2>
+<p><img alt="Feedforward network" class="post-img" src="/images/transformer-revision/1764684482237.png"/></p>
+<h3>Feed‑Forward Network</h3>
+<ol>
+<li>Linear projection (dense layer)</li>
+<li>Activation (nonlinearity)</li>
+<li>Dropout (regularization)</li>
+<li>Layer normalization (stability)</li>
+</ol>
+<h2 id="Advantages"><a class="headerlink" href="#Advantages" title="Section 5 Advantages of Transformer"></a>Section 5 Advantages of Transformer</h2>
+<p><img alt="Transformer advantages" class="post-img" src="/images/transformer-revision/1764684605003.png"/></p>
+<ul>
+<li>Stronger long‑range dependency modeling.</li>
+<li>Highly parallelizable computation.</li>
+<li>Global context access for every token.</li>
+<li>Scales well to deeper architectures.</li>
+</ul>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">Artificial Intelligence</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/16/Transformer-Notes/">04. Transformer</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Example"><span class="space-toc-text">Section 0. Example of how transformer works</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Training"><span class="space-toc-text">Section 1 Transformer Training</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Architecture"><span class="space-toc-text">Section 2 Transformer Architecture</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Attention"><span class="space-toc-text">Section 3 Attention</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Feedforward"><span class="space-toc-text">Section 4 Feedforward</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Advantages"><span class="space-toc-text">Section 5 Advantages of Transformer</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+<li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+<li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<script src="/js/white.js"></script>
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>

@@ -182,4 +182,19 @@
       <url>/2026/02/15/Convolutional-Neural-Network/index-zh.html</url>
       <content type="html"><![CDATA[卷积神经网络笔记：卷积层、填充、平移不变性、池化、全连接层、计算与可视化方法。 人工智能 02. 卷积神经网络]]></content>
     </entry>
+
+    <entry>
+      <title>04. Transformer</title>
+      <link href="/2026/02/16/Transformer-Notes/"/>
+      <url>/2026/02/16/Transformer-Notes/</url>
+      <content type="html"><![CDATA[Transformer notes with Q/K/V example, training vs inference, teacher forcing, architecture, attention types, masks, feedforward, and advantages. AI 04. Transformer]]></content>
+    </entry>
+
+    <entry>
+      <title>04. Transformer</title>
+      <link href="/2026/02/16/Transformer-Notes/index-zh.html"/>
+      <url>/2026/02/16/Transformer-Notes/index-zh.html</url>
+      <content type="html"><![CDATA[Transformer 笔记：Q/K/V 示例、训练与推理、Teacher Forcing、架构、注意力类型与掩码、前馈网络与优势。 人工智能 04. Transformer]]></content>
+    </entry>
+
 </search>

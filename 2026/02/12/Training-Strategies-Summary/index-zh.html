@@ -1,266 +1,250 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  08. AI 模型训练与微调策略知识文档 | 榕言的博客</title>
-  <meta name="description" content="金融工程 | 数学 | 计算机科学">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  <link rel="stylesheet" href="/css/white.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  08. AI 模型训练与微调策略知识文档 | 榕言的博客</title>
+<meta content="金融工程 | 数学 | 计算机科学" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
 <body>
-
 <div class="menu-outer">
-  <div class="menu-inner">
-    <div class="menu-site-name  animate__animated  animate__fadeInUp">
-      <a href="/index-zh.html">榕言的博客</a>
-    </div>
-    <div class="menu-group">
-      <ul class="menu-ul">
-        <a href="/index-zh.html" class="nav-link">
-          <li class="menu-li  animate__animated  animate__fadeInUp">首页</li>
-        </a>
-        <a href="/archives/index.html" class="nav-link">
-          <li class="menu-li  animate__animated  animate__fadeInUp">博客</li>
-        </a>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/index-zh.html">榕言的博客</a>
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/ai-fundamentals/index-zh.html">← 人工智能基础</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/index-zh.html">
+<li class="menu-li animate__animated animate__fadeInUp">首页</li>
+</a>
+<a class="nav-link" href="/archives/index.html">
+<li class="menu-li animate__animated animate__fadeInUp">博客</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
           分类
-          <div class="categories-outer " id="sort-div">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
-          </div>
-        </li>
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-          <a href="/2026/02/12/Training-Strategies-Summary/index.html">EN</a> |
+          <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+</div>
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/12/Training-Strategies-Summary/index.html">EN</a> |
           <a href="/2026/02/12/Training-Strategies-Summary/index-zh.html">中文</a>
-        </li>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-          <i class="ri-menu-line"></i>
-        </li>
-      </ul>
-    </div>
-  </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
 </div>
-
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/index-zh.html">榕言</a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-  </div>
-  <div class="mobile-menu-div">
-    <a href="/index-zh.html" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>首页</span>
-      </div>
-    </a>
-    <a href="/archives/index.html" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>博客</span>
-      </div>
-    </a>
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/12/Training-Strategies-Summary/index.html">EN</a> |
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/index-zh.html">榕言</a>
+</div>
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/index-zh.html">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>首页</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives/index.html">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>博客</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/12/Training-Strategies-Summary/index.html">EN</a> |
       <a href="/2026/02/12/Training-Strategies-Summary/index-zh.html">中文</a>
-    </div>
-    <a href="/search">
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-  </div>
 </div>
-
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    <article class="post-inner">
-      <div class="post-content-outer">
-        <div class="post-intro">
-          <div class="post-title animate__animated  animate__fadeInUp">08. AI 模型训练与微调策略知识文档</div>
-          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 12 2026</div>
-        </div>
-        <div class="post-content-inner">
-          <div class="post-content-inner-space"></div>
-          <div class="post-content-main animate__animated  animate__fadeInUp">
-            <h1 id="Training-Strategies"><a href="#Training-Strategies" class="headerlink" title="08. AI 模型训练与微调策略知识文档"></a>08. AI 模型训练与微调策略知识文档</h1>
-
-            <h2 id="Pretraining"><a href="#Pretraining" class="headerlink" title="预训练"></a>1. 预训练（Pretraining）</h2>
-            <ul>
-              <li><strong>做什么</strong>：从零开始，在海量无标注文本上训练一个全新模型，学习通用语言规律和世界知识。</li>
-              <li><strong>何时用</strong>：
-                <ul>
-                  <li>从头创建一个全新的模型架构时。</li>
-                  <li>拥有一个极其庞大且独特的文本数据集，且现有模型无法覆盖时。</li>
-                </ul>
-              </li>
-              <li><strong>关键点</strong>：
-                <ul>
-                  <li>计算和数据代价极其高昂。</li>
-                  <li>只有巨头公司和研究机构会做。</li>
-                  <li>绝大多数开发者永远不需要进行预训练。</li>
-                </ul>
-              </li>
-            </ul>
-
-            <h2 id="Fine-Tuning"><a href="#Fine-Tuning" class="headerlink" title="微调"></a>2. 微调（Fine-Tuning）</h2>
-            <ul>
-              <li><strong>做什么</strong>：在预训练好的基础模型上，用特定任务数据继续训练，调整其参数以适应新任务。</li>
-              <li><strong>何时用</strong>：
-                <ul>
-                  <li>模型需要掌握特定领域术语、格式和逻辑（如法律、医疗、编程）。</li>
-                  <li>需要模型遵循特定输出风格或指令（如固定格式写邮件、生成某种文风）。</li>
-                  <li>任务明确且有几百到几千条高质量输入-输出配对数据。</li>
-                </ul>
-              </li>
-              <li><strong>代表技术</strong>：全参数微调、LoRA / QLoRA（参数高效微调）。</li>
-            </ul>
-
-            <h2 id="SFT"><a href="#SFT" class="headerlink" title="监督微调"></a>3. 监督微调（SFT, Supervised Fine-Tuning）</h2>
-            <ul>
-              <li><strong>是什么</strong>：SFT 是微调的最主要形式，通过“问题-标准答案”对监督训练模型。</li>
-              <li><strong>何时用</strong>：
-                <ul>
-                  <li>当你有清晰、正确的“问题-标准答案”对时，用于快速教会模型完成某项任务。</li>
-                  <li>它是微调 Pipeline 的第一步和基础。</li>
-                  <li><strong>示例</strong>：教模型把用户查询转换为 API 调用参数。</li>
-                </ul>
-              </li>
-            </ul>
-
-            <h2 id="Alignment"><a href="#Alignment" class="headerlink" title="对齐微调"></a>4. 对齐微调：DPO 与 RLHF</h2>
-            <ul>
-              <li><strong>是什么</strong>：都属于对齐技术，目标是让输出更符合人类偏好（更有帮助、更无害、更简洁）。</li>
-              <li><strong>何时用</strong>：
-                <ul>
-                  <li>SFT 之后，当模型“会做”但“做不好”。</li>
-                  <li>没有唯一正确答案，但可以判断哪个更好。</li>
-                </ul>
-              </li>
-              <li><strong>选择建议</strong>：
-                <ul>
-                  <li><strong>RLHF</strong>：流程复杂、训练不稳定、资源消耗高，适合资源充足团队。</li>
-                  <li><strong>DPO</strong>：更直接稳定，当前更流行，通常建议优先尝试。</li>
-                </ul>
-              </li>
-            </ul>
-
-            <h2 id="RAG"><a href="#RAG" class="headerlink" title="RAG"></a>5. 检索增强生成（RAG, Retrieval-Augmented Generation）</h2>
-            <ul>
-              <li><strong>做什么</strong>：不改变模型本身，而是从外部知识库检索相关文档，连同问题一起输入模型生成答案。</li>
-              <li><strong>何时用</strong>：
-                <ul>
-                  <li>知识需要实时更新（新闻、股价）。</li>
-                  <li>涉及私有、未公开数据（公司内部文档、个人笔记）。</li>
-                  <li>数据量太大无法通过微调注入（整本手册、产品目录）。</li>
-                  <li>需要溯源和出处。</li>
-                </ul>
-              </li>
-              <li><strong>核心优势</strong>：知识更新成本低，减少幻觉风险。</li>
-            </ul>
-
-            <h2 id="Distillation"><a href="#Distillation" class="headerlink" title="蒸馏与剪枝"></a>6. 模型蒸馏 / 剪枝等技术</h2>
-            <ul>
-              <li><strong>做什么</strong>：把大型教师模型的能力迁移到小型学生模型中。</li>
-              <li><strong>何时用</strong>：
-                <ul>
-                  <li>部署资源受限（手机、边缘设备）。</li>
-                  <li>降低 API 调用成本。</li>
-                  <li>提升推理速度和并发能力。</li>
-                </ul>
-              </li>
-              <li><strong>注意</strong>：学生模型性能通常低于教师模型。</li>
-            </ul>
-
-            <h2 id="Base-Model"><a href="#Base-Model" class="headerlink" title="是否要重新选择底座模型"></a>7. 是否要重新选择底座模型</h2>
-            <ul>
-              <li>了解不同基座模型的优缺点</li>
-              <li>明确模型能力边界</li>
-              <li>清楚当前遇到的问题</li>
-            </ul>
-
-            <h2 id="Steps"><a href="#Steps" class="headerlink" title="策略实施步骤"></a>8. 策略实施步骤</h2>
-            <ol>
-              <li><strong>快速识别问题</strong>：用低成本 Prompt 测试模型短板。</li>
-              <li><strong>选择优化手段</strong>：根据测试结果选微调、RAG 或蒸馏等。</li>
-              <li><strong>最终目标</strong>：提升用户体验并解决实际任务问题。</li>
-            </ol>
-
-            <h2 id="Summary"><a href="#Summary" class="headerlink" title="总结"></a>总结</h2>
-            <ul>
-              <li><strong>预训练</strong>：打造通用“大脑”，成本极高。</li>
-              <li><strong>微调</strong>：通过 SFT、DPO、RLHF、LoRA 等方式专业化。</li>
-              <li><strong>RAG</strong>：外部文档辅助生成，知识易更新。</li>
-              <li><strong>蒸馏/剪枝</strong>：用效率换成本。</li>
-              <li><strong>策略实施</strong>：识别问题 → 选择手段 → 提升体验。</li>
-            </ul>
-
-            <div class="post-categoris-bottom">
-              <div class="post-categoris-name">人工智能</div>
-              <ul>
-                <li class="me base">
-                  <a href="/2026/02/12/Training-Strategies-Summary/index-zh.html" class="post-categoris-bottom-link">
-                    08. AI 模型训练与微调策略知识文档
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="post-content-inner-space">
-            <div class="space-toc-main animate__animated  animate__fadeInUp">
-              <ol class="space-toc">
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pretraining"><span class="space-toc-text">1. 预训练（Pretraining）</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fine-Tuning"><span class="space-toc-text">2. 微调（Fine-Tuning）</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#SFT"><span class="space-toc-text">3. 监督微调（SFT）</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Alignment"><span class="space-toc-text">4. 对齐微调：DPO 与 RLHF</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">5. 检索增强生成（RAG）</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Distillation"><span class="space-toc-text">6. 模型蒸馏 / 剪枝等技术</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Base-Model"><span class="space-toc-text">7. 是否要重新选择底座模型</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Steps"><span class="space-toc-text">8. 策略实施步骤</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">总结</span></a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">08. AI 模型训练与微调策略知识文档</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 12 2026</div>
 </div>
-
-<div class="footer-outer animate__animated  animate__fadeInUp">
-  <div class="footer-inner">
-    <div class="footer-text">
-      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
-    </div>
-    <div class="footer-contact">
-      <ul class="footer-ul">
-        <li class="footer-li">
-          <a href="https://github.com/RongyanYuan" target="_blank">
-            <i class="ri-github-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-            <i class="ri-mail-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-            <i class="ri-linkedin-box-line"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="Training-Strategies"><a class="headerlink" href="#Training-Strategies" title="08. AI 模型训练与微调策略知识文档"></a>08. AI 模型训练与微调策略知识文档</h1>
+<h2 id="Pretraining"><a class="headerlink" href="#Pretraining" title="预训练"></a>1. 预训练（Pretraining）</h2>
+<ul>
+<li><strong>做什么</strong>：从零开始，在海量无标注文本上训练一个全新模型，学习通用语言规律和世界知识。</li>
+<li><strong>何时用</strong>：
+                <ul>
+<li>从头创建一个全新的模型架构时。</li>
+<li>拥有一个极其庞大且独特的文本数据集，且现有模型无法覆盖时。</li>
+</ul>
+</li>
+<li><strong>关键点</strong>：
+                <ul>
+<li>计算和数据代价极其高昂。</li>
+<li>只有巨头公司和研究机构会做。</li>
+<li>绝大多数开发者永远不需要进行预训练。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Fine-Tuning"><a class="headerlink" href="#Fine-Tuning" title="微调"></a>2. 微调（Fine-Tuning）</h2>
+<ul>
+<li><strong>做什么</strong>：在预训练好的基础模型上，用特定任务数据继续训练，调整其参数以适应新任务。</li>
+<li><strong>何时用</strong>：
+                <ul>
+<li>模型需要掌握特定领域术语、格式和逻辑（如法律、医疗、编程）。</li>
+<li>需要模型遵循特定输出风格或指令（如固定格式写邮件、生成某种文风）。</li>
+<li>任务明确且有几百到几千条高质量输入-输出配对数据。</li>
+</ul>
+</li>
+<li><strong>代表技术</strong>：全参数微调、LoRA / QLoRA（参数高效微调）。</li>
+</ul>
+<h2 id="SFT"><a class="headerlink" href="#SFT" title="监督微调"></a>3. 监督微调（SFT, Supervised Fine-Tuning）</h2>
+<ul>
+<li><strong>是什么</strong>：SFT 是微调的最主要形式，通过“问题-标准答案”对监督训练模型。</li>
+<li><strong>何时用</strong>：
+                <ul>
+<li>当你有清晰、正确的“问题-标准答案”对时，用于快速教会模型完成某项任务。</li>
+<li>它是微调 Pipeline 的第一步和基础。</li>
+<li><strong>示例</strong>：教模型把用户查询转换为 API 调用参数。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Alignment"><a class="headerlink" href="#Alignment" title="对齐微调"></a>4. 对齐微调：DPO 与 RLHF</h2>
+<ul>
+<li><strong>是什么</strong>：都属于对齐技术，目标是让输出更符合人类偏好（更有帮助、更无害、更简洁）。</li>
+<li><strong>何时用</strong>：
+                <ul>
+<li>SFT 之后，当模型“会做”但“做不好”。</li>
+<li>没有唯一正确答案，但可以判断哪个更好。</li>
+</ul>
+</li>
+<li><strong>选择建议</strong>：
+                <ul>
+<li><strong>RLHF</strong>：流程复杂、训练不稳定、资源消耗高，适合资源充足团队。</li>
+<li><strong>DPO</strong>：更直接稳定，当前更流行，通常建议优先尝试。</li>
+</ul>
+</li>
+</ul>
+<h2 id="RAG"><a class="headerlink" href="#RAG" title="RAG"></a>5. 检索增强生成（RAG, Retrieval-Augmented Generation）</h2>
+<ul>
+<li><strong>做什么</strong>：不改变模型本身，而是从外部知识库检索相关文档，连同问题一起输入模型生成答案。</li>
+<li><strong>何时用</strong>：
+                <ul>
+<li>知识需要实时更新（新闻、股价）。</li>
+<li>涉及私有、未公开数据（公司内部文档、个人笔记）。</li>
+<li>数据量太大无法通过微调注入（整本手册、产品目录）。</li>
+<li>需要溯源和出处。</li>
+</ul>
+</li>
+<li><strong>核心优势</strong>：知识更新成本低，减少幻觉风险。</li>
+</ul>
+<h2 id="Distillation"><a class="headerlink" href="#Distillation" title="蒸馏与剪枝"></a>6. 模型蒸馏 / 剪枝等技术</h2>
+<ul>
+<li><strong>做什么</strong>：把大型教师模型的能力迁移到小型学生模型中。</li>
+<li><strong>何时用</strong>：
+                <ul>
+<li>部署资源受限（手机、边缘设备）。</li>
+<li>降低 API 调用成本。</li>
+<li>提升推理速度和并发能力。</li>
+</ul>
+</li>
+<li><strong>注意</strong>：学生模型性能通常低于教师模型。</li>
+</ul>
+<h2 id="Base-Model"><a class="headerlink" href="#Base-Model" title="是否要重新选择底座模型"></a>7. 是否要重新选择底座模型</h2>
+<ul>
+<li>了解不同基座模型的优缺点</li>
+<li>明确模型能力边界</li>
+<li>清楚当前遇到的问题</li>
+</ul>
+<h2 id="Steps"><a class="headerlink" href="#Steps" title="策略实施步骤"></a>8. 策略实施步骤</h2>
+<ol>
+<li><strong>快速识别问题</strong>：用低成本 Prompt 测试模型短板。</li>
+<li><strong>选择优化手段</strong>：根据测试结果选微调、RAG 或蒸馏等。</li>
+<li><strong>最终目标</strong>：提升用户体验并解决实际任务问题。</li>
+</ol>
+<h2 id="Summary"><a class="headerlink" href="#Summary" title="总结"></a>总结</h2>
+<ul>
+<li><strong>预训练</strong>：打造通用“大脑”，成本极高。</li>
+<li><strong>微调</strong>：通过 SFT、DPO、RLHF、LoRA 等方式专业化。</li>
+<li><strong>RAG</strong>：外部文档辅助生成，知识易更新。</li>
+<li><strong>蒸馏/剪枝</strong>：用效率换成本。</li>
+<li><strong>策略实施</strong>：识别问题 → 选择手段 → 提升体验。</li>
+</ul>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">人工智能</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/13/Prompt-Engineering/index-zh.html">09. 提示词工程与幻觉</a>
+</li>
+</ul>
 </div>
-
+</div>
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pretraining"><span class="space-toc-text">1. 预训练（Pretraining）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fine-Tuning"><span class="space-toc-text">2. 微调（Fine-Tuning）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#SFT"><span class="space-toc-text">3. 监督微调（SFT）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Alignment"><span class="space-toc-text">4. 对齐微调：DPO 与 RLHF</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">5. 检索增强生成（RAG）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Distillation"><span class="space-toc-text">6. 模型蒸馏 / 剪枝等技术</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Base-Model"><span class="space-toc-text">7. 是否要重新选择底座模型</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Steps"><span class="space-toc-text">8. 策略实施步骤</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">总结</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
 </body>
 </html>

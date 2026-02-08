@@ -1,261 +1,245 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  07. RAG / MCP / A2A 知识文档 | 榕言的博客</title>
-  <meta name="description" content="金融工程 | 数学 | 计算机科学">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  <link rel="stylesheet" href="/css/white.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  07. RAG / MCP / A2A 知识文档 | 榕言的博客</title>
+<meta content="金融工程 | 数学 | 计算机科学" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
 <body>
-
 <div class="menu-outer">
-  <div class="menu-inner">
-    <div class="menu-site-name  animate__animated  animate__fadeInUp">
-      <a href="/index-zh.html">榕言的博客</a>
-    </div>
-    <div class="menu-group">
-      <ul class="menu-ul">
-        <a href="/index-zh.html" class="nav-link">
-          <li class="menu-li  animate__animated  animate__fadeInUp">首页</li>
-        </a>
-        <a href="/archives/index.html" class="nav-link">
-          <li class="menu-li  animate__animated  animate__fadeInUp">博客</li>
-        </a>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/index-zh.html">榕言的博客</a>
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/ai-fundamentals/index-zh.html">← 人工智能基础</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/index-zh.html">
+<li class="menu-li animate__animated animate__fadeInUp">首页</li>
+</a>
+<a class="nav-link" href="/archives/index.html">
+<li class="menu-li animate__animated animate__fadeInUp">博客</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
           分类
-          <div class="categories-outer " id="sort-div">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
-          </div>
-        </li>
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-          <a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
+          <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+</div>
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
           <a href="/2026/02/11/RAG-MCP-A2A/index-zh.html">中文</a>
-        </li>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-          <i class="ri-menu-line"></i>
-        </li>
-      </ul>
-    </div>
-  </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
 </div>
-
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/index-zh.html">榕言</a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-  </div>
-  <div class="mobile-menu-div">
-    <a href="/index-zh.html" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>首页</span>
-      </div>
-    </a>
-    <a href="/archives/index.html" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>博客</span>
-      </div>
-    </a>
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/index-zh.html">榕言</a>
+</div>
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/index-zh.html">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>首页</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives/index.html">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>博客</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/11/RAG-MCP-A2A/index.html">EN</a> |
       <a href="/2026/02/11/RAG-MCP-A2A/index-zh.html">中文</a>
-    </div>
-    <a href="/search">
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-  </div>
 </div>
-
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    <article class="post-inner">
-      <div class="post-content-outer">
-        <div class="post-intro">
-          <div class="post-title animate__animated  animate__fadeInUp">07. RAG / MCP / A2A 知识文档</div>
-          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 11 2026</div>
-        </div>
-        <div class="post-content-inner">
-          <div class="post-content-inner-space"></div>
-          <div class="post-content-main animate__animated  animate__fadeInUp">
-            <h1 id="Session-5"><a href="#Session-5" class="headerlink" title="Session 5 知识文档：产品流程与 RAG 系统设计"></a>Session 5 知识文档：产品流程与 RAG 系统设计</h1>
-
-            <h2 id="Process"><a href="#Process" class="headerlink" title="产品流程概览"></a>1. 产品流程概览</h2>
-
-            <h3 id="Pipeline">1.1 流程 + 数据 Pipeline</h3>
-            <p>智能产品整体流程包括：</p>
-            <ol>
-              <li><strong>用户输入</strong> → 由 <strong>Agent 或多 Agent 协作</strong>处理</li>
-              <li><strong>记忆模块</strong>分析信息并做<strong>记忆取舍</strong>
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">07. RAG / MCP / A2A 知识文档</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 11 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="Session-5"><a class="headerlink" href="#Session-5" title="Session 5 知识文档：产品流程与 RAG 系统设计"></a>Session 5 知识文档：产品流程与 RAG 系统设计</h1>
+<h2 id="Process"><a class="headerlink" href="#Process" title="产品流程概览"></a>1. 产品流程概览</h2>
+<h3 id="Pipeline">1.1 流程 + 数据 Pipeline</h3>
+<p>智能产品整体流程包括：</p>
+<ol>
+<li><strong>用户输入</strong> → 由 <strong>Agent 或多 Agent 协作</strong>处理</li>
+<li><strong>记忆模块</strong>分析信息并做<strong>记忆取舍</strong>
+<ul>
+<li>记忆量尽量少但信息精度高</li>
+<li>考量成本（token 消耗、GPU、研发成本）</li>
+</ul>
+</li>
+<li><strong>调用工具 API（MCP）</strong>或<strong>其他 Agent（A2A）</strong>解决任务
                 <ul>
-                  <li>记忆量尽量少但信息精度高</li>
-                  <li>考量成本（token 消耗、GPU、研发成本）</li>
-                </ul>
-              </li>
-              <li><strong>调用工具 API（MCP）</strong>或<strong>其他 Agent（A2A）</strong>解决任务
-                <ul>
-                  <li>MCP（Model + Tool/Prompt + RAG）</li>
-                  <li>A2A（Agent to Agent，类似找同事解决任务）</li>
-                </ul>
-              </li>
-              <li><strong>润色 Agent</strong>根据用户习惯、个性特征等优化回答，最终<strong>Render Back to User</strong></li>
-            </ol>
-            <blockquote>
-              <p>核心理念：流程不只是“问答”，而是<strong>多模块协作 + 记忆管理 + 优化输出</strong>。</p>
-            </blockquote>
-
-            <h2 id="Cost"><a href="#Cost" class="headerlink" title="成本与效率考虑"></a>2. 成本与效率考虑</h2>
-            <ul>
-              <li><strong>成本累加</strong>：不同于 SaaS 时代边际递减，现阶段每次问答都会消耗 token、计算资源和研发成本。</li>
-              <li><strong>记忆优化</strong>：少而精的记忆策略可以降低成本，提高效果。</li>
-              <li><strong>多 Agent 协作</strong>：根据每个模型的能力，分配不同任务，提高整体效率。</li>
-            </ul>
-
-            <h2 id="RAG"><a href="#RAG" class="headerlink" title="RAG 系统设计"></a>3. RAG 系统设计（Retrieval-Augmented Generation）</h2>
-            <p>RAG 系统设计核心目标：<strong>确保生成回答的质量高、上下文完整、成本可控</strong>。</p>
-
-            <h3 id="Data-Preparation">3.1 数据准备</h3>
-            <ol>
-              <li><strong>数据清理（Data Cleaning）</strong>
-                <ul>
-                  <li>文档格式杂乱、内容过于详细或相互矛盾</li>
-                  <li>文档过于详细影响切分，需要根据文本性质做合理切分</li>
-                  <li>向量化存储：文本二维 → 向量三维空间，确保语义表示准确</li>
-                </ul>
-              </li>
-              <li><strong>数据切块（Data Classification）</strong>
-                <ul>
-                  <li>将文档切分成合适块，方便大模型索引</li>
-                  <li>考虑上下文 token 限制（128kb），切分过长或过短都会影响理解</li>
-                  <li>PM + 算法团队共同设计切分规则</li>
-                </ul>
-              </li>
-              <li><strong>数据向量化（Data Vectorization）</strong>
-                <ul>
-                  <li>优质向量化策略 + 检索策略</li>
-                  <li>类似字典查询：例如用户问“这个锅多少钱？” → 查找价格标签，再排序过滤</li>
-                  <li><strong>多策略召回</strong>：
+<li>MCP（Model + Tool/Prompt + RAG）</li>
+<li>A2A（Agent to Agent，类似找同事解决任务）</li>
+</ul>
+</li>
+<li><strong>润色 Agent</strong>根据用户习惯、个性特征等优化回答，最终<strong>Render Back to User</strong></li>
+</ol>
+<blockquote>
+<p>核心理念：流程不只是“问答”，而是<strong>多模块协作 + 记忆管理 + 优化输出</strong>。</p>
+</blockquote>
+<h2 id="Cost"><a class="headerlink" href="#Cost" title="成本与效率考虑"></a>2. 成本与效率考虑</h2>
+<ul>
+<li><strong>成本累加</strong>：不同于 SaaS 时代边际递减，现阶段每次问答都会消耗 token、计算资源和研发成本。</li>
+<li><strong>记忆优化</strong>：少而精的记忆策略可以降低成本，提高效果。</li>
+<li><strong>多 Agent 协作</strong>：根据每个模型的能力，分配不同任务，提高整体效率。</li>
+</ul>
+<h2 id="RAG"><a class="headerlink" href="#RAG" title="RAG 系统设计"></a>3. RAG 系统设计（Retrieval-Augmented Generation）</h2>
+<p>RAG 系统设计核心目标：<strong>确保生成回答的质量高、上下文完整、成本可控</strong>。</p>
+<h3 id="Data-Preparation">3.1 数据准备</h3>
+<ol>
+<li><strong>数据清理（Data Cleaning）</strong>
+<ul>
+<li>文档格式杂乱、内容过于详细或相互矛盾</li>
+<li>文档过于详细影响切分，需要根据文本性质做合理切分</li>
+<li>向量化存储：文本二维 → 向量三维空间，确保语义表示准确</li>
+</ul>
+</li>
+<li><strong>数据切块（Data Classification）</strong>
+<ul>
+<li>将文档切分成合适块，方便大模型索引</li>
+<li>考虑上下文 token 限制（128kb），切分过长或过短都会影响理解</li>
+<li>PM + 算法团队共同设计切分规则</li>
+</ul>
+</li>
+<li><strong>数据向量化（Data Vectorization）</strong>
+<ul>
+<li>优质向量化策略 + 检索策略</li>
+<li>类似字典查询：例如用户问“这个锅多少钱？” → 查找价格标签，再排序过滤</li>
+<li><strong>多策略召回</strong>：
                     <ul>
-                      <li>拆分问题维度（价格、保价、促销等）</li>
-                      <li>生成多个问题同时检索</li>
-                      <li>根据上下文重加权排序（如价格敏感用户优先显示最低价）</li>
-                    </ul>
-                  </li>
-                  <li>可结合微调数据，让大模型在特定偏好场景下优化输出</li>
-                </ul>
-              </li>
-            </ol>
-
-            <h3 id="Ops-Memory">3.2 运维与记忆管理</h3>
-            <ol>
-              <li>上下文管理：定义哪些信息需要记忆（姓名、年龄、偏好等）</li>
-              <li>回答策略：根据业务场景和经验判定回答方式、语气等</li>
-              <li>高频/常见问题优化：
+<li>拆分问题维度（价格、保价、促销等）</li>
+<li>生成多个问题同时检索</li>
+<li>根据上下文重加权排序（如价格敏感用户优先显示最低价）</li>
+</ul>
+</li>
+<li>可结合微调数据，让大模型在特定偏好场景下优化输出</li>
+</ul>
+</li>
+</ol>
+<h3 id="Ops-Memory">3.2 运维与记忆管理</h3>
+<ol>
+<li>上下文管理：定义哪些信息需要记忆（姓名、年龄、偏好等）</li>
+<li>回答策略：根据业务场景和经验判定回答方式、语气等</li>
+<li>高频/常见问题优化：
                 <ul>
-                  <li>对于常见问题，提前生成回答缓存</li>
-                  <li>对高频问题，预先准备摘要回答，降低检索成本和响应时间</li>
-                </ul>
-              </li>
-            </ol>
-
-            <h2 id="Multi-Agent"><a href="#Multi-Agent" class="headerlink" title="多 Agent 协作"></a>4. 多 Agent 协作</h2>
-            <ul>
-              <li><strong>A2A（Agent to Agent）</strong>：不同 Agent 分工合作，类似找同事解决问题</li>
-              <li><strong>多模型任务分配</strong>：根据各模型能力，分配不同任务</li>
-              <li><strong>协作目标</strong>：提高效率，降低单模型负荷，提高整体准确性和响应速度</li>
-            </ul>
-
-            <h2 id="Key-Points"><a href="#Key-Points" class="headerlink" title="Key Points 总结"></a>5. Key Points 总结</h2>
-            <ol>
-              <li><strong>记忆模块优化</strong>：少而精的记忆，提高效果，降低成本</li>
-              <li><strong>成本问题</strong>：Token 消耗、GPU 计算和模型迭代都产生累加成本</li>
-              <li><strong>多 Agent 协作</strong>：根据模型能力分配任务，形成分工和互补</li>
-              <li><strong>数据质量是核心</strong>：清理、切块、向量化是生成高质量 RAG 回答的基础</li>
-              <li><strong>预处理常见问题</strong>：提前生成回答，缓存摘要，减少重复计算</li>
-            </ol>
-            <blockquote>
-              <p>总结一句话：RAG 系统 + 多 Agent 协作 = 高效、精确、可控的智能问答流程。</p>
-            </blockquote>
-
-            <h2 id="Fun"><a href="#Fun" class="headerlink" title="风趣理解"></a>6. 风趣理解</h2>
-            <blockquote>
-              <p>整个系统就像一个智能办公室：<br>
-              - <strong>MCP Agent</strong>像工具小助手，负责调取资料<br>
-              - <strong>A2A Agent</strong>像找不同同事分工合作<br>
-              - <strong>润色 Agent</strong>像秘书，确保输出符合用户风格<br>
-              - <strong>记忆模块</strong>像办公室的笔记本，只记最重要的信息<br>
-              - RAG 数据处理就是整理档案，让大家都能快速找到答案<br>
+<li>对于常见问题，提前生成回答缓存</li>
+<li>对高频问题，预先准备摘要回答，降低检索成本和响应时间</li>
+</ul>
+</li>
+</ol>
+<h2 id="Multi-Agent"><a class="headerlink" href="#Multi-Agent" title="多 Agent 协作"></a>4. 多 Agent 协作</h2>
+<ul>
+<li><strong>A2A（Agent to Agent）</strong>：不同 Agent 分工合作，类似找同事解决问题</li>
+<li><strong>多模型任务分配</strong>：根据各模型能力，分配不同任务</li>
+<li><strong>协作目标</strong>：提高效率，降低单模型负荷，提高整体准确性和响应速度</li>
+</ul>
+<h2 id="Key-Points"><a class="headerlink" href="#Key-Points" title="Key Points 总结"></a>5. Key Points 总结</h2>
+<ol>
+<li><strong>记忆模块优化</strong>：少而精的记忆，提高效果，降低成本</li>
+<li><strong>成本问题</strong>：Token 消耗、GPU 计算和模型迭代都产生累加成本</li>
+<li><strong>多 Agent 协作</strong>：根据模型能力分配任务，形成分工和互补</li>
+<li><strong>数据质量是核心</strong>：清理、切块、向量化是生成高质量 RAG 回答的基础</li>
+<li><strong>预处理常见问题</strong>：提前生成回答，缓存摘要，减少重复计算</li>
+</ol>
+<blockquote>
+<p>总结一句话：RAG 系统 + 多 Agent 协作 = 高效、精确、可控的智能问答流程。</p>
+</blockquote>
+<h2 id="Fun"><a class="headerlink" href="#Fun" title="风趣理解"></a>6. 风趣理解</h2>
+<blockquote>
+<p>整个系统就像一个智能办公室：<br/>
+              - <strong>MCP Agent</strong>像工具小助手，负责调取资料<br/>
+              - <strong>A2A Agent</strong>像找不同同事分工合作<br/>
+              - <strong>润色 Agent</strong>像秘书，确保输出符合用户风格<br/>
+              - <strong>记忆模块</strong>像办公室的笔记本，只记最重要的信息<br/>
+              - RAG 数据处理就是整理档案，让大家都能快速找到答案<br/>
               - 成本和效率就是办公室预算，必须精打细算</p>
-            </blockquote>
-
-            <div class="post-categoris-bottom">
-              <div class="post-categoris-name">人工智能</div>
-              <ul>
-                <li class="me base">
-                  <a href="/2026/02/11/RAG-MCP-A2A/index-zh.html" class="post-categoris-bottom-link">
-                    07. RAG / MCP / A2A 知识文档
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="post-content-inner-space">
-            <div class="space-toc-main animate__animated  animate__fadeInUp">
-              <ol class="space-toc">
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Process"><span class="space-toc-text">1. 产品流程概览</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Cost"><span class="space-toc-text">2. 成本与效率考虑</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">3. RAG 系统设计（Retrieval-Augmented Generation）</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Multi-Agent"><span class="space-toc-text">4. 多 Agent 协作</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Key-Points"><span class="space-toc-text">5. Key Points 总结</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fun"><span class="space-toc-text">6. 风趣理解</span></a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+</blockquote>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">人工智能</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/12/Training-Strategies-Summary/index-zh.html">08. AI 模型训练与微调策略知识文档</a>
+</li>
+</ul>
 </div>
-
-<div class="footer-outer animate__animated  animate__fadeInUp">
-  <div class="footer-inner">
-    <div class="footer-text">
-      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
-    </div>
-    <div class="footer-contact">
-      <ul class="footer-ul">
-        <li class="footer-li">
-          <a href="https://github.com/RongyanYuan" target="_blank">
-            <i class="ri-github-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-            <i class="ri-mail-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-            <i class="ri-linkedin-box-line"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 </div>
-
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Process"><span class="space-toc-text">1. 产品流程概览</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Cost"><span class="space-toc-text">2. 成本与效率考虑</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#RAG"><span class="space-toc-text">3. RAG 系统设计（Retrieval-Augmented Generation）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Multi-Agent"><span class="space-toc-text">4. 多 Agent 协作</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Key-Points"><span class="space-toc-text">5. Key Points 总结</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fun"><span class="space-toc-text">6. 风趣理解</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
 </body>
 </html>

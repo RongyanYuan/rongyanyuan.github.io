@@ -1,201 +1,185 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  03. CNN 训练任务流程 |    榕言的博客</title>
-  <meta name="description" content="金融工程 | 数学 | 计算机科学">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  <link rel="stylesheet" href="/css/white.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  03. CNN 训练任务流程 |    榕言的博客</title>
+<meta content="金融工程 | 数学 | 计算机科学" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
 <body>
-
 <div class="menu-outer">
-  <div class="menu-inner">
-    <div class="menu-site-name  animate__animated  animate__fadeInUp">
-      <a href="/index-zh.html">榕言的博客</a>
-    </div>
-    <div class="menu-group">
-      <ul class="menu-ul">
-        <a href="/index-zh.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">首页</li></a>
-        <a href="/archives/index.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">博客</li></a>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/index-zh.html">榕言的博客</a>
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/deep-learning/index-zh.html">← 深度学习</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/index-zh.html"><li class="menu-li animate__animated animate__fadeInUp">首页</li></a>
+<a class="nav-link" href="/archives/index.html"><li class="menu-li animate__animated animate__fadeInUp">博客</li></a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
            CATEGORIES
-           <div class="categories-outer " id="sort-div">
-             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
-           </div>
-        </li>
-        <a href="/search"><li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li></a>
-        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-          <a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
+           <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+</div>
+</li>
+<a href="/search"><li class="menu-li animate__animated animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
           <a href="/2026/02/16/CNN-Training-Pipeline/index-zh.html">中文</a>
-        </li>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
-      </ul>
-    </div>
-  </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+</ul>
 </div>
-
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp"><a href="/index-zh.html">榕言</a></div>
-    <div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
-  </div>
-  <div class="mobile-menu-div">
-    <a href="/index-zh.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>首页</span></div></a>
-    <a href="/archives/index.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>博客</span></div></a>
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp"><a href="/index-zh.html">榕言</a></div>
+<div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/index-zh.html"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>首页</span></div></a>
+<a class="mobile-nav-link" href="/archives/index.html"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>博客</span></div></a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
       <a href="/2026/02/16/CNN-Training-Pipeline/index-zh.html">中文</a>
-    </div>
-    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
-  </div>
 </div>
-
+<a href="/search"><div class="mobile-menu-child animate__animated animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    <article class="post-inner">
-      <div class="post-content-outer">
-        <div class="post-intro">
-          <div class="post-title animate__animated  animate__fadeInUp">03. CNN 训练任务流程</div>
-          <div class="meta-intro animate__animated  animate__fadeInUp">2026-02-16</div>
-        </div>
-        <div class="post-content-inner">
-          <div class="post-content-inner-space"></div>
-          <div class="post-content-main animate__animated  animate__fadeInUp">
-            <h1 id="CNN-Pipeline"><a href="#CNN-Pipeline" class="headerlink" title="03. CNN 训练任务流程"></a>03. CNN 训练任务流程</h1>
-
-            <p>本文整理了作业笔记本中的 简易CNN CIFAR-10 的训练任务全流程。整体是五个阶段：数据获取 → 数据增强 → 模型构建 → 模型训练 → 模型评估。
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">03. CNN 训练任务流程</div>
+<div class="meta-intro animate__animated animate__fadeInUp">2026-02-16</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="CNN-Pipeline"><a class="headerlink" href="#CNN-Pipeline" title="03. CNN 训练任务流程"></a>03. CNN 训练任务流程</h1>
+<p>本文整理了作业笔记本中的 简易CNN CIFAR-10 的训练任务全流程。整体是五个阶段：数据获取 → 数据增强 → 模型构建 → 模型训练 → 模型评估。
               Reading list只包含了训练流程的Jupyter notebook，可以先忽略Scripts文件夹。
             </p>
-
-             <h2 id="Reading-List"><a href="#Reading-List" class="headerlink" title="Reading List"></a>Reading List</h2>
-                <ul>
-                  <li><a href="/python/cnn/01_data_collection.html" target="_blank">01. Data Collection</a></li>
-                  <li><a href="/python/cnn/02_data_augmentation.html" target="_blank">02. Data Augmentation</a></li>
-                  <li><a href="/python/cnn/03_model_building.html" target="_blank">03. Model Building</a></li>
-                  <li><a href="/python/cnn/04_model_training.html" target="_blank">04. Model Training</a></li>
-                  <li><a href="/python/cnn/05_model_evaluation.html" target="_blank">05. Model Evaluation</a></li>
-                </ul>
-
-            <h2 id="Stage-1"><a href="#Stage-1" class="headerlink" title="阶段一：数据获取与探索"></a>阶段一：数据获取与探索</h2>
-            <ul>
-              <li>使用 <code>torchvision</code> 下载 CIFAR‑10，并存入 <code>data/raw</code>。</li>
-              <li>确认数据规模、类别与结构。</li>
-              <li>可视化样本图片，理解数据分布与难度。</li>
-              <li>统计类别数量，验证训练/测试集均衡（每类 5,000 / 1,000）。</li>
-            </ul>
-
-            <h2 id="Stage-2"><a href="#Stage-2" class="headerlink" title="阶段二：数据增强"></a>阶段二：数据增强</h2>
-            <ul>
-              <li>从 <code>data/raw/train</code> 读取原始图片。</li>
-              <li>通过 <code>scripts/data_augmentation.py</code> 做随机增强。</li>
-              <li>输出到 <code>data/augmented/train</code>。</li>
-              <li>对比原图与增强图，确保合理且不失真。</li>
-            </ul>
-
-            <h2 id="Stage-3"><a href="#Stage-3" class="headerlink" title="阶段三：模型构建"></a>阶段三：模型构建</h2>
-            <ul>
-              <li>在 <code>scripts/model_architectures.py</code> 中定义 <code>SimpleCNN</code>。</li>
-              <li>使用 <code>torchsummary</code> 查看层级结构。</li>
-              <li>统计参数量以估计复杂度与显存占用。</li>
-            </ul>
-
-            <h2 id="Stage-4"><a href="#Stage-4" class="headerlink" title="阶段四：模型训练"></a>阶段四：模型训练</h2>
-            <h3>数据准备</h3>
-            <ul>
-              <li>统一尺寸 32×32，并进行归一化。</li>
-              <li>使用 <code>ImageFolder</code> 加载增强数据。</li>
-              <li>按 80/20 划分训练集与验证集，构建 DataLoader。</li>
-            </ul>
-
-            <h3>训练配置</h3>
-            <ul>
-              <li>损失函数：<code>CrossEntropyLoss</code>。</li>
-              <li>优化器：Adam，<code>lr=0.001</code>，权重衰减 <code>1e‑5</code>。</li>
-              <li>学习率调度：<code>ReduceLROnPlateau</code>。</li>
-              <li>早停 patience=5，最大训练 50 轮。</li>
-            </ul>
-
-            <h3>输出结果</h3>
-            <ul>
-              <li>最佳模型：<code>models/best_model.pth</code></li>
-              <li>最终模型：<code>models/final_model.pth</code></li>
-              <li>训练曲线：<code>results/</code> 目录</li>
-            </ul>
-
-            <h2 id="Stage-5"><a href="#Stage-5" class="headerlink" title="阶段五：模型评估"></a>阶段五：模型评估</h2>
-            <ul>
-              <li>加载最佳模型，对测试集评估。</li>
-              <li>计算测试损失与准确率。</li>
-              <li>输出分类报告（Precision/Recall/F1）。</li>
-              <li>计算 Top‑1 与 Top‑5 准确率。</li>
-              <li>绘制混淆矩阵与 ROC 曲线。</li>
-              <li>可视化预测结果并做错误分析。</li>
-              <li>保存评估指标到 <code>results/evaluation_results.npy</code>。</li>
-            </ul>
-
-            <h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="流程总结"></a>流程总结</h2>
-            <ol>
-              <li>CIFAR‑10 数据获取 → <code>data/raw</code></li>
-              <li>数据增强 → <code>data/augmented</code></li>
-              <li>构建 <code>SimpleCNN</code> 并检查参数</li>
-              <li>训练 + 早停 + 学习率调度</li>
-              <li>评估指标与可视化输出</li>
-            </ol>
-
-            <h2 id="Artifacts"><a href="#Artifacts" class="headerlink" title="关键产物"></a>关键产物</h2>
-            <ul>
-              <li>数据：<code>data/raw</code>、<code>data/augmented</code></li>
-              <li>模型：<code>models/best_model.pth</code>、<code>models/final_model.pth</code></li>
-              <li>结果：<code>results/training_history.png</code>、<code>results/confusion_matrix.png</code>、<code>results/roc_curves.png</code></li>
-              <li>指标：<code>results/evaluation_results.npy</code></li>
-            </ul>
-
-            <div class="post-categoris-bottom">
-              <div class="post-categoris-name">人工智能</div>
-              <ul>
-                <li class="me base">
-                  <a href="/2026/02/16/CNN-Training-Pipeline/index-zh.html" class="post-categoris-bottom-link">03. CNN 训练任务流程</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="post-content-inner-space">
-            <div class="space-toc-main animate__animated  animate__fadeInUp">
-              <ol class="space-toc">
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-1"><span class="space-toc-text">阶段一：数据获取与探索</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-2"><span class="space-toc-text">阶段二：数据增强</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-3"><span class="space-toc-text">阶段三：模型构建</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-4"><span class="space-toc-text">阶段四：模型训练</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-5"><span class="space-toc-text">阶段五：模型评估</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pipeline"><span class="space-toc-text">流程总结</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Artifacts"><span class="space-toc-text">关键产物</span></a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+<h2 id="Reading-List"><a class="headerlink" href="#Reading-List" title="Reading List"></a>Reading List</h2>
+<ul>
+<li><a href="/python/cnn/01_data_collection.html" target="_blank">01. Data Collection</a></li>
+<li><a href="/python/cnn/02_data_augmentation.html" target="_blank">02. Data Augmentation</a></li>
+<li><a href="/python/cnn/03_model_building.html" target="_blank">03. Model Building</a></li>
+<li><a href="/python/cnn/04_model_training.html" target="_blank">04. Model Training</a></li>
+<li><a href="/python/cnn/05_model_evaluation.html" target="_blank">05. Model Evaluation</a></li>
+</ul>
+<h2 id="Stage-1"><a class="headerlink" href="#Stage-1" title="阶段一：数据获取与探索"></a>阶段一：数据获取与探索</h2>
+<ul>
+<li>使用 <code>torchvision</code> 下载 CIFAR‑10，并存入 <code>data/raw</code>。</li>
+<li>确认数据规模、类别与结构。</li>
+<li>可视化样本图片，理解数据分布与难度。</li>
+<li>统计类别数量，验证训练/测试集均衡（每类 5,000 / 1,000）。</li>
+</ul>
+<h2 id="Stage-2"><a class="headerlink" href="#Stage-2" title="阶段二：数据增强"></a>阶段二：数据增强</h2>
+<ul>
+<li>从 <code>data/raw/train</code> 读取原始图片。</li>
+<li>通过 <code>scripts/data_augmentation.py</code> 做随机增强。</li>
+<li>输出到 <code>data/augmented/train</code>。</li>
+<li>对比原图与增强图，确保合理且不失真。</li>
+</ul>
+<h2 id="Stage-3"><a class="headerlink" href="#Stage-3" title="阶段三：模型构建"></a>阶段三：模型构建</h2>
+<ul>
+<li>在 <code>scripts/model_architectures.py</code> 中定义 <code>SimpleCNN</code>。</li>
+<li>使用 <code>torchsummary</code> 查看层级结构。</li>
+<li>统计参数量以估计复杂度与显存占用。</li>
+</ul>
+<h2 id="Stage-4"><a class="headerlink" href="#Stage-4" title="阶段四：模型训练"></a>阶段四：模型训练</h2>
+<h3>数据准备</h3>
+<ul>
+<li>统一尺寸 32×32，并进行归一化。</li>
+<li>使用 <code>ImageFolder</code> 加载增强数据。</li>
+<li>按 80/20 划分训练集与验证集，构建 DataLoader。</li>
+</ul>
+<h3>训练配置</h3>
+<ul>
+<li>损失函数：<code>CrossEntropyLoss</code>。</li>
+<li>优化器：Adam，<code>lr=0.001</code>，权重衰减 <code>1e‑5</code>。</li>
+<li>学习率调度：<code>ReduceLROnPlateau</code>。</li>
+<li>早停 patience=5，最大训练 50 轮。</li>
+</ul>
+<h3>输出结果</h3>
+<ul>
+<li>最佳模型：<code>models/best_model.pth</code></li>
+<li>最终模型：<code>models/final_model.pth</code></li>
+<li>训练曲线：<code>results/</code> 目录</li>
+</ul>
+<h2 id="Stage-5"><a class="headerlink" href="#Stage-5" title="阶段五：模型评估"></a>阶段五：模型评估</h2>
+<ul>
+<li>加载最佳模型，对测试集评估。</li>
+<li>计算测试损失与准确率。</li>
+<li>输出分类报告（Precision/Recall/F1）。</li>
+<li>计算 Top‑1 与 Top‑5 准确率。</li>
+<li>绘制混淆矩阵与 ROC 曲线。</li>
+<li>可视化预测结果并做错误分析。</li>
+<li>保存评估指标到 <code>results/evaluation_results.npy</code>。</li>
+</ul>
+<h2 id="Pipeline"><a class="headerlink" href="#Pipeline" title="流程总结"></a>流程总结</h2>
+<ol>
+<li>CIFAR‑10 数据获取 → <code>data/raw</code></li>
+<li>数据增强 → <code>data/augmented</code></li>
+<li>构建 <code>SimpleCNN</code> 并检查参数</li>
+<li>训练 + 早停 + 学习率调度</li>
+<li>评估指标与可视化输出</li>
+</ol>
+<h2 id="Artifacts"><a class="headerlink" href="#Artifacts" title="关键产物"></a>关键产物</h2>
+<ul>
+<li>数据：<code>data/raw</code>、<code>data/augmented</code></li>
+<li>模型：<code>models/best_model.pth</code>、<code>models/final_model.pth</code></li>
+<li>结果：<code>results/training_history.png</code>、<code>results/confusion_matrix.png</code>、<code>results/roc_curves.png</code></li>
+<li>指标：<code>results/evaluation_results.npy</code></li>
+</ul>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">人工智能</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/16/Transformer-Notes/index-zh.html">04. Transformer</a>
+</li>
+</ul>
 </div>
-
-<div class="footer-outer animate__animated  animate__fadeInUp">
-  <div class="footer-inner">
-    <div class="footer-text">
-      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
-    </div>
-    <div class="footer-contact">
-      <ul class="footer-ul">
-        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
-        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
-        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
-      </ul>
-    </div>
-  </div>
 </div>
-
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-1"><span class="space-toc-text">阶段一：数据获取与探索</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-2"><span class="space-toc-text">阶段二：数据增强</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-3"><span class="space-toc-text">阶段三：模型构建</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-4"><span class="space-toc-text">阶段四：模型训练</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-5"><span class="space-toc-text">阶段五：模型评估</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pipeline"><span class="space-toc-text">流程总结</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Artifacts"><span class="space-toc-text">关键产物</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+<li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+<li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
 </body>
 </html>

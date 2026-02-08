@@ -67,6 +67,23 @@ span {
   font-family: Gothic;
   font-size: 1.6em;
 }
+.menu-redirect{
+  margin-top: 6px;
+}
+.menu-redirect .back-topic-link{
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #1f5a8f;
+  border: 1px solid rgba(31, 90, 143, 0.25);
+  background: rgba(31, 90, 143, 0.08);
+  border-radius: 6px;
+  text-decoration: none;
+}
+.menu-redirect .back-topic-link:hover{
+  background: rgba(31, 90, 143, 0.16);
+}
 .menu-ul {
   list-style: none;
 }

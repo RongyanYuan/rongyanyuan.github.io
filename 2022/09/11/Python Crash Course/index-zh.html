@@ -1,148 +1,110 @@
 
-
-
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Data Science and Machine Learning in Python - 1. Review of Python |    榕言的博客</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <!-- 标签页图标 -->
-  
-
-  <!-- 图标库 -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- 动画库 -->
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  
-  <!-- css文件 -->
-  
-<link rel="stylesheet" href="/css/white.css">
-
-  <!-- 代码高亮 -->
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  Data Science and Machine Learning in Python - 1. Review of Python |    榕言的博客</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<!-- 标签页图标 -->
+<!-- 图标库 -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<!-- 动画库 -->
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<!-- css文件 -->
+<link href="/css/white.css" rel="stylesheet"/>
+<!-- 代码高亮 -->
+<meta content="Hexo 6.2.0" name="generator"/></link></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
           榕言的博客
         </a>
-        
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-        
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/cs/data-science-and-machine-learning-in-python/index-zh.html">← Python 数据科学与机器学习</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               首页
             </li>
-          </a>
-        
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               博客
             </li>
-          </a>
-        
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              分类
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
-             </div>
-          </li>
-        
-        
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-
-        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-          <a href="/2022/09/11/Python%20Crash%20Course/index.html">EN</a> |
-          <a href="/2022/09/11/Python%20Crash%20Course/index-zh.html">中文</a>
-        </li>
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        
-        </ul>
-
-      </div>
-
-    </div>
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2022/09/11/Python%20Crash%20Course/index.html">EN</a> |
+          <a href="/2022/09/11/Python%20Crash%20Course/index-zh.html">中文</a>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
         榕言的博客
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-
-  </div>
-
-  <div class="mobile-menu-div">
-  
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>首页</span>
-      </div>
-    </a>
-  
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>博客</span>
-      </div>
-    </a>
-  
-  
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2022/09/11/Python%20Crash%20Course/index.html">EN</a> |
-      <a href="/2022/09/11/Python%20Crash%20Course/index-zh.html">中文</a>
-    </div>
-
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-    
-  </div>
-
-
 </div>
-
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>首页</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>博客</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2022/09/11/Python%20Crash%20Course/index.html">EN</a> |
+      <a href="/2022/09/11/Python%20Crash%20Course/index-zh.html">中文</a>
+</div>
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    
+<div class="body-inner">
 <article class="post-inner">
-  <div class="post-content-outer">
-    <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Python 数据科学与机器学习 - 1. Python 复习</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 11 2022</div>
-      
-    </div>
-    <div class="post-content-inner">
-      <div class="post-content-inner-space">
-
-      </div>
-      <div class="post-content-main animate__animated  animate__fadeInUp">
-        <!-- top型目录 -->
-        
-        <h1 id="Python-Comprehensive-Syntax-Review"><a href="#Python-Comprehensive-Syntax-Review" class="headerlink" title="Python 综合语法回顾"></a>Python 综合语法回顾</h1><hr>
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">Python 数据科学与机器学习 - 1. Python 复习</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Sep 11 2022</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space">
+</div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<!-- top型目录 -->
+<h1 id="Python-Comprehensive-Syntax-Review"><a class="headerlink" href="#Python-Comprehensive-Syntax-Review" title="Python 综合语法回顾"></a>Python 综合语法回顾</h1><hr/>
 <ul>
 <li>数据类型<ul>
 <li>数字</li>
@@ -166,793 +128,402 @@
 <li>map 和 filter</li>
 <li>方法</li>
 </ul>
-<hr>
-<h2 id="Data-types"><a href="#Data-types" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="Numbers"><a href="#Numbers" class="headerlink" title="数字"></a>数字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<hr/>
+<h2 id="Data-types"><a class="headerlink" href="#Data-types" title="数据类型"></a>数据类型</h2><h3 id="Numbers"><a class="headerlink" href="#Numbers" title="数字"></a>数字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">1</span></span><br/></pre></td></tr></table></figure>
 <pre><code>2
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> * <span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> * <span class="number">3</span></span><br/></pre></td></tr></table></figure>
 <pre><code>3
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> / <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> / <span class="number">2</span></span><br/></pre></td></tr></table></figure>
 <pre><code>0.5
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> ** <span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> ** <span class="number">4</span></span><br/></pre></td></tr></table></figure>
 <pre><code>16
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> % <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> % <span class="number">2</span></span><br/></pre></td></tr></table></figure>
 <pre><code>0
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> % <span class="number">2</span></span><br/></pre></td></tr></table></figure>
 <pre><code>1
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">2</span> + <span class="number">3</span>) * (<span class="number">5</span> + <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">(<span class="number">2</span> + <span class="number">3</span>) * (<span class="number">5</span> + <span class="number">5</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>50
 </code></pre>
-<h3 id="Variable-Assignment"><a href="#Variable-Assignment" class="headerlink" title="变量赋值"></a>变量赋值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不能以数字或特殊字符开头</span></span><br><span class="line">name_of_var = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">2</span></span><br><span class="line">y = <span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = x + y</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h3 id="Variable-Assignment"><a class="headerlink" href="#Variable-Assignment" title="变量赋值"></a>变量赋值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不能以数字或特殊字符开头</span></span><br/><span class="line">name_of_var = <span class="number">2</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line">x = <span class="number">2</span></span><br/><span class="line">y = <span class="number">3</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">z = x + y</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">z</span><br/></pre></td></tr></table></figure>
 <pre><code>5
 </code></pre>
-<h3 id="Strings"><a href="#Strings" class="headerlink" title="字符串"></a>字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;single quotes&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;single quotes&#39;
+<h3 id="Strings"><a class="headerlink" href="#Strings" title="字符串"></a>字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="string">'single quotes'</span></span><br/></pre></td></tr></table></figure>
+<pre><code>'single quotes'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;double quotes&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;double quotes&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="string">"double quotes"</span></span><br/></pre></td></tr></table></figure>
+<pre><code>'double quotes'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; wrap lot&#x27;s of other quotes&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&quot; wrap lot&#39;s of other quotes&quot;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="string">" wrap lot's of other quotes"</span></span><br/></pre></td></tr></table></figure>
+<pre><code>" wrap lot's of other quotes"
 </code></pre>
-<h3 id="Printing"><a href="#Printing" class="headerlink" title="打印"></a>打印</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">&#x27;hello&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;hello&#39;
+<h3 id="Printing"><a class="headerlink" href="#Printing" title="打印"></a>打印</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">x = <span class="string">'hello'</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">x</span><br/></pre></td></tr></table></figure>
+<pre><code>'hello'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(x)</span><br/></pre></td></tr></table></figure>
 <pre><code>hello
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">12</span></span><br><span class="line">name = <span class="string">&#x27;Sam&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;My number is: &#123;one&#125;, and my name is: &#123;two&#125;, and more &#123;one&#125;&#x27;</span>.<span class="built_in">format</span>(one=num,two=name))</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line">num = <span class="number">12</span></span><br/><span class="line">name = <span class="string">'Sam'</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">'My number is: {one}, and my name is: {two}, and more {one}'</span>.<span class="built_in">format</span>(one=num,two=name))</span><br/></pre></td></tr></table></figure>
 <pre><code>My number is: 12, and my name is: Sam, and more 12
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;My number is: &#123;&#125;, and my name is: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(num,name))</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">'My number is: {}, and my name is: {}'</span>.<span class="built_in">format</span>(num,name))</span><br/></pre></td></tr></table></figure>
 <pre><code>My number is: 12, and my name is: Sam
 </code></pre>
-<h3 id="Lists"><a href="#Lists" class="headerlink" title="列表"></a>列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h3 id="Lists"><a class="headerlink" href="#Lists" title="列表"></a>列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br/></pre></td></tr></table></figure>
 <pre><code>[1, 2, 3]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;hi&#x27;</span>,<span class="number">1</span>,[<span class="number">1</span>,<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;hi&#39;, 1, [1, 2]]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">[<span class="string">'hi'</span>,<span class="number">1</span>,[<span class="number">1</span>,<span class="number">2</span>]]</span><br/></pre></td></tr></table></figure>
+<pre><code>['hi', 1, [1, 2]]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list.append(<span class="string">&#x27;d&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list.append(<span class="string">'d'</span>)</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list</span><br/></pre></td></tr></table></figure>
+<pre><code>['a', 'b', 'c', 'd']
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;a&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">0</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>'a'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;b&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">1</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>'b'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">1</span>:]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">1</span>:]</span><br/></pre></td></tr></table></figure>
+<pre><code>['b', 'c', 'd']
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list[:<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;a&#39;]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list[:<span class="number">1</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>['a']
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">0</span>] = <span class="string">&#x27;NEW&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;NEW&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list[<span class="number">0</span>] = <span class="string">'NEW'</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_list</span><br/></pre></td></tr></table></figure>
+<pre><code>['NEW', 'b', 'c', 'd']
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nest = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">4</span>,<span class="number">5</span>,[<span class="string">&#x27;target&#x27;</span>]]]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nest[<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[4, 5, [&#39;target&#39;]]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">nest = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">4</span>,<span class="number">5</span>,[<span class="string">'target'</span>]]]</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">nest[<span class="number">3</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>[4, 5, ['target']]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nest[<span class="number">3</span>][<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;target&#39;]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">nest[<span class="number">3</span>][<span class="number">2</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>['target']
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nest[<span class="number">3</span>][<span class="number">2</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;target&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">nest[<span class="number">3</span>][<span class="number">2</span>][<span class="number">0</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>'target'
 </code></pre>
-<h3 id="Dictionaries"><a href="#Dictionaries" class="headerlink" title="字典"></a>字典</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">&#x27;key1&#x27;</span>:<span class="string">&#x27;item1&#x27;</span>,<span class="string">&#x27;key2&#x27;</span>:<span class="string">&#x27;item2&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#123;&#39;key1&#39;: &#39;item1&#39;, &#39;key2&#39;: &#39;item2&#39;&#125;
+<h3 id="Dictionaries"><a class="headerlink" href="#Dictionaries" title="字典"></a>字典</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d = {<span class="string">'key1'</span>:<span class="string">'item1'</span>,<span class="string">'key2'</span>:<span class="string">'item2'</span>}</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d</span><br/></pre></td></tr></table></figure>
+<pre><code>{'key1': 'item1', 'key2': 'item2'}
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d[<span class="string">&#x27;key1&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;item1&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d[<span class="string">'key1'</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>'item1'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d[<span class="string">&#x27;key 3&#x27;</span>] = <span class="string">&#x27;item3&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d[<span class="string">&#x27;key 3&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;item3&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d[<span class="string">'key 3'</span>] = <span class="string">'item3'</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d[<span class="string">'key 3'</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>'item3'
 </code></pre>
 <p>支持嵌套字典</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2 = &#123;<span class="string">&#x27;k1&#x27;</span>:d, <span class="string">&#x27;k2&#x27;</span>: d&#125;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(d2) <span class="comment"># 字典不保证顺序，只存储键和值。</span></span><br></pre></td></tr></table></figure>
-
-<pre><code>&#123;&#39;k1&#39;: &#123;&#39;key1&#39;: &#39;item1&#39;, &#39;key2&#39;: &#39;item2&#39;, &#39;key 3&#39;: &#39;item3&#39;&#125;, &#39;k2&#39;: &#123;&#39;key1&#39;: &#39;item1&#39;, &#39;key2&#39;: &#39;item2&#39;, &#39;key 3&#39;: &#39;item3&#39;&#125;&#125;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d2 = {<span class="string">'k1'</span>:d, <span class="string">'k2'</span>: d}</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(d2) <span class="comment"># 字典不保证顺序，只存储键和值。</span></span><br/></pre></td></tr></table></figure>
+<pre><code>{'k1': {'key1': 'item1', 'key2': 'item2', 'key 3': 'item3'}, 'k2': {'key1': 'item1', 'key2': 'item2', 'key 3': 'item3'}}
 </code></pre>
-<h3 id="Booleans"><a href="#Booleans" class="headerlink" title="布尔值"></a>布尔值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<h3 id="Booleans"><a class="headerlink" href="#Booleans" title="布尔值"></a>布尔值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="literal">True</span></span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="literal">False</span></span><br/></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
-<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) </span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h3 id="元组"><a class="headerlink" href="#元组" title="元组"></a>元组</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">t = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) </span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">t[<span class="number">0</span>]</span><br/></pre></td></tr></table></figure>
 <pre><code>1
 </code></pre>
 <p>元组是不可变的。</p>
 <p>你不能修改元组中的元素，示例如下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t[<span class="number">0</span>] = <span class="string">&#x27;NEW&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">t[<span class="number">0</span>] = <span class="string">'NEW'</span></span><br/></pre></td></tr></table></figure>
 <pre><code>---------------------------------------------------------------------------
 
 TypeError                                 Traceback (most recent call 最后一个)
 
 &lt;ipython-input-44-97e4e33b36c2&gt; in &lt;module&gt;()
-----&gt; 1 t[0] = &#39;NEW&#39;
+----&gt; 1 t[0] = 'NEW'
 
 
-TypeError: &#39;tuple&#39; object does not support item assignment
+TypeError: 'tuple' object does not support item assignment
 </code></pre>
-<h3 id="Sets"><a href="#Sets" class="headerlink" title="集合"></a>集合</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#123;1, 2, 3&#125;
+<h3 id="Sets"><a class="headerlink" href="#Sets" title="集合"></a>集合</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>}</span><br/></pre></td></tr></table></figure>
+<pre><code>{1, 2, 3}
 </code></pre>
 <p>set 会返回去重后的集合</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#123;1, 2, 3&#125;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>}</span><br/></pre></td></tr></table></figure>
+<pre><code>{1, 2, 3}
 </code></pre>
 <p>集合相关方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.add(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
-
-<pre><code>&#123;1, 2, 3, 5&#125;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">s = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>}</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line">s.add(<span class="number">5</span>)</span><br/><span class="line"><span class="built_in">print</span>(s)</span><br/></pre></td></tr></table></figure>
+<pre><code>{1, 2, 3, 5}
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.remove(<span class="number">5</span>) <span class="comment"># 注意：remove/add 会原地修改集合 s。</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
-
-<pre><code>&#123;1, 2, 3&#125;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line">s.remove(<span class="number">5</span>) <span class="comment"># 注意：remove/add 会原地修改集合 s。</span></span><br/><span class="line"><span class="built_in">print</span>(s)</span><br/></pre></td></tr></table></figure>
+<pre><code>{1, 2, 3}
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Comparison-Operators"><a href="#Comparison-Operators" class="headerlink" title="比较运算符"></a>比较运算符</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &gt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"></span><br/></pre></td></tr></table></figure>
+<h2 id="Comparison-Operators"><a class="headerlink" href="#Comparison-Operators" title="比较运算符"></a>比较运算符</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &gt; <span class="number">2</span></span><br/></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &lt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &lt; <span class="number">2</span></span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &gt;= <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &gt;= <span class="number">1</span></span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &lt;= <span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &lt;= <span class="number">4</span></span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="number">1</span> <span class="comment"># &#x27;=&#x27; is an assignment operator</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="number">1</span> <span class="comment"># '=' is an assignment operator</span></span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;hi&#x27;</span> == <span class="string">&#x27;bye&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="string">'hi'</span> == <span class="string">'bye'</span></span><br/></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
-<h2 id="Logic-Operators"><a href="#Logic-Operators" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> &gt; <span class="number">2</span>) <span class="keyword">与</span> (<span class="number">2</span> &lt; <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="Logic-Operators"><a class="headerlink" href="#Logic-Operators" title="逻辑运算符"></a>逻辑运算符</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> &gt; <span class="number">2</span>) <span class="keyword">与</span> (<span class="number">2</span> &lt; <span class="number">3</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> &gt; <span class="number">2</span>) <span class="keyword">或</span> (<span class="number">2</span> &lt; <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> &gt; <span class="number">2</span>) <span class="keyword">或</span> (<span class="number">2</span> &lt; <span class="number">3</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> == <span class="number">2</span>) <span class="keyword">或</span> (<span class="number">2</span> == <span class="number">3</span>) <span class="keyword">或</span> (<span class="number">4</span> == <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> == <span class="number">2</span>) <span class="keyword">或</span> (<span class="number">2</span> == <span class="number">3</span>) <span class="keyword">或</span> (<span class="number">4</span> == <span class="number">4</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<h2 id="if-elif-else-Statements"><a href="#if-elif-else-Statements" class="headerlink" title="if/elif/else 语句"></a>if/elif/else 语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &lt; <span class="number">2</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;对！&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<h2 id="if-elif-else-Statements"><a class="headerlink" href="#if-elif-else-Statements" title="if/elif/else 语句"></a>if/elif/else 语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &lt; <span class="number">2</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'对！'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>对！
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &lt; <span class="number">2</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;对！&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &lt; <span class="number">2</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'对！'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>对！
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &lt; <span class="number">2</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;第一个&#x27;</span>)</span><br><span class="line"><span class="keyword">否则</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;最后一个&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/><span class="line">4</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &lt; <span class="number">2</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'第一个'</span>)</span><br/><span class="line"><span class="keyword">否则</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'最后一个'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>第一个
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &gt; <span class="number">2</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;第一个&#x27;</span>)</span><br><span class="line"><span class="keyword">否则</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;最后一个&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/><span class="line">4</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> &gt; <span class="number">2</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'第一个'</span>)</span><br/><span class="line"><span class="keyword">否则</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'最后一个'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>最后一个
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> == <span class="number">2</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;第一个&#x27;</span>)</span><br><span class="line"><span class="keyword">否则如果</span> <span class="number">3</span> == <span class="number">3</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;中间&#x27;</span>)</span><br><span class="line"><span class="keyword">否则</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Last&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/><span class="line">4</span><br/><span class="line">5</span><br/><span class="line">6</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span> == <span class="number">2</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'第一个'</span>)</span><br/><span class="line"><span class="keyword">否则如果</span> <span class="number">3</span> == <span class="number">3</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'中间'</span>)</span><br/><span class="line"><span class="keyword">否则</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'Last'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>中间
 </code></pre>
 <p>另外：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>((<span class="number">3</span>&gt;<span class="number">2</span>) + <span class="number">1</span>); <span class="comment"># 3&gt;2 gives us true, and true + 1 gives us 2.</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>((<span class="number">3</span>&gt;<span class="number">2</span>) + <span class="number">1</span>); <span class="comment"># 3&gt;2 gives us true, and true + 1 gives us 2.</span></span><br/></pre></td></tr></table></figure>
 <pre><code>2
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>((<span class="number">3</span>&gt;<span class="number">4</span>) + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>((<span class="number">3</span>&gt;<span class="number">4</span>) + <span class="number">1</span>);</span><br/></pre></td></tr></table></figure>
 <pre><code>1
 </code></pre>
 <p>Follwoing example shows 1 and 0 are the embeded val for bool.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;bool 为 false&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> <span class="number">1</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;bool 为 true&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/><span class="line">4</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">"bool 为 false"</span>);</span><br/><span class="line"><span class="keyword">if</span> <span class="number">1</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'bool 为 true'</span>);</span><br/></pre></td></tr></table></figure>
 <pre><code>bool 为 true
 </code></pre>
-<h2 id="for-Loops"><a href="#for-Loops" class="headerlink" title="for 循环"></a>for 循环</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> seq: <span class="comment"># for 循环允许你遍历序列；</span></span><br><span class="line">    <span class="built_in">print</span>(item)</span><br></pre></td></tr></table></figure>
-
+<h2 id="for-Loops"><a class="headerlink" href="#for-Loops" title="for 循环"></a>for 循环</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">seq = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> seq: <span class="comment"># for 循环允许你遍历序列；</span></span><br/><span class="line">    <span class="built_in">print</span>(item)</span><br/></pre></td></tr></table></figure>
 <pre><code>1
 2
 3
 4
 5
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> seq:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Yep&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> seq:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'Yep'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>Yep
 Yep
 Yep
 Yep
 Yep
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 果冻 <span class="keyword">in</span> seq:</span><br><span class="line">    <span class="built_in">print</span>(果冻+果冻)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 果冻 <span class="keyword">in</span> seq:</span><br/><span class="line">    <span class="built_in">print</span>(果冻+果冻)</span><br/></pre></td></tr></table></figure>
 <pre><code>2
 4
 6
 8
 10
 </code></pre>
-<h2 id="while-Loops"><a href="#while-Loops" class="headerlink" title="while 循环"></a>while 循环</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i &lt; <span class="number">5</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;i is: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(i))</span><br><span class="line">    i = i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="while-Loops"><a class="headerlink" href="#while-Loops" title="while 循环"></a>while 循环</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/><span class="line">4</span><br/></pre></td><td class="code"><pre><span class="line">i = <span class="number">1</span></span><br/><span class="line"><span class="keyword">while</span> i &lt; <span class="number">5</span>:</span><br/><span class="line">    <span class="built_in">print</span>(<span class="string">'i is: {}'</span>.<span class="built_in">format</span>(i))</span><br/><span class="line">    i = i+<span class="number">1</span></span><br/></pre></td></tr></table></figure>
 <pre><code>i is: 1
 i is: 2
 i is: 3
 i is: 4
 </code></pre>
-<h2 id="range"><a href="#range" class="headerlink" title="range()"></a>range()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">range</span>(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="range"><a class="headerlink" href="#range" title="range()"></a>range()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">range</span>(<span class="number">5</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>range(0, 5)
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br/><span class="line">    <span class="built_in">print</span>(i)</span><br/></pre></td></tr></table></figure>
 <pre><code>0
 1
 2
 3
 4
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">5</span>)) <span class="comment"># 让它成为一个序列；</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">5</span>)) <span class="comment"># 让它成为一个序列；</span></span><br/></pre></td></tr></table></figure>
 <pre><code>[0, 1, 2, 3, 4]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>,<span class="number">2</span>)) <span class="comment">#making a list from 0 to 10 with 2 stepss</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>,<span class="number">2</span>)) <span class="comment">#making a list from 0 to 10 with 2 stepss</span></span><br/></pre></td></tr></table></figure>
 <pre><code>[0, 2, 4, 6, 8]
 </code></pre>
-<h2 id="list-comprehension"><a href="#list-comprehension" class="headerlink" title="列表推导式"></a>列表推导式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">out = []</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> x:</span><br><span class="line">    out.append(item**<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(out)</span><br></pre></td></tr></table></figure>
-
+<h2 id="list-comprehension"><a class="headerlink" href="#list-comprehension" title="列表推导式"></a>列表推导式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/><span class="line">4</span><br/></pre></td><td class="code"><pre><span class="line">out = []</span><br/><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> x:</span><br/><span class="line">    out.append(item**<span class="number">2</span>)</span><br/><span class="line"><span class="built_in">print</span>(out)</span><br/></pre></td></tr></table></figure>
 <pre><code>[1, 4, 9, 16]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[item**<span class="number">2</span> <span class="keyword">for</span> item <span class="keyword">in</span> x] <span class="comment"># 列表推导式</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">[item**<span class="number">2</span> <span class="keyword">for</span> item <span class="keyword">in</span> x] <span class="comment"># 列表推导式</span></span><br/></pre></td></tr></table></figure>
 <pre><code>[1, 4, 9, 16]
 </code></pre>
-<h2 id="functions"><a href="#functions" class="headerlink" title="函数"></a>函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_func</span>(<span class="params">param1=<span class="string">&#x27;default&#x27;</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    文档字符串写在这里。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(param1)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_func <span class="comment"># 返回对象本身</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="functions"><a class="headerlink" href="#functions" title="函数"></a>函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/><span class="line">4</span><br/><span class="line">5</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_func</span>(<span class="params">param1=<span class="string">'default'</span></span>):</span><br/><span class="line">    <span class="string">"""</span></span><br/><span class="line"><span class="string">    文档字符串写在这里。</span></span><br/><span class="line"><span class="string">    """</span></span><br/><span class="line">    <span class="built_in">print</span>(param1)</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_func <span class="comment"># 返回对象本身</span></span><br/></pre></td></tr></table></figure>
 <pre><code>&lt;function __main__.my_func&gt;
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_func() <span class="comment"># 调用函数</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_func() <span class="comment"># 调用函数</span></span><br/></pre></td></tr></table></figure>
 <pre><code>default
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_func(<span class="string">&#x27;新参数&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_func(<span class="string">'新参数'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>新参数
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_func(param1=<span class="string">&#x27;新参数&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">my_func(param1=<span class="string">'新参数'</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>新参数
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">平方</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">out = square(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(out)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">平方</span>(<span class="params">x</span>):</span><br/><span class="line">    <span class="keyword">return</span> x**<span class="number">2</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">out = square(<span class="number">2</span>)</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(out)</span><br/></pre></td></tr></table></figure>
 <pre><code>4
 </code></pre>
-<h2 id="lambda-expressions"><a href="#lambda-expressions" class="headerlink" title="lambda 表达式"></a>lambda 表达式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">times2</span>(<span class="params">var</span>):</span><br><span class="line">    <span class="keyword">return</span> var*<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">times2(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="lambda-expressions"><a class="headerlink" href="#lambda-expressions" title="lambda 表达式"></a>lambda 表达式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">times2</span>(<span class="params">var</span>):</span><br/><span class="line">    <span class="keyword">return</span> var*<span class="number">2</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">times2(<span class="number">2</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>4
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lambda</span> var: var*<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">lambda</span> var: var*<span class="number">2</span></span><br/></pre></td></tr></table></figure>
 <pre><code>&lt;function __main__.&lt;lambda&gt;(var)&gt;
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = <span class="keyword">lambda</span> var : var*<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(t(<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line">t = <span class="keyword">lambda</span> var : var*<span class="number">2</span></span><br/><span class="line"><span class="built_in">print</span>(t(<span class="number">2</span>));</span><br/></pre></td></tr></table></figure>
 <pre><code>4
 </code></pre>
-<h2 id="map-and-filter"><a href="#map-and-filter" class="headerlink" title="map 和 filter"></a>map 和 filter</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>(times2,seq) <span class="comment"># 将函数映射到列表中的每个元素 </span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="map-and-filter"><a class="headerlink" href="#map-and-filter" title="map 和 filter"></a>map 和 filter</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">seq = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>(times2,seq) <span class="comment"># 将函数映射到列表中的每个元素 </span></span><br/></pre></td></tr></table></figure>
 <pre><code>&lt;map at 0x105316748&gt;
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">map</span>(times2,seq))</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">map</span>(times2,seq))</span><br/></pre></td></tr></table></figure>
 <pre><code>[2, 4, 6, 8, 10]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> var: var*<span class="number">2</span>,seq)) <span class="comment"># lambda 表达式可以减少代码书写</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> var: var*<span class="number">2</span>,seq)) <span class="comment"># lambda 表达式可以减少代码书写</span></span><br/></pre></td></tr></table></figure>
 <pre><code>[2, 4, 6, 8, 10]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">filter</span>(<span class="keyword">lambda</span> item: item%<span class="number">2</span> == <span class="number">0</span>,seq)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">filter</span>(<span class="keyword">lambda</span> item: item%<span class="number">2</span> == <span class="number">0</span>,seq)</span><br/></pre></td></tr></table></figure>
 <pre><code>&lt;filter at 0x105316ac8&gt;
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="keyword">lambda</span> item: item%<span class="number">2</span> == <span class="number">0</span>,seq)) <span class="comment"># if 函数对每个元素进行判断</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="keyword">lambda</span> item: item%<span class="number">2</span> == <span class="number">0</span>,seq)) <span class="comment"># if 函数对每个元素进行判断</span></span><br/></pre></td></tr></table></figure>
 <pre><code>[2, 4]
 </code></pre>
-<h2 id="methods"><a href="#methods" class="headerlink" title="方法"></a>方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st = <span class="string">&#x27;hello my name is Sam&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st.lower() <span class="comment"># 你可以输入 st. 查看所有可用方法</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;hello my name is sam&#39;
+<h2 id="methods"><a class="headerlink" href="#methods" title="方法"></a>方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">st = <span class="string">'hello my name is Sam'</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">st.lower() <span class="comment"># 你可以输入 st. 查看所有可用方法</span></span><br/></pre></td></tr></table></figure>
+<pre><code>'hello my name is sam'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st.upper()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;HELLO MY NAME IS SAM&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">st.upper()</span><br/></pre></td></tr></table></figure>
+<pre><code>'HELLO MY NAME IS SAM'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st.split() <span class="comment"># splits the string on the white space if there&#x27;s no input.</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;hello&#39;, &#39;my&#39;, &#39;name&#39;, &#39;is&#39;, &#39;Sam&#39;]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">st.split() <span class="comment"># splits the string on the white space if there's no input.</span></span><br/></pre></td></tr></table></figure>
+<pre><code>['hello', 'my', 'name', 'is', 'Sam']
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tweet = <span class="string">&#x27;Go Sports! #Sports&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tweet.split(<span class="string">&#x27;#&#x27;</span>) </span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&#39;Go Sports! &#39;, &#39;Sports&#39;]
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">tweet = <span class="string">'Go Sports! #Sports'</span></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">tweet.split(<span class="string">'#'</span>) </span><br/></pre></td></tr></table></figure>
+<pre><code>['Go Sports! ', 'Sports']
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tweet.split(<span class="string">&#x27;#&#x27;</span>)[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#39;Sports&#39;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">tweet.split(<span class="string">'#'</span>)[<span class="number">1</span>]</span><br/></pre></td></tr></table></figure>
+<pre><code>'Sports'
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#123;&#39;key1&#39;: &#39;item1&#39;, &#39;key2&#39;: &#39;item2&#39;&#125;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d</span><br/></pre></td></tr></table></figure>
+<pre><code>{'key1': 'item1', 'key2': 'item2'}
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.keys()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>dict_keys([&#39;key2&#39;, &#39;key1&#39;])
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d.keys()</span><br/></pre></td></tr></table></figure>
+<pre><code>dict_keys(['key2', 'key1'])
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.items()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>dict_items([(&#39;key2&#39;, &#39;item2&#39;), (&#39;key1&#39;, &#39;item1&#39;)])
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">d.items()</span><br/></pre></td></tr></table></figure>
+<pre><code>dict_items([('key2', 'item2'), ('key1', 'item1')])
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lst.pop() <span class="comment"># 弹出最后一个元素</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">lst.pop() <span class="comment"># 弹出最后一个元素</span></span><br/></pre></td></tr></table></figure>
 <pre><code>3
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lst</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">lst</span><br/></pre></td></tr></table></figure>
 <pre><code>[1, 2]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lst.pop(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">lst.pop(<span class="number">0</span>)</span><br/></pre></td></tr></table></figure>
 <pre><code>1
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lst</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line">lst</span><br/></pre></td></tr></table></figure>
 <pre><code>[2]
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;x&#x27;</span> <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"></span><br/></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/></pre></td><td class="code"><pre><span class="line"><span class="string">'x'</span> <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br/></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;x&#x27;</span> <span class="keyword">in</span> [<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>,<span class="string">&#x27;z&#x27;</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="string">'x'</span> <span class="keyword">in</span> [<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'z'</span>]</span><br/><span class="line"></span><br/></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
 <p>元组解包：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [(<span class="number">1</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">4</span>), (<span class="number">5</span>,<span class="number">6</span>)]</span><br><span class="line"><span class="keyword">for</span> a,b <span class="keyword">in</span> x:</span><br><span class="line">    <span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/><span class="line">3</span><br/></pre></td><td class="code"><pre><span class="line">x = [(<span class="number">1</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">4</span>), (<span class="number">5</span>,<span class="number">6</span>)]</span><br/><span class="line"><span class="keyword">for</span> a,b <span class="keyword">in</span> x:</span><br/><span class="line">    <span class="built_in">print</span>(a)</span><br/></pre></td></tr></table></figure>
 <pre><code>1
 3
 5
 </code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> a,b <span class="keyword">in</span> x :</span><br><span class="line">    <span class="built_in">print</span>(b);</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br/><span class="line">2</span><br/></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> a,b <span class="keyword">in</span> x :</span><br/><span class="line">    <span class="built_in">print</span>(b);</span><br/></pre></td></tr></table></figure>
 <pre><code>2
 4
 6
 </code></pre>
-
-        <!-- 分类文章 -->
-        
-          <div class="post-categoris-bottom">
-            <div class="post-categoris-name">计算机科学</div>
-            <ul>
-            
-            
-              
-            
-            
-            
-              
-            
-            
-            
-              
-            
-            
-            
-              
-                <li class="me base">
-                  <a  href="/2022/09/11/Python%20Crash%20Course/" class="post-categoris-bottom-link">
-                  Python 数据科学与机器学习 - 1. Python 复习
-                </a>
-                </li>
-              
-              
-            
-            
-            </ul>
-
-          </div>
-
-        
-      </div>
-      <div class="post-content-inner-space">
-        
-          <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Data-types"><span class="space-toc-text">Data types</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Comparison-Operators"><span class="space-toc-text">Comparison Operators</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Logic-Operators"><span class="space-toc-text">Logic Operators</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#if-elif-else-Statements"><span class="space-toc-text">if,elif, else Statements</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#for-Loops"><span class="space-toc-text">for Loops</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#while-Loops"><span class="space-toc-text">while Loops</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#range"><span class="space-toc-text">range()</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#list-comprehension"><span class="space-toc-text">list comprehension</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#functions"><span class="space-toc-text">functions</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#lambda-expressions"><span class="space-toc-text">lambda expressions</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#map-and-filter"><span class="space-toc-text">map and filter</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#methods"><span class="space-toc-text">methods</span></a></li></ol>
-           </div>
-        
-      </div>
-   </div>
-    <!-- 评论 -->
-    
-  </div>
+<!-- 分类文章 -->
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">计算机科学</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2022/09/11/Python%20Crash%20Course/index-zh.html">1. Python 复习</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Data-types"><span class="space-toc-text">Data types</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Comparison-Operators"><span class="space-toc-text">Comparison Operators</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Logic-Operators"><span class="space-toc-text">Logic Operators</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#if-elif-else-Statements"><span class="space-toc-text">if,elif, else Statements</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#for-Loops"><span class="space-toc-text">for Loops</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#while-Loops"><span class="space-toc-text">while Loops</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#range"><span class="space-toc-text">range()</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#list-comprehension"><span class="space-toc-text">list comprehension</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#functions"><span class="space-toc-text">functions</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#lambda-expressions"><span class="space-toc-text">lambda expressions</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#map-and-filter"><span class="space-toc-text">map and filter</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#methods"><span class="space-toc-text">methods</span></a></li></ol>
+</div>
+</div>
+</div>
+<!-- 评论 -->
+</div>
 </article>
-  </div>
 </div>
-
-
-
+</div>
 <!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
-
-  <div class="footer-outer animate__animated  animate__fadeInUp">
-    <div class="footer-inner">
-    <div class="footer-text">
-      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
-
-    </div>
-    <div class="footer-contact">
-    <ul class="footer-ul">
-        
-        <li class="footer-li">
-            <a href="https://github.com/RongyanYuan" target="_blank">
-                <i class="ri-github-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-                <i class="ri-mail-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-                <i class="ri-linkedin-box-line"></i>
-            </a>
-        </li>
-        
-    </ul>
-    </div>
-    </div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
 </div>
-
-
-
-
-
-
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
-
-
-
 </body>
 </html>

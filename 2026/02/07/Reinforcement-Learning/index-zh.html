@@ -1,282 +1,208 @@
 
-
-
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  03. 强化学习 |    榕言的博客</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <!-- 标签页图标 -->
-  
-
-  <!-- 图标库 -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- 动画库 -->
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  
-  <!-- css文件 -->
-  
-<link rel="stylesheet" href="/css/white.css">
-
-  <!-- 代码高亮 -->
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  03. 强化学习 |    榕言的博客</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<!-- 标签页图标 -->
+<!-- 图标库 -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<!-- 动画库 -->
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<!-- css文件 -->
+<link href="/css/white.css" rel="stylesheet"/>
+<!-- 代码高亮 -->
+<meta content="Hexo 6.2.0" name="generator"/></link></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
           榕言的博客
         </a>
-        
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-        
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/ai-fundamentals/index-zh.html">← 人工智能基础</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               首页
             </li>
-          </a>
-        
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               博客
             </li>
-          </a>
-        
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              分类
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
-             </div>
-          </li>
-        
-        
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-
-          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-            <a href="/2026/02/07/Reinforcement-Learning/index.html">EN</a> |
-            <a href="/2026/02/07/Reinforcement-Learning/index-zh.html">中文</a>
-          </li>
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        
-        </ul>
-
-      </div>
-
-    </div>
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/07/Reinforcement-Learning/index.html">EN</a> |
+            <a href="/2026/02/07/Reinforcement-Learning/index-zh.html">中文</a>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
         榕言的博客
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-
-  </div>
-
-  <div class="mobile-menu-div">
-  
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>首页</span>
-      </div>
-    </a>
-  
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>博客</span>
-      </div>
-    </a>
-  
-  
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/07/Reinforcement-Learning/index.html">EN</a> |
+</div>
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>首页</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>博客</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/07/Reinforcement-Learning/index.html">EN</a> |
       <a href="/2026/02/07/Reinforcement-Learning/index-zh.html">中文</a>
-    </div>
-
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-    
-  </div>
-
-
 </div>
-
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    
+<div class="body-inner">
 <article class="post-inner">
-  <div class="post-content-outer">
-    <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">03. 强化学习</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Feb 07 2026</div>
-      
-    </div>
-    <div class="post-content-inner">
-      <div class="post-content-inner-space">
-
-      </div>
-      <div class="post-content-main animate__animated  animate__fadeInUp">
-        <!-- top型目录 -->
-
-        <h1 id="RL"><a href="#RL" class="headerlink" title="03. 强化学习"></a>03. 强化学习</h1>
-        <p>强化学习通过在真实或模拟环境中持续从试错与反馈中学习，提升模型的决策能力，使系统能够自动优化策略，适用于个性化推荐、运营决策优化等复杂业务场景。</p>
-
-        <h2 id="What-Is-RL"><a href="#What-Is-RL" class="headerlink" title="What Reinforcement Learning Is"></a>1. 什么是强化学习</h2>
-        <p>强化学习研究智能体如何学习<strong>策略</strong>与环境交互，以最大化长期回报：</p>
-        <p>\[\max_\pi \; \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \right]\]</p>
-        <p>其中 \(\gamma \in (0,1)\) 为折扣因子。</p>
-
-        <h2 id="Loop"><a href="#Loop" class="headerlink" title="The Basic Interaction Loop"></a>2. 基本交互循环</h2>
-        <p>在每个时间步：</p>
-        <p>\[s_t \rightarrow a_t \rightarrow r_t \rightarrow s_{t+1}\]</p>
-        <p>动作从策略中采样：</p>
-        <p>\[a_t \sim \pi(a \mid s_t)\]</p>
-
-        <h2 id="Core"><a href="#Core" class="headerlink" title="Core Components"></a>3. 核心组成</h2>
-        <ul>
-          <li><strong>状态 \(s\):</strong> 环境的观测</li>
-          <li><strong>动作 \(a\):</strong> 智能体采取的行动</li>
-          <li><strong>策略 \(\pi(a \mid s)\):</strong> 动作的概率分布</li>
-          <li><strong>奖励 \(r\):</strong> 标量反馈</li>
-          <li><strong>价值函数:</strong> \(V^\pi(s) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s \right]\)</li>
-          <li><strong>动作价值函数:</strong> \(Q^\pi(s,a) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s, a_0 = a \right]\)</li>
-        </ul>
-
-        <h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Why RL Is Challenging"></a>4. 强化学习的挑战</h2>
-        <ul>
-          <li><strong>延迟奖励:</strong> 长期信用分配困难</li>
-          <li><strong>探索与利用:</strong> 在 \(\max_a Q(s,a)\) 与探索之间权衡</li>
-          <li><strong>非平稳数据:</strong> 策略依赖的状态分布</li>
-        </ul>
-
-        <h2 id="Categories"><a href="#Categories" class="headerlink" title="Main Categories"></a>5. 强化学习的主要类别</h2>
-        <ul>
-          <li><strong>价值方法:</strong> \[Q(s,a) \leftarrow Q(s,a) + \alpha \bigl[ r + \gamma \max_{a'} Q(s',a') - Q(s,a) \bigr]\]</li>
-          <li><strong>策略方法 (REINFORCE):</strong> \[\nabla_\theta J(\theta) = \mathbb{E}\left[ \nabla_\theta \log \pi_\theta(a \mid s) \, R \right]\]</li>
-          <li><strong>Actor–Critic 方法:</strong> \[\nabla_\theta J(\theta) = \mathbb{E}\left[ \nabla_\theta \log \pi_\theta(a \mid s) \, A(s,a) \right]\]</li>
-        </ul>
-
-        <h2 id="策略-Gradients"><a href="#策略-Gradients" class="headerlink" title="Intuition Behind 策略 Gradients"></a>6. 策略梯度直觉</h2>
-        <p>策略梯度会按动作的<strong>优势</strong>成比例提高其出现概率：</p>
-        <p>\[A(s,a) = Q(s,a) - V(s)\]</p>
-        <p>因此优于预期的动作会被强化。</p>
-
-        <h2 id="Applications"><a href="#Applications" class="headerlink" title="Practical Applications"></a>7. 实践应用</h2>
-        <ul>
-          <li>机器人与连续控制</li>
-          <li>博弈与规划</li>
-          <li>交通信号优化</li>
-          <li>资源分配</li>
-          <li>推荐系统（有限 RL 使用）</li>
-        </ul>
-
-        <h2 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Relationship with Deep Learning"></a>8. 与深度学习的关系</h2>
-        <p>深度神经网络可近似策略或价值函数：</p>
-        <p>\[\pi_\theta(a \mid s), \quad V_\phi(s), \quad Q_\psi(s,a)\]</p>
-        <p>从而使 RL 适用于高维状态空间。</p>
-
-        <h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Key Takeaway"></a>9. 关键结论</h2>
-        <p>强化学习通过最大化期望累计回报来优化决策：</p>
-        <p>\[\pi^* = \arg\max_\pi \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \right]\]</p>
-
-        <!-- 分类文章 -->
-        
-          <div class="post-categoris-bottom">
-            <div class="post-categoris-name">人工智能</div>
-            <ul>
-              <li class="me base">
-                <a  href="/2026/02/07/Reinforcement-Learning/" class="post-categoris-bottom-link">
-                  03. 强化学习
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        
-      </div><div class="post-content-inner-space">
-        
-          <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#What-Is-RL"><span class="space-toc-text">1. 什么是强化学习</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Loop"><span class="space-toc-text">2. 基本交互循环</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Core"><span class="space-toc-text">3. 核心组成</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Challenges"><span class="space-toc-text">4. 强化学习的挑战</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Categories"><span class="space-toc-text">5. 强化学习的主要类别</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#策略-Gradients"><span class="space-toc-text">6. 策略梯度直觉</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Applications"><span class="space-toc-text">7. 实践应用</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Deep-Learning"><span class="space-toc-text">8. 与深度学习的关系</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Takeaway"><span class="space-toc-text">9. 关键结论</span></a></li></ol>
-           </div>
-        </div>
-   </div>
-    <!-- 评论 -->
-    
-  </div>
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">03. 强化学习</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 07 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space">
+</div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<!-- top型目录 -->
+<h1 id="RL"><a class="headerlink" href="#RL" title="03. 强化学习"></a>03. 强化学习</h1>
+<p>强化学习通过在真实或模拟环境中持续从试错与反馈中学习，提升模型的决策能力，使系统能够自动优化策略，适用于个性化推荐、运营决策优化等复杂业务场景。</p>
+<h2 id="What-Is-RL"><a class="headerlink" href="#What-Is-RL" title="What Reinforcement Learning Is"></a>1. 什么是强化学习</h2>
+<p>强化学习研究智能体如何学习<strong>策略</strong>与环境交互，以最大化长期回报：</p>
+<p>\[\max_\pi \; \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \right]\]</p>
+<p>其中 \(\gamma \in (0,1)\) 为折扣因子。</p>
+<h2 id="Loop"><a class="headerlink" href="#Loop" title="The Basic Interaction Loop"></a>2. 基本交互循环</h2>
+<p>在每个时间步：</p>
+<p>\[s_t \rightarrow a_t \rightarrow r_t \rightarrow s_{t+1}\]</p>
+<p>动作从策略中采样：</p>
+<p>\[a_t \sim \pi(a \mid s_t)\]</p>
+<h2 id="Core"><a class="headerlink" href="#Core" title="Core Components"></a>3. 核心组成</h2>
+<ul>
+<li><strong>状态 \(s\):</strong> 环境的观测</li>
+<li><strong>动作 \(a\):</strong> 智能体采取的行动</li>
+<li><strong>策略 \(\pi(a \mid s)\):</strong> 动作的概率分布</li>
+<li><strong>奖励 \(r\):</strong> 标量反馈</li>
+<li><strong>价值函数:</strong> \(V^\pi(s) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s \right]\)</li>
+<li><strong>动作价值函数:</strong> \(Q^\pi(s,a) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s, a_0 = a \right]\)</li>
+</ul>
+<h2 id="Challenges"><a class="headerlink" href="#Challenges" title="Why RL Is Challenging"></a>4. 强化学习的挑战</h2>
+<ul>
+<li><strong>延迟奖励:</strong> 长期信用分配困难</li>
+<li><strong>探索与利用:</strong> 在 \(\max_a Q(s,a)\) 与探索之间权衡</li>
+<li><strong>非平稳数据:</strong> 策略依赖的状态分布</li>
+</ul>
+<h2 id="Categories"><a class="headerlink" href="#Categories" title="Main Categories"></a>5. 强化学习的主要类别</h2>
+<ul>
+<li><strong>价值方法:</strong> \[Q(s,a) \leftarrow Q(s,a) + \alpha \bigl[ r + \gamma \max_{a'} Q(s',a') - Q(s,a) \bigr]\]</li>
+<li><strong>策略方法 (REINFORCE):</strong> \[\nabla_\theta J(\theta) = \mathbb{E}\left[ \nabla_\theta \log \pi_\theta(a \mid s) \, R \right]\]</li>
+<li><strong>Actor–Critic 方法:</strong> \[\nabla_\theta J(\theta) = \mathbb{E}\left[ \nabla_\theta \log \pi_\theta(a \mid s) \, A(s,a) \right]\]</li>
+</ul>
+<h2 id="策略-Gradients"><a class="headerlink" href="#策略-Gradients" title="Intuition Behind 策略 Gradients"></a>6. 策略梯度直觉</h2>
+<p>策略梯度会按动作的<strong>优势</strong>成比例提高其出现概率：</p>
+<p>\[A(s,a) = Q(s,a) - V(s)\]</p>
+<p>因此优于预期的动作会被强化。</p>
+<h2 id="Applications"><a class="headerlink" href="#Applications" title="Practical Applications"></a>7. 实践应用</h2>
+<ul>
+<li>机器人与连续控制</li>
+<li>博弈与规划</li>
+<li>交通信号优化</li>
+<li>资源分配</li>
+<li>推荐系统（有限 RL 使用）</li>
+</ul>
+<h2 id="Deep-Learning"><a class="headerlink" href="#Deep-Learning" title="Relationship with Deep Learning"></a>8. 与深度学习的关系</h2>
+<p>深度神经网络可近似策略或价值函数：</p>
+<p>\[\pi_\theta(a \mid s), \quad V_\phi(s), \quad Q_\psi(s,a)\]</p>
+<p>从而使 RL 适用于高维状态空间。</p>
+<h2 id="Takeaway"><a class="headerlink" href="#Takeaway" title="Key Takeaway"></a>9. 关键结论</h2>
+<p>强化学习通过最大化期望累计回报来优化决策：</p>
+<p>\[\pi^* = \arg\max_\pi \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \right]\]</p>
+<!-- 分类文章 -->
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">人工智能</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/08/Multimodal/index-zh.html">04. 多模态技术与跨模态融合概述</a>
+</li>
+</ul>
+</div>
+</div><div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#What-Is-RL"><span class="space-toc-text">1. 什么是强化学习</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Loop"><span class="space-toc-text">2. 基本交互循环</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Core"><span class="space-toc-text">3. 核心组成</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Challenges"><span class="space-toc-text">4. 强化学习的挑战</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Categories"><span class="space-toc-text">5. 强化学习的主要类别</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#策略-Gradients"><span class="space-toc-text">6. 策略梯度直觉</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Applications"><span class="space-toc-text">7. 实践应用</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Deep-Learning"><span class="space-toc-text">8. 与深度学习的关系</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Takeaway"><span class="space-toc-text">9. 关键结论</span></a></li></ol>
+</div>
+</div>
+</div>
+<!-- 评论 -->
+</div>
 </article>
-  </div>
 </div>
-
-
-
+</div>
 <!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
-
-  <div class="footer-outer animate__animated  animate__fadeInUp">
-    <div class="footer-inner">
-    <div class="footer-text">
-    <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
-
-    </div>
-    <div class="footer-contact">
-    <ul class="footer-ul">
-        
-        <li class="footer-li">
-            <a href="https://github.com/RongyanYuan" target="_blank">
-                <i class="ri-github-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-                <i class="ri-mail-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-                <i class="ri-linkedin-box-line"></i>
-            </a>
-        </li>
-        
-    </ul>
-    </div>
-    </div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
 </div>
-
-
-
-
-
-
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
-
-
-
-
 <script>
   window.MathJax = {
     tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
@@ -284,6 +210,5 @@
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
 </body>
 </html>

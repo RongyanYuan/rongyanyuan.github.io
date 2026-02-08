@@ -1,268 +1,194 @@
 
-
-
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  02. Transformer |    榕言的博客</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <!-- 标签页图标 -->
-  
-
-  <!-- 图标库 -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- 动画库 -->
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  
-  <!-- css文件 -->
-  
-<link rel="stylesheet" href="/css/white.css">
-
-  <!-- 代码高亮 -->
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  02. Transformer |    榕言的博客</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<!-- 标签页图标 -->
+<!-- 图标库 -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<!-- 动画库 -->
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<!-- css文件 -->
+<link href="/css/white.css" rel="stylesheet"/>
+<!-- 代码高亮 -->
+<meta content="Hexo 6.2.0" name="generator"/></link></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
           榕言的博客
         </a>
-        
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-        
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/ai-fundamentals/index-zh.html">← 人工智能基础</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               首页
             </li>
-          </a>
-        
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               博客
             </li>
-          </a>
-        
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              分类
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
-             </div>
-          </li>
-        
-        
-        <a href="/search">
-          <li class="menu-li  animate__animated  animate__fadeInUp">
-            <i class="ri-search-line"></i>
-          </li>
-        </a>
-
-          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-            <a href="/2026/02/06/Transformer/index.html">EN</a> |
-            <a href="/2026/02/06/Transformer/index-zh.html">中文</a>
-          </li>
-        
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        
-        </ul>
-
-      </div>
-
-    </div>
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/06/Transformer/index.html">EN</a> |
+            <a href="/2026/02/06/Transformer/index-zh.html">中文</a>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
         榕言的博客
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-
-  </div>
-
-  <div class="mobile-menu-div">
-  
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>首页</span>
-      </div>
-    </a>
-  
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>博客</span>
-      </div>
-    </a>
-  
-  
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/06/Transformer/index.html">EN</a> |
+</div>
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>首页</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>博客</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/06/Transformer/index.html">EN</a> |
       <a href="/2026/02/06/Transformer/index-zh.html">中文</a>
-    </div>
-
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-    
-  </div>
-
-
 </div>
-
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    
+<div class="body-inner">
 <article class="post-inner">
-  <div class="post-content-outer">
-    <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">02. Transformer</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Feb 06 2026</div>
-      
-    </div>
-    <div class="post-content-inner">
-      <div class="post-content-inner-space">
-
-      </div>
-      <div class="post-content-main animate__animated  animate__fadeInUp">
-        <!-- top型目录 -->
-
-        <h1 id="Transformer"><a href="#Transformer" class="headerlink" title="02. Transformer"></a>02. Transformer</h1>
-
-        <p>在 Transformer 中，token 首先映射为词向量并加入位置编码，随后进入层级结构，通过学习到的线性投影生成 Query、Key、Value，自注意力对信息进行加权汇聚，编码器迭代地构建全局上下文表示，解码器则通过遮蔽自注意力与对编码器输出的交叉注意力，自回归地生成下一个 token。</p>
-
-        <h2 id="Reading-List"><a href="#Reading-List" class="headerlink" title="Reading List"></a>Reading List</h2>
-        <ul>
-          <li><a href="/pdf/NIPS-2017-attention-is-all-you-need-Paper.pdf" target="_blank">Attention Is All You Need (NIPS 2017)</a></li>
-          <li><a href="/pdf/transformer24aug.pdf" target="_blank">Transformer Lecture Notes (Aug 24)</a></li>
-        </ul>
-
-
-
-        <h2 id="Background"><a href="#Background" class="headerlink" title="背景"></a>1. 背景：早期模型的不足</h2>
-        <ul>
-          <li><strong>RNN：</strong>长程依赖建模困难，梯度消失/爆炸，且必须顺序计算。</li>
-          <li><strong>LSTM/GRU：</strong>记忆能力更强但仍是串行，难并行。</li>
-          <li><strong>NLP 中的 CNN：</strong>擅长局部模式，但长距离依赖需要堆叠很多层。</li>
-        </ul>
-
-        <h2 id="Why-Works"><a href="#Why-Works" class="headerlink" title="为何有效"></a>2. Transformer 在 NLP 中为何有效</h2>
-        <ul>
-          <li><strong>自注意力：</strong>直接连接所有 token，捕捉长程依赖。</li>
-          <li><strong>并行性：</strong>可一次处理整句，GPU 利用率高。</li>
-          <li><strong>可扩展：</strong>数据与参数规模提升带来显著性能提升。</li>
-        </ul>
-
-        <h2 id="Mechanism"><a href="#Mechanism" class="headerlink" title="机制"></a>3. Transformer 机制</h2>
-        <ul>
-          <li><strong>Embedding + 位置编码：</strong>加入顺序信息。</li>
-          <li><strong>多头自注意力：</strong>\(	ext{softmax}(QK^T/\sqrt{d})V\)。</li>
-          <li><strong>前馈网络：</strong>逐位置 MLP。</li>
-          <li><strong>残差连接 + LayerNorm：</strong>稳定训练。</li>
-        </ul>
-
-        <h2 id="Pros-Cons"><a href="#Pros-Cons" class="headerlink" title="优缺点"></a>4. 优缺点</h2>
-        <ul>
-          <li><strong>优点：</strong>长程依赖强、并行效率高、可扩展。</li>
-          <li><strong>缺点：</strong>注意力计算复杂度随序列长度平方增长，显存消耗大。</li>
-        </ul>
-
-        <h2 id="Future"><a href="#Future" class="headerlink" title="未来"></a>5. Transformer 的未来</h2>
-        <ul>
-          <li>高效注意力（线性/稀疏/核化）。</li>
-          <li>长上下文与检索增强模型。</li>
-          <li>更好的对齐、可控性与可解释性。</li>
-        </ul>
-
-        <!-- 分类文章 -->
-        
-          <div class="post-categoris-bottom">
-            <div class="post-categoris-name">人工智能</div>
-            <ul>
-              <li class="me base">
-                <a  href="/2026/02/06/Transformer/index-zh.html" class="post-categoris-bottom-link">
-                  02. Transformer
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        
-      </div><div class="post-content-inner-space">
-        
-          <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Background"><span class="space-toc-text">1. 背景：早期模型的不足</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Why-Works"><span class="space-toc-text">2. Transformer 在 NLP 中为何有效</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Mechanism"><span class="space-toc-text">3. Transformer 机制</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pros-Cons"><span class="space-toc-text">4. 优缺点</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Future"><span class="space-toc-text">5. Transformer 的未来</span></a></li></ol>
-           </div>
-        </div>
-   </div>
-    <!-- 评论 -->
-    
-  </div>
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">02. Transformer</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 06 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space">
+</div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<!-- top型目录 -->
+<h1 id="Transformer"><a class="headerlink" href="#Transformer" title="02. Transformer"></a>02. Transformer</h1>
+<p>在 Transformer 中，token 首先映射为词向量并加入位置编码，随后进入层级结构，通过学习到的线性投影生成 Query、Key、Value，自注意力对信息进行加权汇聚，编码器迭代地构建全局上下文表示，解码器则通过遮蔽自注意力与对编码器输出的交叉注意力，自回归地生成下一个 token。</p>
+<h2 id="Reading-List"><a class="headerlink" href="#Reading-List" title="Reading List"></a>Reading List</h2>
+<ul>
+<li><a href="/pdf/NIPS-2017-attention-is-all-you-need-Paper.pdf" target="_blank">Attention Is All You Need (NIPS 2017)</a></li>
+<li><a href="/pdf/transformer24aug.pdf" target="_blank">Transformer Lecture Notes (Aug 24)</a></li>
+</ul>
+<h2 id="Background"><a class="headerlink" href="#Background" title="背景"></a>1. 背景：早期模型的不足</h2>
+<ul>
+<li><strong>RNN：</strong>长程依赖建模困难，梯度消失/爆炸，且必须顺序计算。</li>
+<li><strong>LSTM/GRU：</strong>记忆能力更强但仍是串行，难并行。</li>
+<li><strong>NLP 中的 CNN：</strong>擅长局部模式，但长距离依赖需要堆叠很多层。</li>
+</ul>
+<h2 id="Why-Works"><a class="headerlink" href="#Why-Works" title="为何有效"></a>2. Transformer 在 NLP 中为何有效</h2>
+<ul>
+<li><strong>自注意力：</strong>直接连接所有 token，捕捉长程依赖。</li>
+<li><strong>并行性：</strong>可一次处理整句，GPU 利用率高。</li>
+<li><strong>可扩展：</strong>数据与参数规模提升带来显著性能提升。</li>
+</ul>
+<h2 id="Mechanism"><a class="headerlink" href="#Mechanism" title="机制"></a>3. Transformer 机制</h2>
+<ul>
+<li><strong>Embedding + 位置编码：</strong>加入顺序信息。</li>
+<li><strong>多头自注意力：</strong>\(	ext{softmax}(QK^T/\sqrt{d})V\)。</li>
+<li><strong>前馈网络：</strong>逐位置 MLP。</li>
+<li><strong>残差连接 + LayerNorm：</strong>稳定训练。</li>
+</ul>
+<h2 id="Pros-Cons"><a class="headerlink" href="#Pros-Cons" title="优缺点"></a>4. 优缺点</h2>
+<ul>
+<li><strong>优点：</strong>长程依赖强、并行效率高、可扩展。</li>
+<li><strong>缺点：</strong>注意力计算复杂度随序列长度平方增长，显存消耗大。</li>
+</ul>
+<h2 id="Future"><a class="headerlink" href="#Future" title="未来"></a>5. Transformer 的未来</h2>
+<ul>
+<li>高效注意力（线性/稀疏/核化）。</li>
+<li>长上下文与检索增强模型。</li>
+<li>更好的对齐、可控性与可解释性。</li>
+</ul>
+<!-- 分类文章 -->
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">人工智能</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/07/Reinforcement-Learning/index-zh.html">03. 强化学习</a>
+</li>
+</ul>
+</div>
+</div><div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Background"><span class="space-toc-text">1. 背景：早期模型的不足</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Why-Works"><span class="space-toc-text">2. Transformer 在 NLP 中为何有效</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Mechanism"><span class="space-toc-text">3. Transformer 机制</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pros-Cons"><span class="space-toc-text">4. 优缺点</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Future"><span class="space-toc-text">5. Transformer 的未来</span></a></li></ol>
+</div>
+</div>
+</div>
+<!-- 评论 -->
+</div>
 </article>
-  </div>
 </div>
-
-
-
+</div>
 <!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
-
-  <div class="footer-outer animate__animated  animate__fadeInUp">
-    <div class="footer-inner">
-    <div class="footer-text">
-      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
-
-    </div>
-    <div class="footer-contact">
-    <ul class="footer-ul">
-        
-        <li class="footer-li">
-            <a href="https://github.com/RongyanYuan" target="_blank">
-                <i class="ri-github-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-                <i class="ri-mail-line"></i>
-            </a>
-        </li>
-        
-        <li class="footer-li">
-            <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-                <i class="ri-linkedin-box-line"></i>
-            </a>
-        </li>
-        
-    </ul>
-    </div>
-    </div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
 </div>
-
-
-
-
-
-
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
-
-
-
-
 <script>
   window.MathJax = {
     tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
@@ -270,6 +196,5 @@
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
 </body>
 </html>

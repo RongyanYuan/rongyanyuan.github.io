@@ -1,201 +1,184 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  03. CNN Training Task Pipeline |    Rongyan&#39;s Blog</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  <link rel="stylesheet" href="/css/white.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  03. CNN Training Task Pipeline |    Rongyan's Blog</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
 <body>
-
 <div class="menu-outer">
-  <div class="menu-inner">
-    <div class="menu-site-name  animate__animated  animate__fadeInUp">
-      <a href="/">Rongyan&#39;s Blog</a>
-    </div>
-    <div class="menu-group">
-      <ul class="menu-ul">
-        <a href="/" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">HOME</li></a>
-        <a href="/archives" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">BLOG</li></a>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">Rongyan's Blog</a>
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/deep-learning/">← Deep Learning</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/"><li class="menu-li animate__animated animate__fadeInUp">HOME</li></a>
+<a class="nav-link" href="/archives"><li class="menu-li animate__animated animate__fadeInUp">BLOG</li></a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
            CATEGORIES
-           <div class="categories-outer " id="sort-div">
-             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
-           </div>
-        </li>
-        <a href="/search"><li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li></a>
-        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-          <a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
+           <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+</div>
+</li>
+<a href="/search"><li class="menu-li animate__animated animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
           <a href="/2026/02/16/CNN-Training-Pipeline/index-zh.html">中文</a>
-        </li>
-        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
-      </ul>
-    </div>
-  </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+</ul>
 </div>
-
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp"><a href="/">Rongyan&#39;s Blog</a></div>
-    <div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
-  </div>
-  <div class="mobile-menu-div">
-    <a href="/" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>HOME</span></div></a>
-    <a href="/archives" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>BLOG</span></div></a>
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp"><a href="/">Rongyan's Blog</a></div>
+<div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>HOME</span></div></a>
+<a class="mobile-nav-link" href="/archives"><div class="mobile-menu-child animate__animated animate__fadeInUp"><span>BLOG</span></div></a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/16/CNN-Training-Pipeline/index.html">EN</a> |
       <a href="/2026/02/16/CNN-Training-Pipeline/index-zh.html">中文</a>
-    </div>
-    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
-  </div>
 </div>
-
+<a href="/search"><div class="mobile-menu-child animate__animated animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    <article class="post-inner">
-      <div class="post-content-outer">
-        <div class="post-intro">
-          <div class="post-title animate__animated  animate__fadeInUp">03. CNN Training Task Pipeline</div>
-          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 16 2026</div>
-        </div>
-        <div class="post-content-inner">
-          <div class="post-content-inner-space"></div>
-          <div class="post-content-main animate__animated  animate__fadeInUp">
-            <h1 id="CNN-Pipeline"><a href="#CNN-Pipeline" class="headerlink" title="03. CNN Training Task Pipeline"></a>03. CNN Training Task Pipeline</h1>
-
-            <p>This post summarizes the simple CNN training task pipeline for CIFAR-10 from the assignment notebooks. The workflow is a five‑stage loop: data collection → augmentation → model building → training → evaluation. 
-              Reading list only consists of training workflow juypter workflow and folder "Scripts" is not included for simiplicty.</script></p>
-            
-            <h2 id="Reading-List"><a href="#Reading-List" class="headerlink" title="Reading List"></a>Reading List</h2>
-                <ul>
-                  <li><a href="/python/cnn/01_data_collection.html" target="_blank">01. Data Collection</a></li>
-                  <li><a href="/python/cnn/02_data_augmentation.html" target="_blank">02. Data Augmentation</a></li>
-                  <li><a href="/python/cnn/03_model_building.html" target="_blank">03. Model Building</a></li>
-                  <li><a href="/python/cnn/04_model_training.html" target="_blank">04. Model Training</a></li>
-                  <li><a href="/python/cnn/05_model_evaluation.html" target="_blank">05. Model Evaluation</a></li>
-                </ul>
-
-
-            <h2 id="Stage-1"><a href="#Stage-1" class="headerlink" title="Stage 1: Data Collection and Exploration"></a>Stage 1: Data Collection and Exploration</h2>
-            <ul>
-              <li>Download CIFAR‑10 with <code>torchvision</code> and store raw data in <code>data/raw</code>.</li>
-              <li>Inspect dataset size, classes, and structure.</li>
-              <li>Visualize sample images to understand quality and class diversity.</li>
-              <li>Plot class distributions to confirm balance (5,000 train / 1,000 test per class).</li>
-            </ul>
-
-            <h2 id="Stage-2"><a href="#Stage-2" class="headerlink" title="Stage 2: Data Augmentation"></a>Stage 2: Data Augmentation</h2>
-            <ul>
-              <li>Read raw images from <code>data/raw/train</code>.</li>
-              <li>Apply random transforms via <code>scripts/data_augmentation.py</code>.</li>
-              <li>Save augmented results to <code>data/augmented/train</code>.</li>
-              <li>Visually verify original + augmented samples to ensure realism.</li>
-            </ul>
-
-            <h2 id="Stage-3"><a href="#Stage-3" class="headerlink" title="Stage 3: Model Building"></a>Stage 3: Model Building</h2>
-            <ul>
-              <li>Define <code>SimpleCNN</code> in <code>scripts/model_architectures.py</code>.</li>
-              <li>Inspect layer‑by‑layer structure using <code>torchsummary</code>.</li>
-              <li>Check parameter counts to gauge complexity and memory usage.</li>
-            </ul>
-
-            <h2 id="Stage-4"><a href="#Stage-4" class="headerlink" title="Stage 4: Model Training"></a>Stage 4: Model Training</h2>
-            <h3>Data preparation</h3>
-            <ul>
-              <li>Resize to 32×32, normalize to <code>(0.5, 0.5, 0.5)</code>.</li>
-              <li>Load augmented images with <code>ImageFolder</code>.</li>
-              <li>Split into train/val (80/20), build DataLoaders.</li>
-            </ul>
-
-            <h3>Training setup</h3>
-            <ul>
-              <li>Loss: <code>CrossEntropyLoss</code>.</li>
-              <li>Optimizer: Adam, <code>lr=0.001</code>, weight decay <code>1e‑5</code>.</li>
-              <li>Scheduler: <code>ReduceLROnPlateau</code> on validation loss.</li>
-              <li>Early stopping patience = 5, max epochs = 50.</li>
-            </ul>
-
-            <h3>Outputs</h3>
-            <ul>
-              <li>Best checkpoint saved to <code>models/best_model.pth</code>.</li>
-              <li>Final weights saved to <code>models/final_model.pth</code>.</li>
-              <li>Training curves saved to <code>results/</code>.</li>
-            </ul>
-
-            <h2 id="Stage-5"><a href="#Stage-5" class="headerlink" title="Stage 5: Model Evaluation"></a>Stage 5: Model Evaluation</h2>
-            <ul>
-              <li>Load best model and evaluate on test set.</li>
-              <li>Compute test loss and accuracy.</li>
-              <li>Generate classification report (precision/recall/F1).</li>
-              <li>Compute Top‑1 and Top‑5 accuracy.</li>
-              <li>Plot confusion matrix and ROC curves.</li>
-              <li>Visualize predictions and run error analysis.</li>
-              <li>Save metrics to <code>results/evaluation_results.npy</code>.</li>
-            </ul>
-
-            <h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline Summary"></a>Pipeline Summary</h2>
-            <ol>
-              <li>Collect CIFAR‑10 data → <code>data/raw</code></li>
-              <li>Augment images → <code>data/augmented</code></li>
-              <li>Build <code>SimpleCNN</code> and inspect parameters</li>
-              <li>Train with early stopping + LR scheduler</li>
-              <li>Evaluate with metrics + visual diagnostics</li>
-            </ol>
-
-            <h2 id="Artifacts"><a href="#Artifacts" class="headerlink" title="Key Artifacts"></a>Key Artifacts</h2>
-            <ul>
-              <li>Data: <code>data/raw</code>, <code>data/augmented</code></li>
-              <li>Models: <code>models/best_model.pth</code>, <code>models/final_model.pth</code></li>
-              <li>Results: <code>results/training_history.png</code>, <code>results/confusion_matrix.png</code>, <code>results/roc_curves.png</code></li>
-              <li>Metrics: <code>results/evaluation_results.npy</code></li>
-            </ul>
-
-            <div class="post-categoris-bottom">
-              <div class="post-categoris-name">Artificial Intelligence</div>
-              <ul>
-                <li class="me base">
-                  <a href="/2026/02/16/CNN-Training-Pipeline/" class="post-categoris-bottom-link">03. CNN Training Task Pipeline</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="post-content-inner-space">
-            <div class="space-toc-main animate__animated  animate__fadeInUp">
-              <ol class="space-toc">
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-1"><span class="space-toc-text">Stage 1: Data Collection and Exploration</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-2"><span class="space-toc-text">Stage 2: Data Augmentation</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-3"><span class="space-toc-text">Stage 3: Model Building</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-4"><span class="space-toc-text">Stage 4: Model Training</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-5"><span class="space-toc-text">Stage 5: Model Evaluation</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pipeline"><span class="space-toc-text">Pipeline Summary</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Artifacts"><span class="space-toc-text">Key Artifacts</span></a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">03. CNN Training Task Pipeline</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 16 2026</div>
 </div>
-
-<div class="footer-outer animate__animated  animate__fadeInUp">
-  <div class="footer-inner">
-    <div class="footer-text">
-      <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
-    </div>
-    <div class="footer-contact">
-      <ul class="footer-ul">
-        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
-        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
-        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
-      </ul>
-    </div>
-  </div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="CNN-Pipeline"><a class="headerlink" href="#CNN-Pipeline" title="03. CNN Training Task Pipeline"></a>03. CNN Training Task Pipeline</h1>
+<p>This post summarizes the simple CNN training task pipeline for CIFAR-10 from the assignment notebooks. The workflow is a five‑stage loop: data collection → augmentation → model building → training → evaluation. 
+              Reading list only consists of training workflow juypter workflow and folder "Scripts" is not included for simiplicty.</p>
+<h2 id="Reading-List"><a class="headerlink" href="#Reading-List" title="Reading List"></a>Reading List</h2>
+<ul>
+<li><a href="/python/cnn/01_data_collection.html" target="_blank">01. Data Collection</a></li>
+<li><a href="/python/cnn/02_data_augmentation.html" target="_blank">02. Data Augmentation</a></li>
+<li><a href="/python/cnn/03_model_building.html" target="_blank">03. Model Building</a></li>
+<li><a href="/python/cnn/04_model_training.html" target="_blank">04. Model Training</a></li>
+<li><a href="/python/cnn/05_model_evaluation.html" target="_blank">05. Model Evaluation</a></li>
+</ul>
+<h2 id="Stage-1"><a class="headerlink" href="#Stage-1" title="Stage 1: Data Collection and Exploration"></a>Stage 1: Data Collection and Exploration</h2>
+<ul>
+<li>Download CIFAR‑10 with <code>torchvision</code> and store raw data in <code>data/raw</code>.</li>
+<li>Inspect dataset size, classes, and structure.</li>
+<li>Visualize sample images to understand quality and class diversity.</li>
+<li>Plot class distributions to confirm balance (5,000 train / 1,000 test per class).</li>
+</ul>
+<h2 id="Stage-2"><a class="headerlink" href="#Stage-2" title="Stage 2: Data Augmentation"></a>Stage 2: Data Augmentation</h2>
+<ul>
+<li>Read raw images from <code>data/raw/train</code>.</li>
+<li>Apply random transforms via <code>scripts/data_augmentation.py</code>.</li>
+<li>Save augmented results to <code>data/augmented/train</code>.</li>
+<li>Visually verify original + augmented samples to ensure realism.</li>
+</ul>
+<h2 id="Stage-3"><a class="headerlink" href="#Stage-3" title="Stage 3: Model Building"></a>Stage 3: Model Building</h2>
+<ul>
+<li>Define <code>SimpleCNN</code> in <code>scripts/model_architectures.py</code>.</li>
+<li>Inspect layer‑by‑layer structure using <code>torchsummary</code>.</li>
+<li>Check parameter counts to gauge complexity and memory usage.</li>
+</ul>
+<h2 id="Stage-4"><a class="headerlink" href="#Stage-4" title="Stage 4: Model Training"></a>Stage 4: Model Training</h2>
+<h3>Data preparation</h3>
+<ul>
+<li>Resize to 32×32, normalize to <code>(0.5, 0.5, 0.5)</code>.</li>
+<li>Load augmented images with <code>ImageFolder</code>.</li>
+<li>Split into train/val (80/20), build DataLoaders.</li>
+</ul>
+<h3>Training setup</h3>
+<ul>
+<li>Loss: <code>CrossEntropyLoss</code>.</li>
+<li>Optimizer: Adam, <code>lr=0.001</code>, weight decay <code>1e‑5</code>.</li>
+<li>Scheduler: <code>ReduceLROnPlateau</code> on validation loss.</li>
+<li>Early stopping patience = 5, max epochs = 50.</li>
+</ul>
+<h3>Outputs</h3>
+<ul>
+<li>Best checkpoint saved to <code>models/best_model.pth</code>.</li>
+<li>Final weights saved to <code>models/final_model.pth</code>.</li>
+<li>Training curves saved to <code>results/</code>.</li>
+</ul>
+<h2 id="Stage-5"><a class="headerlink" href="#Stage-5" title="Stage 5: Model Evaluation"></a>Stage 5: Model Evaluation</h2>
+<ul>
+<li>Load best model and evaluate on test set.</li>
+<li>Compute test loss and accuracy.</li>
+<li>Generate classification report (precision/recall/F1).</li>
+<li>Compute Top‑1 and Top‑5 accuracy.</li>
+<li>Plot confusion matrix and ROC curves.</li>
+<li>Visualize predictions and run error analysis.</li>
+<li>Save metrics to <code>results/evaluation_results.npy</code>.</li>
+</ul>
+<h2 id="Pipeline"><a class="headerlink" href="#Pipeline" title="Pipeline Summary"></a>Pipeline Summary</h2>
+<ol>
+<li>Collect CIFAR‑10 data → <code>data/raw</code></li>
+<li>Augment images → <code>data/augmented</code></li>
+<li>Build <code>SimpleCNN</code> and inspect parameters</li>
+<li>Train with early stopping + LR scheduler</li>
+<li>Evaluate with metrics + visual diagnostics</li>
+</ol>
+<h2 id="Artifacts"><a class="headerlink" href="#Artifacts" title="Key Artifacts"></a>Key Artifacts</h2>
+<ul>
+<li>Data: <code>data/raw</code>, <code>data/augmented</code></li>
+<li>Models: <code>models/best_model.pth</code>, <code>models/final_model.pth</code></li>
+<li>Results: <code>results/training_history.png</code>, <code>results/confusion_matrix.png</code>, <code>results/roc_curves.png</code></li>
+<li>Metrics: <code>results/evaluation_results.npy</code></li>
+</ul>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">Artificial Intelligence</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/16/Transformer-Notes/">04. Transformer</a>
+</li>
+</ul>
 </div>
-
+</div>
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-1"><span class="space-toc-text">Stage 1: Data Collection and Exploration</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-2"><span class="space-toc-text">Stage 2: Data Augmentation</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-3"><span class="space-toc-text">Stage 3: Model Building</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-4"><span class="space-toc-text">Stage 4: Model Training</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Stage-5"><span class="space-toc-text">Stage 5: Model Evaluation</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Pipeline"><span class="space-toc-text">Pipeline Summary</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Artifacts"><span class="space-toc-text">Key Artifacts</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+<li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+<li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
 </body>
 </html>

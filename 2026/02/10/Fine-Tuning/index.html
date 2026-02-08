@@ -1,302 +1,281 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  06. Fine-Tuning |    Rongyan&#39;s Blog</title>
-  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
-  <link rel="stylesheet" href="/css/white.css">
-</head>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>  06. Fine-Tuning |    Rongyan's Blog</title>
+<meta content="Financial Engineering | Mathematics | Computer Science" name="description"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css" rel="stylesheet">
+<link href="/css/white.css" rel="stylesheet"/>
+</link></head>
 <body>
-
 <div class="menu-outer">
-    <div class="menu-inner">
-      <div class="menu-site-name  animate__animated  animate__fadeInUp">
-        <a href="/">
-          Rongyan&#39;s Blog
+<div class="menu-inner">
+<div class="menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+          Rongyan's Blog
         </a>
-      </div>
-      <div class="menu-group">
-        <ul class="menu-ul">
-          <a href="/" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+<div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/ai-fundamentals/">← AI Fundamentals</a></div></div>
+<div class="menu-group">
+<ul class="menu-ul">
+<a class="nav-link" href="/">
+<li class="menu-li animate__animated animate__fadeInUp">
               HOME
             </li>
-          </a>
-          <a href="/archives" class="nav-link">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
+</a>
+<a class="nav-link" href="/archives">
+<li class="menu-li animate__animated animate__fadeInUp">
               BLOG
             </li>
-          </a>
-          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+</a>
+<li class="menu-li animate__animated animate__fadeInUp" id="sort">
              CATEGORIES
-             <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
-             </div>
-          </li>
-          <a href="/search">
-            <li class="menu-li  animate__animated  animate__fadeInUp">
-              <i class="ri-search-line"></i>
-            </li>
-          </a>
-          <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
-            <a href="/2026/02/10/Fine-Tuning/index.html">EN</a> |
+             <div class="categories-outer" id="sort-div">
+<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+</div>
+</li>
+<a href="/search">
+<li class="menu-li animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</li>
+</a>
+<li class="menu-li animate__animated animate__fadeInUp lang-switcher-desktop">
+<a href="/2026/02/10/Fine-Tuning/index.html">EN</a> |
             <a href="/2026/02/10/Fine-Tuning/index-zh.html">中文</a>
-          </li>
-          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
-            <i class="ri-menu-line"></i>
-          </li>
-        </ul>
-      </div>
-    </div>
+</li>
+<li class="menu-li animate__animated animate__fadeInUp" id="mobile-menu">
+<i class="ri-menu-line"></i>
+</li>
+</ul>
 </div>
-<div id="mobile-main" class="animate__animated  animate__fadeIn">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
-      <a href="/">
-        Rongyan&#39;s Blog
+</div>
+</div>
+<div class="animate__animated animate__fadeIn" id="mobile-main">
+<div class="mobile-menu-inner">
+<div class="mobile-menu-site-name animate__animated animate__fadeInUp">
+<a href="/">
+        Rongyan's Blog
       </a>
-    </div>
-    <div class="mobile-menu-group" id="mobile-close">
-      <i class="ri-close-line"></i>
-    </div>
-  </div>
-  <div class="mobile-menu-div">
-    <a href="/" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>HOME</span>
-      </div>
-    </a>
-    <a href="/archives" class="mobile-nav-link">
-      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
-        <span>BLOG</span>
-      </div>
-    </a>
-    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
-      <a href="/2026/02/10/Fine-Tuning/index.html">EN</a> |
+</div>
+<div class="mobile-menu-group" id="mobile-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="mobile-menu-div">
+<a class="mobile-nav-link" href="/">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>HOME</span>
+</div>
+</a>
+<a class="mobile-nav-link" href="/archives">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<span>BLOG</span>
+</div>
+</a>
+<div class="mobile-menu-child animate__animated animate__fadeInUp lang-switcher-mobile">
+<a href="/2026/02/10/Fine-Tuning/index.html">EN</a> |
       <a href="/2026/02/10/Fine-Tuning/index-zh.html">中文</a>
-    </div>
-    <a href="/search">  
-      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
-        <i class="ri-search-line"></i>
-      </div>
-    </a>
-  </div>
 </div>
-
+<a href="/search">
+<div class="mobile-menu-child animate__animated animate__fadeInUp">
+<i class="ri-search-line"></i>
+</div>
+</a>
+</div>
+</div>
 <div class="body-outer">
-  <div class="body-inner">
-    <article class="post-inner">
-      <div class="post-content-outer">
-        <div class="post-intro">
-          <div class="post-title animate__animated  animate__fadeInUp">06. Fine-Tuning</div>
-          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 10 2026</div>
-        </div>
-        <div class="post-content-inner">
-          <div class="post-content-inner-space"></div>
-          <div class="post-content-main animate__animated  animate__fadeInUp">
-            <h1 id="Fine-Tuning"><a href="#Fine-Tuning" class="headerlink" title="06. Fine-Tuning"></a>06. Fine-Tuning</h1>
-            <p>Fine-tuning is like sending a well-read generalist to a master’s program to become a domain expert. Different strategies resemble different study styles: rote learning (SFT), learning via practice and feedback (RLHF/DPO), selecting the best answer (rejection sampling), or taking multiple courses together (model averaging). The goal is always the same: make the model both smart and specialized.</p>
-
-            <h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>1. Concept of Fine-Tuning</h2>
-            <ul>
-              <li><strong>Pretraining</strong>: letting a model “read all the books on the internet” to gain general knowledge and language ability.</li>
-              <li><strong>Fine-tuning</strong>: turning a “well-read generalist” into a specialist for a specific domain or task.</li>
-            </ul>
-            <blockquote>
-              <p>In short: pretraining builds a general foundation, fine-tuning specializes it toward a goal.</p>
-            </blockquote>
-
-            <h2 id="When"><a href="#When" class="headerlink" title="When to Fine-Tune"></a>2. When to fine-tune?</h2>
-            <ol>
-              <li><strong>Specific tasks</strong>: sentiment analysis, medical QA, financial prediction, etc.</li>
-              <li><strong>Specific style or tone</strong>: ad copy, academic writing, news reporting</li>
-              <li><strong>High controllability requirements</strong>: output format, logic, or policy compliance</li>
-            </ol>
-
-            <h3 id="When-Pretrain">When do you need pretraining?</h3>
-            <ul>
-              <li>When the task requires very strong domain knowledge not covered by existing models</li>
-              <li>Examples: legal, medical, or financial specialist models</li>
-            </ul>
-
-            <h2 id="Strategies"><a href="#Strategies" class="headerlink" title="Common Strategies"></a>3. Common fine-tuning strategies</h2>
-
-            <h3 id="SFT">3.1 Supervised Fine-Tuning (SFT)</h3>
-            <ul>
-              <li><strong>Mechanism</strong>: train on labeled data so outputs match expectations</li>
-              <li><strong>Use cases</strong>: customer support, standardized reports, specific writing styles</li>
-            </ul>
-
-            <h3 id="RLHF">3.2 RLHF / RLFH</h3>
-            <ul>
-              <li><strong>Mechanism</strong>: optimize behavior using reward signals from interaction</li>
-              <li><strong>Pipeline</strong>:
+<div class="body-inner">
+<article class="post-inner">
+<div class="post-content-outer">
+<div class="post-intro">
+<div class="post-title animate__animated animate__fadeInUp">06. Fine-Tuning</div>
+<div class="meta-intro animate__animated animate__fadeInUp">Feb 10 2026</div>
+</div>
+<div class="post-content-inner">
+<div class="post-content-inner-space"></div>
+<div class="post-content-main animate__animated animate__fadeInUp">
+<h1 id="Fine-Tuning"><a class="headerlink" href="#Fine-Tuning" title="06. Fine-Tuning"></a>06. Fine-Tuning</h1>
+<p>Fine-tuning is like sending a well-read generalist to a master’s program to become a domain expert. Different strategies resemble different study styles: rote learning (SFT), learning via practice and feedback (RLHF/DPO), selecting the best answer (rejection sampling), or taking multiple courses together (model averaging). The goal is always the same: make the model both smart and specialized.</p>
+<h2 id="Concept"><a class="headerlink" href="#Concept" title="Concept"></a>1. Concept of Fine-Tuning</h2>
+<ul>
+<li><strong>Pretraining</strong>: letting a model “read all the books on the internet” to gain general knowledge and language ability.</li>
+<li><strong>Fine-tuning</strong>: turning a “well-read generalist” into a specialist for a specific domain or task.</li>
+</ul>
+<blockquote>
+<p>In short: pretraining builds a general foundation, fine-tuning specializes it toward a goal.</p>
+</blockquote>
+<h2 id="When"><a class="headerlink" href="#When" title="When to Fine-Tune"></a>2. When to fine-tune?</h2>
+<ol>
+<li><strong>Specific tasks</strong>: sentiment analysis, medical QA, financial prediction, etc.</li>
+<li><strong>Specific style or tone</strong>: ad copy, academic writing, news reporting</li>
+<li><strong>High controllability requirements</strong>: output format, logic, or policy compliance</li>
+</ol>
+<h3 id="When-Pretrain">When do you need pretraining?</h3>
+<ul>
+<li>When the task requires very strong domain knowledge not covered by existing models</li>
+<li>Examples: legal, medical, or financial specialist models</li>
+</ul>
+<h2 id="Strategies"><a class="headerlink" href="#Strategies" title="Common Strategies"></a>3. Common fine-tuning strategies</h2>
+<h3 id="SFT">3.1 Supervised Fine-Tuning (SFT)</h3>
+<ul>
+<li><strong>Mechanism</strong>: train on labeled data so outputs match expectations</li>
+<li><strong>Use cases</strong>: customer support, standardized reports, specific writing styles</li>
+</ul>
+<h3 id="RLHF">3.2 RLHF / RLFH</h3>
+<ul>
+<li><strong>Mechanism</strong>: optimize behavior using reward signals from interaction</li>
+<li><strong>Pipeline</strong>:
                 <ol>
-                  <li>Collect data (preferences / feedback)</li>
-                  <li>Train a reward model</li>
-                  <li>Optimize the policy with reinforcement learning</li>
-                </ol>
-              </li>
-              <li><strong>Use cases</strong>: dialog optimization, preference alignment in generation</li>
-            </ul>
-
-            <h3 id="DPO">3.3 Direct Preference Optimization (DPO)</h3>
-            <ul>
-              <li><strong>Mechanism</strong>: directly optimize the model with preference data without RL steps</li>
-              <li><strong>Key point</strong>: preference data collection is critical</li>
-              <li><strong>Use cases</strong>: copywriting optimization, response ranking</li>
-            </ul>
-
-            <h3 id="Rejection">3.4 Rejection Sampling</h3>
-            <ul>
-              <li><strong>Mechanism</strong>: generate multiple candidates and filter by rules</li>
-              <li><strong>Key point</strong>: filter rules must be carefully designed</li>
-              <li><strong>Use cases</strong>: ad copy, compliance-sensitive content</li>
-            </ul>
-
-            <h3 id="Averaging">3.5 Model Averaging</h3>
-            <ul>
-              <li><strong>Mechanism</strong>: train multiple models and average parameters</li>
-              <li><strong>Characteristics</strong>:
+<li>Collect data (preferences / feedback)</li>
+<li>Train a reward model</li>
+<li>Optimize the policy with reinforcement learning</li>
+</ol>
+</li>
+<li><strong>Use cases</strong>: dialog optimization, preference alignment in generation</li>
+</ul>
+<h3 id="DPO">3.3 Direct Preference Optimization (DPO)</h3>
+<ul>
+<li><strong>Mechanism</strong>: directly optimize the model with preference data without RL steps</li>
+<li><strong>Key point</strong>: preference data collection is critical</li>
+<li><strong>Use cases</strong>: copywriting optimization, response ranking</li>
+</ul>
+<h3 id="Rejection">3.4 Rejection Sampling</h3>
+<ul>
+<li><strong>Mechanism</strong>: generate multiple candidates and filter by rules</li>
+<li><strong>Key point</strong>: filter rules must be carefully designed</li>
+<li><strong>Use cases</strong>: ad copy, compliance-sensitive content</li>
+</ul>
+<h3 id="Averaging">3.5 Model Averaging</h3>
+<ul>
+<li><strong>Mechanism</strong>: train multiple models and average parameters</li>
+<li><strong>Characteristics</strong>:
                 <ul>
-                  <li>covers multiple tasks or domains</li>
-                  <li>may reduce single-task performance</li>
-                  <li>better for diverse generation</li>
-                </ul>
-              </li>
-              <li><strong>Use cases</strong>: content generation, multi-task settings</li>
-            </ul>
-
-            <h3 id="LoRA">3.6 LoRA / PEFT (Parameter-Efficient Fine-Tuning)</h3>
-            <ul>
-              <li><strong>Mechanism</strong>: tune only parts of the model or insert adapters to reduce cost</li>
-              <li><strong>Advantages</strong>:
+<li>covers multiple tasks or domains</li>
+<li>may reduce single-task performance</li>
+<li>better for diverse generation</li>
+</ul>
+</li>
+<li><strong>Use cases</strong>: content generation, multi-task settings</li>
+</ul>
+<h3 id="LoRA">3.6 LoRA / PEFT (Parameter-Efficient Fine-Tuning)</h3>
+<ul>
+<li><strong>Mechanism</strong>: tune only parts of the model or insert adapters to reduce cost</li>
+<li><strong>Advantages</strong>:
                 <ul>
-                  <li>saves compute</li>
-                  <li>fast adaptation to new tasks</li>
-                </ul>
-              </li>
-              <li><strong>Use cases</strong>: low-shot tasks, rapid customization</li>
-            </ul>
-
-            <h2 id="Relation"><a href="#Relation" class="headerlink" title="Relation"></a>4. Relationship between pretraining and fine-tuning</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Comparison</th>
-                  <th>Pretraining</th>
-                  <th>Fine-tuning</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Data size</td>
-                  <td>Massive general data</td>
-                  <td>Task / style-specific data</td>
-                </tr>
-                <tr>
-                  <td>Goal</td>
-                  <td>General knowledge + language ability</td>
-                  <td>Task performance + style control</td>
-                </tr>
-                <tr>
-                  <td>Compute cost</td>
-                  <td>High</td>
-                  <td>Lower</td>
-                </tr>
-                <tr>
-                  <td>Flexibility</td>
-                  <td>General purpose</td>
-                  <td>Specialized</td>
-                </tr>
-                <tr>
-                  <td>Typical scenario</td>
-                  <td>ChatGPT base model</td>
-                  <td>Legal QA, ad-generation models</td>
-                </tr>
-              </tbody>
-            </table>
-            <blockquote>
-              <p>Summary: pretraining is the foundation, fine-tuning is refinement. Without pretraining, there is no base to specialize. Without fine-tuning, even strong base models may miss professional needs.</p>
-            </blockquote>
-
-            <h2 id="Strategy-Visualization"><a href="#Strategy-Visualization" class="headerlink" title="Fine-Tuning Strategy Visualization"></a>Fine-Tuning Strategy Visualization</h2>
-            <p><img src="/images/fine-tuning-strategy.png" alt="Fine-tuning strategy visualization" class="post-img"></p>
-
-            <h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>5. Fine-tuning use cases</h2>
-            <ul>
-              <li><strong>Customer support</strong>: SFT + RLHF for tone and accuracy</li>
-              <li><strong>Copywriting</strong>: DPO + rejection sampling to optimize preferences</li>
-              <li><strong>Multi-task generation</strong>: model averaging for balanced styles</li>
-              <li><strong>Fast adaptation</strong>: LoRA/PEFT for low-shot tasks</li>
-              <li><strong>Industry models</strong>: domain pretraining + fine-tuning for high expertise (medical, finance, legal)</li>
-            </ul>
-
-            <h2 id="Fun"><a href="#Fun" class="headerlink" title="Fun Analogy"></a>6. Fun analogy</h2>
-            <blockquote>
-              <p>Think of it as upgrading a generalist into a focused expert through a specialized learning path.</p>
-            </blockquote>
-
-            <div class="post-categoris-bottom">
-              <div class="post-categoris-name">AI</div>
-              <ul>
-                <li class="me base">
-                  <a href="/2026/02/10/Fine-Tuning/" class="post-categoris-bottom-link">
-                    06. Fine-Tuning
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="post-content-inner-space">
-            <div class="space-toc-main animate__animated  animate__fadeInUp">
-              <ol class="space-toc">
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Concept"><span class="space-toc-text">1. Concept of Fine-Tuning</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#When"><span class="space-toc-text">2. When to fine-tune?</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Strategies"><span class="space-toc-text">3. Common fine-tuning strategies</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Relation"><span class="space-toc-text">4. Relationship between pretraining and fine-tuning</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Use-Cases"><span class="space-toc-text">5. Fine-tuning use cases</span></a></li>
-                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fun"><span class="space-toc-text">6. Fun analogy</span></a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
+<li>saves compute</li>
+<li>fast adaptation to new tasks</li>
+</ul>
+</li>
+<li><strong>Use cases</strong>: low-shot tasks, rapid customization</li>
+</ul>
+<h2 id="Relation"><a class="headerlink" href="#Relation" title="Relation"></a>4. Relationship between pretraining and fine-tuning</h2>
+<table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Pretraining</th>
+<th>Fine-tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data size</td>
+<td>Massive general data</td>
+<td>Task / style-specific data</td>
+</tr>
+<tr>
+<td>Goal</td>
+<td>General knowledge + language ability</td>
+<td>Task performance + style control</td>
+</tr>
+<tr>
+<td>Compute cost</td>
+<td>High</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td>Flexibility</td>
+<td>General purpose</td>
+<td>Specialized</td>
+</tr>
+<tr>
+<td>Typical scenario</td>
+<td>ChatGPT base model</td>
+<td>Legal QA, ad-generation models</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Summary: pretraining is the foundation, fine-tuning is refinement. Without pretraining, there is no base to specialize. Without fine-tuning, even strong base models may miss professional needs.</p>
+</blockquote>
+<h2 id="Strategy-Visualization"><a class="headerlink" href="#Strategy-Visualization" title="Fine-Tuning Strategy Visualization"></a>Fine-Tuning Strategy Visualization</h2>
+<p><img alt="Fine-tuning strategy visualization" class="post-img" src="/images/fine-tuning-strategy.png"/></p>
+<h2 id="Use-Cases"><a class="headerlink" href="#Use-Cases" title="Use Cases"></a>5. Fine-tuning use cases</h2>
+<ul>
+<li><strong>Customer support</strong>: SFT + RLHF for tone and accuracy</li>
+<li><strong>Copywriting</strong>: DPO + rejection sampling to optimize preferences</li>
+<li><strong>Multi-task generation</strong>: model averaging for balanced styles</li>
+<li><strong>Fast adaptation</strong>: LoRA/PEFT for low-shot tasks</li>
+<li><strong>Industry models</strong>: domain pretraining + fine-tuning for high expertise (medical, finance, legal)</li>
+</ul>
+<h2 id="Fun"><a class="headerlink" href="#Fun" title="Fun Analogy"></a>6. Fun analogy</h2>
+<blockquote>
+<p>Think of it as upgrading a generalist into a focused expert through a specialized learning path.</p>
+</blockquote>
+<div class="post-categoris-bottom">
+<div class="post-categoris-name">AI</div>
+<ul>
+<li class="me base">
+<a class="post-categoris-bottom-link" href="/2026/02/11/RAG-MCP-A2A/">07. RAG / MCP / A2A</a>
+</li>
+</ul>
 </div>
-
-<div class="footer-outer animate__animated  animate__fadeInUp">
-  <div class="footer-inner">
-    <div class="footer-text">
-      <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
-    </div>
-    <div class="footer-contact">
-      <ul class="footer-ul">
-        <li class="footer-li">
-          <a href="https://github.com/RongyanYuan" target="_blank">
-            <i class="ri-github-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
-            <i class="ri-mail-line"></i>
-          </a>
-        </li>
-        <li class="footer-li">
-          <a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
-            <i class="ri-linkedin-box-line"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 </div>
-
+<div class="post-content-inner-space">
+<div class="space-toc-main animate__animated animate__fadeInUp">
+<ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Concept"><span class="space-toc-text">1. Concept of Fine-Tuning</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#When"><span class="space-toc-text">2. When to fine-tune?</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Strategies"><span class="space-toc-text">3. Common fine-tuning strategies</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Relation"><span class="space-toc-text">4. Relationship between pretraining and fine-tuning</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Use-Cases"><span class="space-toc-text">5. Fine-tuning use cases</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Fun"><span class="space-toc-text">6. Fun analogy</span></a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<div class="footer-outer animate__animated animate__fadeInUp">
+<div class="footer-inner">
+<div class="footer-text">
+<p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
+</div>
+<div class="footer-contact">
+<ul class="footer-ul">
+<li class="footer-li">
+<a href="https://github.com/RongyanYuan" target="_blank">
+<i class="ri-github-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="mailto:adrianrongyanyun@gmail.com" target="_blank">
+<i class="ri-mail-line"></i>
+</a>
+</li>
+<li class="footer-li">
+<a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank">
+<i class="ri-linkedin-box-line"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <script src="/js/white.js"></script>
 </body>
 </html>
