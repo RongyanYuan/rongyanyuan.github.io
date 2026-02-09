@@ -167,7 +167,35 @@ floor + 1 = 32\)。</p>
 </details><figure>
 <img alt="CNN 卷积示意" src="/images/cnn-kernel-example.png"/>
 <figcaption>卷积核跨通道滑动计算并生成特征图的示例。</figcaption>
-</figure><h2 id="Hilbert"><a class="headerlink" href="#Hilbert" title="Hilbert 空间"></a>3. Hilbert 空间</h2><h3 id="Hilbert-Def"><a class="headerlink" href="#Hilbert-Def" title="定义"></a>定义</h3><p>Hilbert 空间是完备的内积空间 \((\mathcal{H}, \langle \cdot, \cdot \rangle)\)，其范数 \(|x|=\sqrt{\langle x,x\rangle}\) 使所有 Cauchy 序列收敛。</p><h3 id="Hilbert-Examples"><a class="headerlink" href="#Hilbert-Examples" title="例子"></a>例子</h3><ul>
+</figure>
+<details class="solution-block"><summary>Conv1 与 Conv2 滤波器：问答</summary><h3>问题</h3><p><strong>在 CNN 中，Conv2 的滤波器矩阵与 Conv1 的滤波器矩阵有什么区别？请从结构与概念两个层面解释。</strong></p><hr/><h3>答案</h3><p>Conv1 与 Conv2 的滤波器矩阵在<strong>结构</strong>与<strong>功能</strong>上均不同，反映了 CNN 的层级特征学习。</p><h4>1. 结构差异（滤波器维度）</h4><h5>Conv1（第一层卷积）</h5><ul>
+<li><strong>输入通道：</strong>1（灰度图）</li>
+<li><strong>卷积核尺寸：</strong>\(4 \times 4\)</li>
+<li><strong>滤波器数量：</strong>16</li>
+</ul><p>每个 Conv1 滤波器形状为：</p><p>\[
+\boxed{4 \times 4 \times 1}
+\]</p><p>Conv1 总参数量：</p><p>\[
+4 \times 4 \times 1 \times 16 = 256
+\]</p><h5>Conv2（第二层卷积）</h5><ul>
+<li><strong>输入通道：</strong>16（来自 Conv1 的特征图）</li>
+<li><strong>卷积核尺寸：</strong>\(4 \times 4\)</li>
+<li><strong>滤波器数量：</strong>16</li>
+</ul><p>每个 Conv2 滤波器形状为：</p><p>\[
+\boxed{4 \times 4 \times 16}
+\]</p><p>Conv2 总参数量：</p><p>\[
+4 \times 4 \times 16 \times 16 = 4096
+\]</p><h4>2. 数学表达差异</h4><h5>Conv1 的计算</h5><p>在位置 \((i,j)\)：</p><p>\[
+y_k(i,j) = \sum_{u,v} W_k(u,v)\,x(i+u,j+v)
+\]</p><p>无通道求和，直接在像素层计算。</p><h5>Conv2 的计算</h5><p>在位置 \((i,j)\)：</p><p>\[
+y_k(i,j) = \sum_{c=1}^{16}\sum_{u,v} W_{k,c}(u,v)\,x_c(i+u,j+v)
+\]</p><p>对所有输入通道求和，融合多张特征图的信息。</p><h4>3. 概念差异（特征层级）</h4><p><strong>Conv1 学到：</strong>低层特征（边缘、角点、笔画、局部对比）。</p><p><strong>Conv2 学到：</strong>高层特征（边缘组合、曲线、结构部件等）。</p><h4>4. 直觉理解</h4><ul>
+<li>Conv1 回答：“哪里有基本视觉模式？”</li>
+<li>Conv2 回答：“这些模式如何组合成有意义的形状？”</li>
+</ul><h4>5. 关键总结（考试版）</h4><blockquote>
+<p>Conv1 滤波器大小为 \(4\times4\times1\)，直接提取像素级低层特征；Conv2 滤波器大小为 \(4\times4\times16\)，跨越全部特征图通道，学习更高层次的特征组合。</p>
+</blockquote><h4>6. 记忆公式</h4><p>\[
+\boxed{\text{卷积核尺寸} = (\text{高}) \times (\text{宽}) \times (\text{输入通道数})}
+\]</p><p>每个滤波器产生<strong>一个</strong>输出通道，越深层语义越抽象。</p></details><h2 id="Hilbert"><a class="headerlink" href="#Hilbert" title="Hilbert 空间"></a>3. Hilbert 空间</h2><h3 id="Hilbert-Def"><a class="headerlink" href="#Hilbert-Def" title="定义"></a>定义</h3><p>Hilbert 空间是完备的内积空间 \((\mathcal{H}, \langle \cdot, \cdot \rangle)\)，其范数 \(|x|=\sqrt{\langle x,x\rangle}\) 使所有 Cauchy 序列收敛。</p><h3 id="Hilbert-Examples"><a class="headerlink" href="#Hilbert-Examples" title="例子"></a>例子</h3><ul>
 <li>带标准内积的 \(\mathbb{R}^n\)。</li>
 <li>\(L^2([a,b])\)：平方可积函数空间。</li>
 <li>序列空间 \(\ell^2\)：\(\sum_i x_i^2 &lt; \infty\)。</li>
@@ -271,7 +299,7 @@ T_{m,r}(x):=\sum_{k=m}^{r} h_k(x) = f_{n_{r+1}}(x)-f_{n_m}(x).
 <p>如需第二种证明，可用：<br/>
 1) <strong>Riesz–Fischer 定理</strong>（正交展开），或<br/>
 2) <strong>一致可积性 / Banach 空间完备性方法</strong>。</p>
-</details><h2 id="PD"><a class="headerlink" href="#PD" title="正定函数与核"></a>4. 正定函数与核</h2><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="定义"></a>定义</h3><p>函数 \(K: X \times X \to \mathbb{R}\) 若对任意 \(x_1,\ldots,x_n\) 与 \(a \in \mathbb{R}^n\) 满足：</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\)，则称 \(K\) 为正定。</p><p><strong>例：</strong> 对于 RBF 核 \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)，任意样本点形成的 Gram 矩阵都是对称且特征值非负，因此是正定核。</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="如何判断正定"></a>如何判断正定</h3><ul>
+</details><h2 id="PD"><a class="headerlink" href="#PD" title="正定函数与核"></a>4. 正定函数与核</h2><p>核函数是一种相似度函数，它等价于某个（可能是无限维）特征空间中的内积，并且它属于 Hilbert 空间。</p><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="定义"></a>定义</h3><p>函数 \(K: X \times X \to \mathbb{R}\) 若对任意 \(x_1,\ldots,x_n\) 与 \(a \in \mathbb{R}^n\) 满足：</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\)，则称 \(K\) 为正定。</p><p><strong>例：</strong> 对于 RBF 核 \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)，任意样本点形成的 Gram 矩阵都是对称且特征值非负，因此是正定核。</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="如何判断正定"></a>如何判断正定</h3><ul>
 <li>构造 Gram 矩阵 \(K_{ij}=K(x_i,x_j)\)，检查对称性与特征值非负。</li>
 <li>证明存在特征映射 \(\phi\) 使 \(K(x,x')=\langle \phi(x), \phi(x')\rangle\)。</li>
 <li>利用闭包性质：加、乘、缩放仍为正定核。</li>
@@ -279,7 +307,70 @@ T_{m,r}(x):=\sum_{k=m}^{r} h_k(x) = f_{n_{r+1}}(x)-f_{n_m}(x).
 <summary>查看检验</summary>
 <p>特征值为 \(1\pm e^{-d^2}\)。因为 \(0&lt;e^{-d^2}&lt;1\)，两特征值均为正，因此 \(K\) 为正定。</p>
 </details>
-<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="核方法"></a>5. 核方法</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="什么是核"></a>什么是核？</h3><p>核函数是相似度度量 \(K(x,x')\)，在某个特征空间中等价于内积。</p><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="核技巧"></a>核技巧</h3><p>将算法中的内积替换为 \(K(x,x')\)，避免显式映射到高维。</p><h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="表示定理"></a>表示定理</h3><p>正则化风险最小化的解可写为：</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\)。</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="证明思路"></a>证明思路</h4><p>任意 \(f\in\mathcal{H}\) 可写为 \(f=f_\parallel+f_\perp\)，其中 \(f_\parallel\) 属于 \(\{K(x_i,\cdot)\}\) 的张成空间，\(f_\perp\) 与其正交。拟合项只依赖 \(f_\parallel\)，且 \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\)。因此最优解满足 \(f_\perp=0\)。</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="练习题"></a>练习题</h4><p>在 RBF 核的核岭回归中，写出解的形式，并说明需求解的方程。</p><details class="solution-block">
+<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="核方法"></a>5. 核方法</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="什么是核"></a>什么是核？</h3><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="核技巧"></a>核技巧</h3><p>将算法中的内积替换为 \(K(x,x')\)，避免显式映射到高维。</p><details class="solution-block"><summary>K(x,·) 的含义与再生性质</summary><p>RKHS 是唯一使“函数在点处取值”等价于“与内积相乘”的数学环境。</p><h3>\(K(x,\cdot)\) 的含义与再生性质（含具体数值例子）</h3><hr/><h4>1. \(K(x,\cdot)\) 中的“\(\cdot\)”是什么意思？</h4><h5>定义</h5><p>“\(\cdot\)”是<strong>函数自变量的占位符</strong>。</p><p>给定核函数</p><p>\[
+K : X \times X \to \mathbb{R},
+\]</p><p>表达式</p><p>\[
+K(x,\cdot)
+\]</p><p>表示：把第一个参数固定为 \(x\)，把核函数视为<strong>关于第二个参数的函数</strong>。</p><p>形式化地，</p><p>\[
+K(x,\cdot) : z \longmapsto K(x,z).
+\]</p><p>因此 \(K(x,\cdot)\) 不是一个数，而是一个<strong>函数</strong>。</p><hr/><h4>2. 为什么需要 \(K(x,\cdot)\)?</h4><p>在 RKHS 理论中：</p><ul>
+<li>Hilbert 空间 \(\mathcal H\) 的元素是<strong>函数</strong>。</li>
+<li>对每个 \(x \in X\)，函数 \(K(x,\cdot)\) 本身属于 \(\mathcal H\)。</li>
+</ul><p>即</p><p>\[
+K(x,\cdot) \in \mathcal H.
+\]</p><p>这为再生性质提供基础。</p><hr/><h4>3. 再生性质（表述）</h4><p>设 \(\mathcal H\) 为核 \(K\) 对应的 RKHS。对任意 \(f \in \mathcal H\) 与 \(x \in X\)，</p><p>\[
+\boxed{
+ f(x) = \langle f,\; K(x,\cdot) \rangle_{\mathcal H}
+}
+\]</p><p>这意味着：函数在点 \(x\) 的取值等于与核函数 \(K(x,\cdot)\) 的内积。</p><hr/><h4>4. 直觉理解（数字之前）</h4><ul>
+<li>在有限维空间中，内积相当于提取坐标。</li>
+<li>在 RKHS 中，内积提取的是<strong>函数值</strong>。</li>
+</ul><p>因此 \(K(x,\cdot)\) 可以理解为“抽取 \(f(x)\) 的广义基向量”。</p><hr/><h4>5. 符号级例子</h4><h5>线性核</h5><p>令</p><p>\[
+K(x,z) = xz \quad (\mathbb{R}).
+\]</p><p>固定 \(x = 3\)，则</p><p>\[
+K(3,\cdot)(z) = 3z.
+\]</p><p>所以 \(K(3,\cdot)\) 是函数 \(z \mapsto 3z\)。</p><hr/><h4>6. 具体数值例子验证再生性质</h4><h5>步骤 1：选择核函数</h5><p>使用<strong>线性核</strong>：</p><p>\[
+K(x,z) = xz.
+\]</p><p>对应的 RKHS 是所有线性函数：</p><p>\[
+f(z) = az
+\]</p><p>其内积为：</p><p>\[
+\langle f,g\rangle = ab \quad (f(z)=az,\ g(z)=bz).
+\]</p><h5>步骤 2：选择函数 \(f\)</h5><p>令</p><p>\[
+f(z) = 2z.
+\]</p><h5>步骤 3：选择点 \(x\)</h5><p>令</p><p>\[
+x = 3.
+\]</p><p>则</p><p>\[
+f(3) = 2 \times 3 = 6.
+\]</p><h5>步骤 4：计算 \(K(x,\cdot)\)</h5><p>\[
+K(3,\cdot)(z) = 3z.
+\]</p><h5>步骤 5：计算内积</h5><p>\[
+\langle f,\; K(3,\cdot) \rangle
+= \langle 2z,\; 3z \rangle
+= 2 \times 3
+= 6.
+\]</p><h5>步骤 6：对比两边</h5><p>\[
+\boxed{
+ f(3) = 6
+ \quad=\quad
+ \langle f,\; K(3,\cdot) \rangle
+}
+\]</p><p>✔ 再生性质严格成立。</p><hr/><h4>7. 直觉：高斯核（概念版）</h4><p>对高斯核</p><p>\[
+K(x,z) = \exp\!\left(-\frac{(x-z)^2}{2\sigma^2}\right),
+\]</p><ul>
+<li>\(K(x,\cdot)\) 是以 \(x\) 为中心的高斯函数。</li>
+<li>与 \(f\) 的内积衡量对齐程度。</li>
+<li>该对齐值等于 \(f(x)\)。</li>
+</ul><hr/><h4>8. 常见误解（重要）</h4><ul>
+<li>❌ “\(\cdot\)”不是乘法。</li>
+<li>❌ “\(\cdot\)”不是内积。</li>
+<li>❌ “\(\cdot\)”不是导数。</li>
+<li>✅ 它表示“函数自变量”。</li>
+</ul><hr/><h4>9. 一句话总结（考试版）</h4><blockquote>
+<p>在 RKHS 中，\(K(x,\cdot)\) 表示固定一个核参数得到的函数，而再生性质说明函数在 \(x\) 处取值等于其与 \(K(x,\cdot)\) 的内积。</p>
+</blockquote><hr/><h4>10. 大图景总结</h4><blockquote>
+<p><strong>核函数不仅比较样本点，更生成函数作为“坐标探针”，在无限维 Hilbert 空间中提取函数值。</strong></p>
+</blockquote></details>
+<h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="表示定理"></a>表示定理</h3><p>正则化风险最小化的解可写为：</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\)。</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="证明思路"></a>证明思路</h4><p>任意 \(f\in\mathcal{H}\) 可写为 \(f=f_\parallel+f_\perp\)，其中 \(f_\parallel\) 属于 \(\{K(x_i,\cdot)\}\) 的张成空间，\(f_\perp\) 与其正交。拟合项只依赖 \(f_\parallel\)，且 \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\)。因此最优解满足 \(f_\perp=0\)。</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="练习题"></a>练习题</h4><p>在 RBF 核的核岭回归中，写出解的形式，并说明需求解的方程。</p><details class="solution-block">
 <summary>查看答案</summary>
 <p>由表示定理，\(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\)。系数 \(\alpha\) 由线性方程 \((K+\lambda n I)\alpha=y\) 求得，\(K\) 为 Gram 矩阵。</p>
 </details><h3 id="Kernel-Apps"><a class="headerlink" href="#Kernel-Apps" title="应用与示例"></a>应用与示例</h3><ul>
@@ -292,7 +383,7 @@ T_{m,r}(x):=\sum_{k=m}^{r} h_k(x) = f_{n_{r+1}}(x)-f_{n_m}(x).
 <li>CNN 利用局部性与参数共享处理图像等数据。</li>
 <li>Hilbert 空间为核方法提供理论基础。</li>
 <li>正定核使核技巧与表示定理成立。</li>
-</ul><div class="post-categoris-bottom">
+<li>核方法几乎可以应用于所有监督学习任务。</li><li>然而，如何选择核函数仍未被充分理解。</li><li>正则化参数的选择方式也尚未有公认的结论。</li></ul><div class="post-categoris-bottom">
 <div class="post-categoris-name">数学</div>
 <ul>
 <li class="me base">
@@ -302,7 +393,128 @@ T_{m,r}(x):=\sum_{k=m}^{r} h_k(x) = f_{n_{r+1}}(x)-f_{n_m}(x).
 </div>
 <!-- top型目录 -->
 <!-- 分类文章 -->
-</div><div class="post-content-inner-space">
+<details class="solution-block">
+<summary>SVM、Kernel 与 Hilbert 空间 — 数值例子</summary>
+<h2>SVM、Kernel 与 Hilbert 空间 — 完整数值例子</h2>
+<p>本例用<strong>具体数字</strong>逐步说明 SVM 如何使用 kernel 与 Hilbert 空间。</p>
+<hr/>
+<h3>1. 一个具体数据集（线性不可分）</h3>
+<p>考虑一个简单的 <strong>1D 分类问题</strong>：</p>
+<table>
+<thead>
+<tr><th>序号</th><th>输入 \(x\)</th><th>标签 \(y\)</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>−1</td><td>−1</td></tr>
+<tr><td>2</td><td>0</td><td>+1</td></tr>
+<tr><td>3</td><td>1</td><td>−1</td></tr>
+</tbody>
+</table>
+<p>数轴直觉：</p>
+<pre>x^2
+↑
+| ● (-1,1) ● (1,1) ← 负类
+|
+| ○ (0,0) ← 正类
++------------------------→ x</pre>
+<p>这些点在 2D 空间中<strong>线性可分</strong>。</p>
+<hr/>
+<h3>4. 特征（Hilbert）空间中的线性 SVM</h3>
+<p>在特征空间，SVM 仍然是线性的：</p>
+<p>\[
+f(x) = \langle w, \phi(x) \rangle + b
+\]</p>
+<p>取：</p>
+<p>\[
+w = (0,1), \quad b = -0.5
+\]</p>
+<p>逐点计算：</p>
+<ul>
+<li>\(x=-1\)：\(f = (0,1)\cdot(-1,1) - 0.5 = 0.5 \Rightarrow y=-1\)</li>
+<li>\(x=0\)：\(f = (0,1)\cdot(0,0) - 0.5 = -0.5 \Rightarrow y=+1\)</li>
+<li>\(x=1\)：\(f = (0,1)\cdot(1,1) - 0.5 = 0.5 \Rightarrow y=-1\)</li>
+</ul>
+<p>分类完全正确。</p>
+<hr/>
+<h3>5. 特征空间内积（显式数值）</h3>
+<p>计算内积：</p>
+<p>\[
+\langle \phi(x), \phi(x') \rangle
+=
+ x x' + x^2 x'^2
+\]</p>
+<p>例子：</p>
+<ul>
+<li>\(x=-1,\ x'=1\)：\((-1)(1) + (1)(1) = 0\)</li>
+<li>\(x=1,\ x'=1\)：\(1 + 1 = 2\)</li>
+</ul>
+<p>SVM 只依赖这些<strong>内积</strong>。</p>
+<hr/>
+<h3>6. 用核函数替代内积</h3>
+<p>定义核：</p>
+<p>\[
+K(x,x') = x x' + x^2 x'^2
+\]</p>
+<p>满足：</p>
+<p>\[
+K(x,x') = \langle \phi(x), \phi(x') \rangle
+\]</p>
+<p>计算 <strong>Gram 矩阵</strong>：</p>
+<p>\[
+K =
+\begin{pmatrix}
+K(-1,-1) &amp; K(-1,0) &amp; K(-1,1) \\
+K(0,-1) &amp; K(0,0) &amp; K(0,1) \\
+K(1,-1) &amp; K(1,0) &amp; K(1,1)
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 2
+\end{pmatrix}
+\]</p>
+<p>该矩阵是<strong>半正定</strong>的，因此核定义了一个<strong>Hilbert 空间</strong>。</p>
+<hr/>
+<h3>7. 只用核写出 SVM 解</h3>
+<p>由表示定理，分类器形式为：</p>
+<p>\[
+f(x) = \sum_{i=1}^n \alpha_i y_i K(x_i,x) + b
+\]</p>
+<p>假设系数为：</p>
+<p>\[
+\alpha_1 = \alpha_3 = 0.5,\quad \alpha_2 = 1
+\]</p>
+<p>则：</p>
+<p>\[
+f(x)
+=
+0.5(-1)K(-1,x)
++ 1(+1)K(0,x)
++ 0.5(-1)K(1,x)
++ b
+\]</p>
+<p>无需显式 \(\phi(x)\) —— 只需核函数值。</p>
+<hr/>
+<h3>8. Hilbert 空间出现在哪里</h3>
+<p>核诱导<strong>再生核 Hilbert 空间（RKHS）</strong> \(\mathcal H_K\)：</p>
+<ul>
+<li>函数形式：\(f(x) = \sum_i c_i K(x_i,x)\)</li>
+<li>内积性质：\(\langle K(x,\cdot), K(x',\cdot) \rangle_{\mathcal H_K} = K(x,x')\)</li>
+<li>再生性质：\(f(x) = \langle f, K(x,\cdot) \rangle_{\mathcal H_K}\)</li>
+</ul>
+<p>因此：</p>
+<ul>
+<li>\(K(x,\cdot)\) 像特征向量</li>
+<li>SVM 在该 Hilbert 空间中寻找<strong>最大间隔超平面</strong></li>
+</ul>
+<hr/>
+<h3>9. 最终结论</h3>
+<blockquote>
+<p>SVM 在核定义的 Hilbert 空间中始终是线性的，通过用核值替换特征空间内积，它只依赖 Gram 矩阵即可学习非线性决策边界。</p>
+</blockquote>
+<p>该例子用<strong>具体数字</strong>展示了 kernel、Hilbert 空间与 SVM 的关系。</p>
+</details></div><div class="post-content-inner-space">
 <div class="space-toc-main animate__animated animate__fadeInUp">
 <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Reading-List"><span class="space-toc-text">Reading List</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Convolution-Cross-Correlation"><span class="space-toc-text">理解卷积与互相关</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Neural-Networks"><span class="space-toc-text">1. 神经网络</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CNN"><span class="space-toc-text">2. 卷积神经网络（CNN）</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hilbert"><span class="space-toc-text">3. Hilbert 空间</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#PD"><span class="space-toc-text">4. 正定函数与核</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Kernel-Methods"><span class="space-toc-text">5. 核方法</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Summary"><span class="space-toc-text">总结</span></a></li></ol>
 </div>

@@ -170,7 +170,35 @@ floor + 1 = 31 + 1 = 32\).</p>
 </details><figure>
 <img alt="CNN convolution example" src="/images/cnn-kernel-example.png"/>
 <figcaption>Example of convolution kernels applied across channels to produce feature maps.</figcaption>
-</figure><h2 id="Hilbert"><a class="headerlink" href="#Hilbert" title="Hilbert Spaces"></a>3. Hilbert Spaces</h2><h3 id="Hilbert-Def"><a class="headerlink" href="#Hilbert-Def" title="Definition"></a>Definition</h3><p>A Hilbert space is a complete inner‑product space \((\mathcal{H}, \langle \cdot, \cdot \rangle)\) where the norm \(|x| = \sqrt{\langle x, x \rangle}\) makes every Cauchy sequence converge.</p><h3 id="Hilbert-Examples"><a class="headerlink" href="#Hilbert-Examples" title="Examples"></a>Examples</h3><ul>
+</figure>
+<details class="solution-block"><summary>Conv1 vs Conv2 Filters: Q&amp;A</summary><h3>Question</h3><p><strong>What is the difference between the filter matrix of Conv2 and the filter matrix of Conv1 in a Convolutional Neural Network (CNN)? Explain both the structural and conceptual differences.</strong></p><hr/><h3>Answer</h3><p>The filter matrices of <strong>Conv1</strong> and <strong>Conv2</strong> differ in both <strong>structure</strong> and <strong>function</strong>, reflecting hierarchical feature learning in CNNs.</p><h4>1. Structural Difference (Filter Dimensions)</h4><h5>Conv1 (First Convolutional Layer)</h5><ul>
+<li><strong>Input channels:</strong> 1 (grayscale image)</li>
+<li><strong>Filter size:</strong> \(4 \times 4\)</li>
+<li><strong>Number of filters:</strong> 16</li>
+</ul><p>Each Conv1 filter has shape:</p><p>\[
+\boxed{4 \times 4 \times 1}
+\]</p><p>Total number of weights in Conv1:</p><p>\[
+4 \times 4 \times 1 \times 16 = 256
+\]</p><h5>Conv2 (Second Convolutional Layer)</h5><ul>
+<li><strong>Input channels:</strong> 16 (output feature maps from Conv1)</li>
+<li><strong>Filter size:</strong> \(4 \times 4\)</li>
+<li><strong>Number of filters:</strong> 16</li>
+</ul><p>Each Conv2 filter has shape:</p><p>\[
+\boxed{4 \times 4 \times 16}
+\]</p><p>Total number of weights in Conv2:</p><p>\[
+4 \times 4 \times 16 \times 16 = 4096
+\]</p><h4>2. Mathematical Interpretation</h4><h5>Conv1 Operation</h5><p>At a spatial location \((i,j)\):</p><p>\[
+y_k(i,j) = \sum_{u,v} W_k(u,v)\,x(i+u,j+v)
+\]</p><p>No summation over channels; filters operate directly on raw pixels.</p><h5>Conv2 Operation</h5><p>At a spatial location \((i,j)\):</p><p>\[
+y_k(i,j) = \sum_{c=1}^{16}\sum_{u,v} W_{k,c}(u,v)\,x_c(i+u,j+v)
+\]</p><p>There is a summation over all input channels, combining information from multiple feature maps.</p><h4>3. Conceptual Difference (Feature Hierarchy)</h4><p><strong>Conv1 filters learn:</strong> low‑level features (edges, corners, strokes, local contrast).</p><p><strong>Conv2 filters learn:</strong> higher‑level features (combinations of edges, curves, parts of digits/objects).</p><h4>4. Intuition</h4><ul>
+<li>Conv1 answers: “Where are the basic visual patterns?”</li>
+<li>Conv2 answers: “How do these patterns combine to form meaningful shapes?”</li>
+</ul><h4>5. Key Takeaway (Exam‑Ready)</h4><blockquote>
+<p>Conv1 filters have size \(4\times4\times1\) and extract low‑level features directly from pixel values, whereas Conv2 filters have size \(4\times4\times16\), span all previous feature maps, and learn higher‑level feature compositions by combining earlier features.</p>
+</blockquote><h4>6. Golden Rule to Remember</h4><p>\[
+\boxed{\text{Convolution filter size} = (\text{kernel height}) \times (\text{kernel width}) \times (\text{number of input channels})}
+\]</p><p>Each filter produces <strong>one</strong> output channel, and deeper layers learn increasingly abstract representations.</p></details><h2 id="Hilbert"><a class="headerlink" href="#Hilbert" title="Hilbert Spaces"></a>3. Hilbert Spaces</h2><h3 id="Hilbert-Def"><a class="headerlink" href="#Hilbert-Def" title="Definition"></a>Definition</h3><p>A Hilbert space is a complete inner‑product space \((\mathcal{H}, \langle \cdot, \cdot \rangle)\) where the norm \(|x| = \sqrt{\langle x, x \rangle}\) makes every Cauchy sequence converge.</p><h3 id="Hilbert-Examples"><a class="headerlink" href="#Hilbert-Examples" title="Examples"></a>Examples</h3><ul>
 <li>\(\mathbb{R}^n\) with dot product.</li>
 <li>\(L^2([a,b])\): square‑integrable functions with \(\langle f,g \rangle = \int_a^b f(x)g(x)\,dx\).</li>
 <li>Sequence space \(\ell^2\): \(\sum_i x_i^2 &lt; \infty\).</li>
@@ -303,7 +331,7 @@ Then for all \(n\ge N\),</p>
 <li>Cauchy–Schwarz with weights converts that into pointwise convergence of \(\sum h_k(x)\).</li>
 <li>Fatou + triangle inequality yields \(L^2\) convergence.</li>
 </ul>
-</details><h2 id="PD"><a class="headerlink" href="#PD" title="Positive Definite Functions"></a>4. Positive Definite Functions and Kernels</h2><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="Definition"></a>Definition</h3><p>A function \(K: X \times X \to \mathbb{R}\) is <strong>positive definite</strong> if for any \(x_1,\ldots,x_n\) and any \(a \in \mathbb{R}^n\):</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\).</p><p><strong>Example:</strong> For the RBF kernel \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\), the Gram matrix \(K\) is symmetric and all eigenvalues are non‑negative for any finite sample, so it is positive definite.</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="How to Test Positive Definiteness"></a>How to Test Positive Definiteness</h3><ul>
+</details><h2 id="PD"><a class="headerlink" href="#PD" title="Positive Definite Functions"></a>4. Positive Definite Functions and Kernels</h2><p>A kernel is a similarity function that acts like an inner product in some (possibly infinite‑dimensional) feature space, and it is in a Hilbert space.</p><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="Definition"></a>Definition</h3><p>A function \(K: X \times X \to \mathbb{R}\) is <strong>positive definite</strong> if for any \(x_1,\ldots,x_n\) and any \(a \in \mathbb{R}^n\):</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\).</p><p><strong>Example:</strong> For the RBF kernel \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\), the Gram matrix \(K\) is symmetric and all eigenvalues are non‑negative for any finite sample, so it is positive definite.</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="How to Test Positive Definiteness"></a>How to Test Positive Definiteness</h3><ul>
 <li>Form Gram matrix \(K_{ij} = K(x_i, x_j)\); check that \(K\) is symmetric and all eigenvalues are non‑negative.</li>
 <li>Show that \(K(x, x') = \langle \phi(x), \phi(x') \rangle\) for some feature map \(\phi\).</li>
 <li>Use closure properties: sums, products, and limits of p.d. kernels are p.d.</li>
@@ -311,7 +339,70 @@ Then for all \(n\ge N\),</p>
 <summary>Show Check</summary>
 <p>The eigenvalues are \(1\pm e^{-d^2}\). Since \(0&lt;e^{-d^2}&lt;1\), both eigenvalues are positive, so \(K\) is positive definite.</p>
 </details>
-<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="Kernel Methods"></a>5. Kernel Methods</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="What is a Kernel"></a>What is a Kernel?</h3><p>A kernel is a similarity function \(K(x, x')\) that acts like an inner product in some (possibly infinite‑dimensional) feature space.</p><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="Kernel Trick"></a>Kernel Trick</h3><p>Algorithms relying on dot products can be rewritten in terms of \(K(x, x')\), avoiding explicit feature mappings.</p><h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="Representer Theorem"></a>Representer Theorem</h3><p>For regularized risk minimization in RKHS, the solution has the form:</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\).</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="Proof Sketch"></a>Proof Sketch</h4><p>Any \(f \in \mathcal{H}\) can be decomposed as \(f=f_\parallel+f_\perp\), where \(f_\parallel\) lies in the span of \(\{K(x_i,\cdot)\}\) and \(f_\perp\) is orthogonal. The data‑fit term depends only on \(f_\parallel\), while the RKHS norm satisfies \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\). Thus the minimizer must have \(f_\perp=0\).</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="Practice Problem"></a>Practice Problem</h4><p>For kernel ridge regression with RBF kernel, write the solution form and the system you must solve.</p><details class="solution-block">
+<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="Kernel Methods"></a>5. Kernel Methods</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="What is a Kernel"></a>What is a Kernel?</h3><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="Kernel Trick"></a>Kernel Trick</h3><p>Algorithms relying on dot products can be rewritten in terms of \(K(x, x')\), avoiding explicit feature mappings.</p><details class="solution-block"><summary>Meaning of K(x,·) and Reproducing Property</summary><p>RKHS is the unique setting where evaluating a function is the same as taking an inner product.</p><h3>Meaning of \(K(x,\cdot)\) and the Reproducing Property (with a Concrete Numerical Example)</h3><hr/><h4>1. What does the dot “\(\cdot\)” mean in \(K(x,\cdot)\)?</h4><h5>Definition</h5><p>The dot “\(\cdot\)” is a <strong>placeholder for the argument of a function</strong>.</p><p>Given a kernel</p><p>\[
+K : X \times X \to \mathbb{R},
+\]</p><p>the expression</p><p>\[
+K(x,\cdot)
+\]</p><p>means: fix the first argument at \(x\), and view the kernel as a <strong>function of the second argument</strong>.</p><p>Formally,</p><p>\[
+K(x,\cdot) : z \longmapsto K(x,z).
+\]</p><p>So \(K(x,\cdot)\) is <strong>not a number</strong> — it is a <strong>function</strong>.</p><hr/><h4>2. Why do we need \(K(x,\cdot)\)?</h4><p>In Reproducing Kernel Hilbert Space (RKHS) theory:</p><ul>
+<li>The elements of the Hilbert space \(\mathcal H\) are <strong>functions</strong>.</li>
+<li>For every \(x \in X\), the function \(K(x,\cdot)\) itself belongs to \(\mathcal H\).</li>
+</ul><p>That is,</p><p>\[
+K(x,\cdot) \in \mathcal H.
+\]</p><p>This is essential for defining the <strong>reproducing property</strong>.</p><hr/><h4>3. The Reproducing Property (statement)</h4><p>Let \(\mathcal H\) be the RKHS associated with kernel \(K\). For every \(f \in \mathcal H\) and every \(x \in X\),</p><p>\[
+\boxed{
+ f(x) = \langle f,\; K(x,\cdot) \rangle_{\mathcal H}
+}
+\]</p><p>This means evaluating a function at a point is the same as taking an inner product with the kernel function \(K(x,\cdot)\).</p><hr/><h4>4. Intuition (before numbers)</h4><ul>
+<li>In finite‑dimensional vector spaces, inner products extract coordinates.</li>
+<li>In RKHS, inner products extract <strong>function values</strong>.</li>
+</ul><p>So \(K(x,\cdot)\) plays the role of a <strong>generalized basis vector</strong> that “picks out” the value \(f(x)\).</p><hr/><h4>5. Simple symbolic example</h4><h5>Linear kernel</h5><p>Let</p><p>\[
+K(x,z) = xz \quad \text{on } \mathbb{R}.
+\]</p><p>Fix \(x = 3\). Then:</p><p>\[
+K(3,\cdot)(z) = 3z.
+\]</p><p>So \(K(3,\cdot)\) is the function \(z \mapsto 3z\).</p><hr/><h4>6. Concrete numerical example of the reproducing property</h4><h5>Step 1: Choose a kernel</h5><p>Use the <strong>linear kernel</strong>:</p><p>\[
+K(x,z) = xz.
+\]</p><p>The associated RKHS is the space of linear functions:</p><p>\[
+f(z) = az
+\]</p><p>with inner product:</p><p>\[
+\langle f,g\rangle = a b \quad \text{if } f(z)=az,\ g(z)=bz.
+\]</p><h5>Step 2: Choose a function \(f\)</h5><p>Let</p><p>\[
+f(z) = 2z.
+\]</p><h5>Step 3: Choose a point \(x\)</h5><p>Let</p><p>\[
+x = 3.
+\]</p><p>Then</p><p>\[
+f(3) = 2 \times 3 = 6.
+\]</p><h5>Step 4: Compute \(K(x,\cdot)\)</h5><p>\[
+K(3,\cdot)(z) = 3z.
+\]</p><h5>Step 5: Compute the inner product</h5><p>\[
+\langle f,\; K(3,\cdot) \rangle
+= \langle 2z,\; 3z \rangle
+= 2 \times 3
+= 6.
+\]</p><h5>Step 6: Compare both sides</h5><p>\[
+\boxed{
+ f(3) = 6
+ \quad=\quad
+ \langle f,\; K(3,\cdot) \rangle
+}
+\]</p><p>✔ The reproducing property holds exactly.</p><hr/><h4>7. Another intuition: Gaussian kernel example (conceptual)</h4><p>For the Gaussian kernel</p><p>\[
+K(x,z) = \exp\!\left(-\frac{(x-z)^2}{2\sigma^2}\right),
+\]</p><ul>
+<li>\(K(x,\cdot)\) is a Gaussian‑shaped function centered at \(x\).</li>
+<li>Inner product with \(f\) measures alignment with that Gaussian.</li>
+<li>That alignment equals \(f(x)\).</li>
+</ul><hr/><h4>8. Common misconceptions (important)</h4><ul>
+<li>❌ The dot does <strong>not</strong> mean multiplication.</li>
+<li>❌ The dot does <strong>not</strong> mean inner product.</li>
+<li>❌ The dot does <strong>not</strong> mean derivative.</li>
+<li>✅ It means <strong>“the argument of the function”</strong>.</li>
+</ul><hr/><h4>9. One‑line exam‑ready summary</h4><blockquote>
+<p>In RKHS theory, \(K(x,\cdot)\) denotes the function obtained by fixing one argument of the kernel, and the reproducing property states that evaluating a function at \(x\) is equivalent to taking its inner product with \(K(x,\cdot)\).</p>
+</blockquote><hr/><h4>10. Big‑picture takeaway</h4><blockquote>
+<p><strong>Kernels do not just compare points — they generate functions that act as coordinate probes in an infinite‑dimensional Hilbert space.</strong></p>
+</blockquote></details>
+<h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="Representer Theorem"></a>Representer Theorem</h3><p>For regularized risk minimization in RKHS, the solution has the form:</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\).</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="Proof Sketch"></a>Proof Sketch</h4><p>Any \(f \in \mathcal{H}\) can be decomposed as \(f=f_\parallel+f_\perp\), where \(f_\parallel\) lies in the span of \(\{K(x_i,\cdot)\}\) and \(f_\perp\) is orthogonal. The data‑fit term depends only on \(f_\parallel\), while the RKHS norm satisfies \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\). Thus the minimizer must have \(f_\perp=0\).</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="Practice Problem"></a>Practice Problem</h4><p>For kernel ridge regression with RBF kernel, write the solution form and the system you must solve.</p><details class="solution-block">
 <summary>Show Solution</summary>
 <p>The representer theorem gives \(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\). Solve \((K+\lambda n I)\alpha = y\) for \(\alpha\), where \(K\) is the Gram matrix.</p>
 </details><h3 id="Kernel-Apps"><a class="headerlink" href="#Kernel-Apps" title="Applications and Examples"></a>Applications and Examples</h3><ul>
@@ -395,12 +486,133 @@ Hilbert space
 RKHS</pre>
 <h3>7. Research‑Level One‑Sentence Summary</h3>
 <p>When data are not linearly separable, kernels implicitly lift them to a higher‑dimensional space; because a kernel is an inner product and the existence/geometry of optimal solutions relies on completeness, kernels must be defined in a Hilbert space, which is the mathematical foundation of RKHS.</p>
+</details><details class="solution-block">
+<summary>SVM, Kernel, and Hilbert Space — Numerical Example</summary>
+<h2>SVM, Kernel, and Hilbert Space — A Fully Numerical Example</h2>
+<p>This example explains <strong>how SVMs use kernels and Hilbert spaces</strong> step by step, using <strong>explicit numbers</strong> throughout.</p>
+<hr/>
+<h3>1. A concrete dataset (not linearly separable)</h3>
+<p>Consider a simple <strong>1D classification problem</strong>:</p>
+<table>
+<thead>
+<tr><th>Index</th><th>Input \(x\)</th><th>Label \(y\)</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>−1</td><td>−1</td></tr>
+<tr><td>2</td><td>0</td><td>+1</td></tr>
+<tr><td>3</td><td>1</td><td>−1</td></tr>
+</tbody>
+</table>
+<p>Intuition on the number line:</p>
+<pre>x^2
+↑
+| ● (-1,1) ● (1,1) ← negative class
+|
+| ○ (0,0) ← positive class
++------------------------→ x</pre>
+<p>These points <strong>are linearly separable</strong> in this 2D space.</p>
+<hr/>
+<h3>4. Linear SVM in feature (Hilbert) space</h3>
+<p>In feature space, the SVM is still linear:</p>
+<p>\[
+f(x) = \langle w, \phi(x) \rangle + b
+\]</p>
+<p>Choose:</p>
+<p>\[
+w = (0,1), \quad b = -0.5
+\]</p>
+<p>Evaluate explicitly:</p>
+<ul>
+<li>\(x=-1\):  \(f = (0,1)\cdot(-1,1) - 0.5 = 1 - 0.5 = 0.5 \Rightarrow y=-1\)</li>
+<li>\(x=0\):  \(f = (0,1)\cdot(0,0) - 0.5 = -0.5 \Rightarrow y=+1\)</li>
+<li>\(x=1\):  \(f = (0,1)\cdot(1,1) - 0.5 = 1 - 0.5 = 0.5 \Rightarrow y=-1\)</li>
+</ul>
+<p>Classification is perfect.</p>
+<hr/>
+<h3>5. Inner products in feature space (explicit numbers)</h3>
+<p>Compute inner products:</p>
+<p>\[
+\langle \phi(x), \phi(x') \rangle
+=
+ x x' + x^2 x'^2
+\]</p>
+<p>Examples:</p>
+<ul>
+<li>\(x=-1,\ x'=1\): \((-1)(1) + (1)(1) = -1 + 1 = 0\)</li>
+<li>\(x=1,\ x'=1\): \(1 + 1 = 2\)</li>
+</ul>
+<p>The SVM only depends on these <strong>inner products</strong>.</p>
+<hr/>
+<h3>6. Replace inner products with a kernel</h3>
+<p>Define the kernel:</p>
+<p>\[
+K(x,x') = x x' + x^2 x'^2
+\]</p>
+<p>This satisfies:</p>
+<p>\[
+K(x,x') = \langle \phi(x), \phi(x') \rangle
+\]</p>
+<p>Now compute the <strong>Gram matrix</strong>:</p>
+<p>\[
+K =
+\begin{pmatrix}
+K(-1,-1) &amp; K(-1,0) &amp; K(-1,1) \\
+K(0,-1) &amp; K(0,0) &amp; K(0,1) \\
+K(1,-1) &amp; K(1,0) &amp; K(1,1)
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 2
+\end{pmatrix}
+\]</p>
+<p>This matrix is <strong>positive semidefinite</strong>, so the kernel defines a <strong>Hilbert space</strong>.</p>
+<hr/>
+<h3>7. SVM solution written purely with kernels</h3>
+<p>By the Representer Theorem, the classifier has the form:</p>
+<p>\[
+f(x) = \sum_{i=1}^n \alpha_i y_i K(x_i,x) + b
+\]</p>
+<p>Assume the learned coefficients are:</p>
+<p>\[
+\alpha_1 = \alpha_3 = 0.5,\quad \alpha_2 = 1
+\]</p>
+<p>Then:</p>
+<p>\[
+f(x)
+=
+0.5(-1)K(-1,x)
++ 1(+1)K(0,x)
++ 0.5(-1)K(1,x)
++ b
+\]</p>
+<p>No explicit \(\phi(x)\) appears — <strong>only kernel evaluations</strong>.</p>
+<hr/>
+<h3>8. Where the Hilbert space appears</h3>
+<p>The kernel induces a <strong>Reproducing Kernel Hilbert Space (RKHS)</strong> \(\mathcal H_K\) where:</p>
+<ul>
+<li>Functions have the form: \(f(x) = \sum_i c_i K(x_i,x)\)</li>
+<li>Inner products satisfy: \(\langle K(x,\cdot), K(x',\cdot) \rangle_{\mathcal H_K} = K(x,x')\)</li>
+<li>Function evaluation is reproduced: \(f(x) = \langle f, K(x,\cdot) \rangle_{\mathcal H_K}\)</li>
+</ul>
+<p>Thus:</p>
+<ul>
+<li>\(K(x,\cdot)\) acts like a feature vector</li>
+<li>The SVM finds a <strong>maximum‑margin hyperplane</strong> in this Hilbert space</li>
+</ul>
+<hr/>
+<h3>9. Final takeaway</h3>
+<blockquote>
+<p>The SVM is always linear in a kernel‑defined Hilbert space, and by replacing feature‑space inner products with kernel values, it learns nonlinear decision boundaries using only the Gram matrix.</p>
+</blockquote>
+<p>This example shows <strong>explicitly with numbers</strong> how kernels, Hilbert spaces, and SVMs fit together.</p>
 </details><h2 id="Summary"><a class="headerlink" href="#Summary" title="Summary"></a>Summary</h2><ul>
 <li>Backprop provides efficient gradients for deep networks.</li>
 <li>CNNs exploit locality and parameter sharing for grid data.</li>
 <li>Hilbert spaces underpin kernel methods via completeness and inner products.</li>
 <li>Positive definite kernels enable the kernel trick and representer theorem.</li>
-</ul><div class="post-categoris-bottom">
+<li>Kernel methods can be applied to almost any supervised learning tasks.</li><li>However, how to choose the kernel has not been well understood yet.</li><li>It is also not well known how to choose the regularization parameter.</li></ul><div class="post-categoris-bottom">
 <div class="post-categoris-name">Math</div>
 <ul>
 <li class="me base">
