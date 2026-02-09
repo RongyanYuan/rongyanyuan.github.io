@@ -174,14 +174,144 @@ floor + 1 = 31 + 1 = 32\).</p>
 <li>\(\mathbb{R}^n\) with dot product.</li>
 <li>\(L^2([a,b])\): square‑integrable functions with \(\langle f,g \rangle = \int_a^b f(x)g(x)\,dx\).</li>
 <li>Sequence space \(\ell^2\): \(\sum_i x_i^2 &lt; \infty\).</li>
-</ul><h3 id="Hilbert-Proof"><a class="headerlink" href="#Hilbert-Proof" title="Proof Sketch: Completeness of L2"></a>Proof Sketch: Completeness of \(L^2\)</h3><p>Take a Cauchy sequence \(f_n\) in \(L^2\). One can show it is Cauchy in measure, extract a subsequence converging a.e. to \(f\), and use Fatou’s lemma to prove \(f \in L^2\) and \(f_n \to f\) in norm.</p><h2 id="PD"><a class="headerlink" href="#PD" title="Positive Definite Functions"></a>4. Positive Definite Functions and Kernels</h2><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="Definition"></a>Definition</h3><p>A function \(K: X \times X \to \mathbb{R}\) is <strong>positive definite</strong> if for any \(x_1,\ldots,x_n\) and any \(a \in \mathbb{R}^n\):</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\).</p><p><strong>Example:</strong> For the RBF kernel \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\), the Gram matrix \(K\) is symmetric and all eigenvalues are non‑negative for any finite sample, so it is positive definite.</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="How to Test Positive Definiteness"></a>How to Test Positive Definiteness</h3><ul>
+</ul><details class="solution-block">
+<summary>Completeness of \(L^{2}\): proof</summary>
+<h1>Completeness of \(L^{2}\): \(L^{2}(\Omega,\Sigma,\mu)\) is a Hilbert space</h1>
+<p>Let \((\Omega,\Sigma,\mu)\) be a measure space. Define</p>
+<p>\[
+L^{2}(\Omega) := \left\{ f:\Omega\to\mathbb{C}\text{ measurable }:\ \int_\Omega |f|^{2}\,d\mu &lt; \infty \right\}\Big/\sim,
+\]</p>
+<p>where \(f\sim g\) iff \(f=g\) \(\mu\)-a.e.</p>
+<p>Equip \(L^{2}\) with the inner product</p>
+<p>\[
+\langle f,g\rangle := \int_\Omega f\overline{g}\,d\mu,
+\]</p>
+<p>and norm \(\|f\|_{2} := \big(\int_\Omega |f|^{2}\,d\mu\big)^{1/2}\).</p>
+<p>We prove: <strong>every Cauchy sequence in \((L^{2},\|\cdot\|_{2})\) converges in \(\|\cdot\|_{2}\)</strong>.<br/>
+Hence \(L^{2}\) is complete as a normed space; together with the inner product, it is a <strong>Hilbert space</strong>.</p>
+<hr/>
+<h2>Theorem</h2>
+<p>\((L^{2}(\Omega),\langle\cdot,\cdot\rangle)\) is a Hilbert space.</p>
+<h3>Proof (completeness of \(L^{2}\))</h3>
+<p>Let \((f_n)\) be a Cauchy sequence in \(L^{2}(\Omega)\).<br/>
+So for every \(\varepsilon&gt;0\) there exists \(N\) such that for all \(m,n\ge N\),</p>
+<p>\[
+\|f_m-f_n\|_{2} &lt; \varepsilon.
+\]</p>
+<h3>Step 1: Extract a rapidly Cauchy subsequence</h3>
+<p>Since \((f_n)\) is Cauchy, we can choose a subsequence \((f_{n_k})_{k\ge 1}\) such that</p>
+<p>\[
+\|f_{n_{k+1}} - f_{n_k}\|_{2} \le 2^{-k}\quad \text{for all }k\ge 1.
+\]</p>
+<p>Define the increments</p>
+<p>\[
+h_k := f_{n_{k+1}} - f_{n_k}\ \in L^{2}.
+\]</p>
+<p>Then</p>
+<p>\[
+\|h_k\|_{2} \le 2^{-k}
+\quad\Longrightarrow\quad
+\sum_{k=1}^{\infty} 2^{k}\|h_k\|_2^2 \le \sum_{k=1}^{\infty} 2^{k}\cdot 2^{-2k} = \sum_{k=1}^{\infty} 2^{-k} &lt; \infty.
+\]</p>
+<h3>Step 2: Show the subsequence converges pointwise a.e.</h3>
+<p>Consider the nonnegative measurable function</p>
+<p>\[
+H(x):=\sum_{k=1}^{\infty} 2^{k}\,|h_k(x)|^{2}.
+\]</p>
+<p>By Tonelli’s theorem,</p>
+<p>\[
+\int_\Omega H\,d\mu
+= \sum_{k=1}^{\infty} 2^{k}\int_\Omega |h_k|^{2}\,d\mu
+= \sum_{k=1}^{\infty} 2^{k}\|h_k\|_2^2 &lt; \infty.
+\]</p>
+<p>Therefore \(H(x)&lt;\infty\) for \(\mu\)-a.e. \(x\).</p>
+<p>Fix such an \(x\). For integers \(m&lt;\ell\), by Cauchy–Schwarz:</p>
+<p>\[
+\sum_{k=m}^{\ell} |h_k(x)|
+= \sum_{k=m}^{\ell} 2^{-k/2}\,\big(2^{k/2}|h_k(x)|\big)
+\le \left(\sum_{k=m}^{\ell} 2^{-k}\right)^{1/2}
+     \left(\sum_{k=m}^{\ell} 2^{k}|h_k(x)|^{2}\right)^{1/2}.
+\]</p>
+<p>Since \(\sum_{k=m}^{\ell} 2^{-k}\le 2^{-m+1}\) and \(\sum_{k=m}^{\ell}2^{k}|h_k(x)|^{2}\le H(x)&lt;\infty\), we get</p>
+<p>\[
+\sum_{k=m}^{\ell} |h_k(x)|
+\le \sqrt{2^{-m+1}}\cdot \sqrt{H(x)} \xrightarrow[m\to\infty]{} 0.
+\]</p>
+<p>Hence \(\sum_{k=1}^{\infty} h_k(x)\) is absolutely convergent, so the partial sums</p>
+<p>\[
+S_K(x) := \sum_{k=1}^{K} h_k(x)
+\]</p>
+<p>converge as \(K\to\infty\) for \(\mu\)-a.e. \(x\).</p>
+<p>Define</p>
+<p>\[
+f(x) := f_{n_1}(x) + \sum_{k=1}^{\infty} h_k(x)
+\quad\text{for a.e. }x.
+\]</p>
+<p>Then for \(\mu\)-a.e. \(x\),</p>
+<p>\[
+f_{n_{K+1}}(x) = f_{n_1}(x) + \sum_{k=1}^{K} h_k(x) \xrightarrow[K\to\infty]{} f(x).
+\]</p>
+<p>So \(f_{n_k}\to f\) pointwise a.e. along the subsequence.</p>
+<h3>Step 3: Show the subsequence converges to \(f\) in \(L^{2}\)</h3>
+<p>For each fixed \(m\ge 1\), consider the tails</p>
+<p>\[
+T_{m,r}(x) := \sum_{k=m}^{r} h_k(x) = f_{n_{r+1}}(x) - f_{n_m}(x).
+\]</p>
+<p>Pointwise a.e., \(T_{m,r}(x)\to f(x)-f_{n_m}(x)\) as \(r\to\infty\).
+By Fatou’s lemma applied to \(|T_{m,r}|^2\),</p>
+<p>\[
+\|f-f_{n_m}\|_2^2
+= \int_\Omega \left| \lim_{r\to\infty} T_{m,r} \right|^2 d\mu
+\le \liminf_{r\to\infty} \int_\Omega |T_{m,r}|^2\,d\mu
+= \liminf_{r\to\infty} \|T_{m,r}\|_2^2.
+\]</p>
+<p>But by the triangle inequality in \(L^2\),</p>
+<p>\[
+\|T_{m,r}\|_2
+= \left\| \sum_{k=m}^{r} h_k \right\|_2
+\le \sum_{k=m}^{r} \|h_k\|_2
+\le \sum_{k=m}^{\infty} 2^{-k}
+= 2^{-m+1}.
+\]</p>
+<p>Thus \(\|T_{m,r}\|_2^2 \le 2^{-2m+2}\) for all \(r\ge m\), hence</p>
+<p>\[
+\|f-f_{n_m}\|_2^2 \le 2^{-2m+2}
+\quad\Longrightarrow\quad
+\|f-f_{n_m}\|_2 \le 2^{-m+1}\xrightarrow[m\to\infty]{}0.
+\]</p>
+<p>So the subsequence \(f_{n_m}\to f\) in \(L^2\). In particular, \(f\in L^2\).</p>
+<h3>Step 4: Lift convergence from subsequence to the whole sequence</h3>
+<p>Since \((f_n)\) is Cauchy in \(L^2\), for any \(\varepsilon&gt;0\) choose \(N\) such that for all \(n\ge N\),</p>
+<p>\[
+\|f_n - f_N\|_2 &lt; \varepsilon/2.
+\]</p>
+<p>Choose \(m\) with \(n_m\ge N\) and \(\|f_{n_m}-f\|_2 &lt; \varepsilon/2\).
+Then for all \(n\ge N\),</p>
+<p>\[
+\|f_n - f\|_2
+\le \|f_n - f_{n_m}\|_2 + \|f_{n_m}-f\|_2
+&lt; \varepsilon/2 + \varepsilon/2
+= \varepsilon.
+\]</p>
+<p>Therefore \(f_n\to f\) in \(L^2\). This proves <strong>every Cauchy sequence converges</strong> in \(L^2\).</p>
+<p>Hence \((L^2,\|\cdot\|_2)\) is complete, and with the inner product \(\langle\cdot,\cdot\rangle\), it is a <strong>Hilbert space</strong>. ∎</p>
+<hr/>
+<h2>Notes (what was essential)</h2>
+<ul>
+<li>The subsequence choice \(\|f_{n_{k+1}}-f_{n_k}\|_2\le 2^{-k}\) gives a “summable control”.</li>
+<li>The weighted series \(\sum 2^k |h_k|^2\) has finite integral, so it is finite a.e.</li>
+<li>Cauchy–Schwarz with weights converts that into pointwise convergence of \(\sum h_k(x)\).</li>
+<li>Fatou + triangle inequality yields \(L^2\) convergence.</li>
+</ul>
+</details><h2 id="PD"><a class="headerlink" href="#PD" title="Positive Definite Functions"></a>4. Positive Definite Functions and Kernels</h2><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="Definition"></a>Definition</h3><p>A function \(K: X \times X \to \mathbb{R}\) is <strong>positive definite</strong> if for any \(x_1,\ldots,x_n\) and any \(a \in \mathbb{R}^n\):</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\).</p><p><strong>Example:</strong> For the RBF kernel \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\), the Gram matrix \(K\) is symmetric and all eigenvalues are non‑negative for any finite sample, so it is positive definite.</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="How to Test Positive Definiteness"></a>How to Test Positive Definiteness</h3><ul>
 <li>Form Gram matrix \(K_{ij} = K(x_i, x_j)\); check that \(K\) is symmetric and all eigenvalues are non‑negative.</li>
 <li>Show that \(K(x, x') = \langle \phi(x), \phi(x') \rangle\) for some feature map \(\phi\).</li>
 <li>Use closure properties: sums, products, and limits of p.d. kernels are p.d.</li>
 </ul><h4 id="PD-Test-Example"><a class="headerlink" href="#PD-Test-Example" title="Example"></a>Example</h4><p>Let \(K(x,x') = \exp(-|x-x'|^2)\) (RBF kernel). For two distinct points with distance \(d&gt;0\), the Gram matrix is</p><p>\(K = \begin{bmatrix}1 &amp; e^{-d^2} \\ e^{-d^2} &amp; 1\end{bmatrix}\).</p><details class="solution-block">
 <summary>Show Check</summary>
 <p>The eigenvalues are \(1\pm e^{-d^2}\). Since \(0&lt;e^{-d^2}&lt;1\), both eigenvalues are positive, so \(K\) is positive definite.</p>
-</details><h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="Kernel Methods"></a>5. Kernel Methods</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="What is a Kernel"></a>What is a Kernel?</h3><p>A kernel is a similarity function \(K(x, x')\) that acts like an inner product in some (possibly infinite‑dimensional) feature space.</p><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="Kernel Trick"></a>Kernel Trick</h3><p>Algorithms relying on dot products can be rewritten in terms of \(K(x, x')\), avoiding explicit feature mappings.</p><h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="Representer Theorem"></a>Representer Theorem</h3><p>For regularized risk minimization in RKHS, the solution has the form:</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\).</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="Proof Sketch"></a>Proof Sketch</h4><p>Any \(f \in \mathcal{H}\) can be decomposed as \(f=f_\parallel+f_\perp\), where \(f_\parallel\) lies in the span of \(\{K(x_i,\cdot)\}\) and \(f_\perp\) is orthogonal. The data‑fit term depends only on \(f_\parallel\), while the RKHS norm satisfies \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\). Thus the minimizer must have \(f_\perp=0\).</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="Practice Problem"></a>Practice Problem</h4><p>For kernel ridge regression with RBF kernel, write the solution form and the system you must solve.</p><details class="solution-block">
+</details>
+<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="Kernel Methods"></a>5. Kernel Methods</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="What is a Kernel"></a>What is a Kernel?</h3><p>A kernel is a similarity function \(K(x, x')\) that acts like an inner product in some (possibly infinite‑dimensional) feature space.</p><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="Kernel Trick"></a>Kernel Trick</h3><p>Algorithms relying on dot products can be rewritten in terms of \(K(x, x')\), avoiding explicit feature mappings.</p><h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="Representer Theorem"></a>Representer Theorem</h3><p>For regularized risk minimization in RKHS, the solution has the form:</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\).</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="Proof Sketch"></a>Proof Sketch</h4><p>Any \(f \in \mathcal{H}\) can be decomposed as \(f=f_\parallel+f_\perp\), where \(f_\parallel\) lies in the span of \(\{K(x_i,\cdot)\}\) and \(f_\perp\) is orthogonal. The data‑fit term depends only on \(f_\parallel\), while the RKHS norm satisfies \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\). Thus the minimizer must have \(f_\perp=0\).</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="Practice Problem"></a>Practice Problem</h4><p>For kernel ridge regression with RBF kernel, write the solution form and the system you must solve.</p><details class="solution-block">
 <summary>Show Solution</summary>
 <p>The representer theorem gives \(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\). Solve \((K+\lambda n I)\alpha = y\) for \(\alpha\), where \(K\) is the Gram matrix.</p>
 </details><h3 id="Kernel-Apps"><a class="headerlink" href="#Kernel-Apps" title="Applications and Examples"></a>Applications and Examples</h3><ul>
@@ -189,7 +319,83 @@ floor + 1 = 31 + 1 = 32\).</p>
 <li>Kernel Ridge Regression (regression).</li>
 <li>Gaussian RBF kernel: \(K(x,x') = \exp(-|x-x'|^2 / (2\sigma^2))\).</li>
 <li>Polynomial kernel: \(K(x,x') = (x^T x' + c)^d\).</li>
-</ul><h2 id="Summary"><a class="headerlink" href="#Summary" title="Summary"></a>Summary</h2><ul>
+</ul><details class="solution-block"><summary>Further explanation on kernel methods</summary>
+<h2>Why Kernel Methods Require Hilbert Space: Linear Separability and Non‑Separability</h2>
+<h3>1. Linearly Separable</h3>
+<p>Linearly separable means there exists a linear decision boundary (a line in 2D, a hyperplane in higher dimensions) that perfectly separates classes with no errors.</p>
+<p>Geometric intuition (● positive, ○ negative; vertical line is the boundary):</p>
+<pre>● ● ● | ○ ○ ○
+● ● ● | ○ ○ ○
+● ● ● | ○ ○ ○</pre>
+<p>Formally, given training samples \((x_i, y_i)\) with \(x_i \in \mathbb{R}^d\), \(y_i \in \{+1, -1\}\), if there exist \(w\) and \(b\) such that for all samples:</p>
+<p>\(y_i ( w^T x_i + b ) &gt; 0\)</p>
+<p>then the dataset is linearly separable. This is the foundation of the perceptron, linear classifiers, and linear SVM.</p>
+<h3>2. Linearly Non‑Separable</h3>
+<p>Linearly non‑separable means no line or hyperplane can perfectly separate classes.</p>
+<p>The classic example is XOR:</p>
+<table>
+<thead>
+<tr><th>x₁</th><th>x₂</th><th>y</th></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+<p>Geometric intuition:</p>
+<pre>y
+↑
+| ● (0,1) ○ (1,1)
+|
+|
+| ○ (0,0) ● (1,0)
++------------------------------→ x</pre>
+<p>Linear models use:</p>
+<p>\(f(x) = \mathrm{sign}( w^T x + b )\)</p>
+<p>which cannot represent XOR’s non‑linear logic, e.g.:</p>
+<p>\((x_1 \wedge \neg x_2) \lor (\neg x_1 \wedge x_2)\)</p>
+<h3>3. What the Kernel Does</h3>
+<p>Kernel methods use an implicit feature map to lift data to a higher‑dimensional space where it can become linearly separable.</p>
+<p>Intuition (left: original space, right: higher‑dimensional space; vertical line is the new boundary):</p>
+<pre>Original space:  Higher‑dimensional space:
+● ○ ● ● ● ● | ○ ○ ○ ○
+○ ● ● ● ● ● | ○ ○ ○ ○</pre>
+<p>Mathematically, a kernel computes inner products:</p>
+<p>\(K(x, z) = \langle \phi(x), \phi(z) \rangle\)</p>
+<p>where \(\phi(x)\) is the implicit feature map. The kernel trick avoids explicitly constructing \(\phi(x)\).</p>
+<h3>4. Why Kernel Must Live in a Hilbert Space</h3>
+<p>A kernel is an inner product, so it must live in a space with a valid inner‑product structure. A Hilbert space is a complete inner‑product space, which guarantees geometry (norm, distance, angle) and existence of minimizers.</p>
+<p>Completeness intuition:</p>
+<pre>f₁ → f₂ → f₃ → ... → f*</pre>
+<p>Typical kernel learning objective:</p>
+<p>\(\min_{f \in \mathcal{H}} \mathrm{loss}(f) + \lambda\|f\|^2\)</p>
+<p>If the space is not complete, the infimum may exist without any minimizing function.</p>
+<p>The representer theorem also relies on Hilbert‑space structure:</p>
+<p>\(f^*(x) = \sum_i \alpha_i K(x, x_i)\)</p>
+<h3>5. RKHS: The Hilbert Space Induced by the Kernel</h3>
+<p>For a positive definite kernel \(K\), there exists a Hilbert space \(\mathcal{H}\) such that:</p>
+<p>\(K(x, z) = \langle K(x,\cdot), K(z,\cdot) \rangle_{\mathcal{H}}\)</p>
+<p>This is the Reproducing Kernel Hilbert Space (RKHS), which satisfies the reproducing property:</p>
+<p>\(f(x) = \langle f, K(x,\cdot) \rangle\)</p>
+<h3>6. Unified Logic Chain</h3>
+<pre>Linearly non‑separable
+↓
+Linear models fail
+↓
+Introduce feature map φ
+↓
+Kernel (inner product)
+↓
+Inner product needs completeness
+↓
+Hilbert space
+↓
+RKHS</pre>
+<h3>7. Research‑Level One‑Sentence Summary</h3>
+<p>When data are not linearly separable, kernels implicitly lift them to a higher‑dimensional space; because a kernel is an inner product and the existence/geometry of optimal solutions relies on completeness, kernels must be defined in a Hilbert space, which is the mathematical foundation of RKHS.</p>
+</details><h2 id="Summary"><a class="headerlink" href="#Summary" title="Summary"></a>Summary</h2><ul>
 <li>Backprop provides efficient gradients for deep networks.</li>
 <li>CNNs exploit locality and parameter sharing for grid data.</li>
 <li>Hilbert spaces underpin kernel methods via completeness and inner products.</li>

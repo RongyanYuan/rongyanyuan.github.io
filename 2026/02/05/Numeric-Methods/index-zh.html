@@ -171,14 +171,115 @@ floor + 1 = 32\)。</p>
 <li>带标准内积的 \(\mathbb{R}^n\)。</li>
 <li>\(L^2([a,b])\)：平方可积函数空间。</li>
 <li>序列空间 \(\ell^2\)：\(\sum_i x_i^2 &lt; \infty\)。</li>
-</ul><h3 id="Hilbert-Proof"><a class="headerlink" href="#Hilbert-Proof" title="证明思路"></a>证明思路：\(L^2\) 的完备性</h3><p>对 \(L^2\) 中的 Cauchy 序列 \(f_n\)，可在测度意义下证明其收敛，并结合 Fatou 引理证明极限函数属于 \(L^2\) 且范数收敛。</p><h2 id="PD"><a class="headerlink" href="#PD" title="正定函数与核"></a>4. 正定函数与核</h2><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="定义"></a>定义</h3><p>函数 \(K: X \times X \to \mathbb{R}\) 若对任意 \(x_1,\ldots,x_n\) 与 \(a \in \mathbb{R}^n\) 满足：</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\)，则称 \(K\) 为正定。</p><p><strong>例：</strong> 对于 RBF 核 \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)，任意样本点形成的 Gram 矩阵都是对称且特征值非负，因此是正定核。</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="如何判断正定"></a>如何判断正定</h3><ul>
+</ul><details class="solution-block">
+<summary>\(L^{2}\) 完备性证明</summary>
+<h1>\(L^{2}\) 的完备性：\(L^{2}(\Omega,\Sigma,\mu)\) 是 Hilbert 空间</h1>
+<p>令 \((\Omega,\Sigma,\mu)\) 为测度空间，定义</p>
+<p>\[
+L^{2}(\Omega) := \left\{ f:\Omega\to\mathbb{C}\text{ 可测 }:\ \int_\Omega |f|^{2}\,d\mu &lt; \infty \right\}\Big/\sim,
+\]</p>
+<p>其中 \(f\sim g\) 当且仅当 \(f=g\) 于 \(\mu\)-几乎处处成立。</p>
+<p>在 \(L^{2}\) 上定义内积</p>
+<p>\[
+\langle f,g\rangle := \int_\Omega f\overline{g}\,d\mu,
+\]</p>
+<p>以及范数 \(\|f\|_{2} := \big(\int_\Omega |f|^{2}\,d\mu\big)^{1/2}\)。</p>
+<p>我们证明：<strong>\((L^{2},\|\cdot\|_{2})\) 中的每个柯西序列都在 \(\|\cdot\|_{2}\) 下收敛</strong>。因此 \(L^{2}\) 作为赋范空间是完备的；配合内积即为 <strong>Hilbert 空间</strong>。</p>
+<hr/>
+<h2>定理</h2>
+<p>\((L^{2}(\Omega),\langle\cdot,\cdot\rangle)\) 是 Hilbert 空间。</p>
+<h3>证明（\(L^{2}\) 的完备性）</h3>
+<p>设 \((f_n)\) 为 \(L^{2}(\Omega)\) 中的柯西序列。对任意 \(\varepsilon&gt;0\)，存在 \(N\) 使得对所有 \(m,n\ge N\)，</p>
+<p>\[
+\|f_m-f_n\|_{2} &lt; \varepsilon.
+\]</p>
+<h3>步骤 1：抽取“快速柯西”子序列</h3>
+<p>由于 \((f_n)\) 是柯西序列，可取子序列 \((f_{n_k})_{k\ge 1}\)，满足</p>
+<p>\[
+\|f_{n_{k+1}} - f_{n_k}\|_{2} \le 2^{-k}\quad (k\ge 1).
+\]</p>
+<p>令增量</p>
+<p>\[
+h_k := f_{n_{k+1}} - f_{n_k} \in L^{2}.
+\]</p>
+<p>则</p>
+<p>\[
+\|h_k\|_{2} \le 2^{-k}
+\quad\Longrightarrow\quad
+\sum_{k=1}^{\infty} 2^{k}\|h_k\|_2^2 \le \sum_{k=1}^{\infty} 2^{-k} &lt; \infty.
+\]</p>
+<h3>步骤 2：子序列几乎处处收敛</h3>
+<p>定义非负可测函数</p>
+<p>\[
+H(x):=\sum_{k=1}^{\infty} 2^{k}\,|h_k(x)|^{2}.
+\]</p>
+<p>由 Tonelli 定理，</p>
+<p>\[
+\int_\Omega H\,d\mu = \sum_{k=1}^{\infty} 2^{k}\|h_k\|_2^2 &lt; \infty.
+\]</p>
+<p>因此 \(H(x)&lt;\infty\) 于 \(\mu\)-几乎处处成立。</p>
+<p>固定这样的 \(x\)。对整数 \(m&lt;\ell\)，由 Cauchy–Schwarz：</p>
+<p>\[
+\sum_{k=m}^{\ell} |h_k(x)|
+\le \left(\sum_{k=m}^{\ell} 2^{-k}\right)^{1/2}
+     \left(\sum_{k=m}^{\ell} 2^{k}|h_k(x)|^{2}\right)^{1/2}.
+\]</p>
+<p>因 \(\sum_{k=m}^{\ell} 2^{-k}\le 2^{-m+1}\) 且 \(\sum_{k=m}^{\ell} 2^{k}|h_k(x)|^{2}\le H(x)&lt;\infty\)，故</p>
+<p>\[
+\sum_{k=m}^{\ell} |h_k(x)| \to 0 \quad (m\to\infty).
+\]</p>
+<p>于是 \(\sum_{k=1}^{\infty} h_k(x)\) 绝对收敛，令</p>
+<p>\[
+S_K(x):=\sum_{k=1}^{K} h_k(x)
+\]</p>
+<p>则 \(S_K(x)\) 在 \(\mu\)-几乎处处收敛。</p>
+<p>定义</p>
+<p>\[
+f(x) := f_{n_1}(x) + \sum_{k=1}^{\infty} h_k(x)
+\quad\text{(a.e.)}.
+\]</p>
+<p>则 \(f_{n_k}(x)\to f(x)\) 于 \(\mu\)-几乎处处成立。</p>
+<h3>步骤 3：在 \(L^{2}\) 中收敛</h3>
+<p>对任意 \(m\ge 1\)，令</p>
+<p>\[
+T_{m,r}(x):=\sum_{k=m}^{r} h_k(x) = f_{n_{r+1}}(x)-f_{n_m}(x).
+\]</p>
+<p>点态上 \(T_{m,r}(x)\to f(x)-f_{n_m}(x)\)。由 Fatou 引理：</p>
+<p>\[
+\|f-f_{n_m}\|_2^2 \le \liminf_{r\to\infty} \|T_{m,r}\|_2^2.
+\]</p>
+<p>而由三角不等式，</p>
+<p>\[
+\|T_{m,r}\|_2 \le \sum_{k=m}^{\infty} 2^{-k} = 2^{-m+1}.
+\]</p>
+<p>于是 \(\|f-f_{n_m}\|_2 \le 2^{-m+1}\to 0\)。</p>
+<p>因此 \(f_{n_m}\to f\) 于 \(L^2\)，并且 \(f\in L^2\)。</p>
+<h3>步骤 4：推广到原序列</h3>
+<p>由于 \((f_n)\) 是柯西序列，对任意 \(\varepsilon&gt;0\)，取 \(N\) 使得 \(n\ge N\) 时 \(\|f_n-f_N\|_2 &lt; \varepsilon/2\)。再取 \(m\) 使 \(n_m\ge N\) 且 \(\|f_{n_m}-f\|_2&lt;\varepsilon/2\)。则</p>
+<p>\[
+\|f_n-f\|_2 \le \|f_n-f_{n_m}\|_2 + \|f_{n_m}-f\|_2 &lt; \varepsilon.
+\]</p>
+<p>因此 \(f_n\to f\) 于 \(L^2\)，从而证明 \(L^2\) 完备。∎</p>
+<hr/>
+<h2>要点（为什么成立）</h2>
+<ul>
+<li>选择 \(\|f_{n_{k+1}}-f_{n_k}\|_2\le 2^{-k}\) 保证“可求和控制”。</li>
+<li>加权级数 \(\sum 2^k |h_k|^2\) 在积分意义下有限，几乎处处有限。</li>
+<li>加权 Cauchy–Schwarz 推出逐点收敛。</li>
+<li>Fatou + 三角不等式得到 \(L^2\) 收敛。</li>
+</ul>
+<p>如需第二种证明，可用：<br/>
+1) <strong>Riesz–Fischer 定理</strong>（正交展开），或<br/>
+2) <strong>一致可积性 / Banach 空间完备性方法</strong>。</p>
+</details><h2 id="PD"><a class="headerlink" href="#PD" title="正定函数与核"></a>4. 正定函数与核</h2><h3 id="PD-Def"><a class="headerlink" href="#PD-Def" title="定义"></a>定义</h3><p>函数 \(K: X \times X \to \mathbb{R}\) 若对任意 \(x_1,\ldots,x_n\) 与 \(a \in \mathbb{R}^n\) 满足：</p><p>\(\sum_{i=1}^n \sum_{j=1}^n a_i a_j K(x_i, x_j) \ge 0\)，则称 \(K\) 为正定。</p><p><strong>例：</strong> 对于 RBF 核 \(K(x,x')=\exp(-|x-x'|^2/(2\sigma^2))\)，任意样本点形成的 Gram 矩阵都是对称且特征值非负，因此是正定核。</p><h3 id="PD-Test"><a class="headerlink" href="#PD-Test" title="如何判断正定"></a>如何判断正定</h3><ul>
 <li>构造 Gram 矩阵 \(K_{ij}=K(x_i,x_j)\)，检查对称性与特征值非负。</li>
 <li>证明存在特征映射 \(\phi\) 使 \(K(x,x')=\langle \phi(x), \phi(x')\rangle\)。</li>
 <li>利用闭包性质：加、乘、缩放仍为正定核。</li>
 </ul><h4 id="PD-Test-Example"><a class="headerlink" href="#PD-Test-Example" title="示例"></a>示例</h4><p>设 \(K(x,x') = \exp(-|x-x'|^2)\)（RBF 核）。对两个不同点，距离为 \(d&gt;0\)，Gram 矩阵为</p><p>\(K = \begin{bmatrix}1 &amp; e^{-d^2} \\ e^{-d^2} &amp; 1\end{bmatrix}\)。</p><details class="solution-block">
 <summary>查看检验</summary>
 <p>特征值为 \(1\pm e^{-d^2}\)。因为 \(0&lt;e^{-d^2}&lt;1\)，两特征值均为正，因此 \(K\) 为正定。</p>
-</details><h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="核方法"></a>5. 核方法</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="什么是核"></a>什么是核？</h3><p>核函数是相似度度量 \(K(x,x')\)，在某个特征空间中等价于内积。</p><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="核技巧"></a>核技巧</h3><p>将算法中的内积替换为 \(K(x,x')\)，避免显式映射到高维。</p><h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="表示定理"></a>表示定理</h3><p>正则化风险最小化的解可写为：</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\)。</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="证明思路"></a>证明思路</h4><p>任意 \(f\in\mathcal{H}\) 可写为 \(f=f_\parallel+f_\perp\)，其中 \(f_\parallel\) 属于 \(\{K(x_i,\cdot)\}\) 的张成空间，\(f_\perp\) 与其正交。拟合项只依赖 \(f_\parallel\)，且 \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\)。因此最优解满足 \(f_\perp=0\)。</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="练习题"></a>练习题</h4><p>在 RBF 核的核岭回归中，写出解的形式，并说明需求解的方程。</p><details class="solution-block">
+</details>
+<h2 id="Kernel-Methods"><a class="headerlink" href="#Kernel-Methods" title="核方法"></a>5. 核方法</h2><h3 id="Kernel-Def"><a class="headerlink" href="#Kernel-Def" title="什么是核"></a>什么是核？</h3><p>核函数是相似度度量 \(K(x,x')\)，在某个特征空间中等价于内积。</p><h3 id="Kernel-Trick"><a class="headerlink" href="#Kernel-Trick" title="核技巧"></a>核技巧</h3><p>将算法中的内积替换为 \(K(x,x')\)，避免显式映射到高维。</p><h3 id="Representer-Theorem"><a class="headerlink" href="#Representer-Theorem" title="表示定理"></a>表示定理</h3><p>正则化风险最小化的解可写为：</p><p>\(f(x) = \sum_{i=1}^n \alpha_i K(x_i, x)\)。</p><h4 id="Representer-Proof"><a class="headerlink" href="#Representer-Proof" title="证明思路"></a>证明思路</h4><p>任意 \(f\in\mathcal{H}\) 可写为 \(f=f_\parallel+f_\perp\)，其中 \(f_\parallel\) 属于 \(\{K(x_i,\cdot)\}\) 的张成空间，\(f_\perp\) 与其正交。拟合项只依赖 \(f_\parallel\)，且 \(\|f\|^2=\|f_\parallel\|^2+\|f_\perp\|^2\)。因此最优解满足 \(f_\perp=0\)。</p><h4 id="Representer-Problem"><a class="headerlink" href="#Representer-Problem" title="练习题"></a>练习题</h4><p>在 RBF 核的核岭回归中，写出解的形式，并说明需求解的方程。</p><details class="solution-block">
 <summary>查看答案</summary>
 <p>由表示定理，\(f(x)=\sum_{i=1}^n \alpha_i K(x_i,x)\)。系数 \(\alpha\) 由线性方程 \((K+\lambda n I)\alpha=y\) 求得，\(K\) 为 Gram 矩阵。</p>
 </details><h3 id="Kernel-Apps"><a class="headerlink" href="#Kernel-Apps" title="应用与示例"></a>应用与示例</h3><ul>

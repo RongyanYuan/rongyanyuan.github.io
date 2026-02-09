@@ -36,6 +36,10 @@ Use this checklist every time you create or update a post in this repo.
 - **Always confirm with the user** where new content should be inserted in an existing post
   (e.g., top, before/after a specific heading, end of section).
 
+## 8. Always Update EN + ZH Together
+- By default, **every update must be applied to both English and Chinese pages**.
+- Ensure the English page is fully English and the Chinese page is fully Chinese.
+
 ---
 
 This file is the default checklist for all post work in this project.
