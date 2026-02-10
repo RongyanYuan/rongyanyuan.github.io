@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  04. Generative Models |    Rongyan's Blog</title>
+  <meta name="description" content="Financial Engineering | Mathematics | Computer Science">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  <link rel="stylesheet" href="/css/white.css">
+</head>
+<body>
+
+<div class="menu-outer">
+  <div class="menu-inner">
+    <div class="menu-site-name  animate__animated  animate__fadeInUp">
+      <a href="/">Rongyan's Blog</a>
+      <div class="menu-redirect">
+        <a href="/categories/ai/deep-learning/" class="nav-link back-topic-link">&larr; Deep Learning</a>
+      </div>
+    </div>
+    <div class="menu-group">
+      <ul class="menu-ul">
+        <a href="/" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">HOME</li></a>
+        <a href="/archives" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">BLOG</li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+           CATEGORIES
+           <div class="categories-outer " id="sort-div">
+             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+           </div>
+        </li>
+        <a href="/search"><li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+          <a href="/2026/02/17/Generative-Models/index.html">EN</a> |
+          <a href="/2026/02/17/Generative-Models/index-zh.html">中文</a>
+        </li>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp"><a href="/">Rongyan's Blog</a></div>
+    <div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+  </div>
+  <div class="mobile-menu-div">
+    <a href="/" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>HOME</span></div></a>
+    <a href="/archives" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>BLOG</span></div></a>
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/17/Generative-Models/index.html">EN</a> |
+      <a href="/2026/02/17/Generative-Models/index-zh.html">中文</a>
+    </div>
+    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+  </div>
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    <article class="post-inner">
+      <div class="post-content-outer">
+        <div class="post-intro">
+          <div class="post-title animate__animated  animate__fadeInUp">04. Generative Models</div>
+          <div class="meta-intro animate__animated  animate__fadeInUp">Feb 17 2026</div>
+        </div>
+        <div class="post-content-inner">
+          <div class="post-content-inner-space"></div>
+          <div class="post-content-main animate__animated  animate__fadeInUp">
+            <h1 id="Gist"><a href="#Gist" class="headerlink" title="Gist"></a>Gist</h1>
+            <h2 id="Gist-Intro"><a href="#Gist-Intro" class="headerlink" title="Generative Models Overview"></a>Generative Models Overview</h2>
+            <p>This section discusses image generation models, which are an enhancement of CNNs. We dive into different methods with their pros and cons.</p>
+
+            <h2 id="DeepDream"><a href="#DeepDream" class="headerlink" title="Section 1 Deep Dream Generator"></a>Section 1 Deep Dream Generator</h2>
+            <p><img src="/images/generative-models/1764768187113.png" alt="Deep Dream" class="post-img"></p>
+            <h3>DeepDream: Core idea</h3>
+            <ul>
+              <li><strong>Definition:</strong> a “pattern‑amplification” process: a trained CNN finds the patterns it recognizes in an image, and we modify the image to amplify those patterns.</li>
+              <li><strong>Setup:</strong>
+                <ul>
+                  <li>Choose an input image \(I\) and a trained CNN.</li>
+                  <li>Let \(f_x^{(L)}(I)\) denote the activation of neuron \(x\) at layer \(L\) for input \(I\).</li>
+                </ul>
+              </li>
+              <li><strong>Objective:</strong>
+                \[
+                \max_I\; f_x^{(L)}(I)
+                \]
+              </li>
+              <li><strong>Process:</strong>
+                <ol>
+                  <li>Keep CNN weights fixed (do not train the network, only modify the image).</li>
+                  <li>Forward‑propagate \(I\) to layer \(L\) to get activations.</li>
+                  <li>Backpropagate to the input to compute \(\nabla_I f_x^{(L)}(I)\).</li>
+                  <li>Update the image with gradient ascent to increase the target activation (repeat multiple times).</li>
+                </ol>
+              </li>
+              <li><strong>Effect:</strong> textures, shapes, and semantic fragments preferred by the network are amplified in the image.</li>
+            </ul>
+
+            <hr>
+
+            <p><img src="/images/generative-models/1764768234191.png" alt="Deep Dream Objective" class="post-img"></p>
+            <h3>1) What the objective function is saying</h3>
+            <p>Top‑right formula:</p>
+            <p>\[\arg \max_I S_c(I) - \lambda \|I\|_2^2\]</p>
+            <ul>
+              <li>\(I\): the image to be generated/optimized (pixels are variables).</li>
+              <li>\(S_c(I)\): the network score/logit for class \(c\), or an intermediate neuron activation (depending on the chosen target).</li>
+              <li>\(-\lambda \|I\|_2^2\): L2 regularization
+                <ul>
+                  <li>prevents pixel values from exploding (otherwise the easiest way to increase score is to blow up some pixels and produce noisy/over‑bright images).</li>
+                  <li>\(\lambda\) controls how strongly we restrain the image from becoming too chaotic.</li>
+                </ul>
+              </li>
+            </ul>
+            <p>One sentence: <strong>maximize the class score while preventing the image from diverging.</strong></p>
+
+            <hr>
+
+            <h3>2) Initialization: start from a zero image or noise</h3>
+            <p>The slide says “Initialize image to zeros,” where the gray block represents an all‑zero image. In practice, random noise is also common and often yields richer textures by breaking symmetry.</p>
+
+            <hr>
+
+            <h3>3) The three repeated steps (core algorithm)</h3>
+            <ol>
+              <li><strong>Forward:</strong> compute \(S_c(I)\) by forwarding the current image \(I\).</li>
+              <li><strong>Backprop:</strong> compute the input gradient
+                \[
+                \frac{\partial}{\partial I}\left(S_c(I) - \lambda \|I\|_2^2\right)
+                \]
+              </li>
+              <li><strong>Update pixels (gradient ascent):</strong>
+                \[
+                I \leftarrow I + \eta\nabla_I\left(S_c(I) - \lambda \|I\|_2^2\right)
+                \]
+                where \(\eta\) is the learning rate.
+              </li>
+            </ol>
+            <p>Note: this is gradient <strong>ascent</strong> (maximize), hence “+”. If you rewrite it as a minimization loss, you would use gradient descent (“−”)—same idea, different sign.</p>
+
+            <h2 id="GAN"><a href="#GAN" class="headerlink" title="Section 2 Generative Adversarial Network"></a>Section 2 Generative Adversarial Network</h2>
+            <h3 id="GAN-Basis">2.1 Basis of GAN</h3>
+            <p><img src="/images/generative-models/1764769200891.png" alt="GAN intro" class="post-img"></p>
+            <h3>Before we discuss GAN, we first introduce VAE</h3>
+
+            <h3>Variational Autoencoder (VAE)</h3>
+            <h4>Explanation + Full ELBO Derivation</h4>
+
+            <h4>1. One‑sentence definition</h4>
+            <blockquote>
+              <p><strong>A Variational Autoencoder (VAE) is a probabilistic autoencoder that learns a continuous, structured latent space by encoding inputs into distributions and training via variational inference.</strong></p>
+            </blockquote>
+
+            <h4>2. From Autoencoder (AE) to VAE</h4>
+            <p><strong>Ordinary Autoencoder (AE)</strong></p>
+            <p>x → Encoder → z → Decoder → x̂</p>
+            <ul>
+              <li>Encoder maps input \(x\) to a <strong>deterministic vector</strong> \(z\).</li>
+              <li>Decoder reconstructs \(x\) from \(z\).</li>
+              <li>Objective: minimize reconstruction error.</li>
+            </ul>
+            <p><strong>Problems:</strong></p>
+            <ul>
+              <li>Latent space is irregular.</li>
+              <li>No principled way to sample new data.</li>
+              <li>Not a true generative model.</li>
+            </ul>
+
+            <p><strong>Key idea of VAE</strong></p>
+            <blockquote>
+              <p><strong>Map each input \(x\) not to a point, but to a probability distribution over latent variables.</strong></p>
+            </blockquote>
+            <p>Encoder outputs parameters of a distribution:</p>
+            \[
+            q_\phi(z|x) = \mathcal N(\mu_\phi(x), \sigma_\phi^2(x))
+            \]
+
+            <h4>3. VAE architecture</h4>
+            <p>x → Encoder → \(\mu(x),\sigma(x)\) → \(z\sim \mathcal N(\mu,\sigma^2)\) → Decoder → \(\hat{x}\)</p>
+            <ul>
+              <li>Encoder learns \(q_\phi(z|x)\).</li>
+              <li>Decoder learns \(p_\theta(x|z)\).</li>
+              <li>Latent prior:
+                \[
+                p(z) = \mathcal N(0, I)
+                \]
+              </li>
+            </ul>
+
+            <h4>4. What is the real training objective?</h4>
+            <p>We want to maximize the data likelihood:</p>
+            \[
+            \log p_\theta(x)
+            \]
+            <p>But:</p>
+            \[
+            p_\theta(x) = \int p_\theta(x|z)p(z)\,dz
+            \]
+            <p>This integral is intractable.</p>
+
+            <h4>5. Introducing variational inference</h4>
+            <p>We approximate the true posterior \(p_\theta(z|x)\) with a tractable distribution \(q_\phi(z|x)\). This leads to the Evidence Lower Bound (ELBO).</p>
+
+            <h4>6. ELBO derivation (step by step)</h4>
+            <p><strong>Step 1: Start from log‑likelihood</strong></p>
+            \[
+            \log p_\theta(x)
+            =
+            \log \int p_\theta(x|z)p(z)\,dz
+            \]
+            <p>Multiply and divide by \(q_\phi(z|x)\):</p>
+            \[
+            =
+            \log \int q_\phi(z|x)\frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}\,dz
+            \]
+
+            <p><strong>Step 2: Apply Jensen’s inequality</strong></p>
+            <p>Since \(\log\) is concave:</p>
+            \[
+            \log \mathbb E_{q_\phi(z|x)}\left[
+            \frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}
+            \right]
+            \ge
+            \mathbb E_{q_\phi(z|x)}\left[
+            \log \frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}
+            \right]
+            \]
+            <p>Thus:</p>
+            \[
+            \log p_\theta(x) \ge \mathcal L(x)
+            \]
+
+            <p><strong>Step 3: Expand the expectation</strong></p>
+            \[
+            \mathcal L(x)
+            =
+            \mathbb E_{q_\phi(z|x)}[\log p_\theta(x|z)]
+            +
+            \mathbb E_{q_\phi(z|x)}[\log p(z)]
+            -
+            \mathbb E_{q_\phi(z|x)}[\log q_\phi(z|x)]
+            \]
+
+            <p><strong>Step 4: Recognize the KL divergence</strong></p>
+            <p>Recall:</p>
+            \[
+            D_{\mathrm{KL}}(q\|p)
+            =
+            \mathbb E_q[\log q - \log p]
+            \]
+            <p>So:</p>
+            \[
+            \mathbb E_{q_\phi(z|x)}[\log p(z)]
+            -
+            \mathbb E_{q_\phi(z|x)}[\log q_\phi(z|x)]
+            =
+            - D_{\mathrm{KL}}\big(q_\phi(z|x)\,\|\,p(z)\big)
+            \]
+
+            <p><strong>Step 5: Final ELBO form</strong></p>
+            \[
+            \boxed{
+            \mathcal L(x)
+            =
+            \mathbb E_{q_\phi(z|x)}[\log p_\theta(x|z)]
+            -
+            D_{\mathrm{KL}}\big(q_\phi(z|x)\,\|\,p(z)\big)
+            }
+            \]
+            <p>This is the ELBO.</p>
+
+            <h4>7. Interpretation of ELBO terms</h4>
+            <p><strong>Reconstruction term</strong></p>
+            \[
+            \mathbb E_{q(z|x)}[\log p(x|z)]
+            \]
+            <ul>
+              <li>Forces the decoder to reconstruct the input.</li>
+              <li>Implemented as:
+                <ul>
+                  <li>BCE (binary data)</li>
+                  <li>MSE (continuous data)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <p><strong>KL regularization term</strong></p>
+            \[
+            D_{\mathrm{KL}}\big(q(z|x)\,\|\,\mathcal N(0,I)\big)
+            \]
+            <ul>
+              <li>Forces latent distributions toward standard normal.</li>
+              <li>Makes latent space smooth and continuous.</li>
+              <li>Enables meaningful sampling.</li>
+            </ul>
+
+            <h4>8. Reparameterization trick</h4>
+            <p>Sampling blocks backpropagation:</p>
+            \[
+            z \sim \mathcal N(\mu, \sigma^2)
+            \]
+            <p>Rewrite as:</p>
+            \[
+            \boxed{z = \mu + \sigma \odot \varepsilon,\quad \varepsilon \sim \mathcal N(0,I)}
+            \]
+            <ul>
+              <li>Randomness is isolated in \(\varepsilon\).</li>
+              <li>Gradients flow through \(\mu,\sigma\).</li>
+            </ul>
+
+            <h4>9. Why VAE can generate new data</h4>
+            <p>After training:</p>
+            <ol>
+              <li>Sample latent variable:
+                \[
+                z \sim \mathcal N(0,I)
+                \]
+              </li>
+              <li>Decode:
+                \[
+                x_{\text{new}} \sim p_\theta(x|z)
+                \]
+              </li>
+            </ol>
+            <p>This generates <strong>new, unseen samples</strong>.</p>
+
+            <h4>10. AE vs VAE summary</h4>
+            <table>
+              <thead>
+                <tr><th>Aspect</th><th>AE</th><th>VAE</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Latent representation</td><td>Point</td><td>Distribution</td></tr>
+                <tr><td>Regularization</td><td>None</td><td>KL divergence</td></tr>
+                <tr><td>Latent space</td><td>Irregular</td><td>Continuous</td></tr>
+                <tr><td>Generative</td><td>❌</td><td>✅</td></tr>
+                <tr><td>Theory</td><td>Optimization</td><td>Probabilistic inference</td></tr>
+              </tbody>
+            </table>
+
+            <h4>11. Final takeaway</h4>
+            <blockquote>
+              <p><strong>VAE embeds autoencoders into a probabilistic framework and trains them by maximizing a variational lower bound on the data likelihood, resulting in a continuous, well‑structured latent space suitable for generation.</strong></p>
+            </blockquote>
+
+            <h4>12. Conceptual slogan (easy to remember)</h4>
+            <blockquote>
+              <p><strong>AE compresses data; VAE learns a distribution of data.</strong></p>
+            </blockquote>
+
+            <h3>Generative Adversarial Network (GAN)</h3>
+            <ul>
+              <li><strong>Problem with VAE:</strong> VAE outputs can be <strong>blurry</strong> because it learns an averaged representation of data, which smooths out details.</li>
+              <li><strong>Breaking down GAN:</strong>
+                <ul>
+                  <li><strong>Generative:</strong> learns a generative model that produces samples from noise/latent variables.</li>
+                  <li><strong>Adversarial:</strong> trained via adversarial learning (Generator \(G\) vs Discriminator \(D\)).</li>
+                  <li><strong>Networks:</strong> implemented by deep neural networks.</li>
+                </ul>
+              </li>
+              <li><strong>Intuitive goal:</strong> generate samples that look real enough to fool the discriminator.</li>
+              <li><strong>Illustration note:</strong> the “computer generated” example in the slide is the one marked as such to show “hard to distinguish.”</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764769215128.png" alt="GAN training idea" class="post-img"></p>
+            <h3>GAN training mechanism (core idea)</h3>
+            <ul>
+              <li><strong>Training is a game</strong> between two networks:
+                <ul>
+                  <li>Generator (G)</li>
+                  <li>Discriminator (D)</li>
+                </ul>
+              </li>
+              <li><strong>Discriminator task (Real or Fake)</strong>
+                <ul>
+                  <li>Input: real data + generated data</li>
+                  <li>Output: whether sample comes from real distribution \(R\) or model distribution \(F\)</li>
+                  <li>Goal: classify real vs fake as accurately as possible</li>
+                </ul>
+              </li>
+              <li><strong>Generator task</strong>
+                <ul>
+                  <li>Produce samples that look real</li>
+                  <li>Goal: fool the discriminator (make \(D\) predict “real”)</li>
+                </ul>
+              </li>
+              <li><strong>Overall effect</strong>
+                <ul>
+                  <li>Strong \(D\) pushes \(G\) to improve</li>
+                  <li>Strong \(G\) makes \(D\) harder to distinguish</li>
+                  <li>Hope: \(F\) approaches \(R\)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764769221617.png" alt="GAN workflow" class="post-img"></p>
+            <h3>GAN workflow (noise to adversarial training)</h3>
+            <ul>
+              <li><strong>Two inputs to D</strong>
+                <ol>
+                  <li><strong>Real sample</strong>: \(x\sim R\) → \(D(x)\in[0,1]\) (closer to 1 means more real)</li>
+                  <li><strong>Fake sample</strong>: sample \(z\) → \(\hat{x}=G(z)\) → \(D(G(z))\in[0,1]\) (closer to 0 means fake)</li>
+                </ol>
+              </li>
+              <li><strong>Goals (adversarial)</strong>
+                <ul>
+                  <li>D wants \(D(x)\to 1\), \(D(G(z))\to 0\)</li>
+                  <li>G wants \(D(G(z))\to 1\)</li>
+                </ul>
+              </li>
+              <li><strong>Loss intuition</strong>
+                <ul>
+                  <li>D loss encourages “real high score, fake low score.”</li>
+                  <li>G loss encourages “fake also gets high score.”</li>
+                </ul>
+              </li>
+              <li><strong>Training</strong>
+                <ul>
+                  <li>Alternate updates: fix \(G\) train \(D\); fix \(D\) train \(G\)</li>
+                  <li>Iterate until \(F\) approaches \(R\)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3 id="GAN-Training">2.2 Training the GAN</h3>
+            <p><img src="/images/generative-models/1764770135332.png" alt="GAN training example" class="post-img"></p>
+            <h3>GAN example (chair images) + which parameters get updated</h3>
+            <ul>
+              <li><strong>Real data distribution \(Q/R\)</strong>:
+                <ul>
+                  <li>Sample real images \(x\in\mathbb R^{n\times n}\) from the dataset (e.g., real chairs).</li>
+                </ul>
+              </li>
+              <li><strong>Generated data distribution \(F\)</strong>:
+                <ul>
+                  <li>Sample noise \(z\), generate \(G(z)\in F\) (fake chairs).</li>
+                </ul>
+              </li>
+              <li><strong>Discriminator output</strong>
+                <ul>
+                  <li>\(D(x)\in[0,1]\): probability/confidence that input is real.</li>
+                </ul>
+              </li>
+              <li><strong>Which weights update?</strong>
+                <ul>
+                  <li>Real sample should be real:
+                    <ul>
+                      <li>If \(D(x)=0\) (real misclassified), update \(D\).</li>
+                    </ul>
+                  </li>
+                  <li>Fake sample should be fake:
+                    <ul>
+                      <li>If \(D(G(z))=1\) (fake misclassified as real), update \(D\).</li>
+                      <li>If \(D(G(z))=0\) (fake recognized), update \(G\) to improve.</li>
+                    </ul>
+                  </li>
+                  <li>Usually \(D(G(z))\in(0,1)\): both \(D\) and \(G\) update via their respective losses.</li>
+                </ul>
+              </li>
+              <li><strong>Training equilibrium (ideal)</strong>:
+                <ul>
+                  <li>Optimal \(D\) cannot distinguish real/fake: \(D(\cdot)\approx 0.5\).</li>
+                  <li>Then \(F\approx R\) (generated distribution matches real).</li>
+                </ul>
+              </li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764770198557.png" alt="Train discriminator" class="post-img"></p>
+            <h3>Training the Discriminator (update D)</h3>
+            <ul>
+              <li>Train with real and fake samples:</li>
+              <li>Real sample \(x\) (label=1): want \(D(x)\to 1\).</li>
+              <li>Fake sample \(\hat{x}=G(z)\) (label=0): want \(D(G(z))\to 0\).</li>
+              <li>Update \(D\) via backprop to minimize classification error (maximize log-likelihood).</li>
+              <li>Common discriminator loss:
+                \[
+                L_D = -\mathbb{E}_{x\sim R}[\log D(x)] - \mathbb{E}_{z}[\log(1-D(G(z)))]
+                \]
+              </li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764770212354.png" alt="Train generator" class="post-img"></p>
+            <h3>Training the Generator (update G)</h3>
+            <ul>
+              <li>Freeze discriminator parameters (fix \(D\)). Only update \(G\).</li>
+              <li>Sample noise \(z\), generate fake \(\hat{x}=G(z)\).</li>
+              <li>Pass \(\hat{x}\) into \(D\): \(D(G(z))\in[0,1]\). Goal: make \(D(G(z))\to 1\).</li>
+              <li>Backpropagate gradients through \(D\) to \(G\) (\(D\) provides gradients but is not updated).</li>
+              <li>Equivalent intuition: maximize the discriminator’s error.</li>
+              <li>Common generator loss (non‑saturating):
+                \[
+                L_G = -\mathbb{E}_{z}[\log D(G(z))]
+                \]
+              </li>
+            </ul>
+            <p><strong>One‑sentence summary (alternating training)</strong></p>
+            <ul>
+              <li>Train \(D\): distinguish real vs fake.</li>
+              <li>Train \(G\): generate samples that fool \(D\).</li>
+              <li>Alternate until \(D\) struggles and \(G\) looks real.</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764771015351.png" alt="GAN minimax" class="post-img"></p>
+            <p><img src="/images/generative-models/1764771122553.png" alt="GAN minimax 2" class="post-img"></p>
+            <h3>GAN training objective (minimax)</h3>
+            <p><strong>Overall objective</strong> (generator minimizes, discriminator maximizes):</p>
+            \[
+            \min_G \max_D \Big( \mathbb{E}_{x\sim R}[\log D(x)] + \mathbb{E}_{z\sim Z}[\log(1 - D(G(z)))] \Big)
+            \]
+            <ul>
+              <li>\(x\sim R\): sample from real data distribution</li>
+              <li>\(z\sim Z\): sample from noise distribution</li>
+              <li>\(D(x)\): discriminator “real” probability</li>
+            </ul>
+
+            <h4>Alternating SGD (for k steps)</h4>
+            <p><strong>1) Train discriminator D (fix G, maximize: gradient ascent)</strong></p>
+            <ul>
+              <li>Sample \(m\) noise points \(\{z_1,\dots,z_m\}\) → fake samples \(G(z_i)\).</li>
+              <li>Sample \(m\) real samples \(\{x_1,\dots,x_m\}\).</li>
+              <li>Update \(D\) by gradient ascent on:
+                \[
+                \nabla_{\theta_D}\frac{1}{m}\sum_{i=1}^{m}\Big[\log D(x_i)+\log(1-D(G(z_i)))\Big]
+                \]
+              </li>
+              <li>Intuition: push real scores up and fake scores down.</li>
+            </ul>
+
+            <p><strong>2) Train generator G (fix D, minimize: gradient descent)</strong></p>
+            <ul>
+              <li>Resample \(m\) noise points \(\{z_1,\dots,z_m\}\), generate \(G(z_i)\).</li>
+              <li>Update \(G\) by gradient descent on the \(G\)-related part:
+                \[
+                \nabla_{\theta_G}\frac{1}{m}\sum_{i=1}^{m}\Big[\log D(x_i)+\log(1-D(G(z_i)))\Big]
+                \]
+              </li>
+              <li>Key point: \(\log D(x_i)\) does not depend on \(G\); \(G\) effectively minimizes \(\log(1-D(G(z)))\), pushing \(D(G(z))\) upward.</li>
+            </ul>
+
+            <p><strong>One‑line memory</strong></p>
+            <ul>
+              <li>D: gradient ascent → “real high, fake low.”</li>
+              <li>G: gradient descent → “make fake look real.”</li>
+            </ul>
+
+            <h3 id="GAN-Problems">2.3 Problems in GAN</h3>
+            <p><img src="/images/generative-models/1764771546560.png" alt="GAN problems" class="post-img"></p>
+            <h3>Common issues in GANs</h3>
+            <ul>
+              <li><strong>Mode collapse:</strong> the generator produces only a few output modes and fails to cover the multi‑modal real data distribution (<strong>low diversity</strong>).</li>
+              <li><strong>Non‑convergence / training instability:</strong> the minimax, zero‑sum game can oscillate and be difficult to stabilize to an equilibrium.</li>
+              <li><strong>Distorted outputs / artifacts:</strong> generated samples may contain structural distortions and visual artifacts (warped shapes, incorrect parts, odd textures).</li>
+            </ul>
+
+            <h2 id="CGAN"><a href="#CGAN" class="headerlink" title="Section 3 Conditional-GAN"></a>Section 3 Conditional-GAN</h2>
+            <p><img src="/images/generative-models/1764771684454.png" alt="Conditional GAN" class="post-img"></p>
+            <h3>Conditional GAN (cGAN)</h3>
+            <ul>
+              <li><strong>Weakness of GAN:</strong>
+                <ul>
+                  <li>Hard to generate specific target classes (lack of controllability).</li>
+                  <li>Limited diversity.</li>
+                </ul>
+              </li>
+              <li><strong>Core question:</strong> how to control the type/class of generated images?</li>
+              <li><strong>Idea: add a condition label \(N\)</strong> (Mirza &amp; Osindero, 2014)
+                <ul>
+                  <li><strong>To Generator:</strong> input \(z\) and \(N\) together so it generates a specified class:
+                    \[
+                    \hat{x}=G(z, N)
+                    \]
+                  </li>
+                  <li><strong>To Discriminator:</strong> input \(x\) and \(N\) together to judge real/fake under the condition:
+                    \[
+                    D(x, N)\in[0,1]
+                    \]
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Training result:</strong> \(G\) and \(D\) are conditioned on \(N\), and we can generate images for a given label after training.</li>
+              <li><strong>Important limitation:</strong> not fully unsupervised—requires labeled data.</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764771720362.png" alt="cGAN architecture" class="post-img"></p>
+            <h3>cGAN architecture key points</h3>
+            <ul>
+              <li><strong>Inputs and outputs</strong>
+                <ul>
+                  <li>Noise/latent: \(z\)</li>
+                  <li>Condition label: \(N\) (usually one‑hot)</li>
+                  <li>Generator output:
+                    \[
+                    \hat{x}=G(z\mid N)
+                    \]
+                  </li>
+                  <li>Discriminator output:
+                    \[
+                    D(x\mid N)\in[0,1]
+                    \]
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Overall flow</strong>
+                <ul>
+                  <li>Feed \((x, N)\) into \(D\) for real samples.</li>
+                  <li>Feed \((\hat{x}, N)\) into \(D\) for generated samples.</li>
+                </ul>
+              </li>
+              <li><strong>How to inject label \(N\)</strong>
+                <ul>
+                  <li><strong>Generator:</strong> embed \(N\) into a vector, concatenate with \(z\).</li>
+                  <li><strong>Discriminator:</strong> embed \(N\), expand/reshape to image size, then concatenate with image channels.</li>
+                </ul>
+              </li>
+              <li><strong>Intuition</strong>
+                <ul>
+                  <li>\(z\) controls randomness/details; \(N\) controls class/type.</li>
+                  <li>Conditioning makes generation more controllable.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h2 id="Adversarial"><a href="#Adversarial" class="headerlink" title="Section 4 Adversarial Images"></a>Section 4 Adversarial Images</h2>
+            <p><img src="/images/generative-models/1765265073177.png" alt="Adversarial example" class="post-img"></p>
+            <p><img src="/images/generative-models/1765265096208.png" alt="Adversarial example 2" class="post-img"></p>
+            <h3>Adversarial images / examples</h3>
+            <ul>
+              <li><strong>Definition:</strong> add a very small but carefully designed perturbation to an input image, causing the network to misclassify (often with high confidence).</li>
+              <li><strong>Classic phenomenon (Panda → Gibbon):</strong> the image is classified as “panda.” After a tiny perturbation \(+\epsilon\), the model predicts “gibbon” with high confidence while the image looks unchanged to humans.</li>
+            </ul>
+
+            <h4>Key characteristics</h4>
+            <ul>
+              <li><strong>Small / nearly imperceptible perturbations</strong>: pixel‑level noise is tiny but has large effect.</li>
+              <li><strong>Purposeful</strong>: not random noise, but crafted to push the model to the wrong decision.</li>
+              <li><strong>High‑confidence errors</strong>: the model is often confidently wrong.</li>
+            </ul>
+
+            <h4>Human vs CNN (intuition)</h4>
+            <ul>
+              <li><strong>Humans:</strong> recognize via semantic features (panda = black ears, eye patches, white head).</li>
+              <li><strong>CNNs/models:</strong> may rely on fine‑grained statistical/texture cues; tiny changes can cross decision boundaries in high‑dimensional space.</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1765265108446.png" alt="Why adversarial" class="post-img"></p>
+            <h3>Why are adversarial examples important?</h3>
+            <p><strong>Core reason:</strong> adversarial examples show that ML models can be vulnerable to attacks and deception, creating security and reliability risks.</p>
+            <h4>Typical risk scenarios</h4>
+            <ul>
+              <li><strong>Autonomous driving / traffic sign recognition:</strong> a slightly perturbed stop sign may be misclassified, causing the car to ignore a stop.</li>
+              <li><strong>Spam detection:</strong> spam is crafted to look normal and bypass filters.</li>
+              <li><strong>Airport security (ML baggage scanning):</strong> attackers may manipulate appearance so dangerous objects are misclassified (e.g., a knife mistaken as an umbrella).</li>
+            </ul>
+            <p><strong>Summary:</strong> study adversarial examples to improve robustness, security, and reliability.</p>
+
+            <p><img src="/images/generative-models/1765265155892.png" alt="FGSM" class="post-img"></p>
+            <h3>White‑box attack: FGSM (Fast Gradient Sign Method)</h3>
+            <ul>
+              <li><strong>White‑box attack:</strong> attacker knows model structure and gradients; goal is to induce misclassification.</li>
+              <li><strong>FGSM idea:</strong> use the gradient of the loss w.r.t. the input image and move in the direction that increases loss the most.</li>
+            </ul>
+            <h4>Formula</h4>
+            \[
+            x_{adv} = x + \epsilon \cdot \text{sign}(\nabla_x J(\theta, x, y))
+            \]
+            <ul>
+              <li>\(x\): original image</li>
+              <li>\(x_{adv}\): adversarial image</li>
+              <li>\(J(\theta, x, y)\): loss with true label \(y\)</li>
+              <li>\(\nabla_x J\): gradient w.r.t. the input</li>
+              <li>\(\text{sign}(\cdot)\): take sign of the gradient</li>
+              <li>\(\epsilon\): perturbation magnitude</li>
+            </ul>
+            <p><strong>One‑sentence summary:</strong> FGSM uses one gradient‑sign step with small \(\epsilon\) to craft an adversarial input.</p>
+
+            <p><img src="/images/generative-models/1765265169069.png" alt="Targeted adversarial" class="post-img"></p>
+            <h3>Targeted adversarial examples</h3>
+            <h4>Basic procedure</h4>
+            <ol>
+              <li>Start from an input image \(x\).</li>
+              <li>Choose a desired target class \(y\).</li>
+              <li>Find a small perturbation \(r\) so that \(x+r\) is classified as \(y\).</li>
+              <li>Iteratively update \(r\) until the attack succeeds.</li>
+            </ol>
+            <h4>Objective</h4>
+            \[
+            \min_{r}\; \text{loss}(f(x+r), y) + c\cdot |r|
+            \]
+            <ul>
+              <li><strong>\(r\)</strong>: changes made to \(x\)</li>
+              <li><strong>loss\((f(x+r), y)\)</strong>: how far the prediction is from target \(y\)</li>
+              <li><strong>|r|</strong>: magnitude of perturbation</li>
+              <li><strong>c</strong>: trade‑off between success and small perturbation</li>
+            </ul>
+            <p><strong>One‑sentence summary:</strong> targeted attacks force the model to output a chosen label while keeping perturbations small.</p>
+
+            <p><img src="/images/generative-models/1765265389833.png" alt="Adversarial example visualization" class="post-img"></p>
+
+            <h2 id="Transfer"><a href="#Transfer" class="headerlink" title="Section 5 Adversarial Example on Other Model"></a>Section 5 Adversarial Example on Other Model</h2>
+            <p><img src="/images/generative-models/1765265455573.png" alt="Transferability" class="post-img"></p>
+            <h3>Do adversarial examples only exist for neural networks?</h3>
+            <ul>
+              <li><strong>No.</strong> Many other ML models (linear models, SVM, k‑NN, etc.) can also be fooled.</li>
+              <li><strong>Transferability:</strong> adversarial examples crafted on a source model can often fool a different target model.</li>
+            </ul>
+            <h4>How to read the matrix</h4>
+            <ul>
+              <li>Rows: source technique (used to craft adversarial examples).</li>
+              <li>Columns: target technique (the classifier being attacked).</li>
+              <li>Each cell: probability of being fooled (lower is better / more robust).</li>
+            </ul>
+            <h4>Key conclusions</h4>
+            <ul>
+              <li>Transferability exists across DNN, LR, SVM, DT, k‑NN, etc.</li>
+              <li>DNNs are often the hardest to fool overall (more robust in this comparison).</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1765265427725.png" alt="Adversarial training" class="post-img"></p>
+            <h3>Adversarial training</h3>
+            <ul>
+              <li><strong>Method:</strong> for each clean image \(x\), generate an adversarial image \(x_{adv}\) and keep the same label, then add to training data.</li>
+              <li>Intuition: let the model see attacked samples during training to learn robust features.</li>
+            </ul>
+            <h4>Curves in the figure</h4>
+            <ul>
+              <li><strong>Train=Clean, Test=Clean:</strong> clean training, clean testing (normal case).</li>
+              <li><strong>Train=Clean, Test=Adv:</strong> clean training, adversarial testing (high error).</li>
+              <li><strong>Train=Adv, Test=Clean:</strong> adversarial training, clean testing (still good).</li>
+              <li><strong>Train=Adv, Test=Adv:</strong> adversarial training, adversarial testing (lower error after robustness improves).</li>
+            </ul>
+            <h4>Key takeaway</h4>
+            <ul>
+              <li>Adversarial training improves robustness against the specific attacks used in training.</li>
+            </ul>
+
+          </div>
+<div class="post-content-inner-space">
+            <div class="space-toc-main animate__animated  animate__fadeInUp">
+              <ol class="space-toc">
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Gist"><span class="space-toc-text">Gist</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#DeepDream"><span class="space-toc-text">Section 1 Deep Dream Generator</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#GAN"><span class="space-toc-text">Section 2 Generative Adversarial Network</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CGAN"><span class="space-toc-text">Section 3 Conditional-GAN</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Adversarial"><span class="space-toc-text">Section 4 Adversarial Images</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Transfer"><span class="space-toc-text">Section 5 Adversarial Example on Other Model</span></a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="post-nav-box">
+  <div class="post-nav-title">Next in Deep Learning</div>
+  <a class="post-nav-link" href="/2026/02/16/Transformer-Notes/">05. Transformer</a>
+</div>
+</article>
+  </div>
+</div>
+
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>Artificial Intelligence |  Financial Engineering | Mathematics | Computer Science  <strong>Rongyan <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>

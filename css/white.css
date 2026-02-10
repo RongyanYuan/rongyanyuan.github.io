@@ -728,6 +728,7 @@ li p {
 .post-content-inner {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 }
 .post-content-inner .post-content-main {
   flex-basis: 800px;
@@ -736,6 +737,7 @@ li p {
 }
 .post-content-inner .post-content-inner-space {
   flex-basis: 165px;
+  align-self: flex-start;
 }
 .post-content-inner .post-content-inner-space .space-toc-main {
   position: sticky;
@@ -1030,4 +1032,53 @@ li p {
 .solution-block summary {
   cursor: pointer;
   font-weight: 600;
+}
+
+.post-nav-box {
+  max-width: 800px;
+  margin: 30px auto 10px auto;
+  padding: 14px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+.post-nav-title {
+  font-size: 0.9em;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+.post-nav-link {
+  display: inline-block;
+  font-size: 1.05em;
+  color: #1A98FF;
+}
+.post-nav-link:hover {
+  text-decoration: underline;
+}
+.post-details {
+  margin: 16px 0px;
+  padding: 10px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fafafa;
+}
+.post-details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #333333;
+}
+
+.post-content-inner pre,
+.post-content-inner pre code {
+  font-family: "Fira Code", "JetBrains Mono", "Menlo", "Consolas", monospace;
+  font-size: 0.92em;
+}
+.post-content-inner pre {
+  background: #f6f8fa;
+  padding: 14px 16px;
+  border-radius: 8px;
+  overflow: auto;
+}
+.post-content-inner pre code {
+  background: transparent;
 }

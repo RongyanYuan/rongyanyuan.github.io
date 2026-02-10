@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  01. 决策树与随机森林 |    榕言的博客</title>
+  <meta name="description" content="金融工程 | 数学 | 计算机科学">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  <link rel="stylesheet" href="/css/white.css">
+</head>
+<body>
+
+<div class="menu-outer">
+  <div class="menu-inner">
+    <div class="menu-site-name  animate__animated  animate__fadeInUp">
+      <a href="/index-zh.html">榕言的博客</a>
+      <div class="menu-redirect"><a class="nav-link back-topic-link" href="/categories/ai/data-mining-and-text-analytics/index-zh.html">← 数据挖掘与文本分析</a></div>
+    </div>
+    <div class="menu-group">
+      <ul class="menu-ul">
+        <a href="/index-zh.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">首页</li></a>
+        <a href="/archives/index.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">博客</li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+           分类
+           <div class="categories-outer " id="sort-div">
+             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+           </div>
+        </li>
+        <a href="/search"><li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+          <a href="/2026/02/10/Decision-Tree-and-Random-Forest/index.html">EN</a> |
+          <a href="/2026/02/10/Decision-Tree-and-Random-Forest/index-zh.html">中文</a>
+        </li>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp"><a href="/index-zh.html">榕言</a></div>
+    <div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+  </div>
+  <div class="mobile-menu-div">
+    <a href="/index-zh.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>首页</span></div></a>
+    <a href="/archives/index.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>博客</span></div></a>
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/10/Decision-Tree-and-Random-Forest/index.html">EN</a> |
+      <a href="/2026/02/10/Decision-Tree-and-Random-Forest/index-zh.html">中文</a>
+    </div>
+    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+  </div>
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    <article class="post-inner">
+      <div class="post-content-outer">
+        <div class="post-intro">
+          <div class="post-title animate__animated  animate__fadeInUp">01. 决策树与随机森林</div>
+          <div class="meta-intro animate__animated  animate__fadeInUp">2026-02-10</div>
+        </div>
+        <div class="post-content-inner">
+          <div class="post-content-inner-space"></div>
+          <div class="post-content-main animate__animated  animate__fadeInUp">
+<hr>
+<h2 id="1-概述什么是决策树什么是决策准则"><a href="#1-概述什么是决策树什么是决策准则" class="headerlink" title="1. 概述：什么是决策树？什么是决策准则？"></a>1. 概述：什么是决策树？什么是决策准则？</h2>
+<p><strong>决策树（Decision Tree）</strong>是一种用于<strong>分类与回归</strong>的监督学习模型，它通过递归地按照特征值划分数据来进行预测。 在每个节点，树会选择一个<strong>决策准则</strong>（也叫“基于不纯度的准则”），用来决定<strong>哪个特征、哪个划分能最好地分开数据</strong>。</p>
+<p>核心思想很简单：</p>
+<blockquote><p><strong>选择使子节点尽可能“纯”的划分。</strong></p></blockquote>
+<p>这里的“纯度”含义：</p>
+<ul>
+<li>在<strong>分类</strong>中：节点内样本尽量属于同一类别</li>
+<li>在<strong>回归</strong>中：节点内目标值尽量彼此接近</li>
+</ul>
+<p>常见决策准则包括：</p>
+<ul>
+<li><strong>熵 / 信息增益（Entropy / Information Gain）</strong>（信息论中的不确定性下降）</li>
+<li><strong>基尼不纯度（Gini Impurity）</strong>（误分类概率）</li>
+<li><strong>方差 / 均方误差（Variance / MSE）</strong>（用于回归树）</li>
+</ul>
+<hr>
+<h2 id="2-决策准则详解含例子"><a href="#2-决策准则详解含例子" class="headerlink" title="2. 决策准则详解（含例子）"></a>2. 决策准则详解（含例子）</h2>
+<p><img src="/images/data-mining-text-analytics/intro.png" alt="Entropy illustration" class="post-img"></p>
+<h3 id="21-熵entropy"><a href="#21-熵entropy" class="headerlink" title="2.1 熵（Entropy）"></a>2.1 熵（Entropy）</h3>
+<p><strong>含义：</strong> 熵衡量一个节点中类别标签有多“混乱/不确定”。</p>
+<p><img src="/images/data-mining-text-analytics/entropy%203.png" alt="Entropy illustration" class="post-img"></p>
+<p><strong>公式：</strong> \[ H(S) = -\sum_{k=1}^K p_k \log_2 p_k \]</p>
+<ul>
+<li>\(p_k\)：第 \(k\) 类的比例</li>
+<li>\(H = 0\)：节点完全纯</li>
+<li>当类别均衡时熵最大</li>
+</ul>
+<p><strong>例子：</strong> 一个节点有 5 个正例、5 个负例： \[ H = - (0.5\log_2 0.5 + 0.5\log_2 0.5) = 1 \] （不确定性很高）</p>
+<p><img src="/images/data-mining-text-analytics/entropy%201.png" alt="Entropy illustration" class="post-img"></p>
+<p><img src="/images/data-mining-text-analytics/entropy%202.png" alt="Entropy illustration" class="post-img"></p>
+<hr>
+<h3 id="22-信息增益information-gain-ig"><a href="#22-信息增益information-gain-ig" class="headerlink" title="2.2 信息增益（Information Gain, IG）"></a>2.2 信息增益（Information Gain, IG）</h3>
+<p><strong>含义：</strong> 信息增益衡量<strong>划分后熵降低了多少</strong>。</p>
+<p><strong>公式：</strong> \[ IG(S, A) = H(S) - \sum_{v} \frac{|S_v|}{|S|} H(S_v) \]</p>
+<p><strong>例子：</strong></p>
+<ul>
+<li>父节点熵 = 1</li>
+<li>划分后：</li>
+<li>左子节点熵 = 0（纯）</li>
+<li>右子节点熵 = 0.5</li>
+</ul>
+<p>如果左右均分： \[ IG = 1 - (0.5 \cdot 0 + 0.5 \cdot 0.5) = 0.75 \]</p>
+<p>IG 越大 ⇒ 划分越好。</p>
+<p>熵与信息增益总结：我们在每一层选择<strong>信息增益最大</strong>的划分作为父节点。信息增益 = <strong>上一层熵 − 子类别熵</strong>。下面是是否打网球的例子：</p>
+<p><img src="/images/data-mining-text-analytics/entropy%200.png" alt="Entropy illustration" class="post-img"></p>
+<hr>
+<h3 id="23-基尼不纯度gini-impurity"><a href="#23-基尼不纯度gini-impurity" class="headerlink" title="2.3 基尼不纯度（Gini Impurity）"></a>2.3 基尼不纯度（Gini Impurity）</h3>
+<p><strong>含义：</strong> 基尼不纯度衡量随机抽样被误分类的概率。</p>
+<p><strong>公式：</strong> \[ G(S) = 1 - \sum_{k=1}^K p_k^2 \]</p>
+<p><strong>例子：</strong> 一个节点 7 个正例、3 个负例： \[ G = 1 - (0.7^2 + 0.3^2) = 0.42 \]</p>
+<ul>
+<li>\(G = 0\)：完全纯</li>
+<li>因效率高，常用于 <strong>CART</strong></li>
+</ul>
+<p>下面是基尼不纯度的相关幻灯片：</p>
+<p><img src="/images/data-mining-text-analytics/gini%201.png" alt="Gini_imp illustration" class="post-img"></p>
+<p>完美划分：</p>
+<p><img src="/images/data-mining-text-analytics/gini%202.png" alt="Gini_imp illustration" class="post-img"></p>
+<p>非完美划分：</p>
+<p><img src="/images/data-mining-text-analytics/gini%203.png" alt="Gini_imp illustration" class="post-img"></p>
+<p><img src="/images/data-mining-text-analytics/gini%204.png" alt="Gini_imp illustration" class="post-img"></p>
+<hr>
+<h4 id="231-基尼与熵的比较"><a href="#231-基尼与熵的比较" class="headerlink" title="2.3.1 基尼与熵的比较："></a>2.3.1 基尼与熵的比较：</h4>
+<p>熵 vs 基尼不纯度</p>
+<ul>
+<li>如果数据集完全同质（只有一个类别），则不纯度为 0，熵也为 0。</li>
+<li>如果完全非同质且不纯度为 100%，则熵为 1。</li>
+<li>实际中熵与基尼的结果非常接近。</li>
+<li>两者只在约 2% 的情况产生分歧。</li>
+<li>熵可能计算更慢，因为包含对数运算。</li>
+</ul>
+<hr>
+<h3 id="24-方差-mse回归树"><a href="#24-方差-mse回归树" class="headerlink" title="2.4 方差 / MSE（回归树）"></a>2.4 方差 / MSE（回归树）</h3>
+<p><strong>含义：</strong> 用于目标为连续值时，衡量目标值的离散程度。</p>
+<p><strong>公式：</strong> \[ \text{MSE}(S) = \frac{1}{|S|}\sum_{i \in S}(y_i - \bar y_S)^2 \]</p>
+<p><strong>目标：</strong> 选择使子节点<strong>加权 MSE 最小</strong>的划分。</p>
+<p><strong>例子：</strong> 目标值：\([200, 210, 220, 500]\) 划分能把低价与高价分开 → 方差显著下降。</p>
+<hr>
+<h2 id="3-决策树如何训练"><a href="#3-决策树如何训练" class="headerlink" title="3. 决策树如何训练"></a>3. 决策树如何训练</h2>
+<p>决策树训练是一个<strong>贪心的、自上而下的递归过程</strong>：</p>
+<ol>
+<li><strong>从根节点开始</strong>包含所有训练样本。</li>
+<li><strong>评估所有可能的划分</strong>：</li>
+</ol>
+<ul>
+<li>对每个特征</li>
+<li>对每个可能阈值或类别子集</li>
+</ul>
+<ol>
+<li><strong>计算不纯度下降</strong>（根据所选准则）。</li>
+<li><strong>选择最佳划分</strong>（最大不纯度下降）。</li>
+<li><strong>划分数据</strong>到子节点。</li>
+<li><strong>对子节点递归重复</strong>。</li>
+<li><strong>停止条件</strong>：</li>
+</ol>
+<ul>
+<li>节点已纯</li>
+<li>达到最小样本数</li>
+<li>达到最大深度</li>
+<li>不纯度下降不明显</li>
+</ul>
+<ol>
+<li><strong>（可选）剪枝</strong>以减少过拟合。</li>
+</ol>
+<p><strong>关键性质：</strong> 决策树进行的是<strong>局部优化</strong>，不是全局优化。</p>
+<hr>
+<summary>4. 真实案例：贷款审批预测</summary>
+<details class="post-details">
+  <summary>4. 真实案例：贷款审批预测</summary>
+<h2 id="4-真实案例贷款审批预测"><a href="#4-真实案例贷款审批预测" class="headerlink" title="4. 真实案例：贷款审批预测"></a>4. 真实案例：贷款审批预测</h2>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3>
+<p>银行希望根据申请人信息判断<strong>批准或拒绝贷款</strong>。</p>
+<h3 id="训练数据简化"><a href="#训练数据简化" class="headerlink" title="训练数据（简化）"></a>训练数据（简化）</h3>
+<table>
+<thead><tr><th>收入</th><th>信用分</th><th>负债率</th><th>是否批准</th></tr></thead>
+<tbody>
+<tr><td>80k</td><td>720</td><td>0.2</td><td>是</td></tr>
+<tr><td>45k</td><td>650</td><td>0.4</td><td>否</td></tr>
+<tr><td>30k</td><td>600</td><td>0.5</td><td>否</td></tr>
+<tr><td>90k</td><td>780</td><td>0.1</td><td>是</td></tr>
+<tr><td>60k</td><td>690</td><td>0.3</td><td>是</td></tr>
+</tbody></table>
+<hr>
+<h3 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h3>
+<ol>
+<li>所有样本起始于根节点。</li>
+<li>决策树评估划分：</li>
+</ol>
+<ul>
+<li>`信用分 > 700`</li>
+<li>`收入 > 50k`</li>
+<li>`负债率 < 0.35`</li>
+</ul>
+<ol>
+<li>假设 `信用分 > 700` 带来最大不纯度下降。</li>
+<li>继续在混合子节点上训练。</li>
+</ol>
+<hr>
+<h3 id="最终学到的树"><a href="#最终学到的树" class="headerlink" title="最终学到的树"></a>最终学到的树</h3>
+<p>信用分 > 700? ├── 是 → 批准贷款 └── 否 ├── 负债率 < 0.35? │ ├── 是 → 批准贷款 │ └── 否 → 拒绝贷款</p>
+<hr>
+<h3 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h3>
+<p>对新申请人：</p>
+<ul>
+<li>信用分 = 680</li>
+<li>负债率 = 0.28</li>
+</ul>
+<p>决策路径：</p>
+<ol>
+<li>信用分 > 700? → 否</li>
+<li>负债率 < 0.35? → 是</li>
+</ol>
+<p>→ <strong>批准贷款</strong></p>
+<hr>
+
+<summary>代码示例</summary>
+
+</details>
+<details class="post-details">
+  <summary>代码示例</summary>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例："></a>代码示例：</h2>
+<pre><code>from sklearn.datasets import load_iris
+from sklearn import tree
+from matplotlib import pyplot as plt
+import pandas  as pd
+iris = load_iris()
+
+X = iris.data
+y = iris.target
+df = pd.DataFrame(list(zip(X, y)), columns =['Features', 'Label'])
+df</code></pre>
+<p><img src="/images/data-mining-text-analytics/code1.png" alt="Code illustration" class="post-img"></p>
+<pre><code>#build decision tree
+clf = tree.DecisionTreeClassifier(criterion='entropy', max_depth=4,min_samples_leaf=4)
+#max_depth represents max level allowed in each tree, min_samples_leaf minumum samples storable in leaf node
+
+#fit the tree to iris dataset
+clf.fit(X,y)
+
+#plot decision tree
+fig, ax = plt.subplots(figsize=(6, 6)) #figsize value changes the size of plot
+tree.plot_tree(clf,ax=ax,feature_names=['sepal length','sepal width','petal length','petal width'])
+plt.show()</code></pre>
+<p><img src="/images/data-mining-text-analytics/code2.png" alt="Entropy illustration" class="post-img"></p>
+
+
+
+
+</details>
+<h2 id="关键结论"><a href="#关键结论" class="headerlink" title="关键结论"></a>关键结论</h2>
+<blockquote><p>决策树通过贪心地选择能降低不纯度的特征划分来学习可解释规则，是一个强大且透明的分类与回归模型。</p></blockquote>
+<h2 id="停下来思考"><a href="#停下来思考" class="headerlink" title="停下来思考："></a>停下来思考：</h2>
+<h3 id="到这里你可能会想如果树太复杂会怎样-过拟合现在引入剪枝"><a href="#到这里你可能会想如果树太复杂会怎样-过拟合现在引入剪枝" class="headerlink" title="到这里你可能会想：如果树太复杂会怎样？→ 过拟合！现在引入剪枝！"></a>到这里你可能会想：如果树太复杂会怎样？→ 过拟合！现在引入剪枝！</h3>
+<ul>
+<li>剪枝是一种通过移除贡献较小的分支来缩小树规模的方法</li>
+<li>它是一种正则化方法，可降低最终模型复杂度，从而减少过拟合</li>
+</ul>
+<h4 id="剪枝方法"><a href="#剪枝方法" class="headerlink" title="剪枝方法："></a>剪枝方法：</h4>
+<ul>
+<li><strong>预剪枝（Pre-pruning）</strong>：在树完全分类数据前就停止构建：</li>
+<li>当前集合的熵（或基尼不纯度）</li>
+<li>当前集合的样本数</li>
+<li>最佳划分特征的增益</li>
+<li>树的深度</li>
+<li><strong>后剪枝（Post-pruning）</strong>：先生成完整树，再用叶节点替换某些非叶节点以提高验证误差</li>
+</ul>
+<p><img src="/images/data-mining-text-analytics/pruning.png" alt="Entropy illustration" class="post-img"></p>
+<h2 id="决策树还有"><a href="#决策树还有" class="headerlink" title="决策树还有："></a>决策树还有：</h2>
+<p><img src="/images/data-mining-text-analytics/dtalgo.png" alt="Entropy illustration" class="post-img"></p>
+<hr>
+<h2 id="缺失值的处理"><a href="#缺失值的处理" class="headerlink" title="缺失值的处理"></a>缺失值的处理</h2>
+<h1 id="id3-如何处理数值型属性"><a href="#id3-如何处理数值型属性" class="headerlink" title="ID3 如何处理数值型属性"></a>ID3 如何处理数值型属性</h1>
+<hr>
+<h2 id="1-简短回答核心思想"><a href="#1-简短回答核心思想" class="headerlink" title="1. 简短回答（核心思想）"></a>1. 简短回答（核心思想）</h2>
+<blockquote><p><strong>ID3 通过阈值把数值型属性转成二元划分，并用信息增益选择最佳阈值。</strong></p></blockquote>
+<p>换句话说，ID3 <strong>不会直接把数值属性当作连续变量处理</strong>。 而是将其<strong>离散化</strong>为如下二元问题：</p>
+<p>\[ x_j \le t \quad \text{vs.} \quad x_j > t \]</p>
+<hr>
+<h2 id="2-为什么-id3-需要特殊处理数值属性"><a href="#2-为什么-id3-需要特殊处理数值属性" class="headerlink" title="2. 为什么 ID3 需要特殊处理数值属性"></a>2. 为什么 ID3 需要特殊处理数值属性</h2>
+<p>原始 <strong>ID3 算法</strong>设计用于：</p>
+<ul>
+<li><strong>类别型（离散）特征</strong></li>
+<li>使用 <strong>熵</strong> 与 <strong>信息增益</strong></li>
+</ul>
+<p>数值属性的问题：</p>
+<ul>
+<li>可能取值无限</li>
+<li>无法像类别一样枚举所有取值</li>
+</ul>
+<p>因此 ID3 必须<strong>把数值型特征转换为类别型决策</strong>。</p>
+<hr>
+<summary>3. 逐步说明：ID3 如何处理数值型属性</summary>
+<details class="post-details">
+  <summary>3. 逐步说明：ID3 如何处理数值型属性</summary>
+<h2 id="3-逐步说明id3-如何处理数值型属性"><a href="#3-逐步说明id3-如何处理数值型属性" class="headerlink" title="3. 逐步说明：ID3 如何处理数值型属性"></a>3. 逐步说明：ID3 如何处理数值型属性</h2>
+<p>假设我们有：</p>
+<ul>
+<li>数值特征 \(x\)</li>
+<li>目标标签 \(y\)</li>
+</ul>
+<h3 id="step-1按数值特征排序"><a href="#step-1按数值特征排序" class="headerlink" title="Step 1：按数值特征排序"></a>Step 1：按数值特征排序</h3>
+<p>例子：</p>
+<table>
+<thead><tr><th>数值 \(x\)</th><th>类别 \(y\)</th></tr></thead>
+<tbody>
+<tr><td>20</td><td>否</td></tr>
+<tr><td>30</td><td>否</td></tr>
+<tr><td>40</td><td>是</td></tr>
+<tr><td>60</td><td>是</td></tr>
+</tbody></table>
+<hr>
+<h3 id="step-2生成候选阈值"><a href="#step-2生成候选阈值" class="headerlink" title="Step 2：生成候选阈值"></a>Step 2：生成候选阈值</h3>
+<p>ID3 取相邻值的中点：</p>
+<p>\[ t_1 = \frac{20+30}{2}=25,\quad t_2 = \frac{30+40}{2}=35,\quad t_3 = \frac{40+60}{2}=50 \]</p>
+<hr>
+<h3 id="step-3将每个阈值转成二元划分"><a href="#step-3将每个阈值转成二元划分" class="headerlink" title="Step 3：将每个阈值转成二元划分"></a>Step 3：将每个阈值转成二元划分</h3>
+<p>对每个 \(t\)：x ≤ t  vs. x > t</p>
+<p>以 \(t=35\) 为例：</p>
+<ul>
+<li>左：{20, 30}</li>
+<li>右：{40, 60}</li>
+</ul>
+<hr>
+<h3 id="step-4计算每个阈值的信息增益"><a href="#step-4计算每个阈值的信息增益" class="headerlink" title="Step 4：计算每个阈值的信息增益"></a>Step 4：计算每个阈值的信息增益</h3>
+<p>对每个划分：</p>
+<p>\[ IG(t) = H(S) - \left( \frac{|S_L|}{|S|}H(S_L) + \frac{|S_R|}{|S|}H(S_R) \right) \]</p>
+<p>ID3 <strong>与类别特征完全一样</strong>计算 IG。</p>
+<hr>
+<h3 id="step-5选择最佳阈值"><a href="#step-5选择最佳阈值" class="headerlink" title="Step 5：选择最佳阈值"></a>Step 5：选择最佳阈值</h3>
+<p>\[ t^* = \arg\max_t IG(t) \]</p>
+<p>该数值特征在该节点被视为<strong>二元类别特征</strong>。</p>
+<hr>
+
+
+</details>
+<h2 id="4-简单例子"><a href="#4-简单例子" class="headerlink" title="4. 简单例子"></a>4. 简单例子</h2>
+<p>特征：<strong>年龄</strong> 目标：<strong>是否打网球</strong></p>
+<p>候选划分： 年龄 ≤ 35? ├── 是 → 多数为否 └── 否 → 多数为是</p>
+<p>若该划分带来最大信息增益，则被选中。</p>
+<hr>
+<h2 id="5-更详细的例子含熵"><a href="#5-更详细的例子含熵" class="headerlink" title="5. 更详细的例子（含熵）"></a>5. 更详细的例子（含熵）</h2>
+<p>父节点：</p>
+<ul>
+<li>6 是，4 否</li>
+</ul>
+<p>熵： \[ H(S)= -0.6\log_2 0.6 - 0.4\log_2 0.4 = 0.971 \]</p>
+<p>在 \(t=35\) 处划分：</p>
+<ul>
+<li>左：4 否 → 熵 = 0</li>
+<li>右：6 是 → 熵 = 0</li>
+</ul>
+<p>信息增益： \[ IG = 0.971 - 0 = 0.971 \]</p>
+<p>👉 完美划分 → ID3 选择它。</p>
+<hr>
+<h2 id="6-id3-方法的重要特性"><a href="#6-id3-方法的重要特性" class="headerlink" title="6. ID3 方法的重要特性"></a>6. ID3 方法的重要特性</h2>
+<h3 id="id3-擅长的方面"><a href="#id3-擅长的方面" class="headerlink" title="ID3 擅长的方面"></a>ID3 擅长的方面</h3>
+<ul>
+<li>简单直观</li>
+<li>全部使用同一标准（信息增益）</li>
+<li>产生可解释的阈值规则</li>
+</ul>
+<h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3>
+<ul>
+<li>贪心且局部</li>
+<li>对噪声敏感</li>
+<li>多次阈值测试计算成本高</li>
+<li>信息增益偏向多值属性</li>
+</ul>
+<hr>
+<h2 id="7-与其他树算法的比较"><a href="#7-与其他树算法的比较" class="headerlink" title="7. 与其他树算法的比较"></a>7. 与其他树算法的比较</h2>
+<table>
+<thead><tr><th>算法</th><th>数值处理方式</th></tr></thead>
+<tbody>
+<tr><td>ID3</td><td>二元阈值 + 信息增益</td></tr>
+<tr><td>C4.5</td><td>阈值 + <strong>增益率（Gain Ratio）</strong></td></tr>
+<tr><td>CART</td><td>阈值 + <strong>基尼 / MSE</strong></td></tr>
+<tr><td>LightGBM</td><td>基于直方图的阈值</td></tr>
+</tbody></table>
+<hr>
+<h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. 总结</h2>
+<blockquote><p>ID3 通过排序、测试候选阈值的二元划分，并选择信息增益最大的阈值来处理数值型特征。</p></blockquote>
+<hr>
+<h2 id="决策树的优缺点"><a href="#决策树的优缺点" class="headerlink" title="决策树的优缺点："></a>决策树的优缺点：</h2>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点："></a>优点：</h3>
+<h4 id="与其他算法相比决策树在预处理阶段所需的数据准备更少"><a href="#与其他算法相比决策树在预处理阶段所需的数据准备更少" class="headerlink" title="与其他算法相比，决策树在预处理阶段所需的数据准备更少。"></a>与其他算法相比，决策树在预处理阶段所需的数据准备更少。</h4>
+<ul>
+<li>决策树不需要数据归一化。</li>
+<li>决策树不需要数据缩放。</li>
+<li>数据中的缺失值对构建决策树影响不大。</li>
+<li>决策树模型直观、易解释，便于向技术团队和业务方说明。</li>
+<li>能处理异常值问题。</li>
+<li>随机森林可用于分类与回归任务。</li>
+<li>决策树能同时处理连续变量和类别变量。</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点："></a>缺点：</h3>
+<h4 id="由于节点划分过细容易过拟合"><a href="#由于节点划分过细容易过拟合" class="headerlink" title="由于节点划分过细，容易过拟合。"></a>由于节点划分过细，容易过拟合。</h4>
+<ul>
+<li><strong>数据的微小变化</strong>可能导致树结构发生<strong>巨大变化</strong>，从而不稳定。</li>
+<li>决策树有时计算会比其他算法<strong>复杂得多</strong>。</li>
+<li>决策树训练往往耗时更长。</li>
+<li>决策树训练成本较高，因为复杂度和时间开销更大。</li>
+<li>决策树算法对<strong>回归</strong>和<strong>连续值预测</strong>并不充分。</li>
+</ul>
+<h2 id="随机森林random-forest"><a href="#随机森林random-forest" class="headerlink" title="随机森林（Random Forest）："></a>随机森林（Random Forest）：</h2>
+<p><img src="/images/data-mining-text-analytics/RF.png" alt="RF illustration" class="post-img"></p>
+<h3 id="rf-算法"><a href="#rf-算法" class="headerlink" title="RF 算法"></a>RF 算法</h3>
+<h4 id="多样性构建单棵树时不会使用全部特征因此每棵树都不同"><a href="#多样性构建单棵树时不会使用全部特征因此每棵树都不同" class="headerlink" title="多样性——构建单棵树时不会使用全部特征，因此每棵树都不同。"></a>多样性——构建单棵树时不会使用全部特征，因此每棵树都不同。</h4>
+<ul>
+<li><strong>抗维度约束</strong>：每棵树不会考虑全部特征，因此特征空间更小。</li>
+<li><strong>可并行化</strong>：每棵树用不同数据与特征从头构建，可充分利用 CPU。</li>
+<li><strong>训练-测试分割</strong>：随机森林不需要显式分训练/测试，因为每棵树都会遗漏约 30% 的数据。</li>
+<li><strong>稳定性</strong>：最终结果基于多数投票/平均，因此更稳定。</li>
+</ul>
+<h3 id="随机森林分类器与决策树的区别"><a href="#随机森林分类器与决策树的区别" class="headerlink" title="随机森林分类器与决策树的区别"></a>随机森林分类器与决策树的区别</h3>
+<ul>
+<li><strong>过拟合</strong>：随机森林由数据子集构成，最终输出取平均/多数投票，因此过拟合较少。</li>
+<li><strong>速度</strong>：随机森林算法通常比决策树慢。</li>
+<li><strong>过程</strong>：随机森林随机抽样、建树、再平均结果，不依赖单一公式。</li>
+</ul>
+<summary><summary>代码示例</summary>
+<details class="post-details">
+  <summary>代码示例</summary>
+<h3 id="rf-代码示例"><a href="#rf-代码示例" class="headerlink" title="RF 代码示例"></a>RF 代码示例</h3>
+<pre><code>from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_breast_cancer
+
+# Load example dataset
+X, y = load_breast_cancer(return_X_y=True)
+
+# Train / test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Build Random Forest
+rf = RandomForestClassifier(
+    n_estimators=100,      # number of trees
+    max_depth=None,        # let trees grow fully
+    min_samples_split=2,   # minimum samples to split
+    random_state=42
+)
+
+# Train
+rf.fit(X_train, y_train)
+
+# Predict
+y_pred = rf.predict(X_test)
+
+# Evaluate
+print("Accuracy:", accuracy_score(y_test, y_pred))</code></pre>
+
+          </div>
+<div class="post-content-inner-space">
+            <div class="space-toc-main animate__animated  animate__fadeInUp">
+              <ol class="space-toc">
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#1-概述什么是决策树什么是决策准则"><span class="space-toc-text">1. 概述：什么是决策树？什么是决策准则？</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-决策准则详解含例子"><span class="space-toc-text">2. 决策准则详解（含例子）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#3-决策树如何训练"><span class="space-toc-text">3. 决策树如何训练</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#4-真实案例贷款审批预测"><span class="space-toc-text">4. 真实案例：贷款审批预测</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#代码示例"><span class="space-toc-text">代码示例：</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#关键结论"><span class="space-toc-text">关键结论</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#停下来思考"><span class="space-toc-text">停下来思考：</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#决策树还有"><span class="space-toc-text">决策树还有：</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#缺失值的处理"><span class="space-toc-text">缺失值的处理</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#1-简短回答核心思想"><span class="space-toc-text">1. 简短回答（核心思想）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-为什么-id3-需要特殊处理数值属性"><span class="space-toc-text">2. 为什么 ID3 需要特殊处理数值属性</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#3-逐步说明id3-如何处理数值型属性"><span class="space-toc-text">3. 逐步说明：ID3 如何处理数值型属性</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#4-简单例子"><span class="space-toc-text">4. 简单例子</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#5-更详细的例子含熵"><span class="space-toc-text">5. 更详细的例子（含熵）</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#6-id3-方法的重要特性"><span class="space-toc-text">6. ID3 方法的重要特性</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#7-与其他树算法的比较"><span class="space-toc-text">7. 与其他树算法的比较</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#8-总结"><span class="space-toc-text">8. 总结</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#决策树的优缺点"><span class="space-toc-text">决策树的优缺点：</span></a></li>
+<li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#随机森林random-forest"><span class="space-toc-text">随机森林（Random Forest）：</span></a></li>
+</ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="post-nav-box">
+  <div class="post-nav-title">下一篇（数据挖掘与文本分析）</div>
+  <a class="post-nav-link" href="/2026/02/10/Decision-Tree-and-Random-Forest/index-zh.html">01. 决策树与随机森林</a>
+</div>
+</article>
+  </div>
+</div>
+
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>
+
+
+
+
+</details>

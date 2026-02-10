@@ -43,3 +43,9 @@ Use this checklist every time you create or update a post in this repo.
 ---
 
 This file is the default checklist for all post work in this project.
+
+
+- Always close `</div>` for `.post-content-main` before inserting the TOC (`.post-content-inner-space` with `.space-toc-main`). If the main block is not closed, the TOC renders at the bottom instead of the right sidebar.
+- Ensure the TOC block is a sibling of `.post-content-main` inside `.post-content-inner` (not nested inside the content).
+
+- Code blocks should use the same styling as Python Crash Course posts (monospace font, light background, padding, rounded corners). Ensure global CSS supports this for `pre`/`code` in posts.

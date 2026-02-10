@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  04. 生成模型 |    榕言的博客</title>
+  <meta name="description" content="金融工程 | 数学 | 计算机科学">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  <link rel="stylesheet" href="/css/white.css">
+</head>
+<body>
+
+<div class="menu-outer">
+  <div class="menu-inner">
+    <div class="menu-site-name  animate__animated  animate__fadeInUp">
+      <a href="/index-zh.html">榕言的博客</a>
+      <div class="menu-redirect">
+        <a href="/categories/ai/deep-learning/index-zh.html" class="nav-link back-topic-link">&larr; 深度学习</a>
+      </div>
+    </div>
+    <div class="menu-group">
+      <ul class="menu-ul">
+        <a href="/index-zh.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">首页</li></a>
+        <a href="/archives/index.html" class="nav-link"><li class="menu-li  animate__animated  animate__fadeInUp">博客</li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+           分类
+           <div class="categories-outer " id="sort-div">
+             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">计算机科学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">量化</a></li></ul>
+           </div>
+        </li>
+        <a href="/search"><li class="menu-li  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></li></a>
+        <li class="menu-li animate__animated  animate__fadeInUp lang-switcher-desktop">
+          <a href="/2026/02/17/Generative-Models/index.html">EN</a> |
+          <a href="/2026/02/17/Generative-Models/index-zh.html">中文</a>
+        </li>
+        <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu"><i class="ri-menu-line"></i></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp"><a href="/index-zh.html">榕言</a></div>
+    <div class="mobile-menu-group" id="mobile-close"><i class="ri-close-line"></i></div>
+  </div>
+  <div class="mobile-menu-div">
+    <a href="/index-zh.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>首页</span></div></a>
+    <a href="/archives/index.html" class="mobile-nav-link"><div class="mobile-menu-child animate__animated  animate__fadeInUp"><span>博客</span></div></a>
+    <div class="mobile-menu-child animate__animated  animate__fadeInUp lang-switcher-mobile">
+      <a href="/2026/02/17/Generative-Models/index.html">EN</a> |
+      <a href="/2026/02/17/Generative-Models/index-zh.html">中文</a>
+    </div>
+    <a href="/search"><div class="mobile-menu-child  animate__animated  animate__fadeInUp"><i class="ri-search-line"></i></div></a>
+  </div>
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    <article class="post-inner">
+      <div class="post-content-outer">
+        <div class="post-intro">
+          <div class="post-title animate__animated  animate__fadeInUp">04. 生成模型</div>
+          <div class="meta-intro animate__animated  animate__fadeInUp">2026-02-17</div>
+        </div>
+        <div class="post-content-inner">
+          <div class="post-content-inner-space"></div>
+          <div class="post-content-main animate__animated  animate__fadeInUp">
+            <h1 id="Gist"><a href="#Gist" class="headerlink" title="概要"></a>概要</h1>
+            <h2 id="Gist-Intro"><a href="#Gist-Intro" class="headerlink" title="生成模型概览"></a>生成模型概览</h2>
+            <p>本节讨论图像生成模型，这是对前面 CNN 的增强。我们会介绍不同方法及其优缺点。</p>
+
+            <h2 id="DeepDream"><a href="#DeepDream" class="headerlink" title="第一部分 深度梦境生成器"></a>第一部分 深度梦境生成器</h2>
+            <p><img src="/images/generative-models/1764768187113.png" alt="深度梦境" class="post-img"></p>
+            <h3>DeepDream（深度梦境）核心思想</h3>
+            <ul>
+              <li><strong>定义：</strong>一种“模式增强”程序：用训练好的 CNN 在图片中寻找它识别到的特征模式，并通过修改图片把这些模式放大/强化。</li>
+              <li><strong>基本设置：</strong>
+                <ul>
+                  <li>选择一张输入图像 \(I\) 和一个已训练好的 CNN。</li>
+                  <li>令 \(f_x^{(L)}(I)\) 表示：当输入为 \(I\) 时，第 \(L\) 层神经元 \(x\) 的激活值。</li>
+                </ul>
+              </li>
+              <li><strong>优化目标：</strong>
+                \[
+                \max_I\; f_x^{(L)}(I)
+                \]
+              </li>
+              <li><strong>怎么做（流程）：</strong>
+                <ol>
+                  <li><strong>固定 CNN 权重不变</strong>（不训练网络，只改图片）。</li>
+                  <li>从输入 \(I\) <strong>前向传播</strong>到第 \(L\) 层，得到激活值。</li>
+                  <li>将目标激活对输入图像做 <strong>反向传播</strong>，得到 \(\nabla_I f_x^{(L)}(I)\)。</li>
+                  <li>用<strong>梯度上升</strong>更新图像，让目标激活更大（重复多次）。</li>
+                </ol>
+              </li>
+              <li><strong>结果直观：</strong>图片中会出现/被强化网络偏好的纹理、形状和语义碎片。</li>
+            </ul>
+
+            <hr>
+
+            <p><img src="/images/generative-models/1764768234191.png" alt="深度梦境目标" class="post-img"></p>
+            <h3>1）目标函数在说什么</h3>
+            <p>右上角公式：</p>
+            <p>\[\arg \max_I S_c(I) - \lambda \|I\|_2^2\]</p>
+            <ul>
+              <li>\(I\)：你要“生成/优化”的图像（变量是像素）。</li>
+              <li>\(S_c(I)\)：网络对类别 \(c\) 的得分（得分/对数几率），或者某个神经元的激活值。</li>
+              <li>\(-\lambda \|I\|_2^2\)：<strong>正则项</strong>
+                <ul>
+                  <li>防止像素值无限增大（否则图会变成噪声/爆亮）。</li>
+                  <li>\(\lambda\) 控制“图像不要太乱”的力度。</li>
+                </ul>
+              </li>
+            </ul>
+            <p>一句话：<strong>既要让类别得分高，也要让图像别发散。</strong></p>
+
+            <hr>
+
+            <h3>2）初始化：从“全零图/噪声图”开始</h3>
+            <p>PPT 写“将图像初始化为零”，左边灰块表示初始图像（像素全 0）。实际实现里也常用随机噪声初始化，会更容易打破对称，生成更丰富的纹理。</p>
+
+            <hr>
+
+            <h3>3）重复的三步（核心算法流程）</h3>
+            <ol>
+              <li><strong>前向传播：</strong>把当前图像 \(I\) 前向传播，算出 \(S_c(I)\)。</li>
+              <li><strong>反向传播：</strong>对输入图像求梯度
+                \[
+                \frac{\partial}{\partial I}\left(S_c(I) - \lambda \|I\|_2^2\right)
+                \]
+              </li>
+              <li><strong>更新图像像素（梯度上升）：</strong>
+                \[
+                I \leftarrow I + \eta\nabla_I\left(S_c(I) - \lambda \|I\|_2^2\right)
+                \]
+                其中 \(\eta\) 是步长（学习率）。
+              </li>
+            </ol>
+            <p>注意：这是梯度上升（最大化），所以是 “+”；如果写成最小化损失，就会变成梯度下降（“-”），本质相同。</p>
+
+            <h2 id="GAN"><a href="#GAN" class="headerlink" title="第二部分 生成对抗网络"></a>第二部分 生成对抗网络</h2>
+            <h3 id="GAN-Basis">2.1 GAN 基础</h3>
+            <p><img src="/images/generative-models/1764769200891.png" alt="GAN 介绍" class="post-img"></p>
+            <h3>在讨论 GAN 之前，先介绍 VAE</h3>
+
+            <h3>变分自编码器（VAE）</h3>
+            <h4>解释 + ELBO 完整推导</h4>
+
+            <h4>1. 一句话定义</h4>
+            <blockquote>
+              <p><strong>VAE 是一种概率自编码器，通过把输入编码为分布并用变分推断训练，从而学习连续、结构化的潜在空间。</strong></p>
+            </blockquote>
+
+            <h4>2. 从 AE 到 VAE</h4>
+            <p><strong>普通自编码器（AE）</strong></p>
+            <p>x → Encoder → z → Decoder → x̂</p>
+            <ul>
+              <li>Encoder 将输入 \(x\) 映射为<strong>确定向量</strong> \(z\)。</li>
+              <li>Decoder 从 \(z\) 重建 \(x\)。</li>
+              <li>目标：最小化重建误差。</li>
+            </ul>
+            <p><strong>问题：</strong></p>
+            <ul>
+              <li>潜空间不规则。</li>
+              <li>缺乏原则性采样方式。</li>
+              <li>不是严格的生成模型。</li>
+            </ul>
+
+            <p><strong>VAE 的关键想法</strong></p>
+            <blockquote>
+              <p><strong>把每个输入 \(x\) 从“点”映射为“分布”。</strong></p>
+            </blockquote>
+            <p>编码器输出分布参数：</p>
+            \[
+            q_\phi(z|x) = \mathcal N(\mu_\phi(x), \sigma_\phi^2(x))
+            \]
+
+            <h4>3. VAE 架构</h4>
+            <p>x → Encoder → \(\mu(x),\sigma(x)\) → \(z\sim \mathcal N(\mu,\sigma^2)\) → Decoder → \(\hat{x}\)</p>
+            <ul>
+              <li>Encoder 学习 \(q_\phi(z|x)\)。</li>
+              <li>Decoder 学习 \(p_\theta(x|z)\)。</li>
+              <li>潜变量先验：
+                \[
+                p(z) = \mathcal N(0, I)
+                \]
+              </li>
+            </ul>
+
+            <h4>4. 真实训练目标是什么？</h4>
+            <p>希望最大化数据似然：</p>
+            \[
+            \log p_\theta(x)
+            \]
+            <p>但：</p>
+            \[
+            p_\theta(x) = \int p_\theta(x|z)p(z)\,dz
+            \]
+            <p>该积分不可解析。</p>
+
+            <h4>5. 引入变分推断</h4>
+            <p>用可计算的 \(q_\phi(z|x)\) 近似真实后验 \(p_\theta(z|x)\)，得到 ELBO。</p>
+
+            <h4>6. ELBO 推导（步骤）</h4>
+            <p><strong>步骤 1：从对数似然开始</strong></p>
+            \[
+            \log p_\theta(x)
+            =
+            \log \int p_\theta(x|z)p(z)\,dz
+            \]
+            <p>乘除 \(q_\phi(z|x)\)：</p>
+            \[
+            =
+            \log \int q_\phi(z|x)\frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}\,dz
+            \]
+
+            <p><strong>步骤 2：Jensen 不等式</strong></p>
+            \[
+            \log \mathbb E_{q_\phi(z|x)}\left[
+            \frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}
+            \right]
+            \ge
+            \mathbb E_{q_\phi(z|x)}\left[
+            \log \frac{p_\theta(x|z)p(z)}{q_\phi(z|x)}
+            \right]
+            \]
+            <p>因此：</p>
+            \[
+            \log p_\theta(x) \ge \mathcal L(x)
+            \]
+
+            <p><strong>步骤 3：展开期望</strong></p>
+            \[
+            \mathcal L(x)
+            =
+            \mathbb E_{q_\phi(z|x)}[\log p_\theta(x|z)]
+            +
+            \mathbb E_{q_\phi(z|x)}[\log p(z)]
+            -
+            \mathbb E_{q_\phi(z|x)}[\log q_\phi(z|x)]
+            \]
+
+            <p><strong>步骤 4：识别 KL 散度</strong></p>
+            \[
+            D_{\mathrm{KL}}(q\|p)
+            =
+            \mathbb E_q[\log q - \log p]
+            \]
+            <p>所以：</p>
+            \[
+            \mathbb E_{q_\phi(z|x)}[\log p(z)]
+            -
+            \mathbb E_{q_\phi(z|x)}[\log q_\phi(z|x)]
+            =
+            - D_{\mathrm{KL}}\big(q_\phi(z|x)\,\|\,p(z)\big)
+            \]
+
+            <p><strong>步骤 5：最终 ELBO 形式</strong></p>
+            \[
+            \boxed{
+            \mathcal L(x)
+            =
+            \mathbb E_{q_\phi(z|x)}[\log p_\theta(x|z)]
+            -
+            D_{\mathrm{KL}}\big(q_\phi(z|x)\,\|\,p(z)\big)
+            }
+            \]
+            <p>这就是 ELBO。</p>
+
+            <h4>7. ELBO 两项的含义</h4>
+            <p><strong>重建项</strong></p>
+            \[
+            \mathbb E_{q(z|x)}[\log p(x|z)]
+            \]
+            <ul>
+              <li>迫使解码器重建输入。</li>
+              <li>实现方式：
+                <ul>
+                  <li>BCE（二值数据）</li>
+                  <li>MSE（连续数据）</li>
+                </ul>
+              </li>
+            </ul>
+
+            <p><strong>KL 正则项</strong></p>
+            \[
+            D_{\mathrm{KL}}\big(q(z|x)\,\|\,\mathcal N(0,I)\big)
+            \]
+            <ul>
+              <li>让潜分布靠近标准正态。</li>
+              <li>使潜空间平滑连续。</li>
+              <li>便于采样。</li>
+            </ul>
+
+            <h4>8. 重参数化技巧</h4>
+            <p>直接采样会阻断反向传播：</p>
+            \[
+            z \sim \mathcal N(\mu, \sigma^2)
+            \]
+            <p>改写为：</p>
+            \[
+            \boxed{z = \mu + \sigma \odot \varepsilon,\quad \varepsilon \sim \mathcal N(0,I)}
+            \]
+            <ul>
+              <li>随机性被放入 \(\varepsilon\)。</li>
+              <li>梯度可传给 \(\mu,\sigma\)。</li>
+            </ul>
+
+            <h4>9. VAE 为什么能生成新数据</h4>
+            <p>训练后：</p>
+            <ol>
+              <li>采样潜变量：
+                \[
+                z \sim \mathcal N(0,I)
+                \]
+              </li>
+              <li>解码生成：
+                \[
+                x_{\text{new}} \sim p_\theta(x|z)
+                \]
+              </li>
+            </ol>
+            <p>即可生成<strong>新的未见样本</strong>。</p>
+
+            <h4>10. AE vs VAE 对比</h4>
+            <table>
+              <thead>
+                <tr><th>维度</th><th>AE</th><th>VAE</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>潜表示</td><td>点</td><td>分布</td></tr>
+                <tr><td>正则化</td><td>无</td><td>KL 散度</td></tr>
+                <tr><td>潜空间</td><td>不规则</td><td>连续</td></tr>
+                <tr><td>生成性</td><td>❌</td><td>✅</td></tr>
+                <tr><td>理论</td><td>优化</td><td>概率推断</td></tr>
+              </tbody>
+            </table>
+
+            <h4>11. 最终结论</h4>
+            <blockquote>
+              <p><strong>VAE 将自编码器嵌入概率框架，并通过最大化数据似然的变分下界进行训练，从而得到适合生成的连续潜空间。</strong></p>
+            </blockquote>
+
+            <h4>12. 易记口号</h4>
+            <blockquote>
+              <p><strong>AE 做压缩，VAE 学分布。</strong></p>
+            </blockquote>
+
+            <h3>生成对抗网络（GAN）</h3>
+            <ul>
+              <li><strong>VAE 的问题：</strong>生成结果偏“模糊”，因为学到的是平均化表示。</li>
+              <li><strong>GAN 含义拆解：</strong>
+                <ul>
+                  <li><strong>Generative：</strong>学习生成模型，从噪声/潜变量产生样本。</li>
+                  <li><strong>对抗：</strong>对抗训练（生成器 G vs 判别器 D）。</li>
+                  <li><strong>Networks：</strong>用深度神经网络实现生成与判别。</li>
+                </ul>
+              </li>
+              <li><strong>直观目标：</strong>生成样本越来越像真数据，让判别器难分真假。</li>
+              <li><strong>图示说明：</strong>PPT 中标注“计算机生成” 的图用于说明“真假难辨”。</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764769215128.png" alt="GAN 训练思想" class="post-img"></p>
+            <h3>GAN 训练机制（核心思想）</h3>
+            <ul>
+              <li><strong>训练像一场博弈</strong>：两个网络共同训练
+                <ul>
+                  <li>生成器（G）</li>
+                  <li>判别器（D）</li>
+                </ul>
+              </li>
+              <li><strong>判别器 D 的任务（Real or Fake）</strong>
+                <ul>
+                  <li>输入：真实数据 + 生成数据</li>
+                  <li>输出：来自真实分布 \(R\) 还是生成分布 \(F\)</li>
+                  <li>目标：尽可能把真/假分对</li>
+                </ul>
+              </li>
+              <li><strong>生成器 G 的任务</strong>
+                <ul>
+                  <li>生成“看起来像真的”样本</li>
+                  <li>目标：欺骗判别器</li>
+                </ul>
+              </li>
+              <li><strong>整体效果</strong>
+                <ul>
+                  <li>D 越强 → 逼 G 生成更逼真</li>
+                  <li>G 越强 → D 越难分辨</li>
+                  <li>最终希望 \(F\) 逐渐接近 \(R\)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764769221617.png" alt="GAN 流程" class="post-img"></p>
+            <h3>GAN 工作流程（从噪声到对抗训练）</h3>
+            <ul>
+              <li><strong>两路输入给判别器 D</strong>
+                <ol>
+                  <li><strong>真实样本：</strong>\(x\sim R\) → \(D(x)\in[0,1]\)。</li>
+                  <li><strong>伪造样本：</strong>\(z\sim Z\) → \(\hat{x}=G(z)\) → \(D(G(z))\in[0,1]\)。</li>
+                </ol>
+              </li>
+              <li><strong>对抗目标</strong>
+                <ul>
+                  <li>D 希望 \(D(x)\to 1\)，\(D(G(z))\to 0\)</li>
+                  <li>G 希望 \(D(G(z))\to 1\)</li>
+                </ul>
+              </li>
+              <li><strong>Loss 直观含义</strong>
+                <ul>
+                  <li>D 的损失：真高假低</li>
+                  <li>G 的损失：假也要高分</li>
+                </ul>
+              </li>
+              <li><strong>训练方式</strong>
+                <ul>
+                  <li>交替更新：固定 G 训练 D；再固定 D 训练 G</li>
+                  <li>迭代对抗，生成分布逼近真实分布</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3 id="GAN-Training">2.2 训练 GAN</h3>
+            <p><img src="/images/generative-models/1764770135332.png" alt="GAN 训练示例" class="post-img"></p>
+            <h3>GAN 示例（椅子图片）+ 参数如何更新</h3>
+            <ul>
+              <li><strong>真实分布 \(Q/R\)</strong>：从真实数据集采样 \(x\in\mathbb R^{n\times n}\)。</li>
+              <li><strong>生成分布 \(F\)</strong>：噪声 \(z\) → 生成 \(G(z)\in F\)。</li>
+              <li><strong>判别器输出</strong>：\(D(x)\in[0,1]\) 表示真概率。</li>
+              <li><strong>权重更新规则</strong>
+                <ul>
+                  <li>若 \(D(x)=0\)：真被判假 → 更新 \(D\)。</li>
+                  <li>若 \(D(G(z))=1\)：假被判真 → 更新 \(D\)。</li>
+                  <li>若 \(D(G(z))=0\)：假被识别 → 更新 \(G\)。</li>
+                  <li>通常 \(D(G(z))\in(0,1)\)：\(D\) 和 \(G\) 都需更新。</li>
+                </ul>
+              </li>
+              <li><strong>理想平衡</strong>：最优 \(D\) 无法区分真/假，\(D(\cdot)\approx 0.5\)，此时 \(F\approx R\)。</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764770198557.png" alt="训练判别器" class="post-img"></p>
+            <h3>训练判别器（更新 D）</h3>
+            <ul>
+              <li>用真实样本和生成样本一起训练：</li>
+              <li>真实样本 \(x\)（label=1）：希望 \(D(x)\to 1\)。</li>
+              <li>生成样本 \(\hat{x}=G(z)\)（label=0）：希望 \(D(G(z))\to 0\)。</li>
+              <li>通过反向传播更新 \(D\) 参数，最小化分类错误。</li>
+              <li>常用判别器损失：
+                \[
+                L_D = -\mathbb{E}_{x\sim R}[\log D(x)] - \mathbb{E}_{z}[\log(1-D(G(z)))]
+                \]
+              </li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764770212354.png" alt="训练生成器" class="post-img"></p>
+            <h3>训练生成器（更新 G）</h3>
+            <ul>
+              <li>冻结判别器参数，只更新 \(G\)。</li>
+              <li>采样噪声 \(z\)，生成假样本 \(\hat{x}=G(z)\)。</li>
+              <li>输入 \(D\) 得到 \(D(G(z))\)，目标 \(D(G(z))\to 1\)。</li>
+              <li>通过 \(D\) 反向传播梯度到 \(G\)（\(D\) 不更新）。</li>
+              <li>等价直觉：最大化判别器的错误。</li>
+              <li>常用生成器损失（非饱和）：
+                \[
+                L_G = -\mathbb{E}_{z}[\log D(G(z))]
+                \]
+              </li>
+            </ul>
+            <p><strong>一句话总结（交替训练）</strong></p>
+            <ul>
+              <li>训练 D：学会分清真/假。</li>
+              <li>训练 G：学会生成以假乱真。</li>
+              <li>两步交替迭代。</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764771015351.png" alt="GAN 极小极大" class="post-img"></p>
+            <p><img src="/images/generative-models/1764771122553.png" alt="GAN 极小极大 2" class="post-img"></p>
+            <h3>GAN 训练目标（极小极大）</h3>
+            <p><strong>整体目标</strong>（G 最小化，D 最大化）：</p>
+            \[
+            \min_G \max_D \Big( \mathbb{E}_{x\sim R}[\log D(x)] + \mathbb{E}_{z\sim Z}[\log(1 - D(G(z)))] \Big)
+            \]
+
+            <h4>用随机梯度下降交替训练（进行 k 步）</h4>
+            <p><strong>1) 训练判别器 D（固定 G，梯度上升）</strong></p>
+            <ul>
+              <li>采样 \(m\) 个噪声 \(\{z_1,\dots,z_m\}\)，生成假样本 \(G(z_i)\)。</li>
+              <li>采样 \(m\) 个真实样本 \(\{x_1,\dots,x_m\}\)。</li>
+              <li>对目标做梯度上升：
+                \[
+                \nabla_{\theta_D}\frac{1}{m}\sum_{i=1}^{m}\Big[\log D(x_i)+\log(1-D(G(z_i)))\Big]
+                \]
+              </li>
+              <li>直觉：真样本高分、假样本低分。</li>
+            </ul>
+
+            <p><strong>2) 训练生成器 G（固定 D，梯度下降）</strong></p>
+            <ul>
+              <li>再采样 \(m\) 个噪声，生成 \(G(z_i)\)。</li>
+              <li>对与 G 相关的部分做梯度下降：
+                \[
+                \nabla_{\theta_G}\frac{1}{m}\sum_{i=1}^{m}\Big[\log D(x_i)+\log(1-D(G(z_i)))\Big]
+                \]
+              </li>
+              <li>\(\log D(x_i)\) 与 G 无关，G 实际最小化 \(\log(1-D(G(z)))\)。</li>
+            </ul>
+
+            <p><strong>一句话记忆</strong></p>
+            <ul>
+              <li>D：梯度上升 → 真高假低。</li>
+              <li>G：梯度下降 → 让假看起来更真。</li>
+            </ul>
+
+            <h3 id="GAN-Problems">2.3 GAN 的问题</h3>
+            <p><img src="/images/generative-models/1764771546560.png" alt="GAN 问题" class="post-img"></p>
+            <h3>GAN 常见问题</h3>
+            <ul>
+              <li><strong>模式崩塌：</strong>只生成少数模式，无法覆盖多峰真实分布（多样性差）。</li>
+              <li><strong>不收敛/训练不稳定：</strong>零和极小极大博弈容易震荡，难稳定。</li>
+              <li><strong>生成失真/伪影：</strong>出现结构错误或视觉伪影（扭曲、纹理怪异）。</li>
+            </ul>
+
+            <h2 id="CGAN"><a href="#CGAN" class="headerlink" title="第三部分 条件 GAN"></a>第三部分 条件 GAN</h2>
+            <p><img src="/images/generative-models/1764771684454.png" alt="条件 GAN" class="post-img"></p>
+            <h3>条件生成对抗网络（cGAN）</h3>
+            <ul>
+              <li><strong>GAN 的弱点：</strong>
+                <ul>
+                  <li>难按目标标签生成指定类别（缺乏可控性）。</li>
+                  <li>多样性不足。</li>
+                </ul>
+              </li>
+              <li><strong>核心问题：</strong>如何控制生成图像的类型/类别？</li>
+              <li><strong>思路：加入条件标签 \(N\)</strong>（Mirza &amp; Osindero, 2014）
+                <ul>
+                  <li><strong>给生成器：</strong>把 \(N\) 与噪声 \(z\) 一起输入，生成指定类别：
+                    \[
+                    \hat{x}=G(z, N)
+                    \]
+                  </li>
+                  <li><strong>给判别器：</strong>把 \(x\) 与 \(N\) 一起输入，判断真伪：
+                    \[
+                    D(x, N)\in[0,1]
+                    \]
+                  </li>
+                </ul>
+              </li>
+              <li><strong>训练结果：</strong>\(G\) 与 \(D\) 均在 \(N\) 条件下学习，可按标签生成图像。</li>
+              <li><strong>重要限制：</strong>不是完全无监督，需要带标签数据。</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1764771720362.png" alt="cGAN 结构" class="post-img"></p>
+            <h3>cGAN 结构要点</h3>
+            <ul>
+              <li><strong>输入与输出</strong>
+                <ul>
+                  <li>随机噪声/潜变量：\(z\)</li>
+                  <li>条件标签：\(N\)（独热）</li>
+                  <li>生成器输出：
+                    \[
+                    \hat{x}=G(z\mid N)
+                    \]
+                  </li>
+                  <li>判别器输出：
+                    \[
+                    D(x\mid N)\in[0,1]
+                    \]
+                  </li>
+                </ul>
+              </li>
+              <li><strong>整体流程</strong>
+                <ul>
+                  <li>真实样本 \((x, N)\) 输入判别器。</li>
+                  <li>生成样本 \((\hat{x}, N)\) 输入判别器。</li>
+                </ul>
+              </li>
+              <li><strong>如何融合标签 \(N\)</strong>
+                <ul>
+                  <li><strong>生成器：</strong>将 \(N\) 通过 嵌入 映射，与 \(z\) 拼接。</li>
+                  <li><strong>判别器：</strong>将 \(N\) 嵌入 扩展至图像尺寸，与图像通道拼接。</li>
+                </ul>
+              </li>
+              <li><strong>直观理解</strong>
+                <ul>
+                  <li>\(z\) 决定随机细节，\(N\) 决定类别。</li>
+                  <li>条件使生成更可控。</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h2 id="Adversarial"><a href="#Adversarial" class="headerlink" title="第四部分 对抗样本"></a>第四部分 对抗样本</h2>
+            <p><img src="/images/generative-models/1765265073177.png" alt="对抗样本" class="post-img"></p>
+            <p><img src="/images/generative-models/1765265096208.png" alt="对抗样本 2" class="post-img"></p>
+            <h3>对抗样本 / 对抗图像</h3>
+            <ul>
+              <li><strong>定义：</strong>对输入图像施加很小但刻意设计的扰动，使网络产生错误分类，甚至高置信度误判。</li>
+              <li><strong>经典现象（Panda → Gibbon）：</strong>加入极小扰动 \(+\epsilon\) 后人眼几乎无差异，但模型以高置信度误判。</li>
+            </ul>
+
+            <h4>关键特征</h4>
+            <ul>
+              <li><strong>扰动很小/几乎不可见：</strong>像素级噪声很低但影响显著。</li>
+              <li><strong>有目的性：</strong>不是随机噪声，而是朝着让模型出错的方向设计。</li>
+              <li><strong>高置信度误判：</strong>模型“错得很自信”。</li>
+            </ul>
+
+            <h4>人类 vs CNN（直观理解）</h4>
+            <ul>
+              <li><strong>人类：</strong>倾向语义特征（黑耳朵、黑眼圈等）。</li>
+              <li><strong>模型：</strong>依赖细碎统计/纹理，微小变化可跨决策边界。</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1765265108446.png" alt="为何研究对抗样本" class="post-img"></p>
+            <h3>为什么研究对抗样本？</h3>
+            <p><strong>核心原因：</strong>对抗样本暴露了模型易被攻击的脆弱性，带来安全与可靠性风险。</p>
+            <h4>典型风险场景</h4>
+            <ul>
+              <li><strong>自动驾驶/交通标志识别：</strong>轻微扰动后可能导致停车标志被误判。</li>
+              <li><strong>垃圾邮件检测：</strong>内容被伪装为正常邮件以绕过过滤。</li>
+              <li><strong>机场安检：</strong>危险物品外观被设计成被误判为普通物品。</li>
+            </ul>
+            <p><strong>小结：</strong>研究对抗样本可提升鲁棒性与安全性。</p>
+
+            <p><img src="/images/generative-models/1765265155892.png" alt="FGSM" class="post-img"></p>
+            <h3>白盒攻击：FGSM（快速梯度符号法）</h3>
+            <ul>
+              <li><strong>白盒攻击：</strong>攻击者知道模型结构与梯度信息。</li>
+              <li><strong>FGSM 思想：</strong>沿损失对输入的梯度方向做一次小步长扰动，最大化损失。</li>
+            </ul>
+            <h4>公式</h4>
+            \[
+            x_{adv} = x + \epsilon \cdot \text{sign}(\nabla_x J(\theta, x, y))
+            \]
+            <ul>
+              <li>\(x\)：原始图像</li>
+              <li>\(x_{adv}\)：对抗图像</li>
+              <li>\(J(\theta, x, y)\)：损失函数</li>
+              <li>\(\nabla_x J\)：损失对输入的梯度</li>
+              <li>\(\text{sign}(\cdot)\)：梯度符号</li>
+              <li>\(\epsilon\)：扰动强度</li>
+            </ul>
+            <p><strong>一句话总结：</strong>用一次梯度符号步构造对抗样本。</p>
+
+            <p><img src="/images/generative-models/1765265169069.png" alt="目标 adversarial" class="post-img"></p>
+            <h3>指定目标的对抗样本</h3>
+            <h4>基本流程</h4>
+            <ol>
+              <li>从输入图像 \(x\) 开始。</li>
+              <li>选择目标类别 \(y\)。</li>
+              <li>寻找扰动 \(r\) 使 \(x+r\) 被判为 \(y\)。</li>
+              <li>不断迭代直到成功。</li>
+            </ol>
+            <h4>优化目标</h4>
+            \[
+            \min_{r}\; \text{loss}(f(x+r), y) + c\cdot |r|
+            \]
+            <ul>
+              <li><strong>\(r\)</strong>：对原图的扰动</li>
+              <li><strong>loss\((f(x+r), y)\)</strong>：与目标类别 \(y\) 的差异</li>
+              <li><strong>|r|</strong>：扰动大小</li>
+              <li><strong>c</strong>：成功与扰动大小的权衡</li>
+            </ul>
+            <p><strong>一句话总结：</strong>让模型按指定类别出错，同时尽量保持扰动小。</p>
+
+            <p><img src="/images/generative-models/1765265389833.png" alt="对抗样本示意" class="post-img"></p>
+
+            <h2 id="Transfer"><a href="#Transfer" class="headerlink" title="第五部分 跨模型对抗样本"></a>第五部分 跨模型对抗样本</h2>
+            <p><img src="/images/generative-models/1765265455573.png" alt="迁移性" class="post-img"></p>
+            <h3>对抗样本问题只存在于神经网络吗？</h3>
+            <ul>
+              <li><strong>不是。</strong>线性模型、SVM、k‑NN 等也能被欺骗。</li>
+              <li><strong>跨模型可迁移性：</strong>在源模型上生成的对抗样本可攻击不同目标模型。</li>
+            </ul>
+            <h4>矩阵如何解读</h4>
+            <ul>
+              <li>行：源模型技术（用于生成对抗样本）。</li>
+              <li>列：目标模型技术（被攻击的分类器）。</li>
+              <li>每个格子：被欺骗的概率（越低越好）。</li>
+            </ul>
+            <h4>重要结论</h4>
+            <ul>
+              <li>DNN、LR、SVM、DT、k‑NN 之间具有迁移性。</li>
+              <li>DNN 在该对比中整体更难被欺骗（更鲁棒）。</li>
+            </ul>
+
+            <p><img src="/images/generative-models/1765265427725.png" alt="对抗训练" class="post-img"></p>
+            <h3>对抗训练</h3>
+            <ul>
+              <li><strong>做法：</strong>对每张干净图像 \(x\) 生成对抗图像 \(x_{adv}\)，保持原类别，加入训练集。</li>
+              <li>直观：让模型在训练中见过攻击样本，学习鲁棒特征。</li>
+            </ul>
+            <h4>曲线含义</h4>
+            <ul>
+              <li><strong>训练=干净，测试=干净：</strong>干净训练 + 干净测试。</li>
+              <li><strong>训练=干净，测试=对抗：</strong>干净训练 + 对抗测试（错误率高）。</li>
+              <li><strong>训练=对抗，测试=干净：</strong>对抗训练 + 干净测试（性能仍好）。</li>
+              <li><strong>训练=对抗，测试=对抗：</strong>对抗训练 + 对抗测试（鲁棒性提升）。</li>
+            </ul>
+            <h4>关键结论</h4>
+            <ul>
+              <li>对抗训练能提升对训练时同类攻击的鲁棒性。</li>
+            </ul>
+
+          </div>
+<div class="post-content-inner-space">
+            <div class="space-toc-main animate__animated  animate__fadeInUp">
+              <ol class="space-toc">
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Gist"><span class="space-toc-text">概要</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#DeepDream"><span class="space-toc-text">第一部分：深度梦境生成器</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#GAN"><span class="space-toc-text">第二部分：生成对抗网络</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#CGAN"><span class="space-toc-text">第三部分：条件 GAN</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Adversarial"><span class="space-toc-text">第四部分：对抗样本</span></a></li>
+                <li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Transfer"><span class="space-toc-text">第五部分：跨模型对抗样本</span></a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="post-nav-box">
+  <div class="post-nav-title">下一篇（深度学习）</div>
+  <a class="post-nav-link" href="/2026/02/16/Transformer-Notes/index-zh.html">05. Transformer</a>
+</div>
+</article>
+  </div>
+</div>
+
+<div class="footer-outer animate__animated  animate__fadeInUp">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <p>人工智能  | 金融工程 | 数学 | 计算机科学  <strong>袁榕言 <i class="ri-copyright-line"></i> 2026</strong></p>
+    </div>
+    <div class="footer-contact">
+      <ul class="footer-ul">
+        <li class="footer-li"><a href="https://github.com/RongyanYuan" target="_blank"><i class="ri-github-line"></i></a></li>
+        <li class="footer-li"><a href="mailto:adrianrongyanyun@gmail.com" target="_blank"><i class="ri-mail-line"></i></a></li>
+        <li class="footer-li"><a href="https://www.linkedin.com/in/rongyan-yuan-a076971b2/" target="_blank"><i class="ri-linkedin-box-line"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/white.js"></script>
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['\\(','\\)'], ['$', '$']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>
