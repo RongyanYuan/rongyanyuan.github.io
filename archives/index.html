@@ -52,7 +52,7 @@
           <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
              <span data-i18n="nav_categories">CATEGORIES</span>
              <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AboutMe/">AboutMe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ai/index.html">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">CS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/quant/">Quant</a></li></ul>
              </div>
           </li>
         
@@ -184,10 +184,10 @@
     var items = [
       { title: 'About Me', url: '/2022/09/05/About%20me/', cover: '../images/about-me.jpg?v=2' },
       { title: 'READ ME', url: '/2022/08/08/README/', cover: '../images/readme-card.jpg?v=1' },
-      { title: 'AI', url: '/categories/ai/', cover: '../images/ai-card.png?v=1' },
+      { title: 'AI', url: '/categories/ai/index.html', cover: '../images/ai-card.png?v=1' },
+      { title: 'AI Daily Threads', url: '/categories/ai/ai-daily-threads/index.html', cover: '../images/extra-card.jpg?v=1' },
       { title: 'Math', url: '/categories/math/', cover: '../images/math-card.jpg?v=1' },
       { title: 'CS', url: '/categories/cs/', cover: '../images/cs-card.jpg?v=1' },
-      { title: '', url: '#', cover: '../images/extra-card.jpg?v=1', noTitle: true },
       { title: 'Quant', url: '/categories/quant/', cover: '../images/quant-card.png?v=1' }
     ];
     listEl.innerHTML = items.map(function (item) {
